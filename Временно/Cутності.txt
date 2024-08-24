@@ -1,0 +1,147 @@
+   public class Baggage
+   {
+       private int baggageId;
+       private string type;
+       private double weight;
+       private decimal payment;
+       private int passengerId;
+----------------------------------------
+ public class Department
+ {
+     private int departmentId;
+     private string departmentName;
+--------------------------------------------------
+public class Flight
+{
+    private int flightId;
+    private string flightNumber;
+    private string status;
+    private string category;
+    private DateTime dateDeparture;
+    private DateTime dateArrival;
+    private int planeId;
+    private int dispatchBrigadeId;
+    private int navigationBrigadeId;
+    private int flightBrigadeId;
+    private int inspectionBrigadeId;
+    private int routeId;
+-------------------------------------
+ public class Passenger
+ {
+     private int passengerId;
+     private int age;
+     private string gender;
+     private string passportNumber;
+     private string internPassportNumber;
+     private string baggageStatus;
+     private string phoneNumber;
+     private string email;
+     private string fullname;
+____________________________________________________
+public class PilotMedExam
+{
+    private int examId;
+    private string result;
+    private int pilotId;
+    private int doctorId;
+----------------------------------------------------
+ public class Plane
+ {
+     private int planeId;
+     private string type;
+     private string techCondition;
+     private string interiorReadiness;
+     private int numberFlightsBeforeRepair;
+     private DateTime techInspectionDate;
+     private bool assigned;
+     private int numberRepairs;
+     private DateTime exploitationDate;
+------------------------------------------------------
+public class PlaneRepair
+    {
+        private DateTime startDate;
+        private string status;
+        private int numberFlights;
+        private DateTime endDate;
+        private string reason;
+        private string result;
+        private int brigadeId;
+        private int planeId;
+---------------------------------------------------------
+
+  public class Position
+  {
+      private int positionId;
+      private string positionName;
+      private decimal salary;
+
+      public Position(int positionId, string positionName, decimal salary)
+      {
+          this.positionId = positionId;
+          this.positionName = positionName;
+          this.salary = salary;
+      }
+
+      public int PositionId { get => positionId; set => positionId = value; }
+      public string PositionName { get => positionName; set => positionName = value; }
+      public decimal Salary { get => salary; set => salary = value; }
+  }
+-------------------------------------------------------
+public class RefundedTicketInfo
+{
+    private int refundedTicketId;
+    private DateTime date;
+    private int routeId;
+    private int age;
+    private decimal price;
+    private string gender;
+    private string fullname;
+    private int ticketId;
+    private int flightId
+--------------------------------------------------------------
+public class Route
+{
+    private int routeId;
+    private string number;
+    private string departurePoint;
+    private string arrivalPoint;
+    private string transitAirport;
+    private string flightDirection;
+----------------------------------------------------
+public class Seat
+{
+    private int seatId;
+    private int number;
+    private string status;
+    private int flightId;
+-----------------------------------------------------------
+ private int structureUnitId;
+ private string structureUnitName;
+ private string type;
+ private int departmentId;
+------------------------------------------------------------
+
+   private int ticketId;
+   private string status;
+   private bool availability;
+   private DateTime dateChanges;
+   private decimal price;
+   private int flightId;
+   private int seatId;
+   private int passengerId;
+----------------------------------------
+ private int workerId;
+ private string fullName;
+ private int age;
+ private string status;
+ private string gender;
+ private int numberChildrens;
+ private DateTime hireDate;
+ private string shift;
+ private string email;
+ private string phoneNumber;
+ private int structureUnitId;
+ private int departmentId;
+ private int brigadeId;
+ private int positionId;
+-----------------------------------------------------------------

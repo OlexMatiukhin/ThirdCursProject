@@ -1,0 +1,20 @@
+﻿Airport
+
+
+winexe
+C#
+.cs
+C:\Users\sasha\Desktop\Інститут\Курсовий проєкт 3 курс\Airport\Airport\obj\Debug\net8.0-windows\
+Airport
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+C:\Users\sasha\Desktop\Інститут\Курсовий проєкт 3 курс\Airport\Airport\App.xaml
+30-1939089327
+
+51-1961890944
+210-1938125839
+Views\Dialog\ChangeBaggage.xaml;Views\Dialog\ChangeDepartment.xaml;Views\Dialog\ChangeFlight.xaml;Views\Dialog\ChangePassanger.xaml;Views\Dialog\ChangePilotMedExam.xaml;Views\Dialog\ChangePlane.xaml;Views\Dialog\ChangePosition.xaml;Views\Dialog\ChangeRoute.xaml;Views\Dialog\ChangeStructureUnit.xaml;Views\Dialog\ChangeWorker.xaml;Views\Windows\BaggageView.xaml;Views\Windows\CanceledFlightsView.xaml;Views\Windows\CompletedFlightPassengersView.xaml;Views\Windows\CompletedFlights.xaml;Views\Windows\DelayedFlightsInfoView.xaml;Views\Windows\DepartmentsView.xaml;Views\Windows\FlightsView.xaml;Views\Windows\PassangersCompleatedFlightView.xaml;Views\Windows\PilotsMedExamView.xaml;Views\Windows\PlaneRepairView.xaml;Views\Windows\PlanesView.xaml;Views\Windows\PositionsView.xaml;Views\Windows\RefundedTicketsView.xaml;Views\Windows\Registration.xaml;Views\Windows\RoutesView.xaml;Views\Windows\SeatsView.xaml;Views\Windows\StructureUnitsView.xaml;Views\Windows\Test.xaml;Views\Windows\TicketsView.xaml;Views\Windows\WorkersView.xaml;
+
+False
+

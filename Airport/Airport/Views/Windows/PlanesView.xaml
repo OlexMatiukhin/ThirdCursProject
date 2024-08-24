@@ -1,0 +1,102 @@
+﻿<Window x:Class="Airport.planesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="860" Background="#FF1EB7EE">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto" MinHeight="149"/>
+
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,1,513,2" Orientation="Horizontal" Width="181" HorizontalAlignment="Right">
+            <Image RenderTransformOrigin="3,2.348" Height="15" Width="16" Source="/Images/Key.png"/>
+            <TextBlock TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter"
+         FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0" Text="VovaShumchuchek"></TextBlock>
+
+
+        </StackPanel>
+        <StackPanel Margin="0,1,200,3" Orientation="Horizontal"  MouseDown="StackPanel_MouseDown" HorizontalAlignment="Right" Width="310">
+            <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="/Images/Position.png"/>
+            <TextBlock TextWrapping="Wrap" Height="20" 
+         FontFamily="pack://application:,,,/Fonts/#Inter"
+         FontSize="16" FontWeight="Bold" Width="284" Text="Начальник бригади рятувальників" VerticalAlignment="Center" Margin="0,0,2,0" HorizontalAlignment="Right" />
+
+
+        </StackPanel>
+
+        <StackPanel Margin="0,4,99.5,5" Orientation="Horizontal" HorizontalAlignment="Right" Width="93">
+            <Image Source="/Images/Main.png" RenderTransformOrigin="3,2.348" Height="18" Width="16"/>
+            <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" RenderTransformOrigin="0.955,0.627" Height="19" Width="70" Margin="0,0,2,0"/>
+
+
+        </StackPanel>
+
+        <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right" Width="80">
+            <Image RenderTransformOrigin="3,2.348" Source="/Images/Logout.png"  Width="13" Height="15"/>
+            <TextBlock TextWrapping="Wrap" Height="20" 
+            FontFamily="pack://application:,,,/Fonts/#Inter"
+            FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru" Text="Вийти"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+        </StackPanel>
+        <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
+
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+                  HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Age}" Width="2*"/>
+                <DataGridTextColumn Header="Стан" Binding="{Binding Name}"  Width="2*" />
+                <DataGridTextColumn Header="Готовн салон" Binding="{Binding Age}"  Width="2*" />
+                <DataGridTextColumn Header="Ремонто до польоту" Binding="{Binding Name}"  Width="2*"/>
+                <DataGridTextColumn Header="Дата техінспекції" Binding="{Binding Age}"   Width="2*"/>
+                <DataGridTextColumn Header="Приписка" Binding="{Binding Name}"   Width="2*" />
+                <DataGridTextColumn Header="Кількість ремонтів" Binding="{Binding Age}"   Width="2*" />
+                <DataGridTextColumn Header="Дата експлуатації" Binding="{Binding Name}"  Width="2*" />
+                <DataGridTemplateColumn Header="Зміна" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редагувати" Click="Button_Click" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Видалення" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox HorizontalAlignment="Left" Margin="55,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="190,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="325,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="465,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="55,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="191,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="325,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="465,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
+        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="84,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Дата"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="222,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Напрям"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="355,8,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Тип літака"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="355,8,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="498,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Маршрут"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="78,57,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Ціна квитка"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="195,56,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="110"><Run Text=" "/><Run Language="uk-ua" Text="Кількість квитків"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="353,55,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Час вильоту"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="492,55,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Категор"/><Run Language="uk-ua" Text="ія"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+
+
+    </Grid>
+
+</Window>

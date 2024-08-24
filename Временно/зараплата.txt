@@ -1,0 +1,167 @@
+К Диспетчерська бригада
+Навігаційна бригада
+Льотна бригада
+Заправники
+Бригада прибирання салону
+
+workerId
+fullName
+age
+gender
+numberChildrens
+shift
+phoneNumber
+email
+structureUnitId
+departmentId
+brigadeId
+Начальник економічного департаменту    
+Начальник департаменту експлуатаційних служб
+Начальник департаменту повітряного руху
+Начальник департаменту технічного обслуговування
+Начальник департаменту спеціалізованих служб
+Начальник департаменту адміністрації та додаткових служ
+Начальрник планово-економічного відділу
+Начальник фінансово відділу
+Начльник відділу праці
+Начальник служби продажу квитків
+Начальник служби паливно-мастильних матеріалів
+Начальник служби спецтранспрта
+Начальник рятувальної служби
+Начальник клінінгової служби
+Начальник диспетчерської служби 
+Начальник аеронавігаційної служби
+Начальник служби радіозв'язку
+Начальник льотної служби
+Начальник служби авіотехнічного обслуговування
+Начальник служби обслуговування аеродрому
+Начальник служби ремонту спец-приладдя
+Начальник служби безпеки
+Начальник митної служби
+Начальник медико-санітарної служби
+Начальник відділу кадрів 
+Начальник юридичного відділу
+Директор аеропорту
+Начальник відділу канцелярії
+Економіст 2
+Бухгалтер - фінансит 5
+Нормувальник 4
+Касир 5
+Заправник 5
+Водій грузового транспорту 4
+Заправник 4
+Прибаральник 4
+Оператор машин технічного обслуговування 4
+Пожежник-рятувальник 4
+Диспетчер взлітно-посадкової смуги 4
+Диспетчери навігаційного обслуговування 4
+Спеціаліст з планування польотів 2
+Метеоролог 2
+Інженер радіозв'язку 2
+Пілот 4
+Стюардеса 4
+Механіки з обслуговування двигунів 3
+Спеціаліст по структурному ремонту 3
+Інженер-авіонік 3
+Будівельник 5
+Електрик 3
+Сантехнік 4
+Асфальтобетонник 4
+Автомеханік 4
+Технік з обслуговування системи безпеки 4
+Інженер з обслуговування обладнання аеропорту 4
+Охоронці 10
+Інспектор митниці 5
+Лікар 
+Спеціалісти з підбору персоналу
+Адвокат
+Секретар
+План
+Сделать за 5 дней
+2 економісти
+2 бухгалтера 
+2 нормувальники
+
+
+
+ {"workerId":60,"fullName":"Володимир Назаренко","age":40,"status":"працівник","gender":"чоловік","numberChildrens":2,"hireDate":"2020-07-23","shift":"день","email":"nazarenko40@gmail.com","phonenumber":"+38 (096) 123-45-67","structureUnitId":153,"departmentId":230,"brigadeId":376,"positionId":434},
+  {"workerId":61,"fullName":"Тетяна Шевчук","age":29,"status":"бригадир","gender":"жінка","numberChildrens":1,"hireDate":"2019-04-17","shift":"ніч","email":"shevchuk29@ukr.net","phonenumber":"+38 (068) 567-89-01","structureUnitId":155,"departmentId":243,"brigadeId":350,"positionId":421},
+  {"workerId":62,"fullName":"Олександр Костенко","age":38,"status":"начальник","gender":"чоловік","numberChildrens":3,"hireDate":"2018-06-05","shift":"ранок","email":"kostenko38@meta.ua","phonenumber":"+38 (067) 234-56-78","structureUnitId":159,"departmentId":219,"brigadeId":355,"positionId":439},
+  {"workerId":63,"fullName":"Вікторія Власова","age":32,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2021-12-14","shift":"вечір","email":"vlasova32@outlook.com","phonenumber":"+38 (093) 345-67-89","structureUnitId":175,"departmentId":263,"brigadeId":357,"positionId":417},
+  {"workerId":64,"fullName":"Михайло Литвин","age":35,"status":"бригадир","gender":"чоловік","numberChildrens":0,"hireDate":"2022-05-23","shift":"ніч","email":"lytvyn35@ukr.net","phonenumber":"+38 (067) 876-54-32","structureUnitId":137,"departmentId":251,"brigadeId":373,"positionId":424},
+  {"workerId":65,"fullName":"Юлія Кравцова","age":31,"status":"начальник","gender":"жінка","numberChildrens":1,"hireDate":"2017-10-11","shift":"день","email":"kravtsova31@gmail.com","phonenumber":"+38 (068) 321-54-76","structureUnitId":189,"departmentId":220,"brigadeId":359,"positionId":445},
+  {"workerId":66,"fullName":"Олег Бондаренко","age":42,"status":"працівник","gender":"чоловік","numberChildrens":3,"hireDate":"2019-02-14","shift":"вечір","email":"bondarenko42@meta.ua","phonenumber":"+38 (095) 123-45-67","structureUnitId":162,"departmentId":247,"brigadeId":368,"positionId":412},
+  {"workerId":67,"fullName":"Людмила Григор'єва","age":27,"status":"бригадир","gender":"жінка","numberChildrens":0,"hireDate":"2020-09-22","shift":"ніч","email":"gryhorieva27@gmail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":182,"departmentId":236,"brigadeId":380,"positionId":430},
+  {"workerId":68,"fullName":"Василь Коваленко","age":37,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2018-11-18","shift":"ранок","email":"kovalenko37@rambler.ru","phonenumber":"+38 (063) 567-89-01","structureUnitId":188,"departmentId":232,"brigadeId":345,"positionId":443},
+  {"workerId":69,"fullName":"Наталя Петрівна","age":30,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2022-03-30","shift":"вечір","email":"petrivna30@mail.com","phonenumber":"+38 (068) 432-10-98","structureUnitId":176,"departmentId":278,"brigadeId":375,"positionId":414},
+  {"workerId":70,"fullName":"Андрій Федоров","age":41,"status":"бригадир","gender":"чоловік","numberChildrens":3,"hireDate":"2019-05-22","shift":"ніч","email":"fedorov41@ukr.net","phonenumber":"+38 (096) 567-89-01","structureUnitId":193,"departmentId":249,"brigadeId":352,"positionId":419},
+  {"workerId":71,"fullName":"Ірина Бойко","age":26,"status":"начальник","gender":"жінка","numberChildrens":1,"hireDate":"2021-11-08","shift":"день","email":"boyko26@gmail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":180,"departmentId":237,"brigadeId":348,"positionId":442},
+  {"workerId":72,"fullName":"Сергій Волков","age":34,"status":"працівник","gender":"чоловік","numberChildrens":2,"hireDate":"2020-08-15","shift":"вечір","email":"volkov34@outlook.com","phonenumber":"+38 (093) 567-89-01","structureUnitId":144,"departmentId":267,"brigadeId":367,"positionId":413},
+  {"workerId":73,"fullName":"Марина Кучер","age":29,"status":"бригадир","gender":"жінка","numberChildrens":0,"hireDate":"2018-01-17","shift":"ніч","email":"kucher29@meta.ua","phonenumber":"+38 (097) 432-10-98","structureUnitId":155,"departmentId":213,"brigadeId":347,"positionId":428},
+  {"workerId":74,"fullName":"Максим Кравчук","age":36,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2017-06-10","shift":"день","email":"kravchuk36@mail.com","phonenumber":"+38 (050) 876-54-32","structureUnitId":171,"departmentId":235,"brigadeId":359,"positionId":440},
+  {"workerId":75,"fullName":"Ольга Мельник","age":32,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2022-01-14","shift":"вечір","email":"melnik32@rambler.ru","phonenumber":"+38 (063) 234-56-78","structureUnitId":195,"departmentId":216,"brigadeId":374,"positionId":415},
+  {"workerId":76,"fullName":"Володимир Дяченко","age":43,"status":"бригадир","gender":"чоловік","numberChildrens":3,"hireDate":"2019-03-19","shift":"ніч","email":"dyachenko43@gmail.com","phonenumber":"+38 (096) 123-45-67","structureUnitId":166,"departmentId":224,"brigadeId":356,"positionId":420},
+  {"workerId":77,"fullName":"Тетяна Бондар","age":28,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2020-12-04","shift":"день","email":"bondar28@outlook.com","phonenumber":"+38 (097) 876-54-32","structureUnitId":169,"departmentId":258,"brigadeId":346,"positionId":444},
+  {"workerId":78,"fullName":"Олександр Литвиненко","age":31,"status":"працівник","gender":"чоловік","numberChildrens":1,"hireDate":"2017-04-28","shift":"вечір","email":"lytvinenko31@ukr.net","phonenumber":"+38 (063) 234-56-78","structureUnitId":159,"departmentId":265,"brigadeId":368,"positionId":418},
+  {"workerId":79,"fullName":"Світлана Коваленко","age":30,"status":"бригадир","gender":"жінка","numberChildrens":2,"hireDate":"2021-07-01","shift":"ніч","email":"kovalenko30@gmail.com","phonenumber":"+38 (068) 543-21-76","structureUnitId":146,"departmentId":270,"brigadeId":357,"positionId":423},
+  {"workerId":80,"fullName":"Ігор Грицук","age":39,"status":"нач
+
+
+[
+  {"workerId":81,"fullName":"Анна Іванченко","age":34,"status":"працівник","gender":"жінка","numberChildrens":1,"hireDate":"2020-06-20","shift":"день","email":"ivanchenko34@mail.com","phonenumber":"+38 (095) 123-45-67","structureUnitId":190,"departmentId":258,"brigadeId":377,"positionId":412},
+  {"workerId":82,"fullName":"Богдан Соколов","age":31,"status":"бригадир","gender":"чоловік","numberChildrens":2,"hireDate":"2019-01-13","shift":"вечір","email":"sokolov31@gmail.com","phonenumber":"+38 (098) 876-54-32","structureUnitId":174,"departmentId":238,"brigadeId":348,"positionId":421},
+  {"workerId":83,"fullName":"Марія Левченко","age":28,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2017-12-11","shift":"ніч","email":"levchenko28@meta.ua","phonenumber":"+38 (063) 345-67-89","structureUnitId":186,"departmentId":241,"brigadeId":361,"positionId":441},
+  {"workerId":84,"fullName":"Віталій Романюк","age":37,"status":"працівник","gender":"чоловік","numberChildrens":3,"hireDate":"2022-04-27","shift":"ранок","email":"romaniuk37@ukr.net","phonenumber":"+38 (097) 234-56-78","structureUnitId":150,"departmentId":263,"brigadeId":372,"positionId":414},
+  {"workerId":85,"fullName":"Ольга Іванова","age":33,"status":"бригадир","gender":"жінка","numberChildrens":2,"hireDate":"2020-10-14","shift":"вечір","email":"ivanova33@outlook.com","phonenumber":"+38 (050) 876-54-32","structureUnitId":192,"departmentId":231,"brigadeId":366,"positionId":426},
+  {"workerId":86,"fullName":"Олексій Гончар","age":29,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2019-08-18","shift":"ніч","email":"gonchar29@yahoo.com","phonenumber":"+38 (093) 567-89-01","structureUnitId":157,"departmentId":217,"brigadeId":347,"positionId":434},
+  {"workerId":87,"fullName":"Катерина Бондаренко","age":32,"status":"працівник","gender":"жінка","numberChildrens":0,"hireDate":"2018-03-23","shift":"ранок","email":"bondarenko32@meta.ua","phonenumber":"+38 (096) 123-45-67","structureUnitId":185,"departmentId":220,"brigadeId":369,"positionId":413},
+  {"workerId":88,"fullName":"Микола Ковальчук","age":41,"status":"бригадир","gender":"чоловік","numberChildrens":3,"hireDate":"2021-06-12","shift":"вечір","email":"kovalchuk41@ukr.net","phonenumber":"+38 (068) 345-67-89","structureUnitId":148,"departmentId":269,"brigadeId":349,"positionId":425},
+  {"workerId":89,"fullName":"Олена Василенко","age":30,"status":"начальник","gender":"жінка","numberChildrens":2,"hireDate":"2017-05-28","shift":"ніч","email":"vasilenko30@gmail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":162,"departmentId":277,"brigadeId":378,"positionId":437},
+  {"workerId":90,"fullName":"Ігор Тарасов","age":36,"status":"працівник","gender":"чоловік","numberChildrens":1,"hireDate":"2020-09-19","shift":"ранок","email":"tarasov36@outlook.com","phonenumber":"+38 (095) 876-54-32","structureUnitId":170,"departmentId":246,"brigadeId":359,"positionId":417},
+  {"workerId":91,"fullName":"Вікторія Даниленко","age":28,"status":"бригадир","gender":"жінка","numberChildrens":0,"hireDate":"2018-11-25","shift":"вечір","email":"danylenko28@ukr.net","phonenumber":"+38 (097) 432-10-98","structureUnitId":177,"departmentId":233,"brigadeId":350,"positionId":430},
+  {"workerId":92,"fullName":"Анатолій Петренко","age":42,"status":"начальник","gender":"чоловік","numberChildrens":2,"hireDate":"2021-01-07","shift":"ніч","email":"petrenko42@mail.com","phonenumber":"+38 (063) 234-56-78","structureUnitId":183,"departmentId":253,"brigadeId":354,"positionId":440},
+  {"workerId":93,"fullName":"Ірина Семенюк","age":27,"status":"працівник","gender":"жінка","numberChildrens":1,"hireDate":"2019-12-22","shift":"ранок","email":"semenyuk27@gmail.com","phonenumber":"+38 (093) 567-89-01","structureUnitId":145,"departmentId":254,"brigadeId":353,"positionId":416},
+  {"workerId":94,"fullName":"Дмитро Поліщук","age":39,"status":"бригадир","gender":"чоловік","numberChildrens":3,"hireDate":"2017-07-14","shift":"вечір","email":"polishchuk39@meta.ua","phonenumber":"+38 (068) 123-45-67","structureUnitId":180,"departmentId":210,"brigadeId":358,"positionId":429},
+  {"workerId":95,"fullName":"Світлана Миронова","age":31,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2018-02-21","shift":"ніч","email":"myronova31@rambler.ru","phonenumber":"+38 (050) 876-54-32","structureUnitId":167,"departmentId":222,"brigadeId":349,"positionId":446},
+  {"workerId":96,"fullName":"Юрій Литвиненко","age":38,"status":"працівник","gender":"чоловік","numberChildrens":2,"hireDate":"2020-05-11","shift":"ранок","email":"lytvinenko38@ukr.net","phonenumber":"+38 (093) 234-56-78","structureUnitId":161,"departmentId":240,"brigadeId":364,"positionId":414},
+  {"workerId":97,"fullName":"Наталія Романова","age":28,"status":"бригадир","gender":"жінка","numberChildrens":1,"hireDate":"2022-07-06","shift":"вечір","email":"romanova28@outlook.com","phonenumber":"+38 (067) 567-89-01","structureUnitId":179,"departmentId":245,"brigadeId":352,"positionId":423},
+  {"workerId":98,"fullName":"Василь Сидоренко","age":40,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2019-03-18","shift":"ніч","email":"sydorenko40@mail.com","phonenumber":"+38 (050) 345-67-89","structureUnitId":168,"departmentId":252,"brigadeId":356,"positionId":439},
+  {"workerId":99,"fullName":"Марія Коваль","age":33,"status":"працівник","gender":"жінка","numberChildrens":0,"hireDate":"2017-09-09","shift":"ранок","email":"koval33@meta.ua","phonenumber":"+38 (096) 123-45-67","structureUnitId":164,"departmentId":224,"brigadeId":362,"positionId":418},
+  {"workerId":100,"fullName":"Ігор Мороз","age":35,"status":"бригадир","gender":"чоловік","numberChildrens":2,"hireDate":"2021-02-02","shift":"вечір","email":"moroz35@gmail.com","phonenumber":"+38 (097) 876-54-32","structureUnitId":193,"departmentId":226,"brigadeId":355,"positionId":425}
+]
+
+[
+  {"workerId":101,"fullName":"Олена Черненко","age":29,"status":"начальник","gender":"жінка","numberChildrens":1,"hireDate":"2019-06-18","shift":"ніч","email":"chernenkо29@mail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":159,"departmentId":234,"brigadeId":369,"positionId":443},
+  {"workerId":102,"fullName":"Андрій Зайцев","age":37,"status":"працівник","gender":"чоловік","numberChildrens":2,"hireDate":"2018-11-22","shift":"день","email":"zaitsev37@gmail.com","phonenumber":"+38 (093) 345-67-89","structureUnitId":168,"departmentId":257,"brigadeId":350,"positionId":414},
+  {"workerId":103,"fullName":"Вікторія Гончаренко","age":32,"status":"бригадир","gender":"жінка","numberChildrens":3,"hireDate":"2020-10-14","shift":"вечір","email":"goncharenko32@meta.ua","phonenumber":"+38 (068) 876-54-32","structureUnitId":185,"departmentId":231,"brigadeId":351,"positionId":421},
+  {"workerId":104,"fullName":"Олексій Олійник","age":41,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2022-03-17","shift":"ніч","email":"olijnyk41@yahoo.com","phonenumber":"+38 (097) 567-89-01","structureUnitId":193,"departmentId":239,"brigadeId":353,"positionId":442},
+  {"workerId":105,"fullName":"Наталія Волкова","age":30,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2017-07-18","shift":"ранок","email":"volkova30@outlook.com","phonenumber":"+38 (096) 234-56-78","structureUnitId":170,"departmentId":243,"brigadeId":355,"positionId":417},
+  {"workerId":106,"fullName":"Володимир Мельник","age":36,"status":"бригадир","gender":"чоловік","numberChildrens":1,"hireDate":"2020-02-23","shift":"вечір","email":"melnik36@meta.ua","phonenumber":"+38 (050) 876-54-32","structureUnitId":174,"departmentId":225,"brigadeId":358,"positionId":429},
+  {"workerId":107,"fullName":"Ольга Антонова","age":28,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2019-04-14","shift":"ніч","email":"antonova28@ukr.net","phonenumber":"+38 (093) 567-89-01","structureUnitId":188,"departmentId":254,"brigadeId":361,"positionId":440},
+  {"workerId":108,"fullName":"Дмитро Богданов","age":42,"status":"працівник","gender":"чоловік","numberChildrens":3,"hireDate":"2021-09-17","shift":"ранок","email":"bogdanov42@mail.com","phonenumber":"+38 (095) 123-45-67","structureUnitId":164,"departmentId":270,"brigadeId":363,"positionId":416},
+  {"workerId":109,"fullName":"Марія Шевченко","age":31,"status":"бригадир","gender":"жінка","numberChildrens":2,"hireDate":"2020-05-12","shift":"день","email":"shevchenko31@meta.ua","phonenumber":"+38 (050) 876-54-32","structureUnitId":162,"departmentId":249,"brigadeId":362,"positionId":423},
+  {"workerId":110,"fullName":"Ігор Василенко","age":35,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2018-07-15","shift":"ніч","email":"vasilenko35@ukr.net","phonenumber":"+38 (097) 234-56-78","structureUnitId":169,"departmentId":222,"brigadeId":347,"positionId":439},
+  {"workerId":111,"fullName":"Олена Ковальчук","age":30,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2022-06-18","shift":"вечір","email":"kovalchuk30@gmail.com","phonenumber":"+38 (096) 345-67-89","structureUnitId":181,"departmentId":243,"brigadeId":349,"positionId":415},
+  {"workerId":112,"fullName":"Максим Поліщук","age":33,"status":"бригадир","gender":"чоловік","numberChildrens":1,"hireDate":"2017-05-19","shift":"ранок","email":"polishchuk33@outlook.com","phonenumber":"+38 (093) 876-54-32","structureUnitId":167,"departmentId":235,"brigadeId":358,"positionId":421},
+  {"workerId":113,"fullName":"Юлія Бондар","age":26,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2021-11-27","shift":"ніч","email":"bondar26@gmail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":191,"departmentId":251,"brigadeId":364,"positionId":443},
+  {"workerId":114,"fullName":"Віктор Зінченко","age":38,"status":"працівник","gender":"чоловік","numberChildrens":3,"hireDate":"2018-01-24","shift":"день","email":"zinchenko38@mail.com","phonenumber":"+38 (095) 876-54-32","structureUnitId":172,"departmentId":236,"brigadeId":359,"positionId":418},
+  {"workerId":115,"fullName":"Катерина Михайлова","age":32,"status":"бригадир","gender":"жінка","numberChildrens":2,"hireDate":"2019-09-14","shift":"вечір","email":"mykhailova32@ukr.net","phonenumber":"+38 (098) 345-67-89","structureUnitId":184,"departmentId":255,"brigadeId":361,"positionId":425},
+  {"workerId":116,"fullName":"Андрій Кириленко","age":41,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2017-06-13","shift":"ніч","email":"kyrylenko41@gmail.com","phonenumber":"+38 (093) 567-89-01","structureUnitId":166,"departmentId":244,"brigadeId":355,"positionId":440},
+  {"workerId":117,"fullName":"Ольга Шевченко","age":30,"status":"працівник","gender":"жінка","numberChildrens":2,"hireDate":"2020-11-28","shift":"день","email":"shevchenko30@meta.ua","phonenumber":"+38 (096) 123-45-67","structureUnitId":182,"departmentId":233,"brigadeId":357,"positionId":416},
+  {"workerId":118,"fullName":"Володимир Коваленко","age":35,"status":"бригадир","gender":"чоловік","numberChildrens":1,"hireDate":"2022-08-17","shift":"вечір","email":"kovalenko35@outlook.com","phonenumber":"+38 (050) 876-54-32","structureUnitId":160,"departmentId":221,"brigadeId":351,"positionId":421},
+  {"workerId":119,"fullName":"Марина Савченко","age":29,"status":"начальник","gender":"жінка","numberChildrens":0,"hireDate":"2018-04-14","shift":"ніч","email":"savchenko29@gmail.com","phonenumber":"+38 (093) 234-56-78","structureUnitId":189,"departmentId":242,"brigadeId":353,"positionId":442},
+  {"workerId":120,"fullName":"Юрій Павленко","age":40,"status":"працівник","gender":"чоловік","numberChildrens":3,"hireDate":"2019-02-16","shift":"день","email":"pavlenko40@meta.ua","phonenumber":"+38 (097) 345-67-89","structureUnitId":173,"departmentId":230,"brigadeId":368,"positionId":415},
+  {"workerId":121,"fullName":"Ірина Мельник","age":34,"status":"бригадир","gender":"жінка","numberChildrens":2,"hireDate":"2020-07-11","shift":"вечір","email":"melnik34@ukr.net","phonenumber":"+38 (098) 567-89-01","structureUnitId":171,"departmentId":250,"brigadeId":360,"positionId":423},
+  {"workerId":122,"fullName":"Олександр Антонов","age":38,"status":"начальник","gender":"чоловік","numberChildrens":1,"hireDate":"2018-06-20","shift":"ніч","email":"antonov38@mail.com","phonenumber":"+38 (050) 234-56-78","structureUnitId":178,"departmentId":240,"brigadeId":355,"positionId":440},
+  {"workerId":123,"fullName":"Вікторія Литвин","age":29,"status":"працівник","gender":"жінка","numberChildrens":0,"hireDate":"2022-05-18","shift":"день","email":"lytvyn29@outlook.com","phonenumber":"+38 (093) 876-54-32","structureUnitId":165,"departmentId":247,"brigadeId":369,"positionId":417},
+  {"workerId":124,"fullName":"Дмитро Гончар","age":35,"status":"бригадир","gender":"чоловік","numberChildrens":3,"hireDate":"2021-03-27","shift":"вечір","email":"gonchar35@gmail.com","phonenumber":"+38 (096) 345-67-89","structureUnitId":177,"departmentId":219,"brigadeId":351,"positionId":421},
+  {"workerId":125,"fullName":"Ольга Романенко","age":32,"status":"начальник","gender":"жінка","numberChildrens":2,"hireDate":"2019-10-14","shift":"ніч","email":"romanenko32@meta.ua","phonenumber":"+38 (097) 567-89-01","structureUnitId":166,"departmentId":254,"brigadeId":363,"positionId":442},
+  {"workerId":126,"fullName":"Іван Литвиненко","age":40,"status":"працівник","gender":"чоловік","numberChildrens":1,"hireDate":"2017-08-16","shift":"день","email":"lytvinenko40@meta.ua","phonenumber":"+38 (093) 234-56-78","structureUnitId":184,"departmentId":237,"brigadeId":350,"positionId":415},
+  {"workerId":127,"fullName":"Марія Іванченко","age":31,"status":"бригадир","gender":"жінка","numberChildrens":3,"hireDate":"2022-09-10","shift":"вечір","email":"ivanchenko31@mail.com","phonenumber":"+38 (050) 876-54-32","structureUnitId":155,"departmentId":249,"brigadeId":367,"positionId":423},
+  {"workerId":128,"fullName":"Олексій Сидоренко","age":34,"status":"начальник","gender":"чоловік","numberChildrens":2,"hireDate":"2018-12-18","shift":"ніч","email":"sydorenko34@ukr.net","phonenumber":"+38 (095) 123-45-67","structureUnitId":191,"departmentId":225,"brigadeId":351,"positionId":440}
+
+
+
+
+
+

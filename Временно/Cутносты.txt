@@ -1,0 +1,96 @@
+2 часа
+2 часа
+
+
+
+
+---------------------------------------------------
+Маршрут
+id
+66af709c31653f11c57a64d4
+routeId
+1
+number
+"PS101"
+departurePoint
+"Київ"
+arrivalPoint
+"Париж"
+transitAirport
+"-"
+flightDirection
+"Західний"
+-----------------------------------------------------
+Structure Unit
+
+_id
+66af426b31653f11c57a62a2
+structureUnitId
+1
+structureUnitName
+"Планово-економічний відділ"
+
+-------------------------------------
+id
+66af42b131653f11c57a6314
+workerId
+1
+fullName
+"Федорова Діана Миколаївна"
+age
+34
+status
+"начальник департаменту"
+gender
+"жінка"
+numberChildrens
+2
+hireDate
+2019-11-24T00:00:00.000+00:00
+shift
+"ніч"
+email
+"mykola49@gmail.com"
+phonenumber
+"+38 (046) 938-29-40"
+structureUnitId
+21
+departmentId
+6
+brigadeId
+0
+positionId
+1
+__________________________________________________
+3 часа
+24 50 Посмотреть видео
+Изучить 
+Сделать структуру 
+Сделать загрузку
+Сделать классы
+
+-----------------------------------
+_id
+66ace161ad61db72866b2a1a
+refundedTicketId
+1
+date
+2024-07-25T00:00:00.000+00:00
+routeId
+1
+age
+25
+price
+200
+gender
+"чоловіча"
+fullname
+"Іванов Іван Іванович"
+tiketId
+17
+flightId
+4
+
+
+
+

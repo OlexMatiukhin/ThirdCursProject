@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\passangersView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\Inter-VariableFont_opsz,wght.ttf" />
+    <None Remove="Key.png" />
+    <None Remove="Logo.png" />
+    <None Remove="Logout.png" />
+    <None Remove="Main.png" />
+    <None Remove="Position.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Views\passangersView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Key.png" />
+    <Resource Include="Images\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Inter-VariableFont_opsz,wght.ttf" />
+    <Resource Include="Images\Logout.png" />
+    <Resource Include="Images\Main.png" />
+    <Resource Include="Images\Position.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Dialog\ChangeBaggage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeDepartment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeFlight.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangePilotMedExam.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangePassanger.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangePosition.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeRoute.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeStructureUnit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeWorker.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

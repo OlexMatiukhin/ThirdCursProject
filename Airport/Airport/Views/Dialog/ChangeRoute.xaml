@@ -1,0 +1,25 @@
+﻿<Window x:Class="Airport.Views.Dialog.ChangeRoute"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport.Views.Dialog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChangePlane">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="84,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Номер"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="186,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Точка відправлення"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="329,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Точка прибуття"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="458,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="133"><Run Language="uk-ua" Text="Проміжний аеропорт"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="55,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="190,54,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="320,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="460,56,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="603,54,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock HorizontalAlignment="Left" Margin="632,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Напрям"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <Button Content="Змінити" HorizontalAlignment="Left" Margin="317,107,0,0" VerticalAlignment="Top" Width="140"/>
+
+    </Grid>
+</Window>

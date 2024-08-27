@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +10,51 @@ namespace Airport.Models
 {
     public class DelayedFlightInfo
     {
-        private string flightNumber;
-        private string category;
-        private int dispatchBrigadeId;
-        private int navigationBrigadeId;
-        private int flightBrigadeId;
-        private DateTime newDateDeparture;
-        private DateTime newDateArrival;
-        private int inspectionBrigadeId;
-        private string reason;
-        private int flightId;
-        private int routeId;
-        private int workerId;
+        [BsonId]
+        private ObjectId id;
 
-        public DelayedFlightInfo(string flightNumber, string category, int dispatchBrigadeId, int navigationBrigadeId, int flightBrigadeId, DateTime newDateDeparture, DateTime newDateArrival, int inspectionBrigadeId, string reason, int flightId, int routeId, int workerId)
+        [BsonElement("delayedFlightInfoId")]
+        public int DelayedFlightInfoId { get; set; } // Идентификатор документа в MongoDB
+
+        [BsonElement("flightNumber")]
+        public string FlightNumber { get; set; }
+    
+
+        [BsonElement("category")]
+        public string Category { get; set; }
+
+        [BsonElement("dispatchBrigadeId")]
+        public int DispatchBrigadeId { get; set; }
+
+        [BsonElement("navigationBrigadeId")]
+        public int NavigationBrigadeId { get; set; }
+
+        [BsonElement("flightBrigadeId")]
+        public int FlightBrigadeId { get; set; }
+
+        [BsonElement("newDateDeparture")]
+        public DateTime NewDateDeparture { get; set; }
+
+        [BsonElement("newDateArrival")]
+        public DateTime NewDateArrival { get; set; }
+
+        [BsonElement("inspectionBrigadeId")]
+        public int InspectionBrigadeId { get; set; }
+
+        [BsonElement("reason")]
+        public string Reason { get; set; }
+
+        [BsonElement("flightId")]
+        public int FlightId { get; set; }
+
+        [BsonElement("routeId")]
+        public int RouteId { get; set; }
+
+        [BsonElement("workerId")]
+        public int WorkerId { get; set; }
+  
+
+        /*public DelayedFlightInfo(string flightNumber, string category, int dispatchBrigadeId, int navigationBrigadeId, int flightBrigadeId, DateTime newDateDeparture, DateTime newDateArrival, int inspectionBrigadeId, string reason, int flightId, int routeId, int workerId)
         {
             this.flightNumber = flightNumber;
             this.category = category;
@@ -49,6 +82,8 @@ namespace Airport.Models
         public int FlightId { get => flightId; set => flightId = value; }
         public int RouteId { get => routeId; set => routeId = value; }
         public int WorkerId { get => workerId; set => workerId = value; }
-    }
+    }*/
 
+    }
 }
+

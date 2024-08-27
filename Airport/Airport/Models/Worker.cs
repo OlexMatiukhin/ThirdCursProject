@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,22 +10,52 @@ namespace Airport.Models
 {
     public class Worker
     {
-        private int workerId;
-        private string fullName;
-        private int age;
-        private string status;
-        private string gender;
-        private int numberChildrens;
-        private DateTime hireDate;
-        private string shift;
-        private string email;
-        private string phoneNumber;
-        private int structureUnitId;
-        private int departmentId;
-        private int brigadeId;
-        private int positionId;
+        [BsonId]        
+        public ObjectId Id { get; set; }
 
-        public Worker(int workerId, string fullName, int age, string status, string gender, int numberChildrens, DateTime hireDate, string shift, string email, string phoneNumber, int structureUnitId, int departmentId, int brigadeId, int positionId)
+        [BsonElement("workerId")]
+        public int WorkerId { get; set; }
+
+        [BsonElement("fullName")]
+        public string FullName { get; set; }
+
+        [BsonElement("age")]
+        public int Age { get; set; }
+
+        [BsonElement("status")]
+        public string Status { get; set; }
+
+        [BsonElement("gender")]
+        public string Gender { get; set; }
+
+        [BsonElement("numberChildrens")]
+        public int NumberChildrens { get; set; }
+
+        [BsonElement("hireDate")]
+        public DateTime HireDate { get; set; }
+
+        [BsonElement("shift")]
+        public string Shift { get; set; }
+
+        [BsonElement("email")]
+        public string Email { get; set; }
+
+        [BsonElement("phoneNumber")]
+        public string PhoneNumber { get; set; }
+
+        [BsonElement("structureUnitId")]
+        public int StructureUnitId { get; set; }
+
+        [BsonElement("departmentId")]
+        public int DepartmentId { get; set; }
+
+        [BsonElement("brigadeId")]
+        public int BrigadeId { get; set; }
+
+        [BsonElement("positionId")]
+        public int PositionId { get; set; }
+
+        /*public Worker(int workerId, string fullName, int age, string status, string gender, int numberChildrens, DateTime hireDate, string shift, string email, string phoneNumber, int structureUnitId, int departmentId, int brigadeId, int positionId)
         {
             this.workerId = workerId;
             this.fullName = fullName;
@@ -54,6 +86,6 @@ namespace Airport.Models
         public int StructureUnitId { get => structureUnitId; set => structureUnitId = value; }
         public int DepartmentId { get => departmentId; set => departmentId = value; }
         public int BrigadeId { get => brigadeId; set => brigadeId = value; }
-        public int PositionId { get => positionId; set => positionId = value; }
+        public int PositionId { get => positionId; set => positionId = value; }*/
     }
 }

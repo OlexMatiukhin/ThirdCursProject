@@ -51,15 +51,15 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Стан" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Готовн салон" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Ремонто до польоту" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Дата техінспекції" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Приписка" Binding="{Binding Name}"   Width="2*" />
-                <DataGridTextColumn Header="Кількість ремонтів" Binding="{Binding Age}"   Width="2*" />
-                <DataGridTextColumn Header="Дата експлуатації" Binding="{Binding Name}"  Width="2*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding PlaneId }" Width="*"/>
+                <DataGridTextColumn Header="Початко" Binding="{Binding Type }" Width="2*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding TechCondition }"  Width="2*" />
+                <DataGridTextColumn Header="Завершення" Binding="{Binding InteriorReadiness }"  Width="2*" />
+                <DataGridTextColumn Header="Причина" Binding="{Binding NumberFlightsBeforeRepair }"  Width="2*"/>
+                <DataGridTextColumn Header="Результат" Binding="{Binding TechInspectionDate }"   Width="2*"/>
+                <DataGridTextColumn Header="Бригада" Binding="{Binding Assigned }"   Width="2*" />
+                <DataGridTextColumn Header="Бригада" Binding="{Binding NumberRepairs  }"   Width="2*" />
+                <DataGridTextColumn Header="Бригада" Binding="{Binding ExploitationDate  }"   Width="2*" />
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

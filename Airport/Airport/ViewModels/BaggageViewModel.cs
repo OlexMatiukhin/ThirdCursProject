@@ -17,10 +17,10 @@ public class BaggageViewModel
     public BaggageViewModel()
     {
         _baggageService = new BaggageService();
-        LoadBaggageData();
+        LoadCanceledFlights();
     }
 
-    private void LoadBaggageData()
+    private void LoadCanceledFlights()
     {
         try
         {

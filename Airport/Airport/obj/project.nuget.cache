@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8YrUPZK4/YyHqM0i+UWr417vR8rIs5rlXUeKwZmgHRC5gIaKYp8GVhIxKHyjT944LQEvx3+SAY03uBKk98SCHw==",
+  "dgSpecHash": "0O24ZNFGwdoCm3eH67k6mDyLqt5Fb2CAKg9Evm1X/SwcYqeQtRgS1QHZiZVZJ4vG1pq8wVGkHNs5Yvc5FJUJyQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sasha\\Desktop\\Інститут\\Курсовий проєкт 3 курс\\Airport\\Airport\\Airport.csproj",
+  "projectFilePath": "C:\\Users\\sasha\\Desktop\\Інститут\\Curs project 3 curs\\Airport\\Airport\\Airport.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sasha\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

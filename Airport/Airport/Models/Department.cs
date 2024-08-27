@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,22 @@ namespace Airport.Models
 {
     public class Department
     {
-        private int departmentId;
-        private string departmentName;
+        [BsonId]
+        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
 
-        public Department(int departmentId, string departmentName)
-        {
-            this.departmentId = departmentId;
-            this.departmentName = departmentName;
-        }
+        [BsonElement("departmentId")]
+        public int DepartmentId { get; set; }
 
-        public int DepartmentId { get => departmentId; set => departmentId = value; }
-        public string DepartmentName { get => departmentName; set => departmentName = value; }
+        [BsonElement("departmentName")]
+        public string DepartmentName { get; set; }
+
+        /* public Department(int departmentId, string departmentName)
+         {
+             this.departmentId = departmentId;
+             this.departmentName = departmentName;
+         }
+
+         public int DepartmentId { get => departmentId; set => departmentId = value; }
+         public string DepartmentName { get => departmentName; set => departmentName = value; }*/
     }
 }

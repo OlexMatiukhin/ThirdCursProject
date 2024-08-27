@@ -51,10 +51,10 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Результат" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Пілот" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Доктор" Binding="{Binding Age}"  Width="2*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding ExamId }" Width="*"/>
+                <DataGridTextColumn Header="Результат" Binding="{Binding Result }" Width="2*"/>
+                <DataGridTextColumn Header="Пілот" Binding="{Binding PilotId }"  Width="2*" />
+                <DataGridTextColumn Header="Доктор" Binding="{Binding DoctorId }"  Width="2*" />
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

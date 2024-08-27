@@ -51,15 +51,15 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Маршрут" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="вік" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="ціна" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="стать" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Квиток" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Рейс" Binding="{Binding Name}"  Width="2*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding RefundedTicketId }" Width="*"/>
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding Date }" Width="2*"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding RouteId }"  Width="2*" />
+                <DataGridTextColumn Header="вік" Binding="{Binding Age}" Width="*"/>
+                <DataGridTextColumn Header="ціна" Binding="{Binding Price }" Width="2*"/>
+                <DataGridTextColumn Header="стать" Binding="{Binding Gender }"  Width="2*" />
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding Fullname }" Width="*"/>
+                <DataGridTextColumn Header="Квиток" Binding="{Binding TicketId }" Width="2*"/>
+                <DataGridTextColumn Header="Рейс" Binding="{Binding TicketId }"  Width="2*" />
                 <DataGridTemplateColumn Header="Actions" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

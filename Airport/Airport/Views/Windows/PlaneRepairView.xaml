@@ -51,14 +51,16 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Початко" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Завершення" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Причина" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Результат" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Бригада" Binding="{Binding Name}"   Width="2*" />
-                
+                <DataGridTextColumn Header="Id" Binding="{Binding PlaneRepairId  }" Width="*"/>
+                <DataGridTextColumn Header="Дата початку" Binding="{Binding StartDate  }"   Width="2*" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status  }" Width="2*"/>
+                <DataGridTextColumn Header="Кількість польотів" Binding="{Binding NumberFlights  }"  Width="2*" />
+                <DataGridTextColumn Header="Завершення" Binding="{Binding EndDate  }"  Width="2*" />
+                <DataGridTextColumn Header="Причина" Binding="{Binding Reason  }"  Width="2*"/>
+                <DataGridTextColumn Header="Результат" Binding="{Binding Result }"   Width="2*"/>
+                <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId }"   Width="2*" />
+                <DataGridTextColumn Header="Літак" Binding="{Binding PlaneId}" Width="2*" />
+
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

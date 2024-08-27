@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Airport.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,7 @@ namespace Airport
         public FlightsView()
         {
             InitializeComponent();
-            dataGrid.ItemsSource = new[]
-            {
-                new { Name = "John", Age = 30 },
-                new { Name = "Jane", Age = 25 }
-            };
+            DataContext = new FlightsViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

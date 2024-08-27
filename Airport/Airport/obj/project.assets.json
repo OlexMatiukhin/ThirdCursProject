@@ -827,11 +827,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sasha\\Desktop\\Інститут\\Курсовий проєкт 3 курс\\Airport\\Airport\\Airport.csproj",
+      "projectUniqueName": "C:\\Users\\sasha\\Desktop\\Інститут\\Curs project 3 curs\\Airport\\Airport\\Airport.csproj",
       "projectName": "Airport",
-      "projectPath": "C:\\Users\\sasha\\Desktop\\Інститут\\Курсовий проєкт 3 курс\\Airport\\Airport\\Airport.csproj",
+      "projectPath": "C:\\Users\\sasha\\Desktop\\Інститут\\Curs project 3 curs\\Airport\\Airport\\Airport.csproj",
       "packagesPath": "C:\\Users\\sasha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sasha\\Desktop\\Інститут\\Курсовий проєкт 3 курс\\Airport\\Airport\\obj\\",
+      "outputPath": "C:\\Users\\sasha\\Desktop\\Інститут\\Curs project 3 curs\\Airport\\Airport\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sasha\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +10,22 @@ namespace Airport.Models
 {
     public class PilotMedExam
     {
-        private int examId;
-        private string result;
-        private int pilotId;
-        private int doctorId;
+        [BsonId]
+        public ObjectId Id { get; set; }    
 
-        public PilotMedExam(int examId, string result, int pilotId, int doctorId)
+        [BsonElement("examId")]
+        public int ExamId { get; set; }
+
+        [BsonElement("result")]
+        public string Result { get; set; }
+
+        [BsonElement("pilotId")]
+        public int PilotId { get; set; }
+
+        [BsonElement("doctorId")]
+        public int DoctorId { get; set; }
+
+        /*public PilotMedExam(int examId, string result, int pilotId, int doctorId)
         {
             this.examId = examId;
             this.result = result;
@@ -24,7 +36,7 @@ namespace Airport.Models
         public int ExamId { get => examId; set => examId = value; }
         public string Result { get => result; set => result = value; }
         public int PilotId { get => pilotId; set => pilotId = value; }
-        public int DoctorId { get => doctorId; set => doctorId = value; }
+        public int DoctorId { get => doctorId; set => doctorId = value; */
     }
 
 }

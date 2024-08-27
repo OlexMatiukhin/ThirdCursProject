@@ -51,19 +51,9 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Категорія" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Дата відправ" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Дата прибут" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Літак" Binding="{Binding Name}"   Width="2*" />
-                <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding Age}"   Width="2*" />
-                <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Льотн бригад" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding Name}" Width="2*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding Age}" Width="2*" />
-                <DataGridTemplateColumn Header="Actions" Width="2*">
+                <DataGridTextColumn Header="Id" Binding="{Binding DepartmentId }" Width="*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding DepartmentId }" Width="2*"/>
+                 <DataGridTemplateColumn Header="Actions" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Видалити" Click="Button_Click" Width="Auto" />

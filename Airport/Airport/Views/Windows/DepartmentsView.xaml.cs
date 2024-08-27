@@ -19,11 +19,7 @@ namespace Airport
         public DepartmentsView()
         {
             InitializeComponent();
-            dataGrid.ItemsSource = new[]
-            {
-                new { Name = "John", Age = 30 },
-                new { Name = "Jane", Age = 25 }
-            };
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

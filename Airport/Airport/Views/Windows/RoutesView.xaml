@@ -51,12 +51,12 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding RouteId }" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Number}" Width="2*"/>
-                <DataGridTextColumn Header="Відправлення" Binding="{Binding Departure}" Width="2*" />
-                <DataGridTextColumn Header="Прибуття" Binding="{Binding Arrival}" Width="*"/>
-                <DataGridTextColumn Header="Проміжковий" Binding="{Binding Transit}" Width="2*"/>
-                <DataGridTextColumn Header="Напрям" Binding="{Binding Direction}" Width="2*" />
+                <DataGridTextColumn Header="Відправлення" Binding="{Binding DeparturePoint }" Width="2*" />
+                <DataGridTextColumn Header="Прибуття" Binding="{Binding ArrivalPoint }" Width="*"/>
+                <DataGridTextColumn Header="Проміжковий" Binding="{Binding ArrivalPoint }" Width="2*"/>
+                <DataGridTextColumn Header="Напрям" Binding="{Binding FlightDirection }" Width="2*" />
                 <DataGridTemplateColumn Header="Видалення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

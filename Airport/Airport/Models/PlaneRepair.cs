@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,37 @@ namespace Airport.Models
 {
     public class PlaneRepair
     {
-        private DateTime startDate;
-        private string status;
-        private int numberFlights;
-        private DateTime endDate;
-        private string reason;
-        private string result;
-        private int brigadeId;
-        private int planeId;
 
-        public PlaneRepair(DateTime startDate, string status, int numberFlights, DateTime endDate, string reason, string result, int brigadeId, int planeId)
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        [BsonElement("planeRepairId")]
+        public int PlaneRepairId { get; set; }
+        [BsonElement("startDate")]
+        public DateTime StartDate { get; set; }
+
+        [BsonElement("status")]
+        public string Status { get; set; }
+
+        [BsonElement("numberFlights")]
+        public int NumberFlights { get; set; }
+
+        [BsonElement("endDate")]
+        public DateTime EndDate { get; set; }
+
+        [BsonElement("reason")]
+        public string Reason { get; set; }
+
+        [BsonElement("result")]
+        public string Result { get; set; }
+
+        [BsonElement("brigadeId")]
+        public int BrigadeId { get; set; }
+
+        [BsonElement("planeId")]
+        public int PlaneId { get; set; }
+
+        /*public PlaneRepair(DateTime startDate, string status, int numberFlights, DateTime endDate, string reason, string result, int brigadeId, int planeId)
         {
             this.startDate = startDate;
             this.status = status;
@@ -37,8 +60,9 @@ namespace Airport.Models
         public string Result { get => result; set => result = value; }
         public int BrigadeId { get => brigadeId; set => brigadeId = value; }
         public int PlaneId { get => planeId; set => planeId = value; }
+    }*/
+
+
+
     }
-
-    
-
 }

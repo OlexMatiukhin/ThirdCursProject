@@ -47,13 +47,22 @@
         </StackPanel>
         <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+        <DataGrid ItemsSource="{Binding DelayedFlights}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Назва" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Працівник" Binding="{Binding Age}" Width="2*" />
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Id" Binding="{Binding DelayedFlightInfoId }" Width="0.5*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="*"/>
+                <DataGridTextColumn Header="Категорія" Binding="{Binding Category}" Width="*"/>
+                <DataGridTextColumn Header="Диспетчерська бриг" Binding="{Binding DispatchBrigadeId}" Width="*" />
+                <DataGridTextColumn Header="Навігаційна бриг" Binding="{Binding NavigationBrigadeId }" Width="*"/>
+                <DataGridTextColumn Header="Льотна бриг" Binding="{Binding FlightBrigadeId }" Width="*" />
+                <DataGridTextColumn Header="Пибуття" Binding="{Binding NewDateDeparture }" Width="*"/>
+                <DataGridTextColumn Header="Інспекторська бриг" Binding="{Binding InspectionBrigadeId }" Width="*" />
+                <DataGridTextColumn Header="Рейс" Binding="{Binding FlightId }" Width="*" />
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding  RouteId }" Width="*"/>
+                <DataGridTextColumn Header="Працівник" Binding="{Binding WorkerId }" Width="*" />
+                <DataGridTextColumn Header="Причина" Binding="{Binding Reason }" Width="*"/>
                 <DataGridTemplateColumn Header="Видалення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

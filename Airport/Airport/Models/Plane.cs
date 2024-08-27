@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +10,37 @@ namespace Airport.Models
 {
     public class Plane
     {
-        private int planeId;
-        private string type;
-        private string techCondition;
-        private string interiorReadiness;
-        private int numberFlightsBeforeRepair;
-        private DateTime techInspectionDate;
-        private bool assigned;
-        private int numberRepairs;
-        private DateTime exploitationDate;
+        [BsonId]
+        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
 
-        public Plane(int planeId, string type, string techCondition, string interiorReadiness, int numberFlightsBeforeRepair, DateTime techInspectionDate, bool assigned, int numberRepairs, DateTime exploitationDate)
+        [BsonElement("planeId")]
+        public int PlaneId { get; set; }
+
+        [BsonElement("type")]
+        public string Type { get; set; }
+
+        [BsonElement("techCondition")]
+        public string TechCondition { get; set; }
+
+        [BsonElement("interiorReadiness")]
+        public string InteriorReadiness { get; set; }
+
+        [BsonElement("numberFlightsBeforeRepair")]
+        public int NumberFlightsBeforeRepair { get; set; }
+
+        [BsonElement("techInspectionDate")]
+        public DateTime TechInspectionDate { get; set; }
+
+        [BsonElement("assigned")]
+        public bool Assigned { get; set; }
+
+        [BsonElement("numberRepairs")]
+        public int NumberRepairs { get; set; }
+
+        [BsonElement("exploitationDate")]
+        public DateTime ExploitationDate { get; set; }
+
+        /*public Plane(int planeId, string type, string techCondition, string interiorReadiness, int numberFlightsBeforeRepair, DateTime techInspectionDate, bool assigned, int numberRepairs, DateTime exploitationDate)
         {
             this.planeId = planeId;
             this.type = type;
@@ -39,6 +61,6 @@ namespace Airport.Models
         public DateTime TechInspectionDate { get => techInspectionDate; set => techInspectionDate = value; }
         public bool Assigned { get => assigned; set => assigned = value; }
         public int NumberRepairs { get => numberRepairs; set => numberRepairs = value; }
-        public DateTime ExploitationDate { get => exploitationDate; set => exploitationDate = value; }
+        public DateTime ExploitationDate { get => exploitationDate; set => exploitationDate = value; }*/
     }
 }

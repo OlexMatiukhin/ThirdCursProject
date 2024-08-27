@@ -59,18 +59,18 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="0.5*"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Категорія" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Дата відправ" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Дата прибут" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Літак" Binding="{Binding Name}"   Width="2*" />
-                <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding Age}"   Width="2*" />
-                <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Льотн бригад" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding Name}" Width="2*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding Age}" Width="2*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding FlightId }" Width="0.5*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding FlightId }" Width="2*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status }"  Width="2*" />
+                <DataGridTextColumn Header="Категорія" Binding="{Binding Category }"  Width="2*" />
+                <DataGridTextColumn Header="Дата відправ" Binding="{Binding DateDeparture }"  Width="2*"/>
+                <DataGridTextColumn Header="Дата прибут" Binding="{Binding DateArrival }"   Width="2*"/>
+                <DataGridTextColumn Header="Літак" Binding="{Binding PlaneId }"   Width="2*" />
+                <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding DispatchBrigadeId }"   Width="2*" />
+                <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding NavigationBrigadeId }"  Width="2*" />
+                <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="2*" />
+                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding InspectionBrigadeId }" Width="2*" />
+                <DataGridTextColumn Header="Машрут" Binding="{Binding RouteId}" Width="2*" />
                 <DataGridTemplateColumn Header="Видалення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

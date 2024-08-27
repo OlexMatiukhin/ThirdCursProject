@@ -51,18 +51,11 @@
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Категорія" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Дата відправ" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Дата прибут" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Літак" Binding="{Binding Name}"   Width="2*" />
-                <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding Age}"   Width="2*" />
-                <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Льотн бригад" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding Name}" Width="2*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding Age}" Width="2*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding SeatId }" Width="*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Number }" Width="2*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status }"  Width="2*" />
+                <DataGridTextColumn Header="Рейс" Binding="{Binding FlightId }"  Width="2*" />
+                
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

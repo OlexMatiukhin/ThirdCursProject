@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,35 @@ namespace Airport.Models
 {
     public class Ticket
     {
-        private int ticketId;
-        private string status;
-        private bool availability;
-        private DateTime dateChanges;
-        private decimal price;
-        private int flightId;
-        private int seatId;
-        private int passengerId;
+        [BsonId]
+       
+        public ObjectId Id { get; set; }
 
-        public Ticket(int ticketId, string status, bool availability, DateTime dateChanges, decimal price, int flightId, int seatId, int passengerId)
+        [BsonElement("ticketId")]
+        public int TicketId { get; set; }
+
+        [BsonElement("status")]
+        public string Status { get; set; }
+
+        [BsonElement("availability")]
+        public bool Availability { get; set; }
+
+        [BsonElement("dateChanges")]
+        public DateTime DateChanges { get; set; }
+
+        [BsonElement("price")]
+        public decimal Price { get; set; }
+
+        [BsonElement("flightId")]
+        public int FlightId { get; set; }
+
+        [BsonElement("seatId")]
+        public int SeatId { get; set; }
+
+        [BsonElement("passengerId")]
+        public int PassengerId { get; set; }
+
+        /*public Ticket(int ticketId, string status, bool availability, DateTime dateChanges, decimal price, int flightId, int seatId, int passengerId)
         {
             this.ticketId = ticketId;
             this.status = status;
@@ -36,6 +57,6 @@ namespace Airport.Models
         public decimal Price { get => price; set => price = value; }
         public int FlightId { get => flightId; set => flightId = value; }
         public int SeatId { get => seatId; set => seatId = value; }
-        public int PassengerId { get => passengerId; set => passengerId = value; }
+        public int PassengerId { get => passengerId; set => passengerId = value; }*/
     }
 }

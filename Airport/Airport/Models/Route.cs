@@ -12,9 +12,7 @@ namespace Airport.Models
     {
 
         [BsonId]
-        public ObjectId Id { get; set; }
-
-        [BsonElement("routeId")]
+    
         public int RouteId { get; set; }
 
         [BsonElement("number")]
@@ -48,7 +46,11 @@ namespace Airport.Models
      public string ArrivalPoint { get => arrivalPoint; set => arrivalPoint = value; }
      public string TransitAirport { get => transitAirport; set => transitAirport = value; }
      public string FlightDirection { get => flightDirection; set => flightDirection = value; }*/
-
+        public override string ToString()
+        {
+            return $"{RouteId}: Номер {Number}, Точка відправлення {DeparturePoint}, Точка прибуття {ArrivalPoint}, Проміжний пункт {TransitAirport},Напрям: {FlightDirection}";
+        }
 
     }
+
 }

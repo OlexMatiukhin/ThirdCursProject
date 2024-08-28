@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,30 @@ namespace Airport.Services
            
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _flightCollection = database.GetCollection<Flight>("flights"); // Название коллекции в MongoDB
+            _flightCollection = database.GetCollection<Flight>("flight"); 
+        }
+        public int GetLastFlightId()
+        {
+            var lastFlight = _flightCollection
+                .Find(Builders<Flight>.Filter.Empty) 
+                .Sort(Builders<Flight>.Sort.Descending(f => f.FlightId)) 
+                .Limit(1)
+                .FirstOrDefault(); 
+
+            return lastFlight?.FlightId ?? 0; 
         }
 
+        public void AddFlight(Flight flight)
+        {
+            try
+            {
+                _flightCollection.InsertOne(flight);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
         public List<Flight> GetFlightsData()
         {
             try

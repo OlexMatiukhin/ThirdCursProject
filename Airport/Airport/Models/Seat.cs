@@ -11,9 +11,7 @@ namespace Airport.Models
     public class Seat
     {
         [BsonId]
-        public string Id { get; set; }
-
-        [BsonElement("seatId")]
+     
         public int SeatId { get; set; }
 
         [BsonElement("number")]

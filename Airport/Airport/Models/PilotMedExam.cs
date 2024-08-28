@@ -11,9 +11,8 @@ namespace Airport.Models
     public class PilotMedExam
     {
         [BsonId]
-        public ObjectId Id { get; set; }    
 
-        [BsonElement("examId")]
+     
         public int ExamId { get; set; }
 
         [BsonElement("result")]

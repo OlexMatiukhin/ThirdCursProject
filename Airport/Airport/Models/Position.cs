@@ -12,7 +12,7 @@ namespace Airport.Models
     public class Position
     {
         [BsonId] 
-        [BsonElement("positionId")]
+
         public string PositionId { get; set; }
 
         [BsonElement("positionName")] // Указывает имя поля в MongoDB

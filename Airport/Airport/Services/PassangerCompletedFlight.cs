@@ -65,7 +65,7 @@ using System.Threading.Tasks;
             {
                 try
                 {
-                    var filter = Builders<PassengerCompletedFlight>.Filter.Eq(pcf => pcf.Id, passengerCompletedFlight.Id);
+                    var filter = Builders<PassengerCompletedFlight>.Filter.Eq(pcf => pcf.PassengerId, passengerCompletedFlight.PassengerId);
                     _passengerCompletedFlightCollection.ReplaceOne(filter, passengerCompletedFlight);
                 }
                 catch (Exception ex)

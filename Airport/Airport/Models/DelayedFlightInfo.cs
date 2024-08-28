@@ -11,9 +11,8 @@ namespace Airport.Models
     public class DelayedFlightInfo
     {
         [BsonId]
-        private ObjectId id;
 
-        [BsonElement("delayedFlightInfoId")]
+     
         public int DelayedFlightInfoId { get; set; } // Идентификатор документа в MongoDB
 
         [BsonElement("flightNumber")]

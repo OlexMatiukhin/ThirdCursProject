@@ -11,9 +11,6 @@ namespace Airport.Models
     public class CanceledFlightInfo
     {
         [BsonId]
-        private ObjectId Id { get; set; }
-
-        [BsonElement("canceledFlightInfoId")]
         public int CanceledFlightInfoId { get; set; }
 
         [BsonElement("flightNumber")]

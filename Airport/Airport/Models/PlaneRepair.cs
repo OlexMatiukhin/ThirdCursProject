@@ -12,9 +12,7 @@ namespace Airport.Models
     {
 
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        [BsonElement("planeRepairId")]
+        
         public int PlaneRepairId { get; set; }
         [BsonElement("startDate")]
         public DateTime StartDate { get; set; }

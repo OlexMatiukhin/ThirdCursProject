@@ -11,9 +11,8 @@ namespace Airport.Models
     public class Plane
     {
         [BsonId]
-        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
 
-        [BsonElement("planeId")]
+  
         public int PlaneId { get; set; }
 
         [BsonElement("type")]
@@ -37,7 +36,7 @@ namespace Airport.Models
         [BsonElement("numberRepairs")]
         public int NumberRepairs { get; set; }
 
-        [BsonElement("exploitationDate")]
+        [BsonElement("explotationDate")]
         public DateTime ExploitationDate { get; set; }
 
         /*public Plane(int planeId, string type, string techCondition, string interiorReadiness, int numberFlightsBeforeRepair, DateTime techInspectionDate, bool assigned, int numberRepairs, DateTime exploitationDate)
@@ -62,5 +61,12 @@ namespace Airport.Models
         public bool Assigned { get => assigned; set => assigned = value; }
         public int NumberRepairs { get => numberRepairs; set => numberRepairs = value; }
         public DateTime ExploitationDate { get => exploitationDate; set => exploitationDate = value; }*/
+        public override string ToString()
+        {
+            return $"Id: {PlaneId}, Тип: {Type}, Технічний стан: {TechCondition}, Готовність салону: {InteriorReadiness}, " +
+                   $"Кількість польотів до ремонту: {NumberFlightsBeforeRepair}, Дата техінспекції: {TechInspectionDate.ToShortDateString()}, " +
+                   $"Приписка: {Assigned}, Кількість ремонтів: {NumberRepairs}, Дата експлуатацї: {ExploitationDate.ToShortDateString()}";
+        }
     }
 }
+

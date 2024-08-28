@@ -11,9 +11,8 @@ namespace Airport.Models
     public class Department
     {
         [BsonId]
-        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
 
-        [BsonElement("departmentId")]
+
         public int DepartmentId { get; set; }
 
         [BsonElement("departmentName")]

@@ -12,9 +12,7 @@ namespace Airport.Models
     public class RefundedTicketInfo 
     {
         [BsonId]
-        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
-
-        [BsonElement("refundedTicketId")]
+       
         public string RefundedTicketId { get; set; }
 
         [BsonElement("date")] // Опционально: указывает на имя поля в MongoDB

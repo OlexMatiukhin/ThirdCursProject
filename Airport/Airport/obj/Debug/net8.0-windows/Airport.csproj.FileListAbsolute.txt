@@ -237,3 +237,5 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Airport.pdb
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Airport.genruntimeconfig.cache
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\ref\Airport.dll
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AddFlight.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AddFlight.baml

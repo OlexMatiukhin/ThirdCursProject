@@ -12,9 +12,6 @@ namespace Airport.Models
     {
         [BsonId]
        
-        public ObjectId Id { get; set; }
-
-        [BsonElement("ticketId")]
         public int TicketId { get; set; }
 
         [BsonElement("status")]

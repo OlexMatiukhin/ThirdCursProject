@@ -12,9 +12,7 @@ namespace Airport.Models
     public class Flight
     {
         [BsonId]
-        public ObjectId Id { get; set; } // Идентификатор в MongoDB, обычно ObjectId
 
-        [BsonElement("flightId")]
         public int FlightId { get; set; }
 
         [BsonElement("flightNumber")]

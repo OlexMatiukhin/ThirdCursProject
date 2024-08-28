@@ -12,7 +12,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Dialog\AddFligth.xaml">
+    <Page Update="Views\Dialog\AddFlight.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\ChangeBaggage.xaml">

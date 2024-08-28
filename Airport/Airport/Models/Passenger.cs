@@ -13,9 +13,8 @@ namespace Airport.Models
     public class Passenger
     {
         [BsonId]
-        public ObjectId Id { get; set; } 
 
-        [BsonElement("passengerId")]
+    
         public int PassengerId { get; set; }
 
         [BsonElement("age")]

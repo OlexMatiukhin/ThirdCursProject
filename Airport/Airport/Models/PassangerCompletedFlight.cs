@@ -11,10 +11,7 @@ using System;
     {
         public class PassengerCompletedFlight
     {
-            [BsonId]            
-            public ObjectId Id { get; set; }
-
-            [BsonElement("passengerCompletedFlightId")]
+            [BsonId]
             public int PassengerId { get; set; }
 
             [BsonElement("age")]

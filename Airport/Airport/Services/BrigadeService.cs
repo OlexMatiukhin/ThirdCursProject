@@ -14,10 +14,9 @@ public class BrigadeService
         {
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _brigadeCollection = database.GetCollection<Brigade>("brigades"); // Название коллекции в MongoDB
+            _brigadeCollection = database.GetCollection<Brigade>("brigade"); 
         }
 
-        // Метод для получения всех бригад
         public List<Brigade> GetBrigadesData()
         {
             try
@@ -31,7 +30,7 @@ public class BrigadeService
             }
         }
 
-        // Метод для получения бригады по ID
+       
         public Brigade GetBrigadeById(int brigadeId)
         {
             try
@@ -45,8 +44,21 @@ public class BrigadeService
             }
         }
 
-        // Метод для добавления новой бригады
-        public void AddBrigade(Brigade brigade)
+    public List<Brigade> GetBrigadesByType(string BrigadeType)
+    {
+        try
+        {
+            return _brigadeCollection.Find(b => b.BrigadeType == BrigadeType).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+            return null;
+        }
+    }
+
+ 
+    public void AddBrigade(Brigade brigade)
         {
             try
             {
@@ -58,7 +70,7 @@ public class BrigadeService
             }
         }
 
-        // Метод для обновления существующей бригады
+    
         public void UpdateBrigade(Brigade brigade)
         {
             try
@@ -72,7 +84,7 @@ public class BrigadeService
             }
         }
 
-        // Метод для удаления бригады
+      
         public void DeleteBrigade(int brigadeId)
         {
             try

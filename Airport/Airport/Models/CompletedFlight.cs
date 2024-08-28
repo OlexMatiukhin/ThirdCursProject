@@ -10,11 +10,9 @@ namespace Airport.Models
 {
     public  class CompletedFlight
     {
-        [BsonId] 
-        
-        public ObjectId Id { get; set; }
-
-        [BsonElement("completedFlightId")]
+         
+        [BsonId]
+ 
         public int CompletedFlightId { get; set; }
 
         [BsonElement("flightNumber")]

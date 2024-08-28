@@ -11,9 +11,6 @@ namespace Airport.Models
     public class Worker
     {
         [BsonId]        
-        public ObjectId Id { get; set; }
-
-        [BsonElement("workerId")]
         public int WorkerId { get; set; }
 
         [BsonElement("fullName")]

@@ -11,9 +11,7 @@ namespace Airport.Models
     public class StructureUnit
     {
         [BsonId]
-        public ObjectId Id { get; set; }
-
-        [BsonElement("structureUnitId")]
+   
         public int StructureUnitId { get; set; }
 
         [BsonElement("structureUnitName")]

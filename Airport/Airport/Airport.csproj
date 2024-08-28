@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Dialog\AddFligth.xaml.cs">
+    <Compile Update="Views\Dialog\AddFlight.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Dialog\ChangeBaggage.xaml.cs">

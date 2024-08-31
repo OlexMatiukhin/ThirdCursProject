@@ -47,7 +47,7 @@
         <Image HorizontalAlignment="Left" Width="67" Margin="7,0,0,5" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
         <!-- DataGrid для отображения данных -->
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+        <DataGrid  ItemsSource="{Binding Routes}"  x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>

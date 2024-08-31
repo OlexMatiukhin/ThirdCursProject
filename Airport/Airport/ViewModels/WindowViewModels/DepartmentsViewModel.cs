@@ -6,14 +6,15 @@ using System.Collections.ObjectModel;
 
 namespace Airport.ViewModels.WindowViewModels
 {
-    public class FlightViewModel
+    public class DepartmentsViewModel
     {
-        public ObservableCollection<Flight> Flights { get; set; }
-        private FlightService _flightService;
+        public ObservableCollection<Department> Deparments { get; set; }
 
-        public FlightViewModel()
+        private DepartmentService _departmentService;
+
+        public DepartmentsViewModel()
         {
-            _flightService = new FlightService();
+            _departmentService = new DepartmentService();
             LoadFlights();
         }
 
@@ -21,8 +22,8 @@ namespace Airport.ViewModels.WindowViewModels
         {
             try
             {
-                var flightList = _flightService.GetFlightsData();
-                Flights = new ObservableCollection<Flight>(flightList);
+                var departmentList = _departmentService.GetDepartmentsData();
+                Deparments = new ObservableCollection<Department>(departmentList);
             }
             catch (Exception ex)
             {

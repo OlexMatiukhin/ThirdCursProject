@@ -11,9 +11,10 @@ public class BrigadeService
         private readonly IMongoCollection<Brigade> _brigadeCollection;
 
         public BrigadeService()
-        {
-            var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
-            var database = client.GetDatabase("airport");
+    {
+        
+        var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
+        var database = client.GetDatabase("airport");
             _brigadeCollection = database.GetCollection<Brigade>("brigade"); 
         }
 

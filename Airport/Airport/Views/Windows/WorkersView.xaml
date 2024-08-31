@@ -45,7 +45,7 @@
         <Image HorizontalAlignment="Left" Width="67" Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
         <!-- DataGrid -->
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+        <DataGrid   ItemsSource="{Binding Workers}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,30">
             <DataGrid.Columns>
@@ -58,8 +58,7 @@
                 <DataGridTextColumn Header="Зміна" Binding="{Binding Shift}" Width="*"/>
                 <DataGridTextColumn Header="Еmail" Binding="{Binding Email}" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding PhoneNumber}" Width="*"/>
-                <DataGridTextColumn Header="Посада" Binding="{Binding StructureUnitId}" Width="*"/>
-                <DataGridTextColumn Header="Посада" Binding="{Binding DepartamentId}" Width="*"/>
+                <DataGridTextColumn Header="Посада" Binding="{Binding PositionId}" Width="*"/>
                 <DataGridTextColumn Header="Посада" Binding="{Binding BrigadeId}" Width="*"/>
 
 

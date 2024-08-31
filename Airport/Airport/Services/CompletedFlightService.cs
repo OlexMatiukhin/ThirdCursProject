@@ -18,6 +18,7 @@ namespace Airport.Services
         public CompletedFlightService()
         {
             // Connecting to MongoDB
+
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
             _completedFlightCollection = database.GetCollection<CompletedFlight>("completedFlights");

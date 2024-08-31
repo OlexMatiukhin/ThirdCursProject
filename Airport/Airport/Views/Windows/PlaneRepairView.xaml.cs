@@ -1,4 +1,5 @@
 ﻿using Airport.ViewModels;
+using Airport.ViewModels.WindowViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,8 @@ namespace Airport
         public planeRepairView()
         {
             InitializeComponent();
-            DataContext = new planeRepairView();
+
+            DataContext = new PlaneRepairsViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

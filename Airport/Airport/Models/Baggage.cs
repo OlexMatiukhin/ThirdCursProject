@@ -12,7 +12,6 @@ namespace Airport.Models
     {
 
         [BsonId]
-        private ObjectId id;
         [BsonElement("baggageId")]
         private int baggageId;
         [BsonElement("type")]

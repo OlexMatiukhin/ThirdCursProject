@@ -13,13 +13,17 @@ namespace Airport.Models
     {
         [BsonId] 
 
-        public string PositionId { get; set; }
+        public int PositionId { get; set; }
 
         [BsonElement("positionName")] // Указывает имя поля в MongoDB
         public string PositionName { get; set; }
 
         [BsonElement("salary")]
         public decimal Salary { get; set; }
+        
+        [BsonElement("structureUnitId")]
+        public int StructureUnitId { get; set; }
+
     }
 
     /*public int PositionId { get => positionId; set => positionId = value; }

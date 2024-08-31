@@ -40,11 +40,6 @@ namespace Airport.Models
         [BsonElement("phoneNumber")]
         public string PhoneNumber { get; set; }
 
-        [BsonElement("structureUnitId")]
-        public int StructureUnitId { get; set; }
-
-        [BsonElement("departmentId")]
-        public int DepartmentId { get; set; }
 
         [BsonElement("brigadeId")]
         public int BrigadeId { get; set; }

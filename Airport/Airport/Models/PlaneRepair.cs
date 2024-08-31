@@ -24,7 +24,7 @@ namespace Airport.Models
         public int NumberFlights { get; set; }
 
         [BsonElement("endDate")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [BsonElement("reason")]
         public string Reason { get; set; }

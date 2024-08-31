@@ -47,7 +47,7 @@
         </StackPanel>
         <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+        <DataGrid ItemsSource="{Binding Tickets}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
             <DataGrid.Columns>
@@ -58,7 +58,7 @@
                 <DataGridTextColumn Header="Номер рейсу" Binding="{Binding Price}"  Width="2*"/>
                 <DataGridTextColumn Header="Місце" Binding="{Binding FlightId}"   Width="2*"/>
                 <DataGridTextColumn Header="Ідентифікатор пасажиру" Binding="{Binding SeatId}"   Width="2*" />
-                <DataGridTextColumn Header="Ідентифікатор пасажиру" Binding="{Binding PassangerId}"   Width="2*" />
+                <DataGridTextColumn Header="Ідентифікатор пасажиру" Binding="{Binding PassengerId}"   Width="2*" />
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

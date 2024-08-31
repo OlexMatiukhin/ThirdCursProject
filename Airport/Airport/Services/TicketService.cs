@@ -14,10 +14,19 @@ namespace Airport.Services
          
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _ticketCollection = database.GetCollection<Ticket>("tickets"); 
+            _ticketCollection = database.GetCollection<Ticket>("ticket"); 
+        }
+        public int GetLastTicketId()
+        {
+            var lastTicket = _ticketCollection
+                .Find(Builders<Ticket>.Filter.Empty)
+                .Sort(Builders<Ticket>.Sort.Descending(f => f.TicketId))
+                .Limit(1)
+                .FirstOrDefault();
+
+            return lastTicket?.TicketId ?? 0;
         }
 
-        
         public List<Ticket> GetTicketsData()
         {
             try

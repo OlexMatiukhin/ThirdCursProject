@@ -24,6 +24,7 @@ namespace Airport.ViewModels.DialogViewModels
                 
             }
         }
+       
 
 
         public ObservableCollection<Brigade> FlightBrigades { get; set; }
@@ -57,6 +58,8 @@ namespace Airport.ViewModels.DialogViewModels
         private int _selectedNavigationBrigadeId;
         private int _selectedTechInspectionBrigadeId;
         private int _routeId;
+        private string _numberTickets;
+        private string _ticketPrice;
 
         private DateTime _dateDeparture;
         public DateTime DateDeparture
@@ -155,6 +158,29 @@ namespace Airport.ViewModels.DialogViewModels
             {
                 _routeId = value;
                 OnPropertyChanged(nameof(RouteId));
+            }
+        }
+    
+
+
+        public string TicketPrice
+        {
+            get => _ticketPrice;
+            set
+            {
+                _ticketPrice = value;
+                OnPropertyChanged(nameof(TicketPrice));
+            }
+        }
+
+
+        public string NumberTickets
+        {
+            get => _numberTickets;
+            set
+            {
+                _numberTickets = value;
+                OnPropertyChanged(nameof(NumberTickets));
             }
         }
 

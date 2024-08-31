@@ -15,10 +15,10 @@ public class DepartmentService
 
         public DepartmentService()
         {
-          
+
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _departmentCollection = database.GetCollection<Department>("departments");
+            _departmentCollection = database.GetCollection<Department>("department");
         }
 
         public List<Department> GetDepartmentsData()

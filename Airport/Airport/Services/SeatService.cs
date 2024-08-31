@@ -16,13 +16,23 @@ namespace Airport.Services
 
         public SeatService()
         {
-           
+
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _seatCollection = database.GetCollection<Seat>("seats"); 
+            _seatCollection = database.GetCollection<Seat>("seat"); 
+        }
+        public int GetLastSeatId()
+        {
+            var lastSeat = _seatCollection
+                .Find(Builders<Seat>.Filter.Empty)
+                .Sort(Builders<Seat>.Sort.Descending(f => f.SeatId))
+                .Limit(1)
+                .FirstOrDefault();
+
+            return lastSeat?.SeatId ?? 0;
         }
 
-      
+
         public List<Seat> GetSeatsData()
         {
             try

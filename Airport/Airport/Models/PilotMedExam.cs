@@ -12,7 +12,6 @@ namespace Airport.Models
     {
         [BsonId]
 
-     
         public int ExamId { get; set; }
 
         [BsonElement("result")]

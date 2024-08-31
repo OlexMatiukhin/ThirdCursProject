@@ -16,7 +16,7 @@ using System.Threading.Tasks;
             {
                 var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
                 var database = client.GetDatabase("airport");
-                _refundedTicketCollection = database.GetCollection<RefundedTicketInfo>("refundedTickets"); 
+                _refundedTicketCollection = database.GetCollection<RefundedTicketInfo>("refundedTicket"); 
             }
 
             public List<RefundedTicketInfo> GetRefundedTicketsData()

@@ -18,7 +18,7 @@ namespace Airport.Services
           
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _passengerCollection = database.GetCollection<Passenger>("passengers"); // Название коллекции в MongoDB
+            _passengerCollection = database.GetCollection<Passenger>("passenger"); // Название коллекции в MongoDB
         }
 
         public List<Passenger> GetPassengersData()

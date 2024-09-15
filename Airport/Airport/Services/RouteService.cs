@@ -57,7 +57,18 @@ namespace Airport.Services
             }
         }
 
-      
+        public int GetLastRouteId()
+        {
+            var lastWorker = _routeCollection
+                .Find(Builders<Route>.Filter.Empty)
+                .Sort(Builders<Route>.Sort.Descending(w => w.RouteId))
+                .Limit(1)
+                .FirstOrDefault();
+
+            return lastWorker?.RouteId ?? 0;
+        }
+
+
         public void UpdateRoute(Route route)
         {
             try

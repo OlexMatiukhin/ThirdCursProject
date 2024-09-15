@@ -11,8 +11,7 @@ namespace Airport.Models
 
     public class Position
     {
-        [BsonId] 
-
+        [BsonId]
         public int PositionId { get; set; }
 
         [BsonElement("positionName")] // Указывает имя поля в MongoDB
@@ -20,16 +19,21 @@ namespace Airport.Models
 
         [BsonElement("salary")]
         public decimal Salary { get; set; }
-        
+
         [BsonElement("structureUnitId")]
         public int StructureUnitId { get; set; }
+        public override string ToString()
+        {
+            return $"Position: {PositionName}, Salary: {Salary}, Structure Unit ID: {StructureUnitId}";
+        }
 
     }
-
+     
+    
     /*public int PositionId { get => positionId; set => positionId = value; }
         public string PositionName { get => positionName; set => positionName = value; }
         public decimal Salary { get => salary; set => salary = value; }
     }*/
-    
+
 
 }

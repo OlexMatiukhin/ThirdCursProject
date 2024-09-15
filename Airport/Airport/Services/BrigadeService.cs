@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 public class BrigadeService
 {
       
         private readonly IMongoCollection<Brigade> _brigadeCollection;
 
         public BrigadeService()
-    {
+        {
         
-        var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
-        var database = client.GetDatabase("airport");
+            var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
+            var database = client.GetDatabase("airport");
             _brigadeCollection = database.GetCollection<Brigade>("brigade"); 
         }
 
@@ -31,8 +32,18 @@ public class BrigadeService
             }
         }
 
-       
-        public Brigade GetBrigadeById(int brigadeId)
+        public int GetLastBrigadeId()
+        {
+            var lastBaggage = _brigadeCollection
+                .Find(Builders<Brigade>.Filter.Empty)
+                .Sort(Builders<Brigade>.Sort.Descending(w => w.BrigadeId))
+                .Limit(1)
+                .FirstOrDefault();
+
+            return lastBaggage?.BrigadeId ?? 0;
+        }
+
+    public Brigade GetBrigadeById(int brigadeId)
         {
             try
             {

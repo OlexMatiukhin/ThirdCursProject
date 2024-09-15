@@ -47,6 +47,12 @@ namespace Airport.Models
         [BsonElement("positionId")]
         public int PositionId { get; set; }
 
+        [BsonElement("lastMedExamDate")]
+        public DateTime LastMedExamDate { get; set; }
+
+        [BsonElement("resultMedExam")]
+        public string ResultMedExam { get; set; }
+
         /*public Worker(int workerId, string fullName, int age, string status, string gender, int numberChildrens, DateTime hireDate, string shift, string email, string phoneNumber, int structureUnitId, int departmentId, int brigadeId, int positionId)
         {
             this.workerId = workerId;

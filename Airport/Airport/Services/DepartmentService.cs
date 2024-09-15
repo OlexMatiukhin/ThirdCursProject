@@ -20,7 +20,27 @@ public class DepartmentService
             var database = client.GetDatabase("airport");
             _departmentCollection = database.GetCollection<Department>("department");
         }
+        public void AddDepartment(Department department)
+        {
+            try
+            {
+                _departmentCollection.InsertOne(department);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при добавлении данных: {ex.Message}");
+            }
+        }
+        public int GetLastDepartmentId()
+        {
+            var lastBaggage = _departmentCollection
+                .Find(Builders<Department>.Filter.Empty)
+                .Sort(Builders<Department>.Sort.Descending(w => w.DepartmentId))
+                .Limit(1)
+                .FirstOrDefault();
 
+            return lastBaggage?.DepartmentId ?? 0;
+        }
         public List<Department> GetDepartmentsData()
         {
             try

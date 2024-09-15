@@ -11,20 +11,10 @@ namespace Airport.Models
     public class Department
     {
         [BsonId]
-
-
-        public int DepartmentId { get; set; }
-
+      
         [BsonElement("departmentName")]
+    public int DepartmentId { get; set; }
+
         public string DepartmentName { get; set; }
-
-        /* public Department(int departmentId, string departmentName)
-         {
-             this.departmentId = departmentId;
-             this.departmentName = departmentName;
-         }
-
-         public int DepartmentId { get => departmentId; set => departmentId = value; }
-         public string DepartmentName { get => departmentName; set => departmentName = value; }*/
     }
 }

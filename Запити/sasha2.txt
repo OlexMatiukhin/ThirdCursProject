@@ -1,0 +1,2097 @@
+use airport
+db.flightPlane.aggregate([
+  {
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  {
+    $unwind: "$flight"
+  },
+  {
+    $lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "planeDetail"
+    }
+  },
+  {
+    $unwind: "$planeDetail"
+  },
+  {
+  $addFields: {
+      status: "$flight.status",
+      category: "$flight.category",
+      dispatchBrigadeId: "$flight.dispatchBrigadeId",
+      navigationBrigadeId: "$flight.navigationBrigadeId",
+      flightBrigadeId: "$flight.flightBrigadeId",
+      inspectionBrigadeId: "$flight.inspectionBrigadeId",
+      routeId: "$flight.routeId",
+      planeId: "$planeDetail.planeId",
+      planeType: "$planeDetail.type"
+    }
+  },
+  {
+    $project: {
+      "status": 1,
+      "category": 1,
+      "status": 1,
+      "dispatchBrigadeId": 1,
+      "navigationBrigadeId": 1,
+      "flightBrigadeId": 1,
+      "inspectionBrigadeId": 1,
+      "planeId": 1,
+      "planeType": 1,
+      "routeId":1,
+    }
+  },
+  {
+    $lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+  {
+    $unwind: "$route"
+  },
+  {$addFields: {
+  flightDirection:'$route.flightDirection',
+  }},
+   {$project: {
+      "status": 1,
+      "category": 1,
+      "status": 1,
+      "dispatchBrigadeId": 1,
+      "navigationBrigadeId": 1,
+      "flightBrigadeId": 1,
+      "inspectionBrigadeId": 1,
+      "planeId": 1,
+      "planeType": 1,
+      "routeId":1,
+       "flightDirection":1
+    }
+  },
+  {$match: {
+      "category":"чартерний",
+      "planeType": "пасажирський",
+       "flightDirection":"Східний"
+    }
+  },
+])
+
+
+db.flightPlane.aggregate([
+  {
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  {
+    $unwind: "$flight"
+  },
+  {
+    $lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "planeDetail"
+    }
+  },
+  {
+    $unwind: "$planeDetail"
+  },
+  {
+  $addFields: {
+      status: "$flight.status",
+      category: "$flight.category",
+      dispatchBrigadeId: "$flight.dispatchBrigadeId",
+      navigationBrigadeId: "$flight.navigationBrigadeId",
+      flightBrigadeId: "$flight.flightBrigadeId",
+      inspectionBrigadeId: "$flight.inspectionBrigadeId",
+      routeId: "$flight.routeId",
+      planeId: "$planeDetail.planeId",
+      planeType: "$planeDetail.type"
+    }
+  },
+  {
+    $project: {
+      "status": 1,
+      "category": 1,
+      "status": 1,
+      "dispatchBrigadeId": 1,
+      "navigationBrigadeId": 1,
+      "flightBrigadeId": 1,
+      "inspectionBrigadeId": 1,
+      "planeId": 1,
+      "planeType": 1,
+      "routeId":1,
+    }
+  },
+  {
+    $lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+  {
+    $unwind: "$route"
+  },
+  {$addFields: {
+  flightDirection:'$route.flightDirection',
+  }},
+   {$project: {
+      "status": 1,
+      "category": 1,
+      "status": 1,
+      "dispatchBrigadeId": 1,
+      "navigationBrigadeId": 1,
+      "flightBrigadeId": 1,
+      "inspectionBrigadeId": 1,
+      "planeId": 1,
+      "planeType": 1,
+      "routeId":1,
+       "flightDirection":1
+    }
+  },
+  {$match: {
+      "category":"чартерний",
+      "planeType": "пасажирський",
+       "flightDirection":"Східний"
+    }
+  },
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  },
+])
+//2)Одержати перелік і загальне число вільних і заброньованих місць на зазначеному рейсі, на конкретний день, по зазначеному маршруту, за ціною, за часом вильоту; загальне число зданих квитків на деякий pейс, у зазначений день, по певному маршруту, за ціною квитка, за віком, статтю.
+db.ticket.aggregate([
+  {
+    $lookup: {
+      from: "seatId",
+      localField: "seatId",
+      foreignField: "seatId",
+      as: "seat"
+    }
+  },
+  { $unwind: "$seat" },
+
+
+  {
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  { $unwind: "$flight" },
+
+  {
+    $lookup: {
+      from: "route",
+      localField: "flight.routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+  { $unwind: "$route" },
+
+
+   { $project: {
+      seatId: 1,
+      number: 1,
+      status: 1,
+      flightId: 1,
+      ticketId: 1,
+      availability: 1,
+      dateChanges: 1,
+      price: 1,
+      passangerId: 1,
+      flightStatus: "$flight.status",
+      category: "$flight.category",
+      dispatchBrigadeId: "$flight.dispatchBrigadeId",
+      navigationBrigadeId: "$flight.navigationBrigadeId",
+      flightBrigadeId: "$flight.flightBrigadeId",
+      inspectionBrigadeId: "$flight.inspectionBrigadeId",
+      routeId: "$flight.routeId",
+      planeId: "$flight.planeId",
+      departurePoint: "$flight.departurePoint",
+      dateDeparture: "$flight.dateDeparture",
+      dateArrival: "$route.dateArrival",
+      arrivalPoint: "$route.arrivalPoint",
+      flightDirection: "$route.flightDirection"
+    }
+   },
+    {$match:{
+    flightId:1,
+     dateDeparture:{
+    $gte: new ISODate("2024-12-20T10:00:00Z",),
+    $lt: new ISODate("2024-12-21T10:00:00Z")
+  },
+       routeId:1,
+       price:150,
+      $expr: {
+    $and: [
+      { $eq: [{ $hour: "$dateDeparture" }, 10] },
+      { $eq: [{ $minute: "$dateDeparture" }, 00] }
+    ]
+  }
+    },
+
+ },
+]);
+db.ticket.aggregate([
+
+  {
+    $lookup: {
+      from: "seatId",
+      localField: "seatId",
+      foreignField: "seatId",
+      as: "seat"
+    }
+  },
+  { $unwind: "$seat" },
+
+
+  {
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+
+  {
+    $lookup: {
+      from: "route",
+      localField: "flight.routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+  { $unwind: "$route" },
+
+
+
+   { $project: {
+      seatId: 1,
+      number: 1,
+      status: 1,
+      flightId: 1,
+      ticketId: 1,
+      availability: 1,
+      dateChanges: 1,
+      price: 1,
+      passangerId: 1,
+      flightStatus: "$flight.status",
+      category: "$flight.category",
+      dispatchBrigadeId: "$flight.dispatchBrigadeId",
+      navigationBrigadeId: "$flight.navigationBrigadeId",
+      flightBrigadeId: "$flight.flightBrigadeId",
+      inspectionBrigadeId: "$flight.inspectionBrigadeId",
+      routeId: "$flight.routeId",
+      planeId: "$flight.planeId",
+      departurePoint: "$flight.departurePoint",
+      dateDeparture: "$flight.dateDeparture",
+      dateArrival: "$route.dateArrival",
+      arrivalPoint: "$route.arrivalPoint",
+      flightDirection: "$route.flightDirection"
+    }
+   },
+    {$match:{
+    flightId:1,
+     dateDeparture:{
+    $gte: new ISODate("2024-12-20T10:00:00Z",),
+    $lt: new ISODate("2024-12-21T10:00:00Z")
+  },
+       routeId:1,
+       price:150,
+      $expr: {
+    $and: [
+      { $eq: [{ $hour: "$dateDeparture" }, 10] },
+      { $eq: [{ $minute: "$dateDeparture" }, 00] }
+    ]
+  }
+    },
+
+ },
+ {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+]);
+db.refundedticket.aggregate(
+ {$match:{
+ refundedTicketId: 2,
+
+     date:{
+    $gte: new ISODate("2024-07-24T00:00:00Z",),
+    $lt: new ISODate("2024-12-25T00:00:00Z")
+  },
+
+    routeId:2,
+    age: 25,
+    price:150,
+    gender: "чоловіча",
+    fullname: "Іванов Іван Іванович",
+    flightId:3
+  }}
+
+)
+
+//3)Одержати перелік і загальне число літаків приписаних до аеропорту, що перебувають у ньому в зазначений час, за часом надходження в аеропорт, за кількістю здійснених рейсів; що пройшли техогляд за певний період часу, відправлених у ремонт у зазначений час, ремонтованих задане число pазів, за кількістю здійснених рейсів до ремонту, за віком літака.
+db.flightPlane.aggregate([
+
+{
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  {
+    $unwind: "$flight"
+  },
+  {
+    $lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "plane"
+    }
+  },
+  {
+    $unwind: "$plane"
+  },
+
+  {
+    $project: {
+      "status":"$flight.status",
+      "category": "$flight.category",
+      "dispatchBrigadeId":"$flight.dispatchBrigadeId",
+      "navigationBrigadeId": "$flight.navigationBrigadeId",
+      "flightBrigadeId": "$flight.flightBrigadeId",
+      "inspectionBrigadeId": "$flight.inspectionBrigadeId",
+      "planeId": "$plane.planeId",
+      "planeType": "$plane.type",
+       "numberRepairs": "$plane.numberRepairs",
+      "dateDeparture":"$flight.dateDeparture",
+
+    }
+  },
+  {$match:{
+     $expr: {
+    $and: [
+      { $eq: [{ $hour: "$dateDeparture" }, 10] },
+      { $eq: [{ $minute: "$dateDeparture" }, 00] },
+
+    ]
+  },
+  numberRepairs:2
+
+
+  }
+  },
+ ])
+
+ db.flightPlane.aggregate([
+
+{
+    $lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  {
+    $unwind: "$flight"
+  },
+  {
+    $lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "plane"
+    }
+  },
+  {
+    $unwind: "$plane"
+  },
+
+  {
+    $project: {
+      "status":"$flight.status",
+      "category": "$flight.category",
+      "dispatchBrigadeId":"$flight.dispatchBrigadeId",
+      "navigationBrigadeId": "$flight.navigationBrigadeId",
+      "flightBrigadeId": "$flight.flightBrigadeId",
+      "inspectionBrigadeId": "$flight.inspectionBrigadeId",
+      "planeId": "$plane.planeId",
+      "planeType": "$plane.type",
+       "numberRepairs": "$plane.numberRepairs",
+      "dateDeparture":"$flight.dateDeparture",
+
+    }
+  },
+  {
+    $match:{
+     $expr: {
+    $and: [
+      { $eq: [{ $hour: "$dateDeparture" }, 10] },
+      { $eq: [{ $minute: "$dateDeparture" }, 00] },
+
+    ]
+  },
+  numberRepairs:2,
+  }
+
+  },
+   {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+ ])
+
+db.planeRepair.aggregate(
+ {
+    $lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "plane"
+    }
+  },
+  {
+   $unwind:"$plane"
+  },
+
+   {$project: {
+    brigadeId:1,
+    endDate:1,
+    result:1,
+    status:1,
+    startDate:1,
+    planeId:"$plane.planeId",
+    type:"$plane.type",
+   techCondition: "$plane.techCondition",
+    explotationDate:"$plane.explotationDate",
+    numberRepairs:"$plane.numberRepairs",
+    assigned: "$plane.assigned",
+    techInspectionDate:"$plane.techInspectionDate",
+    numberFlightsBeforeRepair:"$plane.numberFlightsBeforeRepair"
+   }
+  },
+{
+  $match:{
+    status:"В ремонті",
+    techInspectionDate: {$gte: new ISODate("2024-05-12T00:00:00Z",),
+     $lt: new ISODate("2024-05-13T10:00:00Z")},
+     startDate:ISODate("2024-07-30T08:00:00.000Z"),
+     numberRepairs:4,
+     explotationDate:ISODate("2015-03-19T00:00:00.000Z"),
+     numberFlightsBeforeRepair:3
+
+  }
+},
+  {$project: {
+    planeId:1,
+    type:1,
+     techCondition: 1,
+    explotationDate:1,
+    numberRepairs:1,
+    assigned:1,
+    techInspectionDate:1,
+    numberFlightsBeforeRepair:1
+   }
+  },
+
+
+)
+//4) Одержати перелік і загальне число пасажирів на даному рейсі, що полетіли в зазначений день, що полетіли за кордон в зазначений день, за ознакою здачі речей у багажне відділення, за статевою ознакою, за віком.
+db.passengerCompletedFlight.aggregate(
+  {$lookup: {
+      from: "completedFlight",
+      localField: "completedFlightId",
+      foreignField: "completedFlightId",
+      as: "completedFlight"
+    }
+  },
+  {
+  $unwind:"$completedFlight"
+  },
+  {$project:{
+   "passangerId": 1,
+  "age": 1,
+  "gender": 1,
+  "pasportNumber": 1,
+  "internPasportNumber": 1,
+  "bagageStatus": 1,
+  "phoneNumber": 1,
+  "email": 1,
+  "fullname": 1,
+"completedFlightId":"$completedFlight.completedFlightId",
+ "flightNumber": "$completedFlight.flightNumber",
+  "category": "$completedFlight.category",
+   "dateDeparture": "$completedFlight.dateDeparture",
+  }
+  },
+  {
+  $match:{
+  category:"міжнародний",
+  dateDeparture:ISODate("2024-12-20T10:00:00.000Z"),
+     bagageStatus:"наявний",
+   age: 25,
+  gender: "чоловіча",
+
+  }
+  }
+)
+
+db.passengerCompletedFlight.aggregate(
+  {$lookup: {
+      from: "completedFlight",
+      localField: "completedFlightId",
+      foreignField: "completedFlightId",
+      as: "completedFlight"
+    }
+  },
+  {
+  $unwind:"$completedFlight"
+  },
+  {$project:{
+   "passangerId": 1,
+  "age": 1,
+  "gender": 1,
+  "pasportNumber": 1,
+  "internPasportNumber": 1,
+  "bagageStatus": 1,
+  "phoneNumber": 1,
+  "email": 1,
+  "fullname": 1,
+  "completedFlightId":"$completedFlight.completedFlightId",
+  "flightNumber": "$completedFlight.flightNumber",
+  "category": "$completedFlight.category",
+   "dateDeparture": "$completedFlight.dateDeparture",
+  }
+  },
+  {
+  $match:{
+  category:"міжнародний",
+  dateDeparture:ISODate("2024-12-20T10:00:00.000Z"),
+  bagageStatus:"наявний",
+  age: 25,
+  gender: "чоловіча",
+
+
+  }
+  }
+)
+db.passengerCompletedFlight.aggregate(
+  {$lookup: {
+      from: "completedFlight",
+      localField: "completedFlightId",
+      foreignField: "completedFlightId",
+      as: "completedFlight"
+    }
+  },
+  {
+  $unwind:"$completedFlight"
+  },
+  {$project:{
+   "passangerId": 1,
+  "age": 1,
+  "gender": 1,
+  "pasportNumber": 1,
+  "internPasportNumber": 1,
+  "bagageStatus": 1,
+  "phoneNumber": 1,
+  "email": 1,
+  "fullname": 1,
+"completedFlightId":"$completedFlight.completedFlightId",
+ "flightNumber": "$completedFlight.flightNumber",
+  "category": "$completedFlight.category",
+   "dateDeparture": "$completedFlight.dateDeparture",
+  }
+  },
+  {
+  $match:{
+  category:"міжнародний",
+  dateDeparture:ISODate("2024-12-20T10:00:00.000Z"),
+     bagageStatus:"наявний",
+   age: 25,
+  gender: "чоловіча",
+
+  }
+  }
+)
+db.passengerCompletedFlight.aggregate(
+  {$lookup: {
+      from: "completedFlight",
+      localField: "completedFlightId",
+      foreignField: "completedFlightId",
+      as: "completedFlight"
+    }
+  },
+  {
+  $unwind:"$completedFlight"
+  },
+  {$project:{
+   "passangerId": 1,
+  "age": 1,
+  "gender": 1,
+  "pasportNumber": 1,
+  "internPasportNumber": 1,
+  "bagageStatus": 1,
+  "phoneNumber": 1,
+  "email": 1,
+  "fullname": 1,
+"completedFlightId":"$completedFlight.completedFlightId",
+ "flightNumber": "$completedFlight.flightNumber",
+  "category": "$completedFlight.category",
+   "dateDeparture": "$completedFlight.dateDeparture",
+  }
+  },
+  {
+  $match:{
+  category:"міжнародний",
+  dateDeparture:ISODate("2024-12-20T10:00:00.000Z"),
+  bagageStatus:"наявний",
+  age: 25,
+  gender: "чоловіча",
+
+
+  },
+  },
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+db.exam.renameCollection("pilotMedExam")
+//5) Одержати перелік і загальне число пілотів, що пройшли медогляд або не пройшли його в зазначений рік, за статевою ознакою, віком, розміром заробітної платні.
+db.pilotMedExam.aggregate(
+{$lookup: {
+      from: "worker",
+      localField: "pilotId",
+      foreignField: "workerId",
+      as: "pilot"
+    }
+  },
+  {$unwind:"$pilot"},
+  {$lookup: {
+      from: "position",
+      localField: "pilot.positionId",
+      foreignField: "positionId",
+      as: "position"
+    }
+  },
+{
+  $project:{
+  "workerId":"$pilot.workerId",
+    "fullName": "$pilot.fullName",
+    "age": "$pilot.age",
+    "status":  "$pilot.status",
+    "gender":  "$pilot.gender",
+    "numberChildrens": "$pilot.numberChildrens",
+    "hireDate": "$pilot.hireDate",
+    "shift":  "$pilot.shift",
+    "email":  "$pilot.email",
+    "phonenumber":  "$pilot.phonenumber",
+    "structureUnitId": "$pilot.structureUnitId",
+    "departmentId":  "$pilot.departmentId",
+    "brigadeId": "$pilot.brigadeId",
+    "positionId":  "$pilot.positionId",
+    "salary": "$position.salary",
+    "result":1
+  }
+  },
+ {$match:{
+  age: 32,
+  gender:"жінка",
+  salary:60000,
+  result:"пройдено"
+}
+})
+
+
+db.pilotMedExam.aggregate(
+{$lookup: {
+      from: "worker",
+      localField: "pilotId",
+      foreignField: "workerId",
+      as: "pilot"
+    }
+  },
+  {$unwind:"$pilot"},
+  {$lookup: {
+      from: "position",
+      localField: "pilot.positionId",
+      foreignField: "positionId",
+      as: "position"
+    }
+  },
+{
+  $project:{
+  "workerId":"$pilot.workerId",
+    "fullName": "$pilot.fullName",
+    "age": "$pilot.age",
+    "status":  "$pilot.status",
+    "gender":  "$pilot.gender",
+    "numberChildrens": "$pilot.numberChildrens",
+    "hireDate": "$pilot.hireDate",
+    "shift":  "$pilot.shift",
+    "email":  "$pilot.email",
+    "phonenumber":  "$pilot.phonenumber",
+    "structureUnitId": "$pilot.structureUnitId",
+    "departmentId":  "$pilot.departmentId",
+    "brigadeId": "$pilot.brigadeId",
+    "positionId":  "$pilot.positionId",
+    "salary": "$position.salary",
+    "result":1
+  }
+  },
+ {$match:{
+  age: 32,
+  gender:"жінка",
+  salary:60000,
+  result:"пройдено"
+},
+
+}
+)
+
+db.flight.aggregate(
+{$lookup: {
+      from: "worker",
+      localField: "pilotId",
+      foreignField: "workerId",
+      as: "pilot"
+    }
+  },
+  {$unwind:"$pilot"},
+  {$lookup: {
+      from: "position",
+      localField: "pilot.positionId",
+      foreignField: "positionId",
+      as: "position"
+    }
+  },
+{
+  $project:{
+  "workerId":"$pilot.workerId",
+    "fullName": "$pilot.fullName",
+    "age": "$pilot.age",
+    "status":  "$pilot.status",
+    "gender":  "$pilot.gender",
+    "numberChildrens": "$pilot.numberChildrens",
+    "hireDate": "$pilot.hireDate",
+    "shift":  "$pilot.shift",
+    "email":  "$pilot.email",
+    "phonenumber":  "$pilot.phonenumber",
+    "structureUnitId": "$pilot.structureUnitId",
+    "departmentId":  "$pilot.departmentId",
+    "brigadeId": "$pilot.brigadeId",
+    "positionId":  "$pilot.positionId",
+    "salary": "$position.salary",
+    "result":1
+  }
+  },
+ {$match:{
+  age: 32,
+  gender:"жінка",
+  salary:60000,
+  result:"пройдено"
+}
+},
+{$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+
+//6) Одержати перелік і загальне число рейсів по зазначеному маршруту, за тривалістю перельоту, за ціною квитка й по всім цим критеріям разом.
+db.flight.aggregate(
+{$lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+{$unwind:"$route"},
+  {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+    arrivalPoint:"$route.arrivalPoint",
+    departurePoint:"$route.departurePoint",
+
+         flightDurationMillis: {
+        $subtract: ["$dateArrival", "$dateDeparture"]
+      },
+
+
+    }
+  },
+  {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    arrivalPoint:1,
+    routeId:1,
+    departurePoint:1,
+
+         flightDuration: {
+        $divide: ["$flightDurationMillis", 3600000]
+      },
+
+
+    }
+  },
+ {$match:
+    {
+    arrivalPoint:"Париж",
+    departurePoint:"Київ",
+    flightDuration:3,}
+}
+
+)
+db.ticket.aggregate(
+{$lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+{$unwind:"$flight"},
+  {
+    $project: {
+    availability:1,
+    dateChanges:1,
+    flightId:1,
+    passangerId:1,
+    price:1,
+
+    category:"$flight.category",
+    dateDeparture: "$flight.dateDeparture",
+    dateArrival: "$flight.dateArrival",
+    dispatchBrigadeId:"$flight.dispatchBrigadeId",
+    flightBrigadeId:"$flight.flightBrigadeId",
+    flightId:"$flight.flightId",
+    flightNumber:"$flight.flightNumber",
+    inspectionBrigadeId:"$flight.inspectionBrigadeId",
+    navigationBrigadeId:"$flight.navigationBrigadeId",
+    planeId:"$flight.planeId",
+    routeId:"$flight.routeId",
+    }
+  },
+{$match:
+    {
+    price:150
+}}
+
+)
+
+db.flight.aggregate(
+{$lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+{$unwind:"$route"},
+  {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+    arrivalPoint:"$route.arrivalPoint",
+    departurePoint:"$route.departurePoint",
+
+         flightDurationMillis: {
+        $subtract: ["$dateArrival", "$dateDeparture"]
+      },
+
+
+    }
+  },
+  {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    arrivalPoint:1,
+    routeId:1,
+    departurePoint:1,
+
+         flightDuration: {
+        $divide: ["$flightDurationMillis", 3600000]
+      },
+
+
+    }
+  },
+ {$match:
+    {
+    arrivalPoint:"Париж",
+    departurePoint:"Київ",
+    flightDuration:3,}
+},
+{$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+
+)
+db.ticket.aggregate(
+{$lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+{$unwind:"$flight"},
+  {
+    $project: {
+    availability:1,
+    dateChanges:1,
+    flightId:1,
+    passangerId:1,
+    price:1,
+
+    category:"$flight.category",
+    dateDeparture: "$flight.dateDeparture",
+    dateArrival: "$flight.dateArrival",
+    dispatchBrigadeId:"$flight.dispatchBrigadeId",
+    flightBrigadeId:"$flight.flightBrigadeId",
+    flightId:"$flight.flightId",
+    flightNumber:"$flight.flightNumber",
+    inspectionBrigadeId:"$flight.inspectionBrigadeId",
+    navigationBrigadeId:"$flight.navigationBrigadeId",
+    planeId:"$flight.planeId",
+    routeId:"$flight.routeId",
+    }
+  },
+{$match:
+    {
+    price:150
+}
+},
+{$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+
+//) Одержати перелік і загальне число рейсів, якими літають літаки заданого типу й середню кількість проданих квитків на визначені маршрути, за тривалістю перельоту, за ціною квитка, часом вильоту.
+db.flight.aggregate(
+{$lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "plane"
+    }
+  },
+{$unwind:"$plane"},
+ {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+    type:"$plane.type",
+    }
+
+  },
+  {$match:{
+    type:"пасажирський"
+  }},
+ {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+    }
+  },
+
+  )
+
+
+db.flight.aggregate(
+{$lookup: {
+      from: "plane",
+      localField: "planeId",
+      foreignField: "planeId",
+      as: "plane"
+    }
+  },
+{$unwind:"$plane"},
+ {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+    type:"$plane.type",
+    }
+
+  },
+  {$match:{
+    type:"пасажирський"
+  }},
+ {
+    $project: {
+    category:1,
+    dateDeparture: 1,
+    dateArrival: 1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    planeId:1,
+    routeId:1,
+
+    }
+
+  },
+  {$count: "totalDocuments"},
+{$project: {
+      "totalDocuments": 1,
+ }})
+db.ticket.aggregate([
+{$lookup: {
+      from: "flight",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "flight"
+    }
+  },
+  {
+  $unwind:"$flight"
+  },
+  {$lookup: {
+      from: "route",
+      localField: "flight.routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },
+  {
+  $unwind:"$route"
+  },
+{
+  $project:{
+    ticketId:1,
+    availability:1,
+    dateChanges:1,
+    flightId:1,
+    passangerId:1,
+    price:1,
+
+         flightDurationMillis: {
+        $subtract: ["$flight.dateArrival", "$flight.dateDeparture"]
+      },
+    arrivalPoint:"$route.arrivalPoint",
+    departurePoint:"$route.departurePoint",
+
+  },
+
+  },
+
+  {$project:{
+    ticketId:1,
+    availability:1,
+    dateChanges:1,
+    flightId:1,
+    passangerId:1,
+    price:1,
+
+         flightDuration: {
+       $divide: ["$flightDurationMillis", 3600000]
+      },
+
+    arrivalPoint:1,
+    departurePoint:1,
+
+  }
+
+  },
+ { $match:{
+  price:150,
+  flightDuration:3,
+  }
+  },
+   {$facet: {
+       specificValueCount: [
+        {
+          $count: "count"
+        }
+      ],
+
+       totalDocuments: [
+        {
+          $group: {
+            _id: "$flightId"
+          }
+        },
+        {
+          $count: "total"
+        }
+      ],  }
+  },
+
+  {
+    $project: {
+      totalDocuments: { $arrayElemAt: ["$totalDocuments.total", 0] },
+      specificValueCount: { $arrayElemAt: ["$specificValueCount.count", 0] }
+    }
+  },
+  {
+    $project: {
+      totalDocuments: 1,
+      specificValueCount: 1,
+      average: {
+        $cond: {
+          if: { $ne: ["$totalDocuments", 0] }, // Убедитесь, что общее количество не равно нулю
+          then: { $divide: ["$specificValueCount", "$totalDocuments"] },
+          else: 0
+        }
+      }
+    }
+  },
+
+])
+
+//8) Одержати перелік і загальне число робітників у бригаді, по всіх відділах, у зазначеному відділі, що обслуговують конкретний рейс, за віком, сумарною (середньою) зарплатнею у бригаді.
+//Перелік
+db.worker.aggregate(
+{$match:{
+    brigadeId:1
+
+    }
+}
+)
+
+db.worker.aggregate();
+db.worker.aggregate(
+{$match:{
+structureUnitId:21
+}}
+)
+db.flight.aggregate(
+{$match:{
+    flightId:2
+    }
+    },
+{$lookup: {
+      from: "worker",
+      localField: "dispatchBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker1"
+    }
+  },
+ {$lookup: {
+      from: "worker",
+      localField: "navigationBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker2"
+    }
+  },
+  {$lookup: {
+      from: "worker",
+      localField: "flightBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker3"
+    }
+  },
+  {$lookup: {
+      from: "worker",
+      localField: "inspectionBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker4"
+    }
+  },
+  {$project:{
+  _id:0,
+  worker:["$worker1", "$workerk2", "$worker3", "$workerk4"]
+}
+  },
+  {$unwind:"$worker"},
+
+{$match:{
+    worker:{$ne:null}
+    }
+    },
+  {$unwind:"$worker"}
+ )
+db.worker.aggregate(
+{$match:{
+    age:35
+}
+ }
+ )
+db.worker.aggregate(
+{$match:{
+    age:35
+} }
+ )
+db.worker.aggregate(
+{$lookup: {
+      from: "brigade",
+      localField: "brigadeId",
+      foreignField: "brigadeId",
+      as: "brigade"
+    }
+  },
+  {$unwind:"$brigade"},
+  {$lookup: {
+      from: "position",
+      localField: "positionId",
+      foreignField: "positionId",
+      as: "position"
+    }
+  },
+  {$project:{
+  brigadeId:"$brigade.brigadeId",
+  salary:"$position.salary",
+  },
+  },
+  { $unwind:"$salary"},
+  {
+    $group: {
+      _id: "$brigadeId",  // Группируем по полю brigadeId
+      averageSalary: { $avg: "$salary" }
+    }
+  },
+  {
+    $project: {
+     _id:1,
+      averageSalary: { $round : "$averageSalary" }
+    }
+  },
+  {$sort:{
+   _id:1
+  }
+  },
+  {
+    $match:{
+    averageSalary: 29333}
+    },
+    {$lookup: {
+      from: "worker",
+      localField: "_id",
+      foreignField: "brigadeId",
+      as: "worker"
+    }
+  },
+  {$unwind: "$worker"},
+  {
+    $project: {
+     _id:0,
+     worker:1
+    }
+  },
+ {$project: {
+      _id: "$worker._id",
+      workerId: "$worker.workerId",
+      workerId: "$worker.workerId",
+      age: "$worker.age",
+      status: "$worker.status",
+      gender: "$worker.gender",
+      numberChildrens: "$worker.numberChildrens",
+      hireDate: "$worker.hireDate",
+      shift: "$worker.shift",
+      email: "$worker.email",
+      phonenumber: "$worker.phonenumber",
+      structureUnitId: "$worker.structureUnitId",
+      departmentId: "$worker.departmentId",
+      brigadeId:"$worker.brigadeId",          // Включаем поле positionId
+    }
+  }
+);
+//Сума
+
+db.worker.aggregate(
+{$match:{
+    brigadeId:1
+
+    }
+}
+)
+
+db.worker.aggregate(
+{$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+);
+db.worker.aggregate(
+{$match:{
+structureUnitId:21
+}},
+{$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+db.flight.aggregate(
+{$match:{
+    flightId:2
+    }
+    },
+{$lookup: {
+      from: "worker",
+      localField: "dispatchBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker1"
+    }
+  },
+ {$lookup: {
+      from: "worker",
+      localField: "navigationBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker2"
+    }
+  },
+  {$lookup: {
+      from: "worker",
+      localField: "flightBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker3"
+    }
+  },
+  {$lookup: {
+      from: "worker",
+      localField: "inspectionBrigadeId",
+      foreignField: "brigadeId",
+      as: "worker4"
+    }
+  },
+  {$project:{
+  _id:0,
+  worker:["$worker1", "$workerk2", "$worker3", "$workerk4"]
+}
+  },
+  {$unwind:"$worker"},
+
+{$match:{
+    worker:{$ne:null}
+    }
+    },
+  {$unwind:"$worker"},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+ )
+db.worker.aggregate(
+{$match:{
+    age:35
+}
+ },
+ {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+ )
+db.worker.aggregate(
+{$match:{
+    age:35
+} },
+ {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+ )
+db.worker.aggregate(
+{$lookup: {
+      from: "brigade",
+      localField: "brigadeId",
+      foreignField: "brigadeId",
+      as: "brigade"
+    }
+  },
+  {$unwind:"$brigade"},
+  {$lookup: {
+      from: "position",
+      localField: "positionId",
+      foreignField: "positionId",
+      as: "position"
+    }
+  },
+  {$project:{
+  brigadeId:"$brigade.brigadeId",
+  salary:"$position.salary",
+  },
+  },
+  { $unwind:"$salary"},
+  {
+    $group: {
+      _id: "$brigadeId",  // Группируем по полю brigadeId
+      averageSalary: { $avg: "$salary" }
+    }
+  },
+  {
+    $project: {
+     _id:1,
+      averageSalary: { $round : "$averageSalary" }
+    }
+  },
+  {$sort:{
+   _id:1
+  }
+  },
+  {
+    $match:{
+    averageSalary: 29333}
+    },
+    {$lookup: {
+      from: "worker",
+      localField: "_id",
+      foreignField: "brigadeId",
+      as: "worker"
+    }
+  },
+  {$unwind: "$worker"},
+  {
+    $project: {
+     _id:0,
+     worker:1
+    }
+  },
+    {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+);
+//9) Одержати перелік і загальне число скасованих рейсів повністю, у зазначеному напрямку, по зазначеному маршруту, за кількістю невикористаних місць, за відсотковим співвідношенням невикористаних місць; затриманих рейсів повністю, за зазначеною причиною, по зазначеному маршруту, і кількість зданих квитків під час затримки.
+/*db.canceledFlight.aggregate(
+{$lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },  {
+  $unwind:"$route"},
+  {$project:{
+    category:1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    routeId:1,
+    status:1,
+    unoccupiedSeatNumber:10,
+    percentUnocupied:{$multiply: [
+          { $divide: ["$unoccupiedSeatNumber", "$seatNumber"] },
+          100
+        ]
+      },
+    flightDirection:"$route.flightDirection"
+  }
+  },
+   {$match:{
+     routeId:2,
+     flightDirection:"Західний",
+     unoccupiedSeatNumber:10,
+     percentUnocupied:50
+     }
+    },
+
+)*/
+db.canceledFlightInfo.aggregate(
+{$lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },  {
+  $unwind:"$route"},
+  {$project:{
+    canceledFlightInfoId:1,
+    category:1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    routeId:1,
+    status:1,
+    unoccupiedSeatNumber:10,
+    percentUnocupied:{$multiply: [
+          { $divide: ["$unoccupiedSeatNumber", "$seatNumber"] },
+          100
+        ]
+      },
+    flightDirection:"$route.flightDirection"
+  }
+  },
+   {$match:{
+     routeId:2,
+     flightDirection:"Західний",
+     unoccupiedSeatNumber:10,
+     percentUnocupied:50
+     }
+    },
+
+)
+db.delayedFlightInfo.aggregate([
+  {
+    $lookup: {
+      from: "refundedTicket",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "ticket"
+    }
+  },
+  {
+    $project: {
+      category: 1,
+      dispatchBrigadeId: 1,
+      flightBrigadeId: 1,
+      flightId: 1,
+      flightNumber: 1,
+      inspectionBrigadeId: 1,
+      navigationBrigadeId: 1,
+      routeId: 1,
+      status: 1,
+      reason:1,
+      flightDirection: "$route.flightDirection",
+      ticketCount: {
+        $size: {
+          $filter: {
+            input: "$ticket",
+            as: "ticket",
+            cond: {
+              $and: [
+                { $gte: ["$$ticket.date", "$newDateArrival"] },
+                { $lt: ["$$ticket.date", "$newDateDeparture"] }
+              ]
+            }
+          }
+        }
+      },
+      newDateArrival:1,
+      newDateDeparture:1
+
+    }
+  },
+  {$match:{
+     routeId:3,
+     reason:"Погодні умови",
+     ticketCount:1
+     }
+    }
+])
+//Кількість
+db.canceledFlightInfo.aggregate(
+{$lookup: {
+      from: "route",
+      localField: "routeId",
+      foreignField: "routeId",
+      as: "route"
+    }
+  },  {
+  $unwind:"$route"},
+  {$project:{
+    canceledFlightInfoId:1,
+    category:1,
+    dispatchBrigadeId:1,
+    flightBrigadeId:1,
+    flightId:1,
+    flightNumber:1,
+    inspectionBrigadeId:1,
+    navigationBrigadeId:1,
+    routeId:1,
+    status:1,
+    unoccupiedSeatNumber:10,
+    percentUnocupied:{$multiply: [
+          { $divide: ["$unoccupiedSeatNumber", "$seatNumber"] },
+          100
+        ]
+      },
+    flightDirection:"$route.flightDirection"
+  }
+  },
+   {$match:{
+     routeId:2,
+     flightDirection:"Західний",
+     unoccupiedSeatNumber:10,
+     percentUnocupied:50
+     }
+    },
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+db.delayedFlightInfo.aggregate([
+  {
+    $lookup: {
+      from: "refundedTicket",
+      localField: "flightId",
+      foreignField: "flightId",
+      as: "ticket"
+    }
+  },
+  {
+    $project: {
+      category: 1,
+      dispatchBrigadeId: 1,
+      flightBrigadeId: 1,
+      flightId: 1,
+      flightNumber: 1,
+      inspectionBrigadeId: 1,
+      navigationBrigadeId: 1,
+      routeId: 1,
+      status: 1,
+      reason:1,
+      flightDirection: "$route.flightDirection",
+      ticketCount: {
+        $size: {
+          $filter: {
+            input: "$ticket",
+            as: "ticket",
+            cond: {
+              $and: [
+                { $gte: ["$$ticket.date", "$newDateArrival"] },
+                { $lt: ["$$ticket.date", "$newDateDeparture"] }
+              ]
+            }
+          }
+        }
+      },
+      newDateArrival:1,
+      newDateDeparture:1
+
+    }
+  },
+  {$match:{
+     routeId:3,
+     reason:"Погодні умови",
+     ticketCount:1
+     }
+    },
+    {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+])
+//10) Одержати список і загальне число всіх робітників аеропорту, начальників відділів, робітників зазначеного відділу, за стажем роботи в аеропорту, статевою ознакою, віком, ознакою наявності й кількості дітей, за розміром заробітної платні.
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},
+{$match:{
+    yearsOfService:5,
+    gender:"жінка",
+    salary:45000,
+    status:"начальник департаменту"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+
+)
+
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},{$match:{
+   yearsOfService:7,
+    gender:"чоловік",
+    salary:40000,
+    status:"начальник структурної одиниці"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},{$match:{
+   yearsOfService:7,
+  structureUnitId:2,
+    gender:"чоловік",
+    salary:40000,
+    status:"начальник структурної одиниці"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+
+
+
+)
+//Cума
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},
+{$match:{
+    yearsOfService:5,
+    gender:"жінка",
+    salary:45000,
+    status:"начальник департаменту"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+
+)
+
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},{$match:{
+   yearsOfService:7,
+    gender:"чоловік",
+    salary:40000,
+    status:"начальник структурної одиниці"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+db.worker.aggregate(
+{$lookup: {
+from:"position",
+localField:"positionId",
+foreignField:"positionId",
+ as: "position"
+},
+},
+{$unwind:"$position"},
+{$project:{
+workerId: 11,
+fullName: 1,
+   age: 1,
+  status: 1,
+  gender: 1,
+  numberChildrens: 1,
+  hireDate: 1,
+  shift: 1,
+  email: 1,
+  phonenumber: 1,
+  structureUnitId: 1,
+  departmentId: 1,
+  brigadeId: 1,
+  positionId: 1,
+  yearsOfService: {
+        $round:{$divide: [
+          { $subtract: [new Date(), "$hireDate"] },
+          1000 * 60 * 60 * 24 * 365.25
+        ]}
+      },
+ positionName:"$position.positionName",
+salary:"$position.salary"
+},
+
+
+},{$match:{
+   yearsOfService:7,
+  structureUnitId:2,
+    gender:"чоловік",
+    salary:40000,
+    status:"начальник структурної одиниці"
+
+}
+},
+  {$count: "totalDocuments"},
+  {$project: {
+      "totalDocuments": 1,
+    }
+  }
+)
+///Вспомогательно
+db.brigade.aggregate([
+  {
+    $lookup: {
+      from: "worker",
+      localField: "brigadeId",
+      foreignField: "brigadeId",
+      as: "worker"
+    }
+  },
+  {
+    $project: {
+      brigadeName: 1,
+      workersize: { $size: "$worker" }
+    }
+  }
+])

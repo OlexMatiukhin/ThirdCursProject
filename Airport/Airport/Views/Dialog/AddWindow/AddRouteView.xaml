@@ -1,0 +1,57 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddWindow.AddRouteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+        mc:Ignorable="d"
+        Title="AddRoute" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="95,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Номер"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать3" 
+            Text="{Binding Number, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="60,64,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="211,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.06"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Text="Пункт в"/><Run Language="uk-ua" Text="і"/><Run Text="дправлення"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать" 
+            Text="{Binding DeparturePoint , Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="210,64,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="362,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Пункт прибуття"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать1" 
+            Text="{Binding ArrivalPoint , Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="348,64,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="484,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Проміжний аеропорт"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать2" 
+            Text="{Binding TransitAirport , Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="490,64,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="675,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Вага"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать4" 
+            Text="{Binding FlightDirection, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="640,64,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <Button  Command="{Binding AddRouteCommand}" Content="Додати" HorizontalAlignment="Left" Margin="255,149,0,0" VerticalAlignment="Top" Height="35" Width="213"/>
+
+    </Grid>
+</Window>

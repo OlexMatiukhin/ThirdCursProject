@@ -11,8 +11,8 @@ namespace Airport.Services
 
         public WorkerService()
         {
-          
-            var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
+
+            var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject"); ;
             var database = client.GetDatabase("airport");
             _workerCollection = database.GetCollection<Worker>("worker");
             
@@ -32,7 +32,7 @@ namespace Airport.Services
             }
         }
 
-        // Метод для получения работника по ID
+        
         public Worker GetWorkerById(int workerId)
         {
             try
@@ -58,7 +58,17 @@ namespace Airport.Services
             }
         }
 
-      
+        public int GetLastWorkerId()
+        {
+            var lastWorker = _workerCollection
+                .Find(Builders<Worker>.Filter.Empty)
+                .Sort(Builders<Worker>.Sort.Descending(w=> w.WorkerId))
+                .Limit(1)
+                .FirstOrDefault();
+
+            return lastWorker?.WorkerId ?? 0;
+        }
+
         public void UpdateWorker(Worker worker)
         {
             try

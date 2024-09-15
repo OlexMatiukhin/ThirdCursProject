@@ -52,7 +52,7 @@
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0"  ItemsSource="{Binding Baggages}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding BaggageId}" Width="*"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding BaggageType}" Width="*"/>
                 <DataGridTextColumn Header="Вага" Binding="{Binding Weight}" Width="*"/>
                 <DataGridTextColumn Header="Оплата" Binding="{Binding Payment}" Width="*"/>
                 <DataGridTextColumn Header="Пасажир" Binding="{Binding PassangerId}" Width="*"/>

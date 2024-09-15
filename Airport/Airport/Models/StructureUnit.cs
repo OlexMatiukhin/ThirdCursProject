@@ -22,9 +22,12 @@ namespace Airport.Models
 
         [BsonElement("departmentId")]
         public int DepartmentId { get; set; }
-        
-    
 
+
+        public override string ToString()
+        {
+            return $"ID: {StructureUnitId}, Name: {StructureUnitName}, Type: {Type}";
+        }
         /*public StructureUnit(int structureUnitId, string structureUnitName, string type, int departmentId)
         {
             this.structureUnitId = structureUnitId;

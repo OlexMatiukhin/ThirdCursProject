@@ -29,7 +29,7 @@ namespace Airport.Models
         [BsonElement("internPassportNumber")]
         public string InternPassportNumber { get; set; }
 
-        [BsonElement("baggageStatus")]
+        [BsonElement("bagageStatus")]
         public string BaggageStatus { get; set; }
 
         [BsonElement("phoneNumber")]
@@ -40,30 +40,35 @@ namespace Airport.Models
 
         [BsonElement("fullname")]
         public string Fullname { get; set; }
-
-       /* public Passenger(int passengerId, int age, string gender, string passportNumber, string internPassportNumber, string baggageStatus, string phoneNumber, string email, string fullname)
+        public override string ToString()
         {
-            this.passengerId = passengerId;
-            this.age = age;
-            this.gender = gender;
-            this.passportNumber = passportNumber;
-            this.internPassportNumber = internPassportNumber;
-            this.baggageStatus = baggageStatus;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-            this.fullname = fullname;
+            return $"PassengerId: {PassengerId}, Fullname: {Fullname}, Age: {Age}, Gender: {Gender}, PassportNumber: {PassportNumber}, " +
+                   $"InternPassportNumber: {InternPassportNumber}, BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}";
         }
 
-        public int PassengerId { get => passengerId; set => passengerId = value; }
-        public int Age { get => age; set => age = value; }
-        public string Gender { get => gender; set => gender = value; }
-        public string PassportNumber { get => passportNumber; set => passportNumber = value; }
-        public string InternPassportNumber { get => internPassportNumber; set => internPassportNumber = value; }
-        public string BaggageStatus { get => baggageStatus; set => baggageStatus = value; }
-        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        public string Email { get => email; set => email = value; }
-        public string Fullname { get => fullname; set => fullname = value; }
-       */
+        /* public Passenger(int passengerId, int age, string gender, string passportNumber, string internPassportNumber, string baggageStatus, string phoneNumber, string email, string fullname)
+         {
+             this.passengerId = passengerId;
+             this.age = age;
+             this.gender = gender;
+             this.passportNumber = passportNumber;
+             this.internPassportNumber = internPassportNumber;
+             this.baggageStatus = baggageStatus;
+             this.phoneNumber = phoneNumber;
+             this.email = email;
+             this.fullname = fullname;
+         }
+
+         public int PassengerId { get => passengerId; set => passengerId = value; }
+         public int Age { get => age; set => age = value; }
+         public string Gender { get => gender; set => gender = value; }
+         public string PassportNumber { get => passportNumber; set => passportNumber = value; }
+         public string InternPassportNumber { get => internPassportNumber; set => internPassportNumber = value; }
+         public string BaggageStatus { get => baggageStatus; set => baggageStatus = value; }
+         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+         public string Email { get => email; set => email = value; }
+         public string Fullname { get => fullname; set => fullname = value; }
+        */
     }
 }
 

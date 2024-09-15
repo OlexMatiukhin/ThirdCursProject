@@ -1,0 +1,74 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddWorkerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport.Views.Dialog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChangePlane">
+
+    <Grid>
+        <TextBox Name="FullName" 
+        Text="{Binding FullName, Mode=TwoWay}" 
+         HorizontalAlignment="Left" 
+         Margin="122,54,0,0" 
+         VerticalAlignment="Top" 
+         Width="120"/>
+        <TextBox   Text="{Binding Age, Mode=TwoWay}" x:Name="Age" 
+     HorizontalAlignment="Left" 
+     Margin="257,54,0,0" 
+     VerticalAlignment="Top" 
+     Width="120"/>
+        <ComboBox  ItemsSource="{Binding Status}"  SelectedValue="{Binding  SelectedStatus, Mode=TwoWay}" x:Name="Category_Копировать3" HorizontalAlignment="Left" Margin="383,54,0,0" VerticalAlignment="Top" Width="120">
+
+        </ComboBox>
+
+        <ComboBox ItemsSource="{Binding Gender}" SelectedValue="{Binding SelectedGender, Mode=TwoWay}" Name="Category" HorizontalAlignment="Left" Margin="539,50,0,0" VerticalAlignment="Top" Width="120">
+        </ComboBox>
+
+        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="П"/><Run Language="uk-ua" Text="ІБ"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="422,32,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Статус"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="424,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="581,31,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Стать"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="128,90,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість дітей"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="294,90,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Зміна"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="408,93,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Електронна пошта"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="428,91,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="306,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="В"/><Run Language="uk-ua" Text="ік"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="547,93,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Номер телефону"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="152,139,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" RenderTransformOrigin="-1.896,0.431"><Run Language="ru-ru" Text="Посада"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="288,141,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Бригад"/><Run Language="ru-ru" Text="а"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+
+        <TextBox x:Name="FlightNumber_Копировать2" 
+            HorizontalAlignment="Left" 
+            Margin="118,113,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <ComboBox ItemsSource="{Binding Shift}" SelectedValue="{Binding SelectedShift, Mode=TwoWay}" x:Name="Category_Копировать" HorizontalAlignment="Left" Margin="257,106,0,0" VerticalAlignment="Top" Width="116" Height="27">
+
+        </ComboBox>
+        <TextBox   Text="{Binding NumberChildren, Mode=TwoWay}" Name="NumberChildren"
+            HorizontalAlignment="Left" 
+            Margin="401,113,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox  Text="{Binding Email, Mode=TwoWay}" x:Name="Email"  
+            HorizontalAlignment="Left" 
+            Margin="539,111,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <ComboBox   ItemsSource="{Binding PositionsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedPostionId, Mode=TwoWay}" x:Name="Postions" HorizontalAlignment="Left" Margin="118,159,0,0" VerticalAlignment="Top" Width="120">
+
+        </ComboBox>
+        <ComboBox  ItemsSource="{Binding BrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedBrigadeId, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="257,159,0,0" VerticalAlignment="Top" Width="120">
+        </ComboBox>
+        <Button Content="Додати" Command="{Binding AddWorkerCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
+
+
+    </Grid>
+</Window>
+

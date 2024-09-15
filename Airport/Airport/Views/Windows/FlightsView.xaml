@@ -49,7 +49,8 @@
 
         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-157,0,-158,0" RenderTransformOrigin="0.5,0.5">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-2,0,2,-1" RenderTransformOrigin="0.5,0.5"
+                  ItemsSource="{Binding Flights}" SelectedItem="{Binding SelectedFlight, Mode=TwoWay}">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -60,7 +61,7 @@
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FlightId }" Width="0.5*"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding FlightId }" Width="2*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="2*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status }"  Width="2*" />
                 <DataGridTextColumn Header="Категорія" Binding="{Binding Category }"  Width="2*" />
                 <DataGridTextColumn Header="Дата відправ" Binding="{Binding DateDeparture }"  Width="2*"/>
@@ -81,7 +82,8 @@
                 <DataGridTemplateColumn Header="Редагування" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Зміни" Click="Button_Click" Width="Auto" />
+                            <Button Content="Змінити" Click="Button_Click" Width="Auto"  Command="{Binding DataContext.EditFlightCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                    CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

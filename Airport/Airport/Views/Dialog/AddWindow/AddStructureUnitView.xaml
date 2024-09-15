@@ -1,0 +1,25 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddWindow.AddStructureUnitView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+        mc:Ignorable="d"
+        Title="AddStructureUnitView" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="218,57,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Назва"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать3" 
+            Text="{Binding Type, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="183,78,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <Button  Command="{Binding AddStructureUnitCommand}" Content="Додати" HorizontalAlignment="Left" Margin="284,139,0,0" VerticalAlignment="Top" Height="35" Width="212"/>
+        <TextBlock HorizontalAlignment="Left" Margin="370,55,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Зміна"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="515,56,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Бригад"/><Run Language="ru-ru" Text="а"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <ComboBox ItemsSource="{Binding StructureTypeList}" SelectedValue="{Binding SelectedStructureType, Mode=TwoWay}" x:Name="Category_Копировать" HorizontalAlignment="Left" Margin="333,71,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
+        <ComboBox  ItemsSource="{Binding DepatmentsList}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDepartmentId, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="485,74,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddWindow.AddDepartmentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+        mc:Ignorable="d"
+        Title="AddDepartmentViewModel" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,91,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Назва"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать" 
+            Text="{Binding DepartmentName, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="342,111,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+
+        <Button Content="Додати" Command="{Binding AddDepartmentCommand}" HorizontalAlignment="Left" Margin="283,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
+
+    </Grid>
+</Window>

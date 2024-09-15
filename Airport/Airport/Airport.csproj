@@ -47,37 +47,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Dialog\AddWorker.xaml.cs">
+    <Compile Update="Views\Dialog\AddWindow\AddFlightView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\AddFlight.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeBaggage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangeBaggage.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeDepartment.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangeDepartment.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangePilotMedExam.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangeFlight.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangePassanger.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangePilotMedExam.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangePosition.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangePassanger.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeRoute.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangePosition.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeStructureUnit.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangeRoute.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Dialog\ChangeStructureUnit.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Dialog\ChangeWorker.xaml.cs">
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeWorker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

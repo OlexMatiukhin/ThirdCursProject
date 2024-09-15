@@ -1,0 +1,35 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddWindow.AddPositionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+        mc:Ignorable="d"
+        Title="AddPostitionView" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="FlightNumber" 
+            Text="{Binding PositionName , Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="122,54,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        
+        <TextBox x:Name="FlightNumber_Копировать" 
+         Text="{Binding Salary, Mode=TwoWay}" 
+         HorizontalAlignment="Left" 
+         Margin="272,55,0,0" 
+         VerticalAlignment="Top" 
+         Width="120"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="303,37,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
+        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="421,53,0,0" VerticalAlignment="Top" Width="120"/>
+       <TextBlock HorizontalAlignment="Left" Margin="419,32,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="456,42,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
+        ="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <Button Command="{Binding AddBrigadeCommand}" Content="Button" Margin="130,124,259,260"/>
+
+
+    </Grid>
+</Window>

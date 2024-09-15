@@ -15,7 +15,7 @@ namespace Airport.Models
         [BsonElement("baggageId")]
         private int baggageId;
         [BsonElement("type")]
-        private string type;
+        private string baggageType;
         [BsonElement("weight")]
         private double weight;
         [BsonElement("payment")]
@@ -23,17 +23,9 @@ namespace Airport.Models
         [BsonElement("passangerId")]
         private int passangerId;
 
-        /*public Baggage(int baggageId, string type, double weight, decimal payment, int passengerId)
-        {
-            this.baggageId = baggageId;
-            this.type = type;
-            this.weight = weight;
-            this.payment = payment;
-            this.passengerId = passengerId;
-        }*/
 
         public int BaggageId { get => baggageId; set => baggageId = value; }
-        public string Type { get => type; set => type = value; }
+        public string BaggageType { get => baggageType; set => baggageType = value; }
         public double Weight { get => weight; set => weight = value; }
         public decimal Payment { get => payment; set => payment = value; }
         public int PassangerId { get => passangerId; set => passangerId = value; }

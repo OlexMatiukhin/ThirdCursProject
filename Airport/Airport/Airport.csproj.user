@@ -10,7 +10,31 @@
     <Compile Update="App.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\ChangePlane.xaml.cs">
+    <Compile Update="Views\Dialog\AddWindow\AddBaggageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddBrigadeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddDepartmentView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddPlaneView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddPositionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddRouteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddStructureUnitView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddWorkerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\ChangeWindow\ChangePlane.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -18,40 +42,58 @@
     <Page Update="App.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\AddWorker.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddBaggageView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\AddFlight.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddBrigadeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeBaggage.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddDepartmentView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeDepartment.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddFlightView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeFlight.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddPlaneView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangePilotMedExam.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddPositionView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangePassanger.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddRouteView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangePosition.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddStructureUnitView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeRoute.xaml">
+    <Page Update="Views\Dialog\AddWindow\AddWorkerView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeStructureUnit.xaml">
+    <Page Update="Views\Dialog\ChangeWindow\ChangeBaggage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangeWorker.xaml">
+    <Page Update="Views\Dialog\ChangeWindow\ChangeDepartment.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\ChangePlane.xaml">
+    <Page Update="Views\Dialog\ChangeWindow\ChangePilotMedExam.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangePassanger.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangePosition.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangeRoute.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangeStructureUnit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangeWorker.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangePlane.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -1,0 +1,54 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Airport.Views.Dialog.AddWindow.AddTicketView"
+        mc:Ignorable="d"
+        Title="AddTicketView" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="C"/><Run Language="ru-ru" Text="татус"/><LineBreak/><Run/></TextBlock>
+
+
+        <ComboBox ItemsSource="{Binding Status}"  SelectedValue="{Binding SelectedStatus, Mode=TwoWay}"  x:Name="Plane" HorizontalAlignment="Left" Margin="120,69,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox IsChecked="{Binding Availability}" HorizontalAlignment="Left"  Margin="323,69,0,0" VerticalAlignment="Top"  RenderTransformOrigin="1,0.731" />
+        <TextBox x:Name="FlightNumber_Копировать1" 
+            Text="{Binding Price, Mode=TwoWay}"
+            HorizontalAlignment="Left" 
+            Margin="112,124,0,0" 
+            VerticalAlignment="Top" 
+            Width="120" />
+        <ComboBox  ItemsSource="{Binding FlightsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedFlightId, Mode=TwoWay}" HorizontalAlignment="Left" Margin="259,121,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <ComboBox  ItemsSource="{Binding SeatsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key"  SelectedValue="{Binding SelectedSeatId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="400,120,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="432,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Дата зм"/><Run Language="uk-ua" Text="ін"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="442,98,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="М"/><Run Language="uk-ua" Text="ісце"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="428,91,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="294,99,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Р"/><Run Text="ейс"/></TextBlock>
+
+
+
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="160,103,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Ціна"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="294,45,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Доступність"/><LineBreak/><Run/></TextBlock>
+        <Button Content="Додати" HorizontalAlignment="Left" Margin="323,174,0,0" VerticalAlignment="Top" Height="30" Width="113" Command="{Binding AddTicketCommand}"/>
+
+        <xctk:DateTimePicker 
+            Background="Aqua" 
+            Format="Custom" 
+            FormatString="dd/MM/yyyy HH:mm" 
+            Foreground="Black" 
+            CalendarDisplayMode="Year" 
+            ShowButtonSpinner="False" 
+            Margin="400,66,0,0" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" 
+            Value="{Binding DateChanges, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            Width="140" Height="20" MaxWidth="140" />
+
+    </Grid>
+</Window>

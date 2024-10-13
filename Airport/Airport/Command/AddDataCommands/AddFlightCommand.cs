@@ -1,7 +1,5 @@
 ﻿using Airport.Models;
-using Airport.Services;
 using Airport.Models;
-using Airport.Services;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -13,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Airport.ViewModels.DialogViewModels.AddDataViewModel;
+using Airport.Services.MongoDBSevice;
 
 namespace Airport.Command.AddDataCommands
 {

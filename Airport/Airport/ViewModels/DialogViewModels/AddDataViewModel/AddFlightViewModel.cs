@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,17 +14,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private readonly BrigadeService _brigadeService;
         private readonly PlaneService _planeService;
         private readonly RouteService _routeService;
-        private AddFlightCommand _addFlight;
-        public AddFlightCommand AddFlightCommand
-        {
-            get => _addFlight;
-            set
-            {
-                _addFlight = value;
-
-
-            }
-        }
+        private FlightService _flightService;
+        private SeatService _seatService;
+        private TicketService _ticketService;
+  
+        public ICommand AddFlightCommand { get; }
 
         public ObservableCollection<Brigade> FlightBrigades { get; set; }
         public ObservableCollection<Brigade> DispatchBrigades { get; set; }
@@ -188,15 +183,69 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             _brigadeService = new BrigadeService();
             _planeService = new PlaneService();
             _routeService = new RouteService();
+            _seatService = new SeatService();
+            _flightService = new FlightService();
+            _ticketService = new TicketService();
+            AddFlightCommand = new RelayCommand(ExecuteAddFlight, canExecute=>true);
 
             LoadData();
             CreateDictionaries();
-            _addFlight = new AddFlightCommand(this);
+          
 
 
         }
 
+        private void ExecuteAddFlight(object parameter)
+        {
+            int flightId = _flightService.GetLastFlightId() + 1;
+            int firstSeatId = _seatService.GetLastSeatId() + 1;
+            int firstTicketId = _ticketService.GetLastTicketId() + 1;
 
+            Flight newFlight = new Flight
+            {
+                FlightNumber = FlightNumber,
+                FlightId = flightId,
+                Status = "активний",
+                Category = SelectedCategory,
+                DateDeparture = DateDeparture,
+                DateArrival = DateArrivial,
+                PlaneId = SelectedPlaneId,
+                DispatchBrigadeId = SelectedDispatchBrigadeId,
+                NavigationBrigadeId = SelectedNavigationBrigadeId,
+                FlightBrigadeId = SelectedFlightBrigadeId,
+                InspectionBrigadeId = SelectedTechInspectionBrigadeId,
+                RouteId = RouteId
+            };
+
+
+            for (int i = 0; i < int.Parse(NumberTickets); i++)
+            {
+                Seat seat = new Seat
+                {
+                    SeatId = firstSeatId + i,
+                    Number = i + 1,
+                    Status = "вільне",
+                    FlightId = flightId
+                };
+
+                Ticket ticket = new Ticket
+                {
+                    TicketId = firstTicketId + i,
+                    DateChanges = DateTime.Now,
+                    Availability = true,
+                    Status = "доступний",
+                    Price = int.Parse(TicketPrice),
+                    FlightId = flightId,
+                    SeatId = firstSeatId + i,
+                    PassengerId = 0
+                };
+
+                _seatService.AddSeat(seat);
+                _ticketService.AddTicket(ticket);
+            }
+
+            _flightService.AddFlight(newFlight);
+        }
 
         private void LoadData()
         {

@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -16,38 +18,43 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     {
 
         private readonly StructureUnitService _structureUnitService;
-        private AddPlaneCommand _addPlaneCommand;
+        private readonly PlaneService _planeService;
+        public ICommand AddPlaneCommand { get; }
         public AddPlaneViewModel()
         {
 
-            _addPlaneCommand = new AddPlaneCommand(this);
+            _planeService = new PlaneService();
+            AddPlaneCommand = new RelayCommand(ExecuteAddPlane, canExecute=>true);
 
 
         }
-
-        public AddPlaneCommand AddPlaneCommand
+        private void ExecuteAddPlane(object parameter)
         {
-            get => _addPlaneCommand;
-            set
+            var newPlane = new Plane
             {
-                _addPlaneCommand = value;
+                PlaneId = _planeService.GetLastPlaneId() + 1,
+                Type = SelectedPlaneType,
+                TechCondition = "задовільний",
+                InteriorReadiness = "готовий",
+                NumberFlightsBeforeRepair = 0,
+                TechInspectionDate = DateTime.Now,
+                Assigned = Assigned,
+                NumberRepairs = 0,
+                ExploitationDate = DateTime.Now
+            };
 
-
-            }
+            _planeService.AddPlane(newPlane);
         }
+
+        
 
 
         public List<string> PlaneTypeList { get; set; } = new List<string>
         {
-            "Грузовий",
-            "Пасажирський",
+            "грузовий",
+            "пасажирський",
            
         };
-
-
-
-
-
 
         public string _planeType;
 

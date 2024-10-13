@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -16,24 +18,19 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
         private AddDepartmentCommand _addDepartmentCommand;
+        private DepartmentService _departmentService;
+        public ICommand AddDepartmentCommand { get; }
         public AddDepartmentViewModel()
         {
 
             _addDepartmentCommand = new AddDepartmentCommand(this);
+            AddDepartmentCommand = new RelayCommand(AddDepartment, canExecute => true);
+            _departmentService = new DepartmentService();
 
 
         }
 
-        public AddDepartmentCommand AddDepartmentCommand
-        {
-            get => _addDepartmentCommand;
-            set
-            {
-                _addDepartmentCommand = value;
-
-
-            }
-        }
+       
 
 
 
@@ -51,6 +48,15 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 _departmentName = value;
                 OnPropertyChanged(nameof(DepartmentName));
             }
+        }
+        private void AddDepartment(object parameter)
+        {
+            Department newDepartment = new Department
+            {
+                DepartmentId = _departmentService.GetLastDepartmentId() + 1,
+                DepartmentName = DepartmentName,
+            };
+            _departmentService.AddDepartment(newDepartment); 
         }
 
 

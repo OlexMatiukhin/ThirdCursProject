@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,11 +13,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     public class AddBaggeViewModle : INotifyPropertyChanged
     {
 
-
+        private readonly BaggageService _baggageService;
         private readonly PassengerService _passengerService;
 
 
-        private AddBaggageCommand _addBagge;
+        public ICommand AddBaggageCommand { get; }
         public ObservableCollection<Passenger> Passengers { get; set; }
 
 
@@ -29,16 +30,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             "Тваринний"
         };
 
-        public AddBaggageCommand AddBaggageCommand
-        {
-            get => _addBagge;
-            set
-            {
-                _addBagge = value;
-
-
-            }
-        }
+        
 
         private string _type;
         private string _weight;
@@ -95,7 +87,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             LoadData();
             CreateDictionaries();
 
-            _addBagge = new AddBaggageCommand(this);
+            _baggageService = new BaggageService();
+            AddBaggageCommand = new RelayCommand(OnAddBaggageExecuted, canExecute => true);
+
 
 
         }
@@ -116,6 +110,24 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
         }
+
+
+        private void OnAddBaggageExecuted(object parameter)
+        {
+            int baggageId = _baggageService.GetLastBaggeId() + 1;
+
+            var newBaggage = new Baggage
+            {
+                BaggageId = baggageId,
+                BaggageType = BaggeType,
+                Weight = int.Parse(Weight),
+                Payment = int.Parse(Payment),
+                PassangerId = SelectedPassengerId
+            };
+
+            _baggageService.AddBaggage(newBaggage);
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

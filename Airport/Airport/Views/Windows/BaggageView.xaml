@@ -63,10 +63,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Видалення" Width="*">
+                <DataGridTemplateColumn Header="Зміни" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Зміни" Click="Button_Click"  />
+                            <Button Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" Content="Зміни"  CommandParameter="{Binding}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -49,7 +49,7 @@
 
         <DataGrid ItemsSource="{Binding DelayedFlights}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Id" Binding="{Binding DelayedFlightInfoId }" Width="0.5*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="*"/>

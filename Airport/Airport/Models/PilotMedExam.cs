@@ -23,18 +23,9 @@ namespace Airport.Models
         [BsonElement("doctorId")]
         public int DoctorId { get; set; }
 
-        /*public PilotMedExam(int examId, string result, int pilotId, int doctorId)
-        {
-            this.examId = examId;
-            this.result = result;
-            this.pilotId = pilotId;
-            this.doctorId = doctorId;
-        }
+        [BsonElement("dateExamination")]
+        public DateTime DateExamination { get; set; }
 
-        public int ExamId { get => examId; set => examId = value; }
-        public string Result { get => result; set => result = value; }
-        public int PilotId { get => pilotId; set => pilotId = value; }
-        public int DoctorId { get => doctorId; set => doctorId = value; */
     }
 
 }

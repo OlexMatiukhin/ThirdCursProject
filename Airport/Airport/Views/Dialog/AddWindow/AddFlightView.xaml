@@ -1,29 +1,37 @@
-﻿<Window x:Class="Airport.Views.Dialog.AddFlightView"
+﻿<Window
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Airport.Views.Dialog"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Globalization="clr-namespace:System.Globalization;assembly=System.Runtime" x:Class="Airport.Views.Dialog.AddFlightView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChangePlane">
 
     <Grid Margin="-2,0,2,0">
-        <TextBox Name="FlightNumber" 
-     Text="{Binding TechCondition  , Mode=TwoWay}" 
+        <TextBox x:Name="FlightNumber" 
+     Text="{Binding FlightNumber, Mode=TwoWay}" 
      HorizontalAlignment="Left" 
      Margin="122,54,0,0" 
      VerticalAlignment="Top" 
      Width="120"/>
-        <ComboBox ItemsSource="{Binding Type }"  SelectedValue="{Binding SelectedCategory, Mode=TwoWay}" Name="Category" HorizontalAlignment="Left" Margin="263,54,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox
+    ItemsSource="{Binding Category}" 
+            SelectedValue="{Binding SelectedCategory, Mode=TwoWay}"
+          
+            HorizontalAlignment="Left"
+    Margin="263,54,0,0"
+    VerticalAlignment="Top"
+    Width="120" />
         <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="293,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Категорія"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="424,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="549,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Відправлення"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="562,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Відправлення"/><LineBreak/><Run/></TextBlock>
         <Button Content="Додати" Command="{Binding AddFlightCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
-        <ComboBox ItemsSource="{Binding PlanesDictionary}" DisplayMemberPath="Value" SelectedValue="{Binding SelectedPlaneId, Mode=TwoWay}" SelectedValuePath="Key" Name="Plane" HorizontalAlignment="Left" Margin="122,107,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox ItemsSource="{Binding FlightBrigadesDictionary}" DisplayMemberPath="Value"  SelectedValue="{Binding SelectedFlightBrigadeId, Mode=TwoWay}" SelectedValuePath="Key" Name="DispatcherBrigade" HorizontalAlignment="Left" Margin="540,106,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox  ItemsSource="{Binding DispatchBrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDispatchBrigadeId, Mode=TwoWay}" Name="NavigationBrigade" HorizontalAlignment="Left" Margin="400,106,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding PlanesDictionary}" DisplayMemberPath="Value" SelectedValue="{Binding SelectedPlaneId, Mode=TwoWay}" SelectedValuePath="Key" x:Name="Plane" HorizontalAlignment="Left" Margin="122,107,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding FlightBrigadesDictionary}" DisplayMemberPath="Value"  SelectedValue="{Binding SelectedFlightBrigadeId, Mode=TwoWay}" SelectedValuePath="Key" x:Name="DispatcherBrigade" HorizontalAlignment="Left" Margin="540,106,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  ItemsSource="{Binding DispatchBrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDispatchBrigadeId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="400,106,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="432,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Прибуття"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="163,88,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Літак"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="385,85,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Диспетч"/><Run Text="ерська бриг"/><Run Language="uk-ua" Text="ада"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
@@ -31,27 +39,14 @@
         <TextBlock HorizontalAlignment="Left" Margin="256,85,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Навігаційна бриг"/><Run Language="uk-ua" Text="ада"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <ComboBox  ItemsSource="{Binding NavigationBrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedNavigationBrigadeId, Mode=TwoWay}" HorizontalAlignment="Left" Margin="259,107,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox  ItemsSource="{Binding TechInspectionBrigadesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding SelectedTechInspectionBrigadeId, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="112,163,0,0" VerticalAlignment="Top" Width="128"/>
-        <ComboBox ItemsSource="{Binding RoutesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding RouteId, Mode=TwoWay}" Name="RouteId" HorizontalAlignment="Left" Margin="263,163,0,0" VerticalAlignment="Top" Width="120">
-
-        </ComboBox>
+        <ComboBox ItemsSource="{Binding RoutesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding RouteId, Mode=TwoWay}" x:Name="RouteId" HorizontalAlignment="Left" Margin="263,163,0,0" VerticalAlignment="Top" Width="120"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="553,87,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Льотна бригада"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="122,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Text="Бригада техогляду"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="122,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Text="Бригада техогляду"/>
         <TextBlock HorizontalAlignment="Left" Margin="295,145,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Маршрут"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="428,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <DatePicker Name="DateDeparture"
-            SelectedDate="{Binding DateDeparture, Mode=TwoWay}" 
-            HorizontalAlignment="Left" 
-            Margin="548,54,0,0" 
-            VerticalAlignment="Top" 
-            RenderTransformOrigin="-2.686,3.543"/>
 
-        <DatePicker Name="DateArrivial" 
-            SelectedDate="{Binding DateArrivial, Mode=TwoWay}" 
-            HorizontalAlignment="Left" 
-            Margin="414,54,0,0" 
-            VerticalAlignment="Top" 
-            RenderTransformOrigin="-2.686,3.543"/>
+
 
         <TextBox x:Name="FlightNumber_Копировать1" 
          Text="{Binding NumberTickets, Mode=TwoWay}"
@@ -67,8 +62,24 @@
             VerticalAlignment="Top" 
             Width="120" PreviewTextInput="ticketPrice_textInput"/>
 
+
         <TextBlock HorizontalAlignment="Left" Margin="411,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість квитків"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="565,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Ц"/><Run Language="uk-ua" Text="іна квиткка"/></TextBlock>
+
+        <xctk:DateTimePicker 
+    Background="Aqua" 
+    Format="Custom" 
+    FormatString="dd/MM/yyyy HH:mm" 
+    Foreground="Black" 
+    CalendarDisplayMode="Year" 
+    ShowButtonSpinner="False" 
+    Margin="561,56,0,0" 
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top" 
+    Value="{Binding DateDeparture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" 
+  Width="134" Height="20" MaxWidth="140" />
+        <xctk:DateTimePicker  HorizontalAlignment="Left"
+ VerticalAlignment="Top"  Background="Aqua" Format="Custom" FormatString="dd/MM/yyyy/ HH:mm"   Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Margin="398,55,256,359" Value="{Binding DateArrivial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="140" Height="20" MaxWidth="140" />
 
     </Grid>
 </Window>

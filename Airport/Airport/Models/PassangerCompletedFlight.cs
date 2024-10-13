@@ -12,7 +12,8 @@ using System;
         public class PassengerCompletedFlight
     {
             [BsonId]
-            public int PassengerId { get; set; }
+        [BsonRepresentation(BsonType.Int32)]
+        public int PassengerId { get; set; }
 
             [BsonElement("age")]
             public int Age { get; set; }

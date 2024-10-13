@@ -35,6 +35,10 @@ namespace Airport.Models
         [BsonElement("passengerId")]
         public int PassengerId { get; set; }
 
+
+
+
+
         /*public Ticket(int ticketId, string status, bool availability, DateTime dateChanges, decimal price, int flightId, int seatId, int passengerId)
         {
             this.ticketId = ticketId;

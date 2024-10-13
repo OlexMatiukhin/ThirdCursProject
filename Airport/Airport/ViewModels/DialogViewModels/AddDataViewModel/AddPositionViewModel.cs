@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using Airport.Views.Dialog;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
@@ -11,30 +12,25 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
     public class AddPositionViewModel : INotifyPropertyChanged
     {
+        private readonly PositionService _positionService;
         private readonly StructureUnitService _structureUnitService;
-        private AddPositionCommand _addPositionCommand;
+        public ICommand AddPositionCommand { get; }
         public AddPositionViewModel()
         {
-            _structureUnitService = new StructureUnitService();
+    
 
+            _positionService = new PositionService();
+            _structureUnitService = new StructureUnitService();
 
             LoadData();
             CreateDictionaries();
-            _addPositionCommand = new AddPositionCommand(this);
+            AddPositionCommand = new RelayCommand(ExecuteAddPosition, canExecute=>true);
 
 
         }
 
-        public AddPositionCommand AddPositionCommand
-        {
-            get => _addPositionCommand;
-            set
-            {
-                _addPositionCommand = value;
 
-
-            }
-        }
+       
 
 
 
@@ -94,6 +90,18 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             var StructureUnitsList = _structureUnitService.GetStructureUnitsData();
 
             StructureUnits = new ObservableCollection<StructureUnit>(StructureUnitsList);
+        }
+        private void ExecuteAddPosition(object parameter)
+        {
+            var newPosition = new Position
+            {
+                PositionId = _positionService.GetLastPositionId() + 1,
+                PositionName = PositionName,
+                Salary = int.Parse(Salary),
+                StructureUnitId = StructureUnitId
+            };
+
+            _positionService.AddPostion(newPosition);
         }
 
         private void CreateDictionaries()

@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,13 +9,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
     class AddBrigadeViewModel
     {
         private readonly StructureUnitService _structureUnitService;
-        private AddBrigadeCommand _addBrigadeCommand;
+        public ICommand AddBrigadeCommand { get; }
+        private BrigadeService _brigadeService;
         public AddBrigadeViewModel()
         {
             _structureUnitService = new StructureUnitService();
@@ -22,21 +25,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             LoadData();
             CreateDictionaries();
-            _addBrigadeCommand = new AddBrigadeCommand(this);
+            AddBrigadeCommand = new RelayCommand(AddBrigade, canExecute=>true);
+            _brigadeService =new BrigadeService();
+
 
 
         }
 
-        public AddBrigadeCommand AddBrigadeCommand
-        {
-            get => _addBrigadeCommand;
-            set
-            {
-                _addBrigadeCommand = value;
-
-
-            }
-        }
+        
 
 
 
@@ -93,6 +89,16 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
 
+        }
+        private void AddBrigade(object parameter)
+        {
+            Brigade newBrigade = new Brigade
+            {
+                BrigadeId = _brigadeService.GetLastBrigadeId() + 1,
+                BrigadeType = BrigadeType,
+                StructureUnitId = StructureUnitId,
+            };
+            _brigadeService.AddBrigade(newBrigade);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

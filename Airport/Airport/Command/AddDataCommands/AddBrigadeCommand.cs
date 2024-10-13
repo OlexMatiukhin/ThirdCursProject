@@ -16,6 +16,7 @@ namespace Airport.Command.AddDataCommands
 
 
 
+
         public AddBrigadeCommand(AddBrigadeViewModel _addBrigadeViewModle)
         {
             this._addBrigadeViewModle = _addBrigadeViewModle;

@@ -8,24 +8,23 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChangePlane">
 
-    <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="55,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="190,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="101,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Тип"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
+    <Grid Margin="3,0,-3,0">
+        <ComboBox  ItemsSource="{Binding TechCondition }"  SelectedValue="{Binding SelectedTechCondition, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="190,54,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  ItemsSource="{Binding InteriorReadiness }"  SelectedValue="{Binding SelectedInteriorReadiness, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="325,54,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="203,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Технічний стан"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="330,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Готовність салону"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="617,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="463,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="124"><Run Text="Рейсів до "/><Run Language="uk-ua" Text="р"/><Run Text="емонту"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="56,114,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="191,114,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="326,114,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="85,95,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписка"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="196,95,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість ремонтів"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="326,94,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Дата експлуатації"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <DatePicker HorizontalAlignment="Left" Margin="470,53,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="610,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="18"/>
-        <Button Content="Змінити" HorizontalAlignment="Left" Margin="225,149,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBlock HorizontalAlignment="Left" Margin="482,37,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="355,91,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписка"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="203,91,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість ремонтів"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <Button Content="Змінити" HorizontalAlignment="Left" Margin="225,149,0,0" VerticalAlignment="Top" Width="140"  Command="{Binding ChnagePassangerCommand}" />
+        <TextBox Text="{Binding NumberFlightsBeforeRepair }" HorizontalAlignment="Left" Margin="203,113,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="18"/>
+        <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="374,115,0,0" VerticalAlignment="Top"  RenderTransformOrigin="1,0.731"/>
+        <TextBlock HorizontalAlignment="Left" Margin="622,37,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="експлуатації"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="62,97,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="55,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18" Text="{Binding NumberRepairs }"/>
+        <DatePicker  SelectedDate="{Binding TechInspectionDate, Mode=TwoWay}" HorizontalAlignment="Left" Margin="482,57,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding ExploitationDate, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="622,57,0,0" VerticalAlignment="Top"/>
+
 
     </Grid>
 </Window>

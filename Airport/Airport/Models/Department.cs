@@ -12,9 +12,16 @@ namespace Airport.Models
     {
         [BsonId]
       
+    public int DepartmentId {  get; set; }
+
         [BsonElement("departmentName")]
-    public int DepartmentId { get; set; }
 
         public string DepartmentName { get; set; }
+        public override string ToString()
+        {
+            return $"DepartmentId: {DepartmentId}, DepartmentName: {DepartmentName}";
+        }
+
     }
+
 }

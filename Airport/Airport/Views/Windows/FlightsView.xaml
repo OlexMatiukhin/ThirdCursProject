@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Airport"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="completedFlightPassengersView" Height="450" Width="868" Background="#FF1EB7EE">
     <Grid Width="871">
@@ -72,22 +73,39 @@
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="2*" />
                 <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding InspectionBrigadeId }" Width="2*" />
                 <DataGridTextColumn Header="Машрут" Binding="{Binding RouteId}" Width="2*" />
-                <DataGridTemplateColumn Header="Видалення" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+         
                 <DataGridTemplateColumn Header="Редагування" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Змінити" Click="Button_Click" Width="Auto"  Command="{Binding DataContext.EditFlightCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                    CommandParameter="{Binding}"/>
+                            <Button Content="Змінити"  Width="Auto"  Command="{Binding DataContext.OpenEditWindowCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
+                
+                <DataGridTemplateColumn Header="Перенесення" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Перенести" Click="Button_Click" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+                <DataGridTemplateColumn Header="Скасування" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Скасувати"  Width="Auto" />
+                            
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
+            
 
         </DataGrid>
         <ComboBox HorizontalAlignment="Left" Margin="55,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
@@ -111,8 +129,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="195,56,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="110"><Run Text=" "/><Run Language="uk-ua" Text="Кількість квитків"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="353,55,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Час вильоту"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="492,55,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Категор"/><Run Language="uk-ua" Text="ія"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
-
-
+        
     </Grid>
 
 </Window>

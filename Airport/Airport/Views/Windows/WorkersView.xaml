@@ -47,13 +47,13 @@
         <!-- DataGrid -->
         <DataGrid   ItemsSource="{Binding Workers}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,30">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="0,0,0,30">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FullName}" Width="0.5*"/>
                 <DataGridTextColumn Header="ПІБ" Binding="{Binding Age}" Width="*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="Стать" Binding="{Binding Gender}" Width="*"/>
-                <DataGridTextColumn Header="Діти" Binding="{Binding NumberChildrens}" Width="*"/>
+                <DataGridTextColumn Header="Діти" Binding="{Binding NumberChildren}" Width="*"/>
                 <DataGridTextColumn Header="Дата старт" Binding="{Binding HireDate}" Width="*"/>
                 <DataGridTextColumn Header="Зміна" Binding="{Binding Shift}" Width="*"/>
                 <DataGridTextColumn Header="Еmail" Binding="{Binding Email}" Width="*"/>
@@ -65,7 +65,9 @@
                 <DataGridTemplateColumn Header="Редагування" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редагувати" Click="Button_Click" Width="Auto"/>
+                            <Button Content="Зміни" Command="{Binding DataContext.OpenEditWindowCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}" Width="Auto "/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

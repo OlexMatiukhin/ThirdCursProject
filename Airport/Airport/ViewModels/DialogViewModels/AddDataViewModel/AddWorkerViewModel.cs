@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using Airport.Views.Dialog;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
@@ -13,18 +14,43 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     {
         private readonly BrigadeService _brigadeService;
         private readonly PositionService _postitionService;
-        private AddWorkerCommand _addWorkerCommand;
-        public AddWorkerCommand AddWorkerCommand
+
+        private readonly WorkerService _workerService;
+
+        // Command for adding a worker
+        public ICommand AddWorkerCommand { get; }
+
+        public AddWorkerViewModel()
         {
-            get => _addWorkerCommand;
-            set
-            {
-                _addWorkerCommand = value;
+            _brigadeService = new BrigadeService();
+            _postitionService = new PositionService();
 
-
-            }
+            LoadData();
+            CreateDictionaries();
+            _workerService = new WorkerService();
+            AddWorkerCommand = new RelayCommand(ExecuteAddWorker, canExecute=>true);
         }
 
+        private void ExecuteAddWorker(object parameter)
+        {
+            Worker worker = new Worker
+            {
+                WorkerId = _workerService.GetLastWorkerId() + 1,
+                FullName = FullName,
+                Age = int.Parse(Age),
+                Status = SelectedStatus,
+                Gender = SelectedGender,
+                NumberChildren = int.Parse(NumberChildren),
+                HireDate = DateTime.Now,
+                Shift = SelectedShift,
+                Email = Email,
+                PhoneNumber = PhoneNumber,
+                BrigadeId = SelectedBrigadeId,
+                PositionId = SelectedPostionId
+            };
+
+            _workerService.AddWorker(worker);
+        }
 
 
         public ObservableCollection<Position> Positions { get; set; }
@@ -37,19 +63,19 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         public List<string> Gender { get; set; } = new List<string>
         {
-            "Чоловік",
-            "Жінка"
+            "чоловік",
+            "жнка"
 
         };
         public List<string> Status { get; set; } = new List<string>
-        {   "Начальник відділу",
-            "Начальник департаменту",
-            "Начальник бригади",
-            "Працівник"
+        {   "начальник відділу",
+            "начальник департаменту",
+            "начальник бригади",
+            "працівник"
         };
         public List<string> Shift { get; set; } = new List<string>
-        {   "Нічна",
-            "Денна"
+        {   "нічна",
+            "денна"
         };
 
 
@@ -171,17 +197,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public AddWorkerViewModel()
-        {
-            _brigadeService = new BrigadeService();
-            _postitionService = new PositionService();
-
-            LoadData();
-            CreateDictionaries();
-            _addWorkerCommand = new AddWorkerCommand(this);
-
-
-        }
+    
 
 
 

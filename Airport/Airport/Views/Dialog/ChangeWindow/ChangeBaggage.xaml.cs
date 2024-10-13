@@ -24,5 +24,10 @@ namespace Airport.Views.Dialog
         {
             InitializeComponent();
         }
+
+        private void FlightNumber_Копировать1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

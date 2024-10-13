@@ -39,10 +39,10 @@ namespace Airport.Models
         public string Email { get; set; }
 
         [BsonElement("fullname")]
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
         public override string ToString()
         {
-            return $"PassengerId: {PassengerId}, Fullname: {Fullname}, Age: {Age}, Gender: {Gender}, PassportNumber: {PassportNumber}, " +
+            return $"PassengerId: {PassengerId}, Fullname: { FullName}, Age: {Age}, Gender: {Gender}, PassportNumber: {PassportNumber}, " +
                    $"InternPassportNumber: {InternPassportNumber}, BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}";
         }
 

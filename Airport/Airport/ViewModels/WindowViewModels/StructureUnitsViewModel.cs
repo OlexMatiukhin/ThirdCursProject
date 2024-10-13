@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -10,13 +14,70 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
         private StructureUnitService _structureUnitService;
+        private PositionService _positionService;
 
+        private readonly IWindowService _windowService;
+        public ICommand OpenEditWindowCommand { get; }
         public StructureUnitsViewModel()
         {
-            _structureUnitService = new StructureUnitService();
+            _positionService = new PositionService();
             LoadStructureUnits();
+            _windowService = new WindowService();
+            OpenEditWindowCommand = new RelayCommand(OnEdit);
         }
 
+        private void OnDelete(object parameter)
+        {
+
+
+
+            var structureUnit = parameter as StructureUnit;
+            List<Position> positionsList = _positionService.GetPositionsDataByStructureUnitId(structureUnit.DepartmentId);
+            if (positionsList.Count == 0)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                  "Якщо ви натисните так, cтруктурну одиницю назавжди буде видалено з бази!",
+                  "Ви дійсно хочете видалити cтруктурну одиницю?",
+
+                 MessageBoxButton.YesNo,
+                 MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    StructureUnits.Remove(structureUnit);
+                    _structureUnitService.DeleteStructureUnit(structureUnit.DepartmentId);
+
+                    MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("В базі наявні посади , що підпорядковуються даному департаменту! Видаліть, посади даної структурної одиниці, для виконання операції видалення!", "Помилка видалення департаменту",
+                 MessageBoxButton.OK,
+                 MessageBoxImage.Error);
+            }
+
+
+
+
+
+        }
+
+        private void OnEdit(object parameter)
+        {
+
+            var position = parameter as StructureUnit;
+            if (position != null)
+            {
+                _windowService.OpenWindow("ChangeStructureUnit", parameter);
+                _windowService.CloseWindow();
+
+            }
+
+
+
+
+        }
         private void LoadStructureUnits()
         {
             try

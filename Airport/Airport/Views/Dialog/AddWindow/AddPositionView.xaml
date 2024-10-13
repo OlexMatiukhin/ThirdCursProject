@@ -7,28 +7,28 @@
         mc:Ignorable="d"
         Title="AddPostitionView" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="FlightNumber" 
+        <TextBox x:Name="Назава" 
             Text="{Binding PositionName , Mode=TwoWay}" 
             HorizontalAlignment="Left" 
-            Margin="122,54,0,0" 
+            Margin="201,52,0,0" 
             VerticalAlignment="Top" 
             Width="120"/>
-        
+
         <TextBox x:Name="FlightNumber_Копировать" 
          Text="{Binding Salary, Mode=TwoWay}" 
          HorizontalAlignment="Left" 
-         Margin="272,55,0,0" 
+         Margin="351,53,0,0" 
          VerticalAlignment="Top" 
          Width="120"/>
 
 
-        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="303,37,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
-        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="421,53,0,0" VerticalAlignment="Top" Width="120"/>
-       <TextBlock HorizontalAlignment="Left" Margin="419,32,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="456,42,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
+        <TextBlock HorizontalAlignment="Left" Margin="231,33,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="382,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
+        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="500,51,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="498,30,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="535,40,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
         ="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <Button Command="{Binding AddBrigadeCommand}" Content="Button" Margin="130,124,259,260"/>
+        <Button Command="{Binding AddBrigadeCommand}" Content="Button" Margin="265,124,265,285"/>
 
 
     </Grid>

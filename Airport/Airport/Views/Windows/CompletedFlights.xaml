@@ -65,14 +65,14 @@
                 <DataGridTemplateColumn Header="Видалення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                            <Button Content="Змінити" Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Редагування" Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Зміни" Click="Button_Click" Width="Auto" />
+                                <Button Content="Видалити" Click="Button_Click" Width="Auto" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

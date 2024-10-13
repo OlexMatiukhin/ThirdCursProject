@@ -21,7 +21,7 @@
                        FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0" Text="VovaShumchuchek"/>
         </StackPanel>
 
-        <StackPanel Margin="0,1,200,3" Orientation="Horizontal" MouseDown="StackPanel_MouseDown" HorizontalAlignment="Right" Width="310">
+        <StackPanel Margin="0,1,200,3" Orientation="Horizontal" HorizontalAlignment="Right" Width="310">
             <Image Height="15" Width="16" RenderTransformOrigin="0.5,0.5" Source="/Images/Position.png"/>
             <TextBlock TextWrapping="Wrap" Height="20" 
                        FontFamily="pack://application:,,,/Fonts/#Inter"
@@ -43,13 +43,13 @@
             </TextBlock>
         </StackPanel>
 
-        <!-- Логотип компании -->
+      
         <Image HorizontalAlignment="Left" Width="67" Margin="7,0,0,5" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-        <!-- DataGrid для отображения данных -->
+  
         <DataGrid  ItemsSource="{Binding Routes}"  x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10"  Margin="-4,0,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding RouteId }" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Number}" Width="2*"/>
@@ -57,17 +57,20 @@
                 <DataGridTextColumn Header="Прибуття" Binding="{Binding ArrivalPoint }" Width="*"/>
                 <DataGridTextColumn Header="Проміжковий" Binding="{Binding ArrivalPoint }" Width="2*"/>
                 <DataGridTextColumn Header="Напрям" Binding="{Binding FlightDirection }" Width="2*" />
-                <DataGridTemplateColumn Header="Видалення" Width="2*">
+                <DataGridTemplateColumn Header="Змінити" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                            <Button Content="Змінити" Width="Auto" Command="{Binding DataContext.OpenEditWindowCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}"/>
+                            
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Зміни" Width="2*">
+                <DataGridTemplateColumn Header="Видалити" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Зміни" Click="Button_Click" Width="Auto" />
+                            <Button Content="Видалити"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -85,11 +88,9 @@
         <ComboBox HorizontalAlignment="Left" Margin="325,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" Margin="465,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
 
-        <!-- Кнопки для фильтрации и отображения данных -->
-        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
-        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
+        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120"  Background="#FFFAF100" FontWeight="Bold"/>
+        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" Background="#FFFAF100" FontWeight="Bold"/>
 
-        <!-- Текстовые блоки для меток -->
         <TextBlock HorizontalAlignment="Left" Margin="84,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
             <Run Language="uk-ua" Text="Категорія"/>
         </TextBlock>

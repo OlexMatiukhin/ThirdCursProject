@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Airport"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="860" Background="#FF1EB7EE">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="71*"/>
+        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,70 +22,7 @@
 
         </Grid.RowDefinitions>
 
-        <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
-        <StackPanel Margin="0,1,513,2" Orientation="Horizontal" Width="181" HorizontalAlignment="Right">
-            <Image RenderTransformOrigin="3,2.348" Height="15" Width="16" Source="/Key.png"/>
-            <TextBlock TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter"
-                FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0"><Run Text="VovaShumchuchek"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-
-
-        </StackPanel>
-        <StackPanel Margin="0,1,200,3" Orientation="Horizontal"  MouseDown="StackPanel_MouseDown" HorizontalAlignment="Right" Width="310">
-            <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="Position.png"/>
-            <TextBlock TextWrapping="Wrap" Height="20" 
-                FontFamily="pack://application:,,,/Fonts/#Inter"
-                FontSize="16" FontWeight="Bold" Width="284" Text="Начальник бригади рятувальників" VerticalAlignment="Center" Margin="0,0,2,0" HorizontalAlignment="Right" />
-
-
-        </StackPanel>
-        <StackPanel Margin="775,1,0,2" Orientation="Horizontal" HorizontalAlignment="Left" Width="81">
-            <Image RenderTransformOrigin="3,2.348" Source="Logout.png"  Width="13"/>
-            <TextBlock TextWrapping="Wrap" Height="20" 
-        FontFamily="pack://application:,,,/Fonts/#Inter"
-        FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru" Text="Вийти"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
-        </StackPanel>
-        <StackPanel Margin="677,4,92,5" Orientation="Horizontal" HorizontalAlignment="Right">
-
-        </StackPanel>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
-            HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
-            FontWeight="Bold" IsReadOnly="True" FontSize="9" SelectionChanged="dataGrid_SelectionChanged" Margin="3,149,2,-130" Grid.Row="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Age}" Width="2*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Категорія" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Дата відправ" Binding="{Binding Name}"  Width="2*"/>
-                <DataGridTextColumn Header="Дата прибут" Binding="{Binding Age}"   Width="2*"/>
-                <DataGridTextColumn Header="Літак" Binding="{Binding Name}"   Width="2*" />
-                <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding Age}"   Width="2*" />
-                <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding Name}"  Width="2*" />
-                <DataGridTextColumn Header="Льотн бригад" Binding="{Binding Age}"  Width="2*" />
-                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding Name}" Width="2*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding Age}" Width="2*" />
-                <DataGridTemplateColumn Header="Actions" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Видалення" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Зміни" Click="Button_Click" Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Margin="0,4,99.5,5" Orientation="Horizontal" HorizontalAlignment="Right" Width="93">
-            <Image Source="/Main.png" RenderTransformOrigin="3,2.348" Height="18" Width="16"/>
-            <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" RenderTransformOrigin="0.955,0.627" Height="19" Width="70" Margin="0,0,2,0"/>
-
-
-        </StackPanel>
-
+        <xctk:DateTimePicker Background="Aqua"     CultureInfo="en-US" Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Grid.ColumnSpan="2" Margin="300,119,265,280" Grid.Row="1"></xctk:DateTimePicker>
 
     </Grid>
 

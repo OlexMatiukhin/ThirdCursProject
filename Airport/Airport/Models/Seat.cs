@@ -22,6 +22,10 @@ namespace Airport.Models
 
         [BsonElement("flightId")]
         public int FlightId { get; set; }
+        public override string ToString()
+        {
+            return $"Seat ID: {SeatId}, Number: {Number}, Status: {Status}, Flight ID: {FlightId}";
+        }
 
 
         /*public Seat(int seatId, int number, string status, int flightId)

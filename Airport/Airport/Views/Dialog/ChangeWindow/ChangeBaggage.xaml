@@ -9,18 +9,23 @@
       Title="ChangePlane">
 
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="55,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="190,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="465,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="603,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="84,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Тип"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="222,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Вага"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="355,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Оплата"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="355,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="498,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Пасажир"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="619,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="81"><Run Language="uk-ua" Text="Тривалість"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/><Run Text=" перельота"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <Button Content="Змінити" HorizontalAlignment="Left" Margin="317,107,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button  Command="{Binding ChangeBaggageCommand}" Content="Змінити" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBlock HorizontalAlignment="Left" Margin="365,46,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Вага"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать" 
+            Text="{Binding Weight, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="330,67,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="528,44,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Оплата"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать1" 
+            Text="{Binding Payment, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="490,67,0,0" 
+            VerticalAlignment="Top" 
+            Width="120" TextChanged="FlightNumber_Копировать1_TextChanged"/>
+        <ComboBox   ItemsSource="{Binding TypeBaggeList}"  SelectedValue="{Binding BaggeType, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="186,69,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="217,46,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Категор"/><Run Language="uk-ua" Text="і"/><Run Text="я"/></TextBlock>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using Airport.ViewModels;
+﻿using Airport.Services;
+using Airport.ViewModels;
 using Airport.ViewModels.WindowViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,10 @@ namespace Airport
     {
         public FlightsView()
         {
+            var windowService = new WindowService();
+       
+            DataContext = new FlightsViewModel(windowService);
             InitializeComponent();
-            DataContext = new FlightsViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -14,9 +14,18 @@
             Margin="283,94,0,0" 
             VerticalAlignment="Top" 
             Width="120"/>
-        <ComboBox   ItemsSource="{Binding StructureUnitDictionary}"  SelectedValue="{Binding StructureUnitId, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="428,92,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox
+    ItemsSource="{Binding StructureUnitDictionary}"
+    SelectedValue="{Binding StructureUnitId, Mode=TwoWay}"
+    SelectedValuePath="Key"
+            DisplayMemberPath="Value"
+      
+            HorizontalAlignment="Left"
+    Margin="428,92,0,0"
+    VerticalAlignment="Top"
+    Width="120" />
 
-        <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Структурна одиниця"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Структурна одиниця"/><LineBreak/><Run/></TextBlock>
 
         <Button Content="Додати" Command="{Binding AddBrigadeCommand}" HorizontalAlignment="Left" Margin="283,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
 

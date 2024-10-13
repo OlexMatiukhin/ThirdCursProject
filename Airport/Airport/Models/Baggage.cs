@@ -5,30 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Airport.Models
 {
+   
     public class Baggage
     {
-
         [BsonId]
-        [BsonElement("baggageId")]
-        private int baggageId;
+        [BsonRepresentation(BsonType.Int32)] // Если вы используете int для идентификатора
+        public int BaggageId { get; set; } // Публичное свойство для доступа и сериализации
+
         [BsonElement("type")]
-        private string baggageType;
+        public string BaggageType { get; set; }
+
         [BsonElement("weight")]
-        private double weight;
+        public double Weight { get; set; }
+
         [BsonElement("payment")]
-        private decimal payment;
+        public decimal Payment { get; set; }
+
         [BsonElement("passangerId")]
-        private int passangerId;
-
-
-        public int BaggageId { get => baggageId; set => baggageId = value; }
-        public string BaggageType { get => baggageType; set => baggageType = value; }
-        public double Weight { get => weight; set => weight = value; }
-        public decimal Payment { get => payment; set => payment = value; }
-        public int PassangerId { get => passangerId; set => passangerId = value; }
+        public int PassangerId { get; set; }
     }
-    
 }
+ 

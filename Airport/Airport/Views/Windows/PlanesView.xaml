@@ -23,7 +23,7 @@
 
 
         </StackPanel>
-        <StackPanel Margin="0,1,200,3" Orientation="Horizontal"  MouseDown="StackPanel_MouseDown" HorizontalAlignment="Right" Width="310">
+        <StackPanel Margin="0,1,200,3" Orientation="Horizontal" HorizontalAlignment="Right" Width="310">
             <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="/Images/Position.png"/>
             <TextBlock TextWrapping="Wrap" Height="20" 
          FontFamily="pack://application:,,,/Fonts/#Inter"
@@ -49,7 +49,7 @@
 
         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-4,0,0,0">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10"  Margin="-4,0,0,0" ItemsSource="{Binding Planes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PlaneId }" Width="*"/>
                 <DataGridTextColumn Header="Початко" Binding="{Binding Type }" Width="2*"/>
@@ -63,14 +63,14 @@
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редагувати" Click="Button_Click" Width="Auto" />
+                            <Button Content="Редагувати" Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Видалення" Width="*">
+                <DataGridTemplateColumn Header="зміна" Width="*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                            <Button Content="Видалити"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -84,8 +84,8 @@
         <ComboBox HorizontalAlignment="Left" Margin="191,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" Margin="325,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" Margin="465,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
-        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644" Click="Button_Click_1" Background="#FFFAF100" FontWeight="Bold"/>
+        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644" Background="#FFFAF100" FontWeight="Bold"/>
+        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="1.579,0.644"  Background="#FFFAF100" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="84,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Дата"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="222,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Напрям"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="355,8,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Тип літака"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>

@@ -48,6 +48,15 @@ namespace Airport.Models
         [BsonElement("routeId")]
         public int RouteId { get; set; }
 
+        public override string ToString()
+        {
+            return $"Flight ID: {FlightId}, Flight Number: {FlightNumber}, Status: {Status}, " +
+                   $"Category: {Category}, Departure: {DateDeparture}, Arrival: {DateArrival}, " +
+                   $"Plane ID: {PlaneId}, Dispatch Brigade ID: {DispatchBrigadeId}, " +
+                   $"Navigation Brigade ID: {NavigationBrigadeId}, Flight Brigade ID: {FlightBrigadeId}, " +
+                   $"Inspection Brigade ID: {InspectionBrigadeId}, Route ID: {RouteId}";
+        }
+
         /*public Flight(int flightId, string flightNumber, string status, string category, DateTime dateDeparture, DateTime dateArrival, int planeId, int dispatchBrigadeId, int navigationBrigadeId, int flightBrigadeId, int inspectionBrigadeId, int routeId)
         {
             this.flightId = flightId;

@@ -1,4 +1,5 @@
 ﻿using Airport;
+using Airport.Services;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,8 @@ namespace Airport
         public BaggageView()
         {
             InitializeComponent();
-            DataContext = new BaggageViewModel();
+            var windowService = new WindowService();
+            DataContext = new BaggageViewModel(windowService);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

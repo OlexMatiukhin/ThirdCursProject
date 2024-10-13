@@ -9,11 +9,33 @@
       Title="ChangePlane">
 
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="55,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="92,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Посада"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="223,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Зарплата"/><LineBreak/><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="215,56,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Змінити" HorizontalAlignment="Left" Margin="125,94,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button Content="Змінити" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Width="140" Command="{Binding ChangePositionCommand}"/>
+        <TextBox x:Name="Назава" 
+            Text="{Binding PositionName, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="130,43,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="FlightNumber_Копировать" 
+            Text="{Binding Salary, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="295,41,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="160,24,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="327,23,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.935"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
+        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="490,45,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,24,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="525,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
+        ="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>

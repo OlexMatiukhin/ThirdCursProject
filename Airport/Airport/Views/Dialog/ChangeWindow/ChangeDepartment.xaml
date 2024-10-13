@@ -9,7 +9,7 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="94,33,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Назва"/><LineBreak/><Run/></TextBlock>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="55,89,0,0" VerticalAlignment="Top" Height="30" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="55,56,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button"  HorizontalAlignment="Left" Margin="55,89,0,0" VerticalAlignment="Top" Height="30" Width="120" Command="{Binding ChangeDepartmentCommand}"/>
+        <TextBox HorizontalAlignment="Left" Margin="55,56,0,0" TextWrapping="Wrap"  Text="{Binding DepartmentName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

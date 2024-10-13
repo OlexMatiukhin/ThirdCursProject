@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="365,46,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Вага"/></TextBlock>
         <TextBox x:Name="FlightNumber_Копировать" 
-     Text="{Binding BaggeType, Mode=TwoWay}" 
+     Text="{Binding Weight, Mode=TwoWay}" 
      HorizontalAlignment="Left" 
      Margin="330,67,0,0" 
      VerticalAlignment="Top" 

@@ -26,7 +26,7 @@ namespace Airport.Models
         public string Gender { get; set; }
 
         [BsonElement("numberChildrens")]
-        public int NumberChildrens { get; set; }
+        public int NumberChildren { get; set; }
 
         [BsonElement("hireDate")]
         public DateTime HireDate { get; set; }

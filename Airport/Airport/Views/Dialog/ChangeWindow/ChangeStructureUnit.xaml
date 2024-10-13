@@ -9,13 +9,17 @@
       Title="ChangePlane">
 
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="55,54,0,0" VerticalAlignment="Top" Width="120" />
-        <ComboBox HorizontalAlignment="Left" Margin="190,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,54,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="99,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Назва"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="230,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Тип"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="329,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Департамент"/><LineBreak/><Run/></TextBlock>
-        <Button Content="Змінити" HorizontalAlignment="Left" Margin="185,99,0,0" VerticalAlignment="Top" Width="140"/>
-
+        <TextBlock HorizontalAlignment="Left" Margin="218,57,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Назва"/></TextBlock>
+        <TextBox x:Name="FlightNumber_Копировать3" 
+            Text="{Binding StructureUnitName, Mode=TwoWay}" 
+            HorizontalAlignment="Left" 
+            Margin="183,78,0,0" 
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <Button  Command="{Binding ChangeStructureUnitCommand}" Content="Додати" HorizontalAlignment="Left" Margin="284,139,0,0" VerticalAlignment="Top" Height="35" Width="212"/>
+        <TextBlock HorizontalAlignment="Left" Margin="370,55,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Зміна"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="515,56,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Бригад"/><Run Language="ru-ru" Text="а"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <ComboBox ItemsSource="{Binding StructureTypeList}" SelectedValue="{Binding SelectedStructureUnitType, Mode=TwoWay}" x:Name="Category_Копировать" HorizontalAlignment="Left" Margin="333,71,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
+        <ComboBox  ItemsSource="{Binding DepartmentsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDepartmentId, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="485,74,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

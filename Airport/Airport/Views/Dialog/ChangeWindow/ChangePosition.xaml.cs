@@ -23,6 +23,9 @@ namespace Airport.Views.Dialog
         public ChangePosition()
         {
             InitializeComponent();
+           
         }
+
+     
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
 {

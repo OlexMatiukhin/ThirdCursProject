@@ -1,5 +1,6 @@
-﻿using Airport.Models;
-using Airport.Services;
+﻿using Airport.Command.AddDataCommands.Airport.Commands;
+using Airport.Models;
+using Airport.Services.MongoDBSevice;
 using Airport.ViewModels.DialogViewModels.AddDataViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,30 +9,24 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Airport.Command.AddDataCommands
 {
     public class AddStructureUnitViewModel
     {
 
-        private AddStructureUnitCommand _addStructureUnitCommand;
+        private ChangeStructureUnitCommand _addStructureUnitCommand;
         private readonly DepartmentService _departmentService;
-        
+        private readonly StructureUnitService _structureUnitService;
+        public ICommand AddStructureUnitCommand { get; }
 
 
-        public AddStructureUnitCommand AddStructureUnitCommand
-        {
-            get => _addStructureUnitCommand;
-            set
-            {
-                _addStructureUnitCommand = value;
 
 
-            }
-        }
         public List<string> StructureTypeList { get; set; } = new List<string>
-        {   "Відділ",
-            "Служба",
+        {   "відділ",
+            "служба",
             
         };
     
@@ -77,6 +72,18 @@ namespace Airport.Command.AddDataCommands
             }
         }
 
+        private void ExecuteAddStructureUnit(object parameter)
+        {
+            var newStructureUnit = new StructureUnit
+            {
+                StructureUnitId = _structureUnitService.GetLastStructureUnitd() + 1,
+                StructureUnitName = StructureUnitName,
+                Type = SelectedStructureUnitType,
+                DepartmentId = int.Parse(SelectedDepartmentId)
+            };
+
+            _structureUnitService.AddStructureUnit(newStructureUnit);
+        }
 
 
         private void LoadData()
@@ -96,11 +103,12 @@ namespace Airport.Command.AddDataCommands
         {
 
             _departmentService = new DepartmentService();
-
+            _structureUnitService = new StructureUnitService();
+            AddStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute=>true);
 
             LoadData();
             CreateDictionaries();
-            _addStructureUnitCommand = new AddStructureUnitCommand(this);
+         
         }
 
 

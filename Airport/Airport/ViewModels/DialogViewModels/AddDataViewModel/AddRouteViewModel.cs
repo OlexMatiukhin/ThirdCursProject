@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
+using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
-using Airport.Services;
+using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,23 +10,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
     public class AddRouteViewModel : INotifyPropertyChanged
     {
+        private readonly RouteService _routeService;
 
-        private AddRouteCommand _addRouteCommand;
-        public AddRouteCommand AddRouteCommand
-        {
-            get => _addRouteCommand;
-            set
-            {
-                _addRouteCommand = value;
+        public ICommand AddRouteCommand { get; }
 
 
-            }
-        }
 
 
 
@@ -42,16 +37,16 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public string Number
         {
             get => _number;
-            set { 
-             _number = value;
-             OnPropertyChanged(nameof(Number));
+            set {
+                _number = value;
+                OnPropertyChanged(nameof(Number));
             }
         }
 
         public string DeparturePoint
         {
             get => _departurePoint;
-            set { 
+            set {
                 _departurePoint = value;
                 OnPropertyChanged(nameof(DeparturePoint));
             }
@@ -62,7 +57,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             get => _arrivalPoint;
             set
             {
-                     _arrivalPoint = value;
+                _arrivalPoint = value;
                 OnPropertyChanged(nameof(ArrivalPoint));
             }
         }
@@ -84,19 +79,32 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 _flightDirection = value;
                 OnPropertyChanged(nameof(FlightDirection));
             }
-            
+
         }
 
-        
+
 
 
         public AddRouteViewModel()
         {
 
-            _addRouteCommand = new AddRouteCommand(this);
+            _routeService = new RouteService();
+            AddRouteCommand = new RelayCommand(ExecuteAddRoute, canExecute => true);
         }
 
-
+        private void ExecuteAddRoute(object parameter)
+        {
+            var newRoute = new Route
+            {
+                RouteId = _routeService.GetLastRouteId() + 1,
+                Number = Number,
+                DeparturePoint = DeparturePoint,
+                ArrivalPoint = ArrivalPoint,
+                TransitAirport = TransitAirport,
+                FlightDirection = FlightDirection
+            };
+        } 
+    
 
 
         public event PropertyChangedEventHandler PropertyChanged;

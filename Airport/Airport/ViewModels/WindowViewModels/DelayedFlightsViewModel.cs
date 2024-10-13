@@ -1,5 +1,4 @@
 ﻿using Airport.Models;
-using Airport.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.Collections.ObjectModel;
+using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
 {

@@ -20,6 +20,9 @@ namespace Airport.Models
 
         [BsonElement("structureUnitId")]
         public int StructureUnitId { get; set; }
+
+        [BsonElement("numberWorkers")] 
+        public int NumberWorkers { get; set; }
         public override string ToString()
         {
             return $"{BrigadeId}: Тип:{BrigadeType}, Структурна одиниця: {StructureUnitId}";

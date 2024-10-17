@@ -5,15 +5,19 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Airport.Services;
 
 public class BrigadesViewModel
 {
     public ObservableCollection<Brigade> Brigades { get; set; }
     private BrigadeService _brigadeService;
+    private readonly IWindowService _windowService;
 
-    public BrigadesViewModel()
+
+    public BrigadesViewModel(IWindowService windowService)
     {
         _brigadeService = new BrigadeService();
+        _windowService = windowService;
         LoadBrigades();
     }
 

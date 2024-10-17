@@ -42,7 +42,36 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
+        public void EndCustomControl(int flightId)
+        {
+            try
+            {
+                 _flightCollection.Find(f => f.FlightBrigadeId==flightId).First().CustomsControl=true;
+            }
+            catch (Exception ex)
+            {
+               
+            }
 
+
+
+         }
+
+
+        public void EndRegistration(int flightId)
+        {
+            try
+            {
+                _flightCollection.Find(f => f.FlightBrigadeId == flightId).First().PassengerRegistration = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
+        }
 
         public void UpdateFlight(int flightId, Flight updatedFlight)
         {

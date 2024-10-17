@@ -44,6 +44,9 @@ namespace Airport.ViewModels.WindowViewModels
 
 
 
+
+
+
         private void OnDelete(object parameter)
         {
 

@@ -31,8 +31,21 @@ public class BrigadeService
                 return new List<Brigade>();
             }
         }
+    public void AddWorkerToBrigade(int briadeId)
+    {
+        _brigadeCollection.Find((b)=> b.BrigadeId==briadeId).FirstOrDefault().NumberWorkers++;
 
-        public int GetLastBrigadeId()
+
+    }
+    public void DeleteWorkerFromBrigade(int briadeId)
+    {
+        _brigadeCollection.Find((b) => b.BrigadeId == briadeId).FirstOrDefault().NumberWorkers--;
+
+
+
+    }
+
+    public int GetLastBrigadeId()
         {
             var lastBaggage = _brigadeCollection
                 .Find(Builders<Brigade>.Filter.Empty)

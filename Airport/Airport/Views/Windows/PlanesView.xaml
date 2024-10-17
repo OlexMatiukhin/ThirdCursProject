@@ -54,19 +54,46 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding PlaneId }" Width="*"/>
                 <DataGridTextColumn Header="Початко" Binding="{Binding Type }" Width="2*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding TechCondition }"  Width="2*" />
+                <DataGridTextColumn Header="Заправленість" Binding="{Binding  PlaneFuelStatus }"  Width="2*" />
                 <DataGridTextColumn Header="Завершення" Binding="{Binding InteriorReadiness }"  Width="2*" />
                 <DataGridTextColumn Header="Причина" Binding="{Binding NumberFlightsBeforeRepair }"  Width="2*"/>
                 <DataGridTextColumn Header="Результат" Binding="{Binding TechInspectionDate }"   Width="2*"/>
                 <DataGridTextColumn Header="Бригада" Binding="{Binding Assigned }"   Width="2*" />
-                <DataGridTextColumn Header="Бригада" Binding="{Binding NumberRepairs  }"   Width="2*" />
-                <DataGridTextColumn Header="Бригада" Binding="{Binding ExploitationDate  }"   Width="2*" />
+                <DataGridTextColumn Header="Бригада" Binding="{Binding NumberRepairs}"   Width="2*" />
+                <DataGridTextColumn Header="Бригада" Binding="{Binding ExploitationDate}"   Width="2*" />
+                <DataGridTemplateColumn Header="" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Заправка" Command="{Binding DataContext.ChangeFuelStatusCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"  Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Зміна" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Салон"  Command="{Binding DataContext.ChangeInteriorReadines, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"   Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Зміна" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Техперевірка" Command="{Binding DataContext.ChangeTechConditionStatus, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"    Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Редагувати" Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>       
+      
                 <DataGridTemplateColumn Header="зміна" Width="*"  >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

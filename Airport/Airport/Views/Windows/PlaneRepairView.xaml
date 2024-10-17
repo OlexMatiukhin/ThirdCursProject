@@ -60,21 +60,33 @@
                 <DataGridTextColumn Header="Результат" Binding="{Binding Result }"   Width="2*"/>
                 <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId }"   Width="2*" />
                 <DataGridTextColumn Header="Літак" Binding="{Binding PlaneId}" Width="2*" />
+                <DataGridTemplateColumn Header="Видалення" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Завершення"  Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
 
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Редагувати" Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"  Width="Auto" />
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn.CellTemplate>              
                 </DataGridTemplateColumn>
+
+                
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                            <Button Content="Видалити" Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox HorizontalAlignment="Left" Margin="55,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>

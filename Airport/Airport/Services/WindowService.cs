@@ -4,6 +4,7 @@ using Airport.ViewModels.DialogViewModels.Change;
 using Airport.ViewModels.DialogViewModels.ChangeDataViewModel;
 using Airport.Views.Dialog;
 using Airport.Views.Dialog.ChangeWindow;
+using Airport.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,91 @@ namespace Airport.Services
 
             switch (windowName)
             {
+
+                case "BaggageView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);                    
+                    break;
+                case "BrigadesView":
+                    window = new BrigadesView();
+                    window.DataContext = new BrigadesViewModel(this);
+                    break;
+                case "CanceledFlightsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "CompletedFlights":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "DelayedFlightsInfoView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "DepartmentsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "FlightsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "PassengerCompletedFlightView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "PassengersView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "PilotsMedExamView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "PlaneRepairView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+
+                case "PlanesView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "PositionsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "RefundedTicketsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "RoutesView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "SeatsView.xaml":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "StructureUnitsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "TicketsView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+                case "WorkersView":
+                    window = new BaggageView();
+                    window.DataContext = new BaggageViewModel(this);
+                    break;
+
+
+
+
+
+
+                // ChangeWindows
                 case "ChangeFlight":
                     window = new ChangeFlight();
                     if (parameter is Flight flight)
@@ -104,48 +190,7 @@ namespace Airport.Services
 
 
 
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
-                    /*case "ChangeDepartment":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;*/
+                   
 
             }
 

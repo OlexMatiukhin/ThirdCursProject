@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -16,6 +17,20 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _ticketCollection = database.GetCollection<Ticket>("ticket");
         }
+
+        public Ticket GetTicketByPassangerId(int passangerId)
+        {
+            try
+            {
+                return _ticketCollection.Find(t => t.PassengerId==passangerId).First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                return new Ticket();
+            }
+
+        }
         public int GetLastTicketId()
         {
             var lastTicket = _ticketCollection
@@ -26,6 +41,21 @@ namespace Airport.Services.MongoDBSevice
 
             return lastTicket?.TicketId ?? 0;
         }
+        
+       public List<Ticket>GetTicketsByFlightId(int flightId)
+        {
+
+            try
+            {
+                return _ticketCollection.Find(t => t.FlightId==flightId).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                return new List<Ticket>();
+            }
+        }
+
 
         public List<Ticket> GetTicketsData()
         {

@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Airport.Views.Dialog.AddWindow"
+         DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Closing="Window_Closing"
         mc:Ignorable="d"
         Title="AddPassengerView" Height="450" Width="800">
     <Grid>
@@ -13,6 +15,7 @@
             Margin="30,54,0,0" 
             VerticalAlignment="Top" 
             Width="120"/>
+        
         <TextBox   Text="{Binding Age, Mode=TwoWay}" x:Name="Age" 
             HorizontalAlignment="Left" 
             Margin="165,54,0,0" 
@@ -45,6 +48,7 @@
             VerticalAlignment="Top" 
             Width="120"/>
 
+        
         <Button Content="Додати" Command="{Binding AddPassengerCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="354,27,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Стать"/></TextBlock>

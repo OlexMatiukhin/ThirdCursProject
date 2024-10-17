@@ -1,11 +1,13 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +19,16 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     public class AddPassengerViewModel
     {
         private readonly PassengerService _passengerService;
-      
-   
+
+        private readonly TicketService _ticketService;
+        private WindowService _windowService;
+
+
+
+        public ICommand CloseCommand { get; }
+
+
+
 
         public ICommand AddPassengerCommand { get; }
 
@@ -35,8 +45,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private string _phoneNumber;
         private string _email;
         private string _fullName;
+
         private int _completedFlightId;
         private int _age;
+        private Ticket ticket;
+
+
+        
+                  
 
         public int Age
         {
@@ -128,16 +144,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public  AddPassengerViewModel()
+        public  AddPassengerViewModel(Ticket ticket)
         {
             _passengerService = new PassengerService();
             
             AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
+            CloseCommand = new RelayCommand(ExecuteClose);
 
-          
-
-
-
+            this.ticket = ticket;
         }
 
         private void ExecutePassangerAdd(object parameter)
@@ -147,21 +161,28 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             Passenger newPassenger = new Passenger
             {
-                PassengerId = passangerId,           
-                FullName = FullName,                 
-                Age = Age,                          
-                Gender = SelectedGender,                    
-                PassportNumber = PassportNumber,    
+                PassengerId = passangerId,
+                FullName = FullName,
+                Age = Age,
+                Gender = SelectedGender,
+                PassportNumber = PassportNumber,
                 InternPassportNumber = InternPassportNumber,
-                BaggageStatus = BaggageStatus,    
-                PhoneNumber = PhoneNumber,           
-                Email = Email,                       
+                BaggageStatus = BaggageStatus,
+                PhoneNumber = PhoneNumber,
+                Email = Email,
+                CustomsControlsStatus = "не перевірений",
+                RegistrationStatus = "не зареєстрований",
+                FlightId = 0,
+
             };
+            ticket.PassengerId = passangerId;
 
 
 
+            _ticketService.UpdateTicket(ticket);
 
             _passengerService.AddPassenger(newPassenger);
+            
         }
 
      

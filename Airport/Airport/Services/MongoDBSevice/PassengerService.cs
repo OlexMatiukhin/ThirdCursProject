@@ -63,6 +63,21 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+        public List<Passenger> GetPassengersByFlightId(int flightId) {
+
+            try
+            {
+                return _passengerCollection.Find(p=>p.FlightId == flightId).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при удалении пассажира: {ex.Message}");
+                return new List<Passenger>();
+            }
+        }
+
+
+
 
         public bool DeletePassenger(int passengerId)
         {

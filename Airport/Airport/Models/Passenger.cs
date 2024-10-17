@@ -40,10 +40,19 @@ namespace Airport.Models
 
         [BsonElement("fullname")]
         public string FullName { get; set; }
+
+        [BsonElement("customsControlStatus")]
+        public string CustomsControlsStatus { get; set; }
+
+        [BsonElement("registrationStatus")]
+        public string RegistrationStatus { get; set; }
+
+        [BsonElement("flightId")]
+        public int FlightId { get; set; }
         public override string ToString()
         {
             return $"PassengerId: {PassengerId}, Fullname: { FullName}, Age: {Age}, Gender: {Gender}, PassportNumber: {PassportNumber}, " +
-                   $"InternPassportNumber: {InternPassportNumber}, BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}";
+                   $"InternPassportNumber: {InternPassportNumber}, BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}, CustomControlStatus:{CustomsControlsStatus}, RegistrationStatus:{RegistrationStatus},  FlightId:{FlightId}";
         }
 
         /* public Passenger(int passengerId, int age, string gender, string passportNumber, string internPassportNumber, string baggageStatus, string phoneNumber, string email, string fullname)

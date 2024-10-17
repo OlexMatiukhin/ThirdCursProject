@@ -41,16 +41,17 @@
             </TextBlock>
         </StackPanel>
 
-        <!-- Логотип -->
+  
         <Image HorizontalAlignment="Left" Width="67" Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
         <!-- DataGrid -->
         <DataGrid   ItemsSource="{Binding Workers}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="0,0,0,30">
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding FullName}" Width="0.5*"/>
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding Age}" Width="*"/>
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding WorkerId}" Width="0.5*"/>
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="0.5*"/>
+                <DataGridTextColumn Header="Вік" Binding="{Binding Age}" Width="*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="Стать" Binding="{Binding Gender}" Width="*"/>
                 <DataGridTextColumn Header="Діти" Binding="{Binding NumberChildren}" Width="*"/>
@@ -59,7 +60,7 @@
                 <DataGridTextColumn Header="Еmail" Binding="{Binding Email}" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding PhoneNumber}" Width="*"/>
                 <DataGridTextColumn Header="Посада" Binding="{Binding PositionId}" Width="*"/>
-                <DataGridTextColumn Header="Посада" Binding="{Binding BrigadeId}" Width="*"/>
+                <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId}" Width="*"/>
 
 
                 <DataGridTemplateColumn Header="Редагування" Width="*">
@@ -76,7 +77,15 @@
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto"/>
+                            <Button Content="Видалити"   Width="Auto"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Видалити з бриг" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Видалити" Width="Auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

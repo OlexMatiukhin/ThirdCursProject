@@ -21,14 +21,13 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         {
             this._id = plane.PlaneId;
             _type = plane.Type;
-            SelectedTechCondition = plane.TechCondition;
-            SelectedInteriorReadiness = plane.InteriorReadiness;
+            _techCondition = plane.TechCondition;
+            _interiorReadiness = plane.InteriorReadiness;
             NumberFlightsBeforeRepair = plane.NumberFlightsBeforeRepair;
             TechInspectionDate = plane.TechInspectionDate;
             Assigned = plane.Assigned;
             NumberRepairs = plane.NumberRepairs;
             ExploitationDate = plane.ExploitationDate;
-
             _planeService = new PlaneService();
             ChnagePassangerCommand = new RelayCommand(ExecuteChangePlane, canExecute => true);    
         }
@@ -43,19 +42,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             "пасажирський",
 
         };
-        public List<string> InteriorReadiness { get; set; } = new List<string>
-        {
-            "готовий",
-            "не готовий",
-
-        };
-        
-        public List<string> TechCondition { get; set; } = new List<string>
-        {
-            "задовільний",
-            "не задовліьний",
-
-        };
+     
        
         private int _id;
         private string _type;
@@ -70,7 +57,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
        
 
 
-        public string SelectedTechCondition
+       /* public string SelectedTechCondition
         {
             get => _techCondition;
             set
@@ -89,7 +76,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 _interiorReadiness = value;
                 OnPropertyChanged(nameof(InteriorReadiness));
             }
-        }
+        }*/
 
 
         public int NumberFlightsBeforeRepair
@@ -150,13 +137,14 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             {
                 PlaneId = _id,
                 Type = _type,
-                TechCondition = SelectedTechCondition,
-                InteriorReadiness = SelectedInteriorReadiness,
+                TechCondition = _techCondition,
+                InteriorReadiness = _interiorReadiness,
                 NumberFlightsBeforeRepair = NumberFlightsBeforeRepair,
                 TechInspectionDate = TechInspectionDate,
                 Assigned = Assigned,
                 NumberRepairs = NumberRepairs,
                 ExploitationDate = ExploitationDate,
+
             };
 
             _planeService.UpdatePlane(newPlane);

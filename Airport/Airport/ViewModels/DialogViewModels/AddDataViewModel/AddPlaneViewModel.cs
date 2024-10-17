@@ -40,7 +40,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 TechInspectionDate = DateTime.Now,
                 Assigned = Assigned,
                 NumberRepairs = 0,
-                ExploitationDate = DateTime.Now
+                ExploitationDate = DateTime.Now,
+                PlaneFuelStatus= "не заправлений"
             };
 
             _planeService.AddPlane(newPlane);

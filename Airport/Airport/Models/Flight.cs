@@ -12,7 +12,6 @@ namespace Airport.Models
     public class Flight
     {
         [BsonId]
-
         public int FlightId { get; set; }
 
         [BsonElement("flightNumber")]
@@ -48,42 +47,25 @@ namespace Airport.Models
         [BsonElement("routeId")]
         public int RouteId { get; set; }
 
+        [BsonElement("customsControl")]
+        public bool CustomsControl { get; set; } = false;
+
+        [BsonElement("passengerRegistration")]
+        public bool PassengerRegistration { get; set; } = false;
+
         public override string ToString()
         {
             return $"Flight ID: {FlightId}, Flight Number: {FlightNumber}, Status: {Status}, " +
                    $"Category: {Category}, Departure: {DateDeparture}, Arrival: {DateArrival}, " +
                    $"Plane ID: {PlaneId}, Dispatch Brigade ID: {DispatchBrigadeId}, " +
                    $"Navigation Brigade ID: {NavigationBrigadeId}, Flight Brigade ID: {FlightBrigadeId}, " +
-                   $"Inspection Brigade ID: {InspectionBrigadeId}, Route ID: {RouteId}";
+                   $"Inspection Brigade ID: {InspectionBrigadeId}, Route ID: {RouteId}, " +
+                   $"Customs Control: {CustomsControl}, Passenger Registration: {PassengerRegistration}";
+        
         }
 
-        /*public Flight(int flightId, string flightNumber, string status, string category, DateTime dateDeparture, DateTime dateArrival, int planeId, int dispatchBrigadeId, int navigationBrigadeId, int flightBrigadeId, int inspectionBrigadeId, int routeId)
-        {
-            this.flightId = flightId;
-            this.flightNumber = flightNumber;
-            this.status = status;
-            this.category = category;
-            this.dateDeparture = dateDeparture;
-            this.dateArrival = dateArrival;
-            this.planeId = planeId;
-            this.dispatchBrigadeId = dispatchBrigadeId;
-            this.navigationBrigadeId = navigationBrigadeId;
-            this.flightBrigadeId = flightBrigadeId;
-            this.inspectionBrigadeId = inspectionBrigadeId;
-            this.routeId = routeId;
-        }*/
 
-        /*public int FlightId { get => flightId; set => flightId = value; }
-        public string FlightNumber { get => flightNumber; set => flightNumber = value; }
-        public string Status { get => status; set => status = value; }
-        public string Category { get => category; set => category = value; }
-        public DateTime DateDeparture { get => dateDeparture; set => dateDeparture = value; }
-        public DateTime DateArrival { get => dateArrival; set => dateArrival = value; }
-        public int PlaneId { get => planeId; set => planeId = value; }
-        public int DispatchBrigadeId { get => dispatchBrigadeId; set => dispatchBrigadeId = value; }
-        public int NavigationBrigadeId { get => navigationBrigadeId; set => navigationBrigadeId = value; }
-        public int FlightBrigadeId { get => flightBrigadeId; set => flightBrigadeId = value; }
-        public int InspectionBrigadeId { get => inspectionBrigadeId; set => inspectionBrigadeId = value; }
-        public int RouteId { get => routeId; set => routeId = value; }*/
+
+
     }
 }

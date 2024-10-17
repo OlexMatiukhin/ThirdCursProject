@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -28,12 +29,14 @@ namespace Airport.ViewModels.WindowViewModels
 
         public FlightsViewModel(IWindowService windowService)
         {
-             _windowService = windowService;
+            _windowService = windowService;
             _flightService = new FlightService();
+
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             LoadFlights();
         }
         private Flight _selectedFlight;
+
         public Flight SelectedFlight
         {
             get => _selectedFlight;
@@ -58,6 +61,30 @@ namespace Airport.ViewModels.WindowViewModels
 
 
 
+        }
+
+        private void EndCustomControl(object parameter)
+        {
+
+
+            var flight = parameter as Flight;
+            if (flight != null)
+            {
+                _flightService.EndCustomControl( flight.FlightId);
+
+            }
+        }
+
+        private void EndRegistration(object parameter)
+        {
+
+
+            var flight = parameter as Flight;
+            if (flight != null) 
+            { 
+                _flightService.EndRegistration(flight.FlightId);
+
+            }
         }
 
         private void LoadFlights()

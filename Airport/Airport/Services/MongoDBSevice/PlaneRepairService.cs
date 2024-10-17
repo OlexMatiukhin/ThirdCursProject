@@ -29,6 +29,19 @@ namespace Airport.Services.MongoDBSevice
                 return false;
             }
         }
+
+
+        public void Add(PlaneRepair planeRepair)
+        {
+            try
+            {
+                _planeRepairCollection.InsertOne(planeRepair);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Помилка додавання даних: {ex.Message}");
+            }
+        }
         public List<PlaneRepair> GetPlaneRepairsData()
         {
             try

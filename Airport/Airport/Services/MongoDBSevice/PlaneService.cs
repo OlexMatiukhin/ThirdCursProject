@@ -28,6 +28,8 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Произошла ошибка при добавлении данных: {ex.Message}");
             }
         }
+
+
         public void UpdatePlane(Plane updatedPlane)
         {
             try
@@ -40,6 +42,19 @@ namespace Airport.Services.MongoDBSevice
             catch (Exception ex)
             {
                 Console.WriteLine($"Произошла ошибка при обновлении данных: {ex.Message}");
+            }
+        }
+
+        public Plane GetPlaneById(int planeId)
+        {
+            try
+            {
+                return _planeCollection.Find(f => f.PlaneId==planeId).First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                return null;
             }
         }
         public int GetLastPlaneId()

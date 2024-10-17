@@ -73,7 +73,9 @@
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="2*" />
                 <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding InspectionBrigadeId }" Width="2*" />
                 <DataGridTextColumn Header="Машрут" Binding="{Binding RouteId}" Width="2*" />
-         
+                <DataGridTextColumn Header="Контроль" Binding="{Binding RouteId}" Width="2*" />
+                <DataGridTextColumn Header="Реєстрація" Binding="{Binding RouteId}" Width="2*" />
+
                 <DataGridTemplateColumn Header="Редагування" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -83,17 +85,15 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                
+
+
                 <DataGridTemplateColumn Header="Перенесення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Перенести" Click="Button_Click" Width="Auto" />
+                            <Button Content="Перенести"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-
 
                 <DataGridTemplateColumn Header="Скасування" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -103,8 +103,30 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Митний контрол"  Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Завершити" Command="{Binding DataContext.EndCustomControlCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}" Width="Auto" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Реєстрація пасажирів" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Завершити"  Command="{Binding DataContext.RegisterCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}" Width="Auto" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
+            
             
 
         </DataGrid>

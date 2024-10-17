@@ -48,6 +48,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 BrigadeId = SelectedBrigadeId,
                 PositionId = SelectedPostionId
             };
+            _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
 
             _workerService.AddWorker(worker);
         }

@@ -21,34 +21,23 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public AddBrigadeViewModel()
         {
             _structureUnitService = new StructureUnitService();
-
-
             LoadData();
             CreateDictionaries();
             AddBrigadeCommand = new RelayCommand(AddBrigade, canExecute=>true);
             _brigadeService =new BrigadeService();
 
-
-
         }
-
-        
-
-
-
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
 
 
         public Dictionary<int, string> StructureUnitDictionary { get; set; }
 
 
-
-
-
         public string _brigadeType;
 
 
         private int _structureUnitId;
+    
 
 
         public string BrigadeType
@@ -97,6 +86,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 BrigadeId = _brigadeService.GetLastBrigadeId() + 1,
                 BrigadeType = BrigadeType,
                 StructureUnitId = StructureUnitId,
+                NumberWorkers = 0,
             };
             _brigadeService.AddBrigade(newBrigade);
         }

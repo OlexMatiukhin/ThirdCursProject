@@ -77,7 +77,7 @@ namespace Airport.Views.Dialog {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Airport;V1.0.0.0;component/views/dialog/changewindow/changeposition.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Airport;component/views/dialog/changewindow/changeposition.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Views\Dialog\ChangeWindow\ChangePosition.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

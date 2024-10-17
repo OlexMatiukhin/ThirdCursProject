@@ -20,10 +20,26 @@ namespace Airport.Views.Dialog.AddWindow
     /// </summary>
     public partial class AddPassengerView : Window
     {
+
+
         public AddPassengerView()
         {
             InitializeComponent();
-            DataContext = new AddPassengerViewModel();
+          
+
+
+          
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+            var viewModel = DataContext as AddPassengerViewModel;
+            if (viewModel != null)
+            {
+                // Выполнение команды перед закрытием
+                viewModel.CloseCommand.Execute(null);
+            }
+
         }
     }
 }

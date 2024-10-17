@@ -32,7 +32,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private string _fullName;
         private int _completedFlightId;
         private int _age;
-
+        private string _customsControlStatus;
+        private string _registrationStatus;
+        private int _flightId ;
         public int Age
         {
             get => _age;
@@ -138,6 +140,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             BaggageStatus = passenger.BaggageStatus;
             PhoneNumber= passenger.PhoneNumber;
             Email = passenger.Email;
+            _customsControlStatus= passenger.CustomsControlsStatus;
+            _registrationStatus = passenger.RegistrationStatus;
+            _flightId= passenger.FlightId;
         }
 
         private void ExecutePassangerChange(object parameter)
@@ -156,6 +161,10 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 BaggageStatus = BaggageStatus,
                 PhoneNumber = PhoneNumber,
                 Email = Email,
+                CustomsControlsStatus= _customsControlStatus,
+                RegistrationStatus= _registrationStatus,
+                FlightId = _flightId,
+
             };
 
 

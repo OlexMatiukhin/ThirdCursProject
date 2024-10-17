@@ -17,6 +17,18 @@ namespace Airport.Services.MongoDBSevice
             _workerCollection = database.GetCollection<Worker>("worker");
 
         }
+       public void DeleteBrigadeFromWorker( int workerId)
+        {
+            try {
+                _workerCollection.Find(w => w.WorkerId == workerId).First().BrigadeId--;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+
+        }
         public List<Worker> GetWorkersByPositionId(int positionId)
         {
             try

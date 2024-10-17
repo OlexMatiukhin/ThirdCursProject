@@ -94,7 +94,7 @@ namespace Airport.Views.Dialog.AddWindow {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Airport;V1.0.0.0;component/views/dialog/addwindow/addticketview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Airport;component/views/dialog/addwindow/addticketview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Views\Dialog\AddWindow\AddTicketView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

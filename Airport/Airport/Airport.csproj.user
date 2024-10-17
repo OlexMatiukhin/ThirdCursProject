@@ -10,6 +10,9 @@
     <Compile Update="App.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Dialog\AdditionalWindow\CustomsControlPassanger.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddBaggageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,9 +55,15 @@
     <Compile Update="Views\Dialog\ChangeWindow\ChangePlaneRepair.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\BrigadesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="App.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\AdditionalWindow\CustomsControlPassanger.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\AddWindow\AddBaggageView.xaml">
@@ -124,6 +133,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\ChangeWindow\ChangePlane.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\BrigadesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\PassengerCompletedFlightView.xaml">

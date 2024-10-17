@@ -15,6 +15,7 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<Worker> Workers { get; set; }
         private WorkerService _workerService;
+        private BrigadeService _briagadeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
         public WorkersViewModel()
@@ -23,6 +24,7 @@ namespace Airport.ViewModels.WindowViewModels
             LoadWorkers();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             _windowService = new WindowService();
+            _briagadeService = new BrigadeService();
         }
         private void OnEdit(object parameter)
         {
@@ -51,6 +53,21 @@ namespace Airport.ViewModels.WindowViewModels
             {
                 Console.WriteLine($"Произошла ошибка: {ex.Message}");
             }
+        }
+
+        private void OnDeleteFromBrigade(object parameter)
+        {
+
+            var worker = parameter as Worker;
+            if (worker != null)
+            {
+                _workerService.DeleteBrigadeFromWorker(worker.WorkerId);
+
+            }
+
+
+
+
         }
     }
 }

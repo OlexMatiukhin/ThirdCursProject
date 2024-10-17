@@ -172,9 +172,6 @@ namespace Airport.ViewModels.DialogViewModels.Change
                 Result = SelectedResult,
                 BrigadeId = SelectedBrigadeId,
                 PlaneId = SelectedPlaneId
-
-
-
             };
 
             _planeRepairService.UpdatePlaneRepair(planeRepair);

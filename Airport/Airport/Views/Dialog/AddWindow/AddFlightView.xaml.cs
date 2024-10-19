@@ -25,7 +25,6 @@ namespace Airport.Views.Dialog
         public AddFlightView()
         {
             InitializeComponent();
-            DataContext = new AddFlightViewModel();
         }
 
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)

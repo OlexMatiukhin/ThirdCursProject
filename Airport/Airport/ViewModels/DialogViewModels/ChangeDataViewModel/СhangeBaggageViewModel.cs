@@ -1,11 +1,13 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -16,12 +18,13 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
     public class СhangeBaggageViewModel : INotifyPropertyChanged
     {
-      
+
+
 
             private readonly BaggageService _baggageService;
             private readonly PassengerService _passengerService;
 
-
+            private IWindowService _windowService;
             public ICommand ChangeBaggageCommand { get; }
             public ObservableCollection<Passenger> Passengers { get; set; }
 
@@ -79,14 +82,16 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
 
-            public СhangeBaggageViewModel(Baggage baggage)
+            public СhangeBaggageViewModel(Baggage baggage, IWindowService windowService)
             {
+               this._windowService=windowService;
                 _passengerService = new PassengerService();
                 _baggageId = baggage.BaggageId;
                 BaggeType=baggage.BaggageType;
                 Weight = baggage.Weight.ToString();
                 Payment = baggage.Payment.ToString();
                 _passangerId = baggage.PassangerId;
+
 
 
                 LoadData();
@@ -132,17 +137,19 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
        
             }
 
-
+            public void CloseModalWindow()
+            {
+                _windowService.CloseModalWindow();
+                
+            }
+            
+        
+        
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged(string propertyName)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
-
-
-
-
-
         
     }
 }

@@ -33,9 +33,9 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             _windowService = new WindowService();
             LoadPassengers();
             _flightId = flight.FlightId;
-
-
         }
+
+
 
 
 

@@ -22,7 +22,6 @@ namespace Airport
         {
             InitializeComponent();
 
-            DataContext = new PlaneRepairsViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

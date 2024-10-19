@@ -25,7 +25,7 @@ namespace Airport
         public CanceledFlightsView()
         {
             InitializeComponent();
-            DataContext = new CanceledFligthsViewModel();
+        
         }
     }
    

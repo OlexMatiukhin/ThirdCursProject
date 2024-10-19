@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
         private readonly PlaneRepairService _planeRepairService;
         private BrigadeService _brigadeService;
         private PlaneService _planeService;
-
+        private IWindowService _windowService;
 
         public ICommand ChangePlaneRepairCommand { get; }
 
@@ -136,13 +137,13 @@ namespace Airport.ViewModels.DialogViewModels.Change
             }
         }
 
-        public ChangePlaneRepairViewModel(PlaneRepair repair)
+        public ChangePlaneRepairViewModel(PlaneRepair repair, IWindowService _windowService)
         {
 
             _planeRepairService = new PlaneRepairService();
             _brigadeService = new BrigadeService();
             _planeService= new PlaneService();
-
+            
 
             this._id = repair.PlaneRepairId;
             this.StartDate=repair.StartDate;
@@ -153,6 +154,8 @@ namespace Airport.ViewModels.DialogViewModels.Change
             this.SelectedResult=repair.Result;
             this.SelectedBrigadeId = repair.BrigadeId;
             this.SelectedPlaneId = repair.PlaneId;
+            this._windowService = _windowService;
+
             
             ChangePlaneRepairCommand = new RelayCommand(ExecuteChangePlaneRepair);
             LoadData();

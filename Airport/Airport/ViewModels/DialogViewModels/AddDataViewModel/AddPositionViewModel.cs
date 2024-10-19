@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using Airport.Views.Dialog;
 using MongoDB.Bson;
@@ -14,17 +15,17 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     {
         private readonly PositionService _positionService;
         private readonly StructureUnitService _structureUnitService;
-        public ICommand AddPositionCommand { get; }
-        public AddPositionViewModel()
+        private IWindowService _windowService;
+        public ICommand AddPositionComand { get; }
+        public AddPositionViewModel(IWindowService windowService)
         {
-    
-
+             this._windowService = windowService;
             _positionService = new PositionService();
             _structureUnitService = new StructureUnitService();
 
             LoadData();
             CreateDictionaries();
-            AddPositionCommand = new RelayCommand(ExecuteAddPosition, canExecute=>true);
+            AddPositionComand = new RelayCommand(ExecuteAddPosition, canExecute=>true);
 
 
         }

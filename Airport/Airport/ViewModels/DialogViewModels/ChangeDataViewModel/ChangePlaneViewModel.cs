@@ -1,4 +1,5 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,11 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         private readonly StructureUnitService _structureUnitService;
         private readonly PlaneService _planeService;
-
+        private IWindowService _windowService;
         public ICommand ChnagePassangerCommand { get; }
-        public ChangePlaneViewModel(Models.Plane plane)
+        public ChangePlaneViewModel(Models.Plane plane, IWindowService windowService)
         {
+            this._windowService = windowService;
             this._id = plane.PlaneId;
             _type = plane.Type;
             _techCondition = plane.TechCondition;

@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         private readonly PositionService _positionService;
         private readonly StructureUnitService _structureUnitService;
+        private IWindowService _windowService;
         public ICommand ChangePositionCommand { get; }
-        public ChangePositionViewModel(Position position)
+        public ChangePositionViewModel(Position position, IWindowService windowService)
         {
 
-
+            this._windowService = windowService;
             _positionService = new PositionService();
             _structureUnitService = new StructureUnitService();
             this._id = position.PositionId;

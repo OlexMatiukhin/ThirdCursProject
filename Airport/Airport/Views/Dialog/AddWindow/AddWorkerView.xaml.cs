@@ -24,7 +24,7 @@ namespace Airport.Views.Dialog
         {
             InitializeComponent();
 
-            DataContext = new AddWorkerViewModel();
+           
         }
     }
 }

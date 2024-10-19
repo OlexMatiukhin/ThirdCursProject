@@ -20,7 +20,7 @@ namespace Airport
         public PassangersView()
         {
             InitializeComponent();
-            DataContext = new PassengersViewModel();
+           
         }
 
       

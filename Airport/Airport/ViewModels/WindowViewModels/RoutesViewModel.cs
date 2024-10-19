@@ -16,13 +16,15 @@ namespace Airport.ViewModels.WindowViewModels
 {
     public class RoutesViewModel
     {
+
         public ObservableCollection<Route> Routes { get; set; }
         private RouteService _routeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
-        public RoutesViewModel()
+        public RoutesViewModel(IWindowService windowService)
         {
             _routeService = new RouteService();
+            this._windowService = windowService;
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             _windowService= new WindowService();
 
@@ -34,8 +36,8 @@ namespace Airport.ViewModels.WindowViewModels
             var route = parameter as Route;
             if (route != null)
             {
-                _windowService.OpenWindow("СhangeRoute", route);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("СhangeRoute", route);
+                
 
             }
 

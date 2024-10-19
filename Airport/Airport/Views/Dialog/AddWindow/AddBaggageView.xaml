@@ -28,7 +28,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="217,46,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Категор"/><Run Language="uk-ua" Text="і"/><Run Text="я"/></TextBlock>
         <ComboBox  ItemsSource="{Binding PassengersDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding SelectedPassengerId, Mode=TwoWay}"  HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top" Width="128"/>
 
-        <Button Content="Додати" Command="{Binding AddBaggageCommand}" HorizontalAlignment="Left" Margin="250,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
+        <Button Content="Додати" Command="{Binding AddBaggageCommand}" HorizontalAlignment="Left" Margin="267,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
 
     </Grid>
 

@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
+ 
+
     class AddBrigadeViewModel
     {
         private readonly StructureUnitService _structureUnitService;
         public ICommand AddBrigadeCommand { get; }
         private BrigadeService _brigadeService;
-        public AddBrigadeViewModel()
+        private IWindowService _windowService;
+        public AddBrigadeViewModel(IWindowService windowService)
         {
             _structureUnitService = new StructureUnitService();
             LoadData();

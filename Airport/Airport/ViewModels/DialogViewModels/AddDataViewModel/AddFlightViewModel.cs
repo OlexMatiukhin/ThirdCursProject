@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     {
         private readonly BrigadeService _brigadeService;
         private readonly PlaneService _planeService;
+        private IWindowService _windowService;
         private readonly RouteService _routeService;
         private FlightService _flightService;
         private SeatService _seatService;
@@ -196,10 +198,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public AddFlightViewModel()
+        public AddFlightViewModel(IWindowService windowService)
         {
             _brigadeService = new BrigadeService();
             _planeService = new PlaneService();
+            this._windowService = windowService;
             _routeService = new RouteService();
             _seatService = new SeatService();
             _flightService = new FlightService();

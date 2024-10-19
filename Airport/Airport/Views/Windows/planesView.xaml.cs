@@ -21,7 +21,7 @@ namespace Airport
         public planesView()
         {
             InitializeComponent();
-            DataContext = new PlanesViewModel();
+          
         }
 
         

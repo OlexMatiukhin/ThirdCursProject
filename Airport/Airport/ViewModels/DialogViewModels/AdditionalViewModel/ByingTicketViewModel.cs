@@ -45,7 +45,8 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             {
                if(ticket.Status == "заброньований")
                 {
-                    MessageBoxResult result = MessageBox.Show(
+                
+                MessageBoxResult result = MessageBox.Show(
                 $"Данний білте заброньований за пасажиром з id:{ticket.PassengerId}. Він бажає купити білет.",
                 "Покупка заброньованого білету",
                 MessageBoxButton.YesNo,
@@ -58,7 +59,7 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
                 else
                 {
                     ticket.Status = "куплений";
-                    _windowService.OpenWindow("AddPassanger",ticket);
+                    _windowService.OpenModalWindow("AddPassanger",ticket);
 
                     
                 }

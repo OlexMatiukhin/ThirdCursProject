@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Airport.Services;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -19,6 +20,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
  
         private readonly DepartmentService _departmentService;
         private readonly StructureUnitService _structureUnitService;
+        private IWindowService _windowService;
         public ICommand ChangeStructureUnitCommand { get; }
 
 
@@ -99,9 +101,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
         }
 
-        public ChangeStructureUnitViewModel(StructureUnit structureUnit)
+        public ChangeStructureUnitViewModel(StructureUnit structureUnit, IWindowService windowService)
         {
-
+            this._windowService = windowService;
             _departmentService = new DepartmentService();
             _structureUnitService = new StructureUnitService();
             ChangeStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute => true);

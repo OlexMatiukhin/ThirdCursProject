@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using Airport.Views.Dialog;
 using MongoDB.Bson;
@@ -14,16 +15,18 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     {
         private readonly BrigadeService _brigadeService;
         private readonly PositionService _postitionService;
+        private IWindowService _windowService;
 
         private readonly WorkerService _workerService;
 
         // Command for adding a worker
         public ICommand AddWorkerCommand { get; }
 
-        public AddWorkerViewModel()
+        public AddWorkerViewModel(IWindowService windowService)
         {
             _brigadeService = new BrigadeService();
             _postitionService = new PositionService();
+            this._windowService = windowService;
 
             LoadData();
             CreateDictionaries();

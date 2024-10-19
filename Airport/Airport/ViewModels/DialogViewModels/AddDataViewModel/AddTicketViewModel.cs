@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
     public class AddTicketViewModel : INotifyPropertyChanged
     {
+        private IWindowService _windowService;
         private readonly  BrigadeService _brigadeService;
         private readonly TicketService _tickietSevice;
         
@@ -24,13 +26,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private readonly WorkerService _workerService;
         public ICommand AddTicketCommand { get; }
 
-        public AddTicketViewModel()
+        public AddTicketViewModel(IWindowService windowService)
         {
             _brigadeService = new BrigadeService();
             _tickietSevice = new TicketService();
        
             _flightService = new FlightService();
             _seatService =  new SeatService();
+            _windowService = this._windowService;
             LoadData();
             CreateDictionaries();
             AddTicketCommand = new RelayCommand(ExecuteAddTicket, canExecute => true);

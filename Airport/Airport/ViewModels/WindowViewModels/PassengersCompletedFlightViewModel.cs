@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,18 @@ namespace Airport.ViewModels.WindowViewModels
 {
 
 
+   
 
     public class PassengersCompletedFlightViewModel
     {
         public ObservableCollection<PassengerCompletedFlight> Passengers { get; set; }
         private PassengerCompletedFlightService _passengerService;
 
-        public PassengersCompletedFlightViewModel()
+        private IWindowService _windowService;
+        public PassengersCompletedFlightViewModel(IWindowService _windowService)
         {
             _passengerService = new PassengerCompletedFlightService();
+            this._windowService = _windowService;
             LoadPassengers();
         }
 

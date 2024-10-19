@@ -22,10 +22,11 @@ namespace Airport.ViewModels.WindowViewModels
         private PlaneService _planeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
-        public PlaneRepairsViewModel()
+        public PlaneRepairsViewModel(IWindowService windowService)
         {
             _planeRepairService = new PlaneRepairService();
             _planeService = new PlaneService();
+            this._windowService = windowService;
             LoadPlaneRepairs();
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
@@ -34,8 +35,8 @@ namespace Airport.ViewModels.WindowViewModels
         {            var planeRepair = parameter as PlaneRepair;
             if (planeRepair != null)
             {
-                _windowService.OpenWindow("ChangePlaneRepair", planeRepair);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangePlaneRepair", planeRepair);
+              
             }
 
         }

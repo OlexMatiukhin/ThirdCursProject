@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
@@ -10,9 +11,11 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<Ticket> Tickets { get; set; }
         private TicketService _ticketService;
-
-        public TicketsViewModel()
+        private IWindowService _windowService;
+        public TicketsViewModel(IWindowService windowService)
         {
+            this._windowService = windowService;
+
             _ticketService = new TicketService();
             LoadTickets();
         }

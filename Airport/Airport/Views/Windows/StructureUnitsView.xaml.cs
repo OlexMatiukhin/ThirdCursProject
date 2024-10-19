@@ -21,7 +21,7 @@ namespace Airport
         public StructureUnitsView()
         {
             InitializeComponent();
-            DataContext = new StructureUnitsViewModel();
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

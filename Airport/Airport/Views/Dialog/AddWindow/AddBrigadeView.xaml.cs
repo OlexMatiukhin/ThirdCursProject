@@ -24,7 +24,6 @@ namespace Airport.Views.Dialog.AddWindow
         public AddBrigadeView()
         {
             InitializeComponent();
-            DataContext = new AddBrigadeViewModel();
         }
     }
 }

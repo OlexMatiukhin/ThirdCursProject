@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,15 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private readonly BrigadeService _brigadeService;
         private readonly PositionService _postitionService;
 
+
+        private IWindowService _windowService;
+
         private readonly WorkerService _workerService;
 
         public ICommand ChangeWorkerCommand { get; }
 
-        public ChangeWorkerViewModel(Worker worker)
-        {
+        public ChangeWorkerViewModel(Worker worker, IWindowService windowService)
+        {   this._windowService = windowService;
             _brigadeService = new BrigadeService();
             _postitionService = new PositionService();
 

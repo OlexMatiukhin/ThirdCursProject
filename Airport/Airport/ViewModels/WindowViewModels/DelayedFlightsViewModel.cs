@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.ObjectModel;
 using Airport.Services.MongoDBSevice;
+using Airport.Services;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -15,12 +16,15 @@ namespace Airport.ViewModels.WindowViewModels
 
     public class DelayedFlightsViewModel
     {
+        private readonly IWindowService _windowService;
+        
         public ObservableCollection<DelayedFlightInfo> DelayedFlights { get; set; }
         private DelayedFlightsService _delayedFlightsService;
 
-        public DelayedFlightsViewModel()
+        public DelayedFlightsViewModel(IWindowService _windowService)
         {
             _delayedFlightsService = new DelayedFlightsService();
+            this._windowService = _windowService;
             LoadDelayedFlights();
         }
 

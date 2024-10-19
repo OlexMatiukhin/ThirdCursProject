@@ -11,6 +11,9 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
+
+
+
     public class PlanesViewModel
     {
         public ObservableCollection<Plane> Planes { get; set; }
@@ -22,10 +25,10 @@ namespace Airport.ViewModels.WindowViewModels
      
 
 
-        public PlanesViewModel()
+        public PlanesViewModel(IWindowService windowService)
         {
             _planeService = new PlaneService();
-            _windowService = new WindowService();
+            this._windowService = windowService;
             LoadPlanes();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             ChangeFuelStatusCommand = new RelayCommand(OnChangeFuleStatus);
@@ -45,8 +48,8 @@ namespace Airport.ViewModels.WindowViewModels
             var plane = parameter as Plane;
             if (plane != null)
             {
-                _windowService.OpenWindow("ChangePlane", plane);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangePlane", plane);
+             
 
             }
 

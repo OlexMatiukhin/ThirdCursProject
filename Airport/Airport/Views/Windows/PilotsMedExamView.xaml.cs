@@ -22,7 +22,7 @@ namespace Airport
         public PilotsMedExamView()
         {
             InitializeComponent();
-            DataContext = new PilotsMedExamsViewModel();
+         
 
         }
 

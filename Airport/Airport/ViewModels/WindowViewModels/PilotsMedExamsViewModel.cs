@@ -14,16 +14,18 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
+    
     public class PilotsMedExamsViewModel
     {
         public ObservableCollection<PilotMedExam> PilotMedExams { get; set; }
         private PilotMedExamService _pilotMedExamService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
-        public PilotsMedExamsViewModel()
+        public PilotsMedExamsViewModel(IWindowService windowService)
         {
             _pilotMedExamService = new PilotMedExamService();
             LoadPilotMedExams();
+            this._windowService = windowService;
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
 
@@ -35,8 +37,8 @@ namespace Airport.ViewModels.WindowViewModels
             var passanger = parameter as PilotMedExam;
             if (passanger != null)
             {
-                _windowService.OpenWindow("ChangePilotMedExam", passanger);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangePilotMedExam", passanger);
+            
 
             }
 

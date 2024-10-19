@@ -2,8 +2,12 @@
 using Airport.ViewModels.DialogViewModels.AddDataViewModel;
 using Airport.ViewModels.DialogViewModels.Change;
 using Airport.ViewModels.DialogViewModels.ChangeDataViewModel;
+using Airport.ViewModels.MenuViewModels;
+using Airport.ViewModels.WindowViewModels;
 using Airport.Views.Dialog;
+using Airport.Views.Dialog.AddWindow;
 using Airport.Views.Dialog.ChangeWindow;
+using Airport.Views.MenuWindows;
 using Airport.Views.Windows;
 using System;
 using System.Collections.Generic;
@@ -17,40 +21,44 @@ namespace Airport.Services
 {
     public class WindowService : IWindowService
     {
-        public void OpenWindow(string windowName, object parameter = null)
+        Window modalWindow;
+
+        Window window;
+        public void OpenWindow(string windowName)
         {
-            Window window = null;
+             window = null;
 
             switch (windowName)
             {
 
+
                 case "BaggageView":
                     window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);                    
+                    window.DataContext = new BaggageViewModel(this);
                     break;
                 case "BrigadesView":
                     window = new BrigadesView();
                     window.DataContext = new BrigadesViewModel(this);
                     break;
                 case "CanceledFlightsView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new CanceledFlightsView();
+                    window.DataContext = new CanceledFligthsViewModel(this);
                     break;
-                case "CompletedFlights":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                case "CompletedFlightsView":
+                    window = new CompletedFlightsView();
+                    window.DataContext = new CompletedFlightsViewModel(this);
                     break;
                 case "DelayedFlightsInfoView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new DelayedFlightsInfoView();
+                    window.DataContext = new DelayedFlightsViewModel(this);
                     break;
                 case "DepartmentsView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new DepartmentsView();
+                    window.DataContext = new DepartmentsViewModel(this);
                     break;
                 case "FlightsView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new FlightsView();
+                    window.DataContext = new FlightsViewModel(this);
                     break;
                 case "PassengerCompletedFlightView":
                     window = new BaggageView();
@@ -61,12 +69,12 @@ namespace Airport.Services
                     window.DataContext = new BaggageViewModel(this);
                     break;
                 case "PilotsMedExamView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new PilotsMedExamView();
+                    window.DataContext = new PilotsMedExamsViewModel(this);
                     break;
                 case "PlaneRepairView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    window = new planeRepairView();
+                    window.DataContext = new PlaneRepairsViewModel(this);
                     break;
 
                 case "PlanesView":
@@ -85,7 +93,7 @@ namespace Airport.Services
                     window = new BaggageView();
                     window.DataContext = new BaggageViewModel(this);
                     break;
-                case "SeatsView.xaml":
+                case "SeatsView":
                     window = new BaggageView();
                     window.DataContext = new BaggageViewModel(this);
                     break;
@@ -101,96 +109,26 @@ namespace Airport.Services
                     window = new BaggageView();
                     window.DataContext = new BaggageViewModel(this);
                     break;
-
-
-
-
-
-
-                // ChangeWindows
-                case "ChangeFlight":
-                    window = new ChangeFlight();
-                    if (parameter is Flight flight)
-                    {
-                        window.DataContext = new ChangeFlightViewModel(flight);
-                    }
-                    break;
-                case "ChangeBaggage":
-                    window = new ChangeBaggage();
-                    if (parameter is Baggage baggage)
-                    {
-                        window.DataContext = new СhangeBaggageViewModel(baggage);
-                    }
-                    break;
-                case "ChangeDepartment":
-                window = new ChangeDepartment();
-                if (parameter is Department department)
-                {
-                    window.DataContext = new ChangeDepartmentViewModel(department);
-                }
-                break;
-                case "ChangePassenger":
-                    window = new ChangePassenger();
-                    if (parameter is Passenger passenger)
-                    {
-                        window.DataContext = new ChangePassengerViewModel(passenger);
-                    }
-                    break;
-                case "ChangePlane":
-                    window = new ChangePlane();
-                    if (parameter is Models.Plane plane)
-                    {
-                        window.DataContext = new ChangePlaneViewModel(plane);
-                    }
-                    break;
-                case "ChangePosition":
-                    window = new ChangePosition();
-                    if (parameter is Models.Position positon)
-                    {
-                        window.DataContext = new ChangePositionViewModel(positon);
-                    }
-                    break;
-                case "СhangeRoute":
-                    window = new ChangeRoute();
-                    if (parameter is Models.Route route)
-                    {
-                        window.DataContext = new ChangeRouteViewModel(route);
-                    }
-                    break;
-                case "ChangeStructureUnit":
-                    window = new ChangeStructureUnit();
-                    if (parameter is Models.StructureUnit structureUnit)
-                    {
-                        window.DataContext = new ChangeStructureUnitViewModel(structureUnit);
-                    }
-                    break;
-                case "ChangeWorker":
-                    window = new ChangeWorker();
-                    if (parameter is Models.Worker worker) 
-                    {
-                        window.DataContext = new ChangeWorkerViewModel(worker);
-                    }
-                    break;
-                case "ChangePilotMedExam":
-                    window = new ChangePilotMedExam();
-                    if (parameter is Models.PilotMedExam pilotMedExam)
-                    {
-                        window.DataContext = new ChangePilotMedExamViewModel(pilotMedExam);
-                    }
-                    break;
-                case "ChangePlaneRepair":
-                    window = new ChangePlaneRepair();
-                    if (parameter is Models.PlaneRepair planeRepair)
-                    {
-                        window.DataContext = new ChangePlaneRepairViewModel(planeRepair);
-                    }
+                case "MainMenuView":
+                    window = new MainMenuView();
+                    window.DataContext = new MainMenuViewModel(this);
                     break;
 
 
 
 
 
-                   
+
+
+
+
+
+
+
+
+
+
+
 
             }
 
@@ -199,10 +137,157 @@ namespace Airport.Services
                 window.Show();
             }
         }
-
         public void CloseWindow()
         {
             App.Current.Windows[0]?.Close();
+        }
+
+        public void OpenModalWindow(string windowName, object parameter = null)
+        {
+            modalWindow = null;
+            switch (windowName)
+            {
+                // ChangeWindows
+                case "ChangeFlight":
+                    modalWindow = new ChangeFlight();
+                    if (parameter is Flight flight)
+                    {
+                        modalWindow.DataContext = new ChangeFlightViewModel(flight, this);
+                    }
+                    break;
+                case "ChangeBaggage":
+                    modalWindow = new ChangeBaggage();
+                    if (parameter is Baggage baggage)
+                    {
+                        modalWindow.DataContext = new СhangeBaggageViewModel(baggage, this);
+                    }
+                    break;
+                case "ChangeDepartment":
+                    modalWindow = new ChangeDepartment();
+                    if (parameter is Department department)
+                    {
+                        modalWindow.DataContext = new ChangeDepartmentViewModel(department, this);
+                    }
+                    break;
+                case "ChangePassenger":
+                    modalWindow = new ChangePassenger();
+                    if (parameter is Passenger passenger)
+                    {
+                        modalWindow.DataContext = new ChangePassengerViewModel(passenger, this);
+                    }
+                    break;
+                case "ChangePlane":
+                    modalWindow = new ChangePlane();
+                    if (parameter is Models.Plane plane)
+                    {
+                        modalWindow.DataContext = new ChangePlaneViewModel(plane, this);
+                    }
+                    break;
+                case "ChangePosition":
+                    modalWindow = new ChangePosition();
+                    if (parameter is Models.Position positon)
+                    {
+                        modalWindow.DataContext = new ChangePositionViewModel(positon, this);
+                    }
+                    break;
+                case "СhangeRoute":
+                    modalWindow = new ChangeRoute();
+                    if (parameter is Models.Route route)
+                    {
+                        modalWindow.DataContext = new ChangeRouteViewModel(route, this);
+                    }
+                    break;
+                case "ChangeStructureUnit":
+                    modalWindow = new ChangeStructureUnit();
+                    if (parameter is Models.StructureUnit structureUnit)
+                    {
+                        modalWindow.DataContext = new ChangeStructureUnitViewModel(structureUnit, this);
+                    }
+                    break;
+                case "ChangeWorker":
+                    modalWindow = new ChangeWorker();
+                    if (parameter is Models.Worker worker)
+                    {
+                        modalWindow.DataContext = new ChangeWorkerViewModel(worker, this);
+                    }
+                    break;
+                case "ChangePilotMedExam":
+                    modalWindow = new ChangePilotMedExam();
+                    if (parameter is Models.PilotMedExam pilotMedExam)
+                    {
+                        modalWindow.DataContext = new ChangePilotMedExamViewModel(pilotMedExam, this);
+                    }
+                    break;
+                case "ChangePlaneRepair":
+                    modalWindow = new ChangePlaneRepair();
+                    if (parameter is Models.PlaneRepair planeRepair)
+                    {
+                        modalWindow.DataContext = new ChangePlaneRepairViewModel(planeRepair, this);
+                    }
+                    break;
+
+
+                //AddWindows
+                case "AddBaggeViewModel":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+
+                    break;
+                case "AddBrigadeViewModel":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddDepartmetnViewModel":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddFlightViewModel":
+
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddPassengerViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddPlaneViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddPositionViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddRouteViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddSeatViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+
+                case "AddStructureUnitViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddTicketViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+                case "AddWorkerViewModel.cs":
+                    modalWindow = new AddBaggageView();
+                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    break;
+            }
+            if (modalWindow != null)
+            {
+                modalWindow.ShowDialog();
+            }
+        }      
+        public void CloseModalWindow()
+        {
+            modalWindow.Close();
         }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Airport.Views.Dialog"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChangePlane">
+      Title="ChangeBaggage" Closing="Window_Closing">
 
     <Grid>
         <Button  Command="{Binding ChangeBaggageCommand}" Content="Змінити" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="140"/>

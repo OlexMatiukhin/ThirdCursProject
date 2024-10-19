@@ -10,6 +10,8 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
+
+  
     public class PositionsViewModel
     {
         public ObservableCollection<Position> Positions { get; set; }
@@ -20,11 +22,11 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenEditWindowCommand { get; }
         public ICommand DeleteElmentCommand { get; }
 
-        public PositionsViewModel()
+        public PositionsViewModel(IWindowService windowService)
         {
             _positionService = new PositionService();
-            LoadPositions();
-            _windowService = new WindowService();
+            this._windowService = windowService;
+            LoadPositions();       
             _workerService = new WorkerService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             DeleteElmentCommand = new RelayCommand(OnDelete);
@@ -36,8 +38,8 @@ namespace Airport.ViewModels.WindowViewModels
             var position = parameter as Position;
             if (position != null)
             {
-                _windowService.OpenWindow("ChangePosition", position);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangePosition", position);
+              
 
             }
         }

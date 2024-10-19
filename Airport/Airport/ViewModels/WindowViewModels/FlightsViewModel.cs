@@ -17,6 +17,7 @@ using System.Windows.Media.Media3D;
 
 namespace Airport.ViewModels.WindowViewModels
 {
+    
     public class FlightsViewModel
     {
         public ObservableCollection<Flight> Flights { get; set; }
@@ -29,7 +30,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         public FlightsViewModel(IWindowService windowService)
         {
-            _windowService = windowService;
+             this._windowService = windowService;
             _flightService = new FlightService();
 
             OpenEditWindowCommand = new RelayCommand(OnEdit);
@@ -53,8 +54,8 @@ namespace Airport.ViewModels.WindowViewModels
             var flight = parameter as Flight;
             if (flight != null)
             {
-                _windowService.OpenWindow("ChangeFlight", flight);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangeFlight", flight);
+               
 
             }
             

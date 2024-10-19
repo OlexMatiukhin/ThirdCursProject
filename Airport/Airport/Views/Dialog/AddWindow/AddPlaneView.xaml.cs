@@ -23,7 +23,7 @@ namespace Airport.Views.Dialog.AddWindow
         public AddPlaneView()
         {
             InitializeComponent();
-            DataContext = new AddPlaneViewModel();
+         
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

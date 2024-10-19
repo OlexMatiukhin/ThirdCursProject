@@ -18,9 +18,10 @@ namespace Airport.ViewModels.WindowViewModels
 
         private readonly IWindowService _windowService;
         public ICommand OpenEditWindowCommand { get; }
-        public StructureUnitsViewModel()
+        public StructureUnitsViewModel(IWindowService _windowService)
         {
             _positionService = new PositionService();
+            this._windowService= _windowService;
             LoadStructureUnits();
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
@@ -69,8 +70,8 @@ namespace Airport.ViewModels.WindowViewModels
             var position = parameter as StructureUnit;
             if (position != null)
             {
-                _windowService.OpenWindow("ChangeStructureUnit", parameter);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangeStructureUnit", parameter);
+             
 
             }
 

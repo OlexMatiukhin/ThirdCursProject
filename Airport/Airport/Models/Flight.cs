@@ -44,14 +44,22 @@ namespace Airport.Models
         [BsonElement("inspectionBrigadeId")]
         public int InspectionBrigadeId { get; set; }
 
-        [BsonElement("routeId")]
-        public int RouteId { get; set; }
+
 
         [BsonElement("customsControl")]
         public bool CustomsControl { get; set; } = false;
 
         [BsonElement("passengerRegistration")]
         public bool PassengerRegistration { get; set; } = false;
+
+        [BsonElement("numberTickets")]
+        public int NumberTickets { get; set; } = 0; 
+
+        [BsonElement("numberBoughtTickets")]
+        public int NumberBoughtTickets { get; set; } = 0;
+
+        [BsonElement("routeId")]
+        public int RouteId { get; set; }
 
         public override string ToString()
         {
@@ -60,10 +68,9 @@ namespace Airport.Models
                    $"Plane ID: {PlaneId}, Dispatch Brigade ID: {DispatchBrigadeId}, " +
                    $"Navigation Brigade ID: {NavigationBrigadeId}, Flight Brigade ID: {FlightBrigadeId}, " +
                    $"Inspection Brigade ID: {InspectionBrigadeId}, Route ID: {RouteId}, " +
-                   $"Customs Control: {CustomsControl}, Passenger Registration: {PassengerRegistration}";
-        
+                   $"Customs Control: {CustomsControl}, Passenger Registration: {PassengerRegistration}, " +
+                   $"Number of Tickets: {NumberTickets}, Number of Bought Tickets: {NumberBoughtTickets}";
         }
-
 
 
 

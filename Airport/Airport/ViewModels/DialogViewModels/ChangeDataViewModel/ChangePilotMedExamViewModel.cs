@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
      
             private readonly WorkerService _workerSevice;
             private PilotMedExamService _pilotMedExamService;
-           
+            private IWindowService _windowService;
 
             public ICommand ChangeMedExamCommand { get; }
            
@@ -83,11 +84,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
 
-        public ChangePilotMedExamViewModel(PilotMedExam medExam)
+        public ChangePilotMedExamViewModel(PilotMedExam medExam, IWindowService windowService)
         {
                 
                 _workerSevice = new WorkerService();
                 _pilotMedExamService= new PilotMedExamService();
+                this._windowService= windowService;
 
                 this._id=medExam.ExamId;
                 this.SelectedResult=medExam.Result;

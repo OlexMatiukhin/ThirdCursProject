@@ -23,7 +23,7 @@ namespace Airport.Views.Dialog.AddWindow
         public AddRouteView()
         {
             InitializeComponent();
-            DataContext = new AddRouteViewModel();
+       
         }
     }
 }

@@ -12,18 +12,19 @@ using Airport.Command.AddDataCommands.Airport.Commands;
 namespace Airport.ViewModels.WindowViewModels
 {
     public class WorkersViewModel
-    {
+    {        
         public ObservableCollection<Worker> Workers { get; set; }
         private WorkerService _workerService;
         private BrigadeService _briagadeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
-        public WorkersViewModel()
+        
+        public WorkersViewModel( IWindowService windowService)
         {
             _workerService = new WorkerService();
             LoadWorkers();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
-            _windowService = new WindowService();
+            this._windowService =windowService;
             _briagadeService = new BrigadeService();
         }
         private void OnEdit(object parameter)
@@ -32,14 +33,9 @@ namespace Airport.ViewModels.WindowViewModels
             var worker = parameter as Worker;
             if (worker != null)
             {
-                _windowService.OpenWindow("ChangeWorker", worker);
+                _windowService.OpenModalWindow("ChangeWorker", worker);
                 _windowService.CloseWindow();
-
             }
-
-
-
-
         }
 
         private void LoadWorkers()
@@ -57,17 +53,12 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDeleteFromBrigade(object parameter)
         {
-
             var worker = parameter as Worker;
             if (worker != null)
             {
                 _workerService.DeleteBrigadeFromWorker(worker.WorkerId);
 
             }
-
-
-
-
         }
     }
 }

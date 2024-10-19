@@ -20,7 +20,7 @@ namespace Airport
         public PassengerCompletedFlightView()
         {
             InitializeComponent();
-            DataContext = new PassengersCompletedFlightViewModel();
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

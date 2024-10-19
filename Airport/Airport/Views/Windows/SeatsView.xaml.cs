@@ -21,7 +21,7 @@ namespace Airport
         public SeatsView()
         {
             InitializeComponent();
-            DataContext = new SeatsViewModel();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

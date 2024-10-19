@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private AddDepartmentCommand _addDepartmentCommand;
         private DepartmentService _departmentService;
+        private IWindowService _windowService;
         public ICommand AddDepartmentCommand { get; }
-        public AddDepartmentViewModel()
+        public AddDepartmentViewModel(IWindowService windowService)
         {
-
+            this._windowService = windowService;
             _addDepartmentCommand = new AddDepartmentCommand(this);
             AddDepartmentCommand = new RelayCommand(AddDepartment, canExecute => true);
             _departmentService = new DepartmentService();

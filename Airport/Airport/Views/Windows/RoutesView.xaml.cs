@@ -20,7 +20,7 @@ namespace Airport
     {
         public RoutesView()
         {
-            DataContext = new RoutesViewModel();
+           InitializeComponent();
         }
 
         

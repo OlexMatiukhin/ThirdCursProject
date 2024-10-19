@@ -22,7 +22,7 @@ namespace Airport.Views.Windows
         public BrigadesView()
         {
             InitializeComponent();
-            DataContext = new BrigadesViewModel();
+          
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Airport.Views.Dialog.AddWindow
         public AddTicketView()
         {
             InitializeComponent();
-            DataContext = new AddTicketViewModel();
+          
         }
     }
 }

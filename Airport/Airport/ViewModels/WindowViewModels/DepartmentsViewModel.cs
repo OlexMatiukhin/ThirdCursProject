@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
-{
+{  
     public class DepartmentsViewModel
     {
         public ObservableCollection<Department> Departments { get; set; }
@@ -19,13 +19,13 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand DeleteWindowCommand { get; }
 
         private DepartmentService _departmentService;
-        private WindowService _windowService;
+        private IWindowService _windowService;
         private StructureUnitService _structureUnitService;
 
-       public DepartmentsViewModel()
+       public DepartmentsViewModel(IWindowService _windowService)
         {
             _departmentService = new DepartmentService();
-            _windowService= new WindowService();
+            this._windowService= _windowService;
             _structureUnitService = new StructureUnitService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             DeleteWindowCommand = new RelayCommand(OnDelete);
@@ -34,15 +34,14 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnEdit(object parameter)
         {
-
             var department = parameter as Department;
             if (department != null)
             {
-                _windowService.OpenWindow("ChangeDepartment", department);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangeDepartment", department);        
+             
 
             }
-
+             
 
 
 

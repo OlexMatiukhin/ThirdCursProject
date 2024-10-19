@@ -34,10 +34,10 @@ public class BaggageViewModel
         var baggage = parameter as Baggage;
         if (baggage != null)
         {
-            _windowService.OpenWindow("ChangeBaggage", baggage);
-            _windowService.CloseWindow();
-
+            _windowService.OpenModalWindow("ChangeBaggage", baggage);
+            
         }
+
 
 
 

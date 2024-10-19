@@ -22,7 +22,7 @@ namespace Airport.Views.Dialog.AddWindow
         public AddBaggageView()
         {
             InitializeComponent();
-            DataContext = new AddBaggeViewModle();
+          
         }
     }
 }

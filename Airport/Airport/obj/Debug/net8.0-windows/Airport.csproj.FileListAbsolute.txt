@@ -139,6 +139,7 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\bin\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\bin\Debug\net8.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\BrigadesView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\BrigadesView.baml
-C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\CustomControlPassanger.g.cs
-C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\CustomControlPassanger.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\CustomsControlPassanger.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\CustomsControlPassanger.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\MenuWindows\MainMenuView.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\MenuWindows\MainMenuView.baml

@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using Airport.ViewModels.DialogViewModels.AddDataViewModel;
 using System;
@@ -15,7 +16,7 @@ namespace Airport.Command.AddDataCommands
 {
     public class AddStructureUnitViewModel
     {
-
+        private IWindowService _windowService;
         private ChangeStructureUnitCommand _addStructureUnitCommand;
         private readonly DepartmentService _departmentService;
         private readonly StructureUnitService _structureUnitService;
@@ -99,10 +100,11 @@ namespace Airport.Command.AddDataCommands
 
         }
 
-        public AddStructureUnitViewModel()
+        public AddStructureUnitViewModel(IWindowService windowService)
         {
 
             _departmentService = new DepartmentService();
+            this._windowService = windowService;
             _structureUnitService = new StructureUnitService();
             AddStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute=>true);
 

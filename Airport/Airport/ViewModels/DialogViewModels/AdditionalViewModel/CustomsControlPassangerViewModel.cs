@@ -42,34 +42,35 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             {
 
                 var passanger = parameter as Passenger;
-            Ticket ticket = ticketService.GetTicketByPassangerId(passanger.FlightId);
+                Ticket ticket = ticketService.GetTicketByPassangerId(passanger.FlightId);
                 if (passanger != null&& ticket.Status=="проданий")
                 {
 
-                MessageBoxResult result = MessageBox.Show(
-             "Допустити пасажира?",
-             "Митна перевірка",
-             MessageBoxButton.YesNo,
-             MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    passanger.CustomsControlsStatus = "допущений";
+                     MessageBoxResult result = MessageBox.Show(
+                     "Допустити пасажира?",
+                     "Митна перевірка",
+                     MessageBoxButton.YesNo,
+                     MessageBoxImage.Warning);
 
-                    _passengerService.UpdatePassenger(passanger);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        passanger.CustomsControlsStatus = "допущений";
 
-                    MessageBox.Show("Перевірку пасажира завершено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _passengerService.UpdatePassenger(passanger);
+
+                        MessageBox.Show("Перевірку пасажира завершено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        passanger.CustomsControlsStatus = "не допущений";
+
+                        _passengerService.UpdatePassenger(passanger);
+
+                        MessageBox.Show("Пасажира не допущено до рейсу!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    }
+    
                 }
-                else
-                {
-                    passanger.CustomsControlsStatus = "не допущений";
-
-                    _passengerService.UpdatePassenger(passanger);
-
-                    MessageBox.Show("Пасажира не допущено до рейсу!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                }
-
-            }
             }
 
 

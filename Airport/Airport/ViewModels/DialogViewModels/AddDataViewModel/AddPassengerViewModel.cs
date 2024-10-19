@@ -19,9 +19,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     public class AddPassengerViewModel
     {
         private readonly PassengerService _passengerService;
+        private IWindowService _windowService;
 
         private readonly TicketService _ticketService;
-        private WindowService _windowService;
+      
 
 
 
@@ -144,12 +145,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public  AddPassengerViewModel(Ticket ticket)
+        public  AddPassengerViewModel(Ticket ticket, IWindowService windowService)
         {
             _passengerService = new PassengerService();
             
             AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
-            CloseCommand = new RelayCommand(ExecuteClose);
+            this._windowService = windowService;
 
             this.ticket = ticket;
         }

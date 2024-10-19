@@ -21,7 +21,6 @@ namespace Airport
         public DelayedFlightsInfoView()
         {
             InitializeComponent();
-            DataContext = new DelayedFlightsViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

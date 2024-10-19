@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,21 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
+
     class ChangeRouteViewModel
     {
        
             private readonly RouteService _routeService;
 
             public ICommand ChangeRouteCommand { get; }
+            private IWindowService _windowService;
 
 
 
 
 
 
-            public int _id;
+        public int _id;
             public string _number;
             private string _departurePoint;
 
@@ -86,9 +89,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
 
-            public ChangeRouteViewModel(Route route)
+            public ChangeRouteViewModel(Route route, IWindowService windowService)
             {
-
+                this._windowService = windowService;
                 _routeService = new RouteService();
                 ChangeRouteCommand = new RelayCommand(ExecuteChangeRoute, canExecute => true);
                 this._id = route.RouteId;

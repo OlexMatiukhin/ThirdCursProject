@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     public class ChangePassengerViewModel
     {
         private readonly PassengerService _passengerService;
-
+        private IWindowService _windowService;
 
 
         public ICommand ChangePassengerCommand { get; }
@@ -35,6 +36,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private string _customsControlStatus;
         private string _registrationStatus;
         private int _flightId ;
+
         public int Age
         {
             get => _age;
@@ -126,15 +128,16 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
 
 
-        public ChangePassengerViewModel(Passenger passenger)
+        public ChangePassengerViewModel(Passenger passenger, IWindowService windowService)
         {
             _passengerService = new PassengerService();
-
+            this._windowService = windowService;
             ChangePassengerCommand = new RelayCommand(ExecutePassangerChange, canExecute => true);
             _id=passenger.PassengerId;
             FullName = passenger.FullName;
             Age= passenger.Age;
             SelectedGender = passenger.Gender;
+            
             PassportNumber= passenger.PassportNumber;
             InternPassportNumber= passenger.InternPassportNumber;
             BaggageStatus = passenger.BaggageStatus;

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Airport.Models;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Services.MongoDBSevice;
+using Airport.Services;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -20,7 +21,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private readonly RouteService _routeService;
         private FlightService _flightService;
         private int flightId = 0;
-    
+        private IWindowService _windowService;
+
 
         public ICommand ChangeFlightCommand { get; }
 
@@ -185,8 +187,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public ChangeFlightViewModel( Flight flight)
+        public ChangeFlightViewModel( Flight flight, IWindowService windowService)
         {
+             this._windowService=windowService;
             _brigadeService = new BrigadeService();
             flightId = flight.FlightId;
             _planeService = new PlaneService();
@@ -201,7 +204,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             SelectedNavigationBrigadeId = flight.NavigationBrigadeId;
             SelectedTechInspectionBrigadeId = flight.InspectionBrigadeId;
             RouteId = flight.RouteId;
-
+            
       
 
         ChangeFlightCommand = new RelayCommand(ExecuteChangeFlight, canExecute => true);

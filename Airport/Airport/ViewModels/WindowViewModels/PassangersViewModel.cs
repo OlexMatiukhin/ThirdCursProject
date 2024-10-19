@@ -9,9 +9,7 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
-
-
-
+    
     public class PassengersViewModel
     {
         public ObservableCollection<Passenger> Passengers { get; set; }
@@ -19,11 +17,12 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
 
-        public PassengersViewModel()
+        public PassengersViewModel(IWindowService _windowService)
         {
             _passengerService = new PassengerService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             _windowService = new WindowService();
+            this._windowService=_windowService;
             LoadPassengers();
         }
         private void OnEdit(object parameter)
@@ -32,13 +31,9 @@ namespace Airport.ViewModels.WindowViewModels
             var passanger = parameter as Passenger;
             if (passanger != null)
             {
-                _windowService.OpenWindow("ChangePilotMedExam", passanger);
-                _windowService.CloseWindow();
+                _windowService.OpenModalWindow("ChangePilotMedExam", passanger);         
 
             }
-
-
-
 
         }
         private void LoadPassengers()

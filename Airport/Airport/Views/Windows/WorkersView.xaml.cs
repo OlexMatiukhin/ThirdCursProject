@@ -21,7 +21,7 @@ namespace Airport
         public WorkersView()
         {
             InitializeComponent();
-            DataContext = new WorkersViewModel();
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Airport.Services.MongoDBSevice;
+using Airport.Services;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -16,11 +17,14 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         
         private DepartmentService _departmentService;
+        private IWindowService _windowService;
+
         public ICommand ChangeDepartmentCommand { get; }
-        public ChangeDepartmentViewModel(Department department)
+        public ChangeDepartmentViewModel(Department department, IWindowService windowService)
         {
             _departmentId = department.DepartmentId;
             DepartmentName= department.DepartmentName;
+            this._windowService = windowService;
 
             ChangeDepartmentCommand = new RelayCommand(ChangeDepartment, canExecute => true);
             _departmentService = new DepartmentService();

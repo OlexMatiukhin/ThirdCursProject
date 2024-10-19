@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,11 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<CanceledFlightInfo> CanceledFlights { get; set; }
         private CanceledFlightsService _canceledeFlightsService;
-
-        public CanceledFligthsViewModel()
+        private readonly IWindowService _windowService;
+        public CanceledFligthsViewModel(IWindowService _windowService)
         {
             _canceledeFlightsService = new CanceledFlightsService();
+            this._windowService = _windowService;
             LoadCanceledFlights();
         }
 

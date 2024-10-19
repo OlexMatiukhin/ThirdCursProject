@@ -23,7 +23,7 @@ namespace Airport.Views.Dialog.AddWindow
         public AddPositionView()
         {
             InitializeComponent();
-            DataContext = new AddPositionViewModel();
+          
         }
     }
 }

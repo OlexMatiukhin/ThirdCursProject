@@ -21,7 +21,7 @@ namespace Airport
         {
             InitializeComponent();
 
-            DataContext = new DepartmentsViewModel();
+       
           
         }
 

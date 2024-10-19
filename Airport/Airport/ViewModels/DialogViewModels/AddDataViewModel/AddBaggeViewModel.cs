@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
@@ -10,8 +11,13 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
+
+
+
+   
     public class AddBaggeViewModle : INotifyPropertyChanged
     {
+        IWindowService _windowService;
 
         private readonly BaggageService _baggageService;
         private readonly PassengerService _passengerService;
@@ -79,13 +85,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
 
-        public AddBaggeViewModle()
+        public AddBaggeViewModle(IWindowService windowService)
         {
             _passengerService = new PassengerService();
-
+            this._windowService = windowService;
 
             LoadData();
             CreateDictionaries();
+            
 
             _baggageService = new BaggageService();
             AddBaggageCommand = new RelayCommand(OnAddBaggageExecuted, canExecute => true);

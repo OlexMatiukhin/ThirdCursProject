@@ -12,21 +12,50 @@ namespace Airport.Services.MongoDBSevice
 
     public class CanceledFlightsService
     {
-        private readonly IMongoCollection<CanceledFlightInfo> _canceledFligthCollection;
+        private readonly IMongoCollection<CanceledFlightInfo> _canceledFlightCollection;
 
         public CanceledFlightsService()
         {
 
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _canceledFligthCollection = database.GetCollection<CanceledFlightInfo>("canceledFlightInfo");
+            _canceledFlightCollection = database.GetCollection<CanceledFlightInfo>("canceledFlightInfo");
+        }
+
+        public void AddCanceledFlight(Flight flight, string reason, string description )
+        {
+            var canceledFlightInfo = new CanceledFlightInfo
+            {
+                FlightNumber = flight.FlightNumber,
+                Status = "Canceled",
+                Category = flight.Category,
+                DispatchBrigadeId = flight.DispatchBrigadeId,
+                NavigationBrigadeId = flight.NavigationBrigadeId,
+                FlightBrigadeId = flight.FlightBrigadeId,
+                InspectionBrigadeId = flight.InspectionBrigadeId,
+                RouteId = flight.RouteId,
+                WorkerId = 0,
+                Reason = reason,
+                Description = description
+
+            };
+
+            try
+            {
+                _canceledFlightCollection.InsertOne(canceledFlightInfo);
+                Console.WriteLine("Данные о canceled flight успешно добавлены.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при добавлении данных: {ex.Message}");
+            }
         }
 
         public List<CanceledFlightInfo> GetCanceledFlightsData()
         {
             try
             {
-                return _canceledFligthCollection.Find(b => true).ToList();
+                return _canceledFlightCollection.Find(b => true).ToList();
             }
             catch (Exception ex)
             {

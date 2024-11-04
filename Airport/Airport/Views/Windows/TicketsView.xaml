@@ -57,19 +57,40 @@
                 <DataGridTextColumn Header="Ціна" Binding="{Binding DateChanges}"  Width="2*" />
                 <DataGridTextColumn Header="Номер рейсу" Binding="{Binding Price}"  Width="2*"/>
                 <DataGridTextColumn Header="Місце" Binding="{Binding FlightId}"   Width="2*"/>
-                <DataGridTextColumn Header="Ідентифікатор пасажиру" Binding="{Binding SeatId}"   Width="2*" />
-                <DataGridTextColumn Header="Ідентифікатор пасажиру" Binding="{Binding PassengerId}"   Width="2*" />
-                <DataGridTemplateColumn Header="Зміна" Width="*">
+                <DataGridTextColumn Header="Id пасажиру" Binding="{Binding SeatId}"   Width="*" />
+                <DataGridTextColumn Header="Id cидіння" Binding="{Binding PassengerId}"   Width="*" />
+
+                <DataGridTemplateColumn Header="" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редагувати" Click="Button_Click" Width="Auto" />
+                            <Button Content="Забронювати" Command="{Binding DataContext.BookTicketCommand , RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Купити" Command="{Binding DataContext.BuyTicketCommand , RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+                <DataGridTemplateColumn Header="Зміна" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редагувати" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                            
+                
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto" />
+                            <Button Content="Видалити"  Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

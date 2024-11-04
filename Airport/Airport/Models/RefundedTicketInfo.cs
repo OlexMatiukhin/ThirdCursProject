@@ -1,66 +1,153 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-
-    public class RefundedTicketInfo 
+    public class RefundedTicketInfo : INotifyPropertyChanged
     {
-        [BsonId]
-       
-        public string RefundedTicketId { get; set; }
+        private int _refundedTicketId;
+        private DateTime _date;
+        private int _routeId;
+        private int _age;
+        private decimal _price;
+        private string _gender;
+        private string _fullname;
+        private int _ticketId;
+        private int _flightId;
 
-        [BsonElement("date")] // Опционально: указывает на имя поля в MongoDB
-        public DateTime Date { get; set; }
+        [BsonId]
+        public int RefundedTicketId
+        {
+            get => _refundedTicketId;
+            set
+            {
+                if (_refundedTicketId != value)
+                {
+                    _refundedTicketId = value;
+                    OnPropertyChanged(nameof(RefundedTicketId));
+                }
+            }
+        }
+
+        [BsonElement("date")]
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                if (_date != value)
+                {
+                    _date = value;
+                    OnPropertyChanged(nameof(Date));
+                }
+            }
+        }
 
         [BsonElement("routeId")]
-        public int RouteId { get; set; }
+        public int RouteId
+        {
+            get => _routeId;
+            set
+            {
+                if (_routeId != value)
+                {
+                    _routeId = value;
+                    OnPropertyChanged(nameof(RouteId));
+                }
+            }
+        }
 
         [BsonElement("age")]
-        public int Age { get; set; }
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                if (_age != value)
+                {
+                    _age = value;
+                    OnPropertyChanged(nameof(Age));
+                }
+            }
+        }
 
         [BsonElement("price")]
-        public decimal Price { get; set; }
+        public decimal Price
+        {
+            get => _price;
+            set
+            {
+                if (_price != value)
+                {
+                    _price = value;
+                    OnPropertyChanged(nameof(Price));
+                }
+            }
+        }
 
         [BsonElement("gender")]
-        public string Gender { get; set; }
+        public string Gender
+        {
+            get => _gender;
+            set
+            {
+                if (_gender != value)
+                {
+                    _gender = value;
+                    OnPropertyChanged(nameof(Gender));
+                }
+            }
+        }
 
         [BsonElement("fullname")]
-        public string Fullname { get; set; }
+        public string Fullname
+        {
+            get => _fullname;
+            set
+            {
+                if (_fullname != value)
+                {
+                    _fullname = value;
+                    OnPropertyChanged(nameof(Fullname));
+                }
+            }
+        }
 
         [BsonElement("ticketId")]
-        public int TicketId { get; set; }
+        public int TicketId
+        {
+            get => _ticketId;
+            set
+            {
+                if (_ticketId != value)
+                {
+                    _ticketId = value;
+                    OnPropertyChanged(nameof(TicketId));
+                }
+            }
+        }
 
         [BsonElement("flightId")]
-        public int FlightId { get; set; }
-    }
-
-    /*public RefundedTicketInfo(int refundedTicketId, DateTime date, int routeId, int age, decimal price, string gender, string fullname, int ticketId, int flightId)
+        public int FlightId
         {
-            this.refundedTicketId = refundedTicketId;
-            this.date = date;
-            this.routeId = routeId;
-            this.age = age;
-            this.price = price;
-            this.gender = gender;
-            this.fullname = fullname;
-            this.ticketId = ticketId;
-            this.flightId = flightId;
-        }*/
+            get => _flightId;
+            set
+            {
+                if (_flightId != value)
+                {
+                    _flightId = value;
+                    OnPropertyChanged(nameof(FlightId));
+                }
+            }
+        }
 
-        /*public int RefundedTicketId { get => refundedTicketId; set => refundedTicketId = value; }
-        public DateTime Date { get => date; set => date = value; }
-        public int RouteId { get => routeId; set => routeId = value; }
-        public int Age { get => age; set => age = value; }
-        public decimal Price { get => price; set => price = value; }
-        public string Gender { get => gender; set => gender = value; }
-        public string Fullname { get => fullname; set => fullname = value; }
-        public int TicketId { get => ticketId; set => ticketId = value; }
-        public int FlightId { get => flightId; set => flightId = value; }*/
-    
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

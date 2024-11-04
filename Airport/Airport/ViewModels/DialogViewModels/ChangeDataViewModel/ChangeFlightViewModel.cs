@@ -20,17 +20,17 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private readonly PlaneService _planeService;
         private readonly RouteService _routeService;
         private FlightService _flightService;
-        private int flightId = 0;
+        private Flight _flight;
+  
         private IWindowService _windowService;
-
-
         public ICommand ChangeFlightCommand { get; }
+
 
         public ObservableCollection<Brigade> FlightBrigades { get; set; }
         public ObservableCollection<Brigade> DispatchBrigades { get; set; }
         public ObservableCollection<Brigade> NavigationBrigades { get; set; }
         public ObservableCollection<Brigade> TechInspectionBrigades { get; set; }
-        public ObservableCollection<Plane> Planes { get; set; }
+        public ObservableCollection<AirPlane> Planes { get; set; }
         public ObservableCollection<Route> Routes { get; set; }
 
         public Dictionary<int, string> FlightBrigadesDictionary { get; set; }
@@ -58,8 +58,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private int _selectedNavigationBrigadeId;
         private int _selectedTechInspectionBrigadeId;
         private int _routeId;
-        private int _ticketPrice;
         private int _numberTickets;
+        private int _numberBoughtTickets;
+
 
 
 
@@ -165,33 +166,18 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
 
-        public int TicketPrice
-        {
-            get => _ticketPrice;
-            set
-            {
-                _ticketPrice = value;
-                
-            }
-        }
+       
 
 
-        public int NumberTickets
-        {
-            get => _numberTickets;
-            set
-            {
-                _numberTickets = value;
-                
-            }
-        }
+      
 
 
         public ChangeFlightViewModel( Flight flight, IWindowService windowService)
         {
              this._windowService=windowService;
             _brigadeService = new BrigadeService();
-            flightId = flight.FlightId;
+             this._flight= flight;
+          
             _planeService = new PlaneService();
             _routeService = new RouteService();
             _flightService = new FlightService();
@@ -204,6 +190,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             SelectedNavigationBrigadeId = flight.NavigationBrigadeId;
             SelectedTechInspectionBrigadeId = flight.InspectionBrigadeId;
             RouteId = flight.RouteId;
+            _numberTickets = flight.NumberTickets;
+
+           
             
       
 
@@ -218,25 +207,23 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecuteChangeFlight(object parameter)
         {
-           
 
 
-            Flight newFlight = new Flight
-            {
-                FlightNumber = FlightNumber,
-                FlightId = flightId,
-                Status = "активний",
-                Category = SelectedCategory,
-                DateDeparture = DateDeparture,
-                DateArrival = DateArrivial,
-                PlaneId = SelectedPlaneId,
-                DispatchBrigadeId = SelectedDispatchBrigadeId,
-                NavigationBrigadeId = SelectedNavigationBrigadeId,
-                FlightBrigadeId = SelectedFlightBrigadeId,
-                InspectionBrigadeId = SelectedTechInspectionBrigadeId,
-                RouteId = RouteId
-            };
-            _flightService.UpdateFlight(newFlight.FlightId, newFlight);
+
+
+            _flight.FlightNumber = FlightNumber;
+
+            _flight.Status = "активний";
+            _flight.Category = SelectedCategory;
+            _flight.DateDeparture = DateDeparture;
+            _flight.DateArrival = DateArrivial;
+            _flight.PlaneId = SelectedPlaneId;
+            _flight.DispatchBrigadeId = SelectedDispatchBrigadeId;
+            _flight.NavigationBrigadeId = SelectedNavigationBrigadeId;
+            _flight.FlightBrigadeId = SelectedFlightBrigadeId;
+            _flight.InspectionBrigadeId = SelectedTechInspectionBrigadeId;
+            _flight.RouteId = RouteId;            
+            _flightService.UpdateFlight(_flight);
 
         }
 
@@ -253,7 +240,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             var TechInspectionBrigadesList = _brigadeService.GetBrigadesByType("Бригада технічного огляду літаків");
             TechInspectionBrigades = new ObservableCollection<Brigade>(TechInspectionBrigadesList);
-            Planes = new ObservableCollection<Plane>(_planeService.GetPlanesData());
+            Planes = new ObservableCollection<AirPlane>(_planeService.GetPlanesData());
             Routes = new ObservableCollection<Route>(_routeService.GetRoutes());
         }
 

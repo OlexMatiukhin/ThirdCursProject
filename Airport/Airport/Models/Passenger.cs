@@ -1,85 +1,211 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class Passenger
+    public class Passenger : INotifyPropertyChanged
     {
+        private int _passengerId;
+        private int _age;
+        private string _gender;
+        private string _passportNumber;
+        private string _internPassportNumber;
+        private string _baggageStatus;
+        private string _phoneNumber;
+        private string _email;
+        private string _fullName;
+        private string _customsControlsStatus;
+        private string _registrationStatus;
+        private int _flightId;
+
         [BsonId]
-
-    
-        public int PassengerId { get; set; }
-
-        [BsonElement("age")]
-        public int Age { get; set; }
-
-        [BsonElement("gender")]
-        public string Gender { get; set; }
-
-        [BsonElement("passportNumber")]
-        public string PassportNumber { get; set; }
-
-        [BsonElement("internPassportNumber")]
-        public string InternPassportNumber { get; set; }
-
-        [BsonElement("bagageStatus")]
-        public string BaggageStatus { get; set; }
-
-        [BsonElement("phoneNumber")]
-        public string PhoneNumber { get; set; }
-
-        [BsonElement("email")]
-        public string Email { get; set; }
-
-        [BsonElement("fullname")]
-        public string FullName { get; set; }
-
-        [BsonElement("customsControlStatus")]
-        public string CustomsControlsStatus { get; set; }
-
-        [BsonElement("registrationStatus")]
-        public string RegistrationStatus { get; set; }
-
-        [BsonElement("flightId")]
-        public int FlightId { get; set; }
-        public override string ToString()
+        public int PassengerId
         {
-            return $"PassengerId: {PassengerId}, Fullname: { FullName}, Age: {Age}, Gender: {Gender}, PassportNumber: {PassportNumber}, " +
-                   $"InternPassportNumber: {InternPassportNumber}, BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}, CustomControlStatus:{CustomsControlsStatus}, RegistrationStatus:{RegistrationStatus},  FlightId:{FlightId}";
+            get => _passengerId;
+            set
+            {
+                if (_passengerId != value)
+                {
+                    _passengerId = value;
+                    OnPropertyChanged(nameof(PassengerId));
+                }
+            }
         }
 
-        /* public Passenger(int passengerId, int age, string gender, string passportNumber, string internPassportNumber, string baggageStatus, string phoneNumber, string email, string fullname)
-         {
-             this.passengerId = passengerId;
-             this.age = age;
-             this.gender = gender;
-             this.passportNumber = passportNumber;
-             this.internPassportNumber = internPassportNumber;
-             this.baggageStatus = baggageStatus;
-             this.phoneNumber = phoneNumber;
-             this.email = email;
-             this.fullname = fullname;
-         }
+        [BsonElement("age")]
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                if (_age != value)
+                {
+                    _age = value;
+                    OnPropertyChanged(nameof(Age));
+                }
+            }
+        }
 
-         public int PassengerId { get => passengerId; set => passengerId = value; }
-         public int Age { get => age; set => age = value; }
-         public string Gender { get => gender; set => gender = value; }
-         public string PassportNumber { get => passportNumber; set => passportNumber = value; }
-         public string InternPassportNumber { get => internPassportNumber; set => internPassportNumber = value; }
-         public string BaggageStatus { get => baggageStatus; set => baggageStatus = value; }
-         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-         public string Email { get => email; set => email = value; }
-         public string Fullname { get => fullname; set => fullname = value; }
-        */
+        [BsonElement("gender")]
+        public string Gender
+        {
+            get => _gender;
+            set
+            {
+                if (_gender != value)
+                {
+                    _gender = value;
+                    OnPropertyChanged(nameof(Gender));
+                }
+            }
+        }
+
+        [BsonElement("passportNumber")]
+        public string PassportNumber
+        {
+            get => _passportNumber;
+            set
+            {
+                if (_passportNumber != value)
+                {
+                    _passportNumber = value;
+                    OnPropertyChanged(nameof(PassportNumber));
+                }
+            }
+        }
+
+        [BsonElement("internPassportNumber")]
+        public string InternPassportNumber
+        {
+            get => _internPassportNumber;
+            set
+            {
+                if (_internPassportNumber != value)
+                {
+                    _internPassportNumber = value;
+                    OnPropertyChanged(nameof(InternPassportNumber));
+                }
+            }
+        }
+
+        [BsonElement("bagageStatus")]
+        public string BaggageStatus
+        {
+            get => _baggageStatus;
+            set
+            {
+                if (_baggageStatus != value)
+                {
+                    _baggageStatus = value;
+                    OnPropertyChanged(nameof(BaggageStatus));
+                }
+            }
+        }
+
+        [BsonElement("phoneNumber")]
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                if (_phoneNumber != value)
+                {
+                    _phoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
+                }
+            }
+        }
+
+        [BsonElement("email")]
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (_email != value)
+                {
+                    _email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
+            }
+        }
+
+        [BsonElement("fullname")]
+        public string FullName
+        {
+            get => _fullName;
+            set
+            {
+                if (_fullName != value)
+                {
+                    _fullName = value;
+                    OnPropertyChanged(nameof(FullName));
+                }
+            }
+        }
+
+        [BsonElement("customsControlStatus")]
+        public string CustomsControlsStatus
+        {
+            get => _customsControlsStatus;
+            set
+            {
+                if (_customsControlsStatus != value)
+                {
+                    _customsControlsStatus = value;
+                    OnPropertyChanged(nameof(CustomsControlsStatus));
+                }
+            }
+        }
+
+        [BsonElement("registrationStatus")]
+        public string RegistrationStatus
+        {
+            get => _registrationStatus;
+            set
+            {
+                if (_registrationStatus != value)
+                {
+                    _registrationStatus = value;
+                    OnPropertyChanged(nameof(RegistrationStatus));
+                }
+            }
+        }
+
+        [BsonElement("flightId")]
+        public int FlightId
+        {
+            get => _flightId;
+            set
+            {
+                if (_flightId != value)
+                {
+                    _flightId = value;
+                    OnPropertyChanged(nameof(FlightId));
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"PassengerId: {PassengerId}, Fullname: {FullName}, Age: {Age}, Gender: {Gender}, " +
+                   $"PassportNumber: {PassportNumber}, InternPassportNumber: {InternPassportNumber}, " +
+                   $"BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}, " +
+                   $"CustomControlStatus: {CustomsControlsStatus}, RegistrationStatus: {RegistrationStatus}, " +
+                   $"FlightId: {FlightId}";
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
+
 
 
 

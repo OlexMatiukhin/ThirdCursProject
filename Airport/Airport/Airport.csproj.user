@@ -10,13 +10,16 @@
     <Compile Update="App.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Dialog\AdditionalWindow\CustomsControlPassanger.xaml.cs">
+    <Compile Update="Views\Dialog\AdditionalWindow\ChangePilotPositionView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddBaggageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddBrigadeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddCanceledFlightView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddDepartmentView.xaml.cs">
@@ -66,13 +69,19 @@
     <Page Update="App.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Dialog\AdditionalWindow\CustomsControlPassanger.xaml">
+    <Page Update="Views\Dialog\AdditionalWindow\ChangePilotPositionView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\AddWindow\AddBaggageView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\AddWindow\AddBrigadeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\AddWindow\AddDelayedFlightView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialog\AddWindow\AddCanceledFlightView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Dialog\AddWindow\AddDepartmentView.xaml">

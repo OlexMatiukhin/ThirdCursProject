@@ -7,17 +7,17 @@ namespace Airport.Services.MongoDBSevice
 {
     internal class PlaneService
     {
-        private readonly IMongoCollection<Plane> _planeCollection;
+        private readonly IMongoCollection<AirPlane> _planeCollection;
 
         public PlaneService()
         {
 
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _planeCollection = database.GetCollection<Plane>("plane");
+            _planeCollection = database.GetCollection<AirPlane>("plane");
         }
 
-        public void AddPlane(Plane plane)
+        public void AddPlane(AirPlane plane)
         {
             try
             {
@@ -30,11 +30,11 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public void UpdatePlane(Plane updatedPlane)
+        public void UpdatePlane(AirPlane updatedPlane)
         {
             try
             {
-                var filter = Builders<Plane>.Filter.Eq(p => p.PlaneId, updatedPlane.PlaneId);
+                var filter = Builders<AirPlane>.Filter.Eq(p => p.PlaneId, updatedPlane.PlaneId);
                 var result = _planeCollection.ReplaceOne(filter, updatedPlane);
 
                
@@ -45,7 +45,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public Plane GetPlaneById(int planeId)
+        public AirPlane GetPlaneById(int planeId)
         {
             try
             {
@@ -60,15 +60,15 @@ namespace Airport.Services.MongoDBSevice
         public int GetLastPlaneId()
         {
             var lastBaggage = _planeCollection
-                .Find(Builders<Plane>.Filter.Empty)
-                .Sort(Builders<Plane>.Sort.Descending(w => w.PlaneId))
+                .Find(Builders<AirPlane>.Filter.Empty)
+                .Sort(Builders<AirPlane>.Sort.Descending(w => w.PlaneId))
                 .Limit(1)
                 .FirstOrDefault();
 
             return lastBaggage?.PlaneId ?? 0;
         }
 
-        public List<Plane> GetPlanesData()
+        public List<AirPlane> GetPlanesData()
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Airport.Services.MongoDBSevice
             catch (Exception ex)
             {
                 Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
-                return new List<Plane>();
+                return new List<AirPlane>();
             }
         }
     }

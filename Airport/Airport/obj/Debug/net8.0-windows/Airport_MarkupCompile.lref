@@ -1,8 +1,9 @@
 ﻿
 
-FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AdditionalWindow\CustomsControlPassanger.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddBaggageView.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddBrigadeView.xaml;;
+FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddCanceledFlightView.xaml;;
+FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddDelayedFlightView.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddDepartmentView.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddFlightView.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AddWindow\AddPassengerView.xaml;;
@@ -46,4 +47,5 @@ FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Vie
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Windows\Test.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Windows\TicketsView.xaml;;
 FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Windows\WorkersView.xaml;;
+FC:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\Views\Dialog\AdditionalWindow\ChangePilotPositionView.xaml;;
 

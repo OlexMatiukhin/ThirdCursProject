@@ -14,13 +14,13 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
         private StructureUnitService _structureUnitService;
-        private PositionService _positionService;
+     
 
         private readonly IWindowService _windowService;
         public ICommand OpenEditWindowCommand { get; }
         public StructureUnitsViewModel(IWindowService _windowService)
         {
-            _positionService = new PositionService();
+            _structureUnitService = new StructureUnitService();
             this._windowService= _windowService;
             LoadStructureUnits();
             _windowService = new WindowService();
@@ -33,7 +33,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
             var structureUnit = parameter as StructureUnit;
-            List<Position> positionsList = _positionService.GetPositionsDataByStructureUnitId(structureUnit.DepartmentId);
+            List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentId(structureUnit.DepartmentId);
             if (positionsList.Count == 0)
             {
                 MessageBoxResult result = MessageBox.Show(

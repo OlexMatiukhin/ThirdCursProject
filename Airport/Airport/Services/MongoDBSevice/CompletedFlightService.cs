@@ -24,7 +24,34 @@ namespace Airport.Services.MongoDBSevice
             _completedFlightCollection = database.GetCollection<CompletedFlight>("completedFlights");
         }
 
-        // Method to retrieve all completed flights
+
+
+        public void AddCompletedFlightFromFlight(Flight flight)
+        {
+            try
+            {
+                var completedFlight = new CompletedFlight
+                {
+                    FlightNumber = flight.FlightNumber,
+                    Status = flight.Status,
+                    Category = flight.Category,
+                    DateDeparture = flight.DateDeparture,
+                    DateArrival = flight.DateArrival,
+                    DispatchBrigadeId = flight.DispatchBrigadeId,
+                    NavigationBrigadeId = flight.NavigationBrigadeId,
+                    FlightBrigadeId = flight.FlightBrigadeId,
+                    InspectionBrigadeId = flight.InspectionBrigadeId,
+                    RouteId = flight.RouteId
+                };
+
+                _completedFlightCollection.InsertOne(completedFlight);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при добавлении завершенного рейса: {ex.Message}");
+            }
+        }
+
         public List<CompletedFlight> GetCompletedFlightsData()
         {
             try

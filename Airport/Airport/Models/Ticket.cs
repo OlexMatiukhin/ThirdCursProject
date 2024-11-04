@@ -1,63 +1,138 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class Ticket
+    public class Ticket : INotifyPropertyChanged
     {
+        private int _ticketId;
+        private string _status;
+        private bool _availability;
+        private DateTime _dateChanges;
+        private decimal _price;
+        private int _flightId;
+        private int _seatId;
+        private int _passengerId;
+
         [BsonId]
-       
-        public int TicketId { get; set; }
-
-        [BsonElement("status")]
-        public string Status { get; set; }
-
-        [BsonElement("availability")]
-        public bool Availability { get; set; }
-
-        [BsonElement("dateChanges")]
-        public DateTime DateChanges { get; set; }
-
-        [BsonElement("price")]
-        public decimal Price { get; set; }
-
-        [BsonElement("flightId")]
-        public int FlightId { get; set; }
-
-        [BsonElement("seatId")]
-        public int SeatId { get; set; }
-
-        [BsonElement("passengerId")]
-        public int PassengerId { get; set; }
-
-
-
-
-
-        /*public Ticket(int ticketId, string status, bool availability, DateTime dateChanges, decimal price, int flightId, int seatId, int passengerId)
+        public int TicketId
         {
-            this.ticketId = ticketId;
-            this.status = status;
-            this.availability = availability;
-            this.dateChanges = dateChanges;
-            this.price = price;
-            this.flightId = flightId;
-            this.seatId = seatId;
-            this.passengerId = passengerId;
+            get => _ticketId;
+            set
+            {
+                if (_ticketId != value)
+                {
+                    _ticketId = value;
+                    OnPropertyChanged(nameof(TicketId));
+                }
+            }
         }
 
-        public int TicketId { get => ticketId; set => ticketId = value; }
-        public string Status { get => status; set => status = value; }
-        public bool Availability { get => availability; set => availability = value; }
-        public DateTime DateChanges { get => dateChanges; set => dateChanges = value; }
-        public decimal Price { get => price; set => price = value; }
-        public int FlightId { get => flightId; set => flightId = value; }
-        public int SeatId { get => seatId; set => seatId = value; }
-        public int PassengerId { get => passengerId; set => passengerId = value; }*/
+        [BsonElement("status")]
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged(nameof(Status));
+                }
+            }
+        }
+
+        [BsonElement("availability")]
+        public bool Availability
+        {
+            get => _availability;
+            set
+            {
+                if (_availability != value)
+                {
+                    _availability = value;
+                    OnPropertyChanged(nameof(Availability));
+                }
+            }
+        }
+
+        [BsonElement("dateChanges")]
+        public DateTime DateChanges
+        {
+            get => _dateChanges;
+            set
+            {
+                if (_dateChanges != value)
+                {
+                    _dateChanges = value;
+                    OnPropertyChanged(nameof(DateChanges));
+                }
+            }
+        }
+
+        [BsonElement("price")]
+        public decimal Price
+        {
+            get => _price;
+            set
+            {
+                if (_price != value)
+                {
+                    _price = value;
+                    OnPropertyChanged(nameof(Price));
+                }
+            }
+        }
+
+        [BsonElement("flightId")]
+        public int FlightId
+        {
+            get => _flightId;
+            set
+            {
+                if (_flightId != value)
+                {
+                    _flightId = value;
+                    OnPropertyChanged(nameof(FlightId));
+                }
+            }
+        }
+
+        [BsonElement("seatId")]
+        public int SeatId
+        {
+            get => _seatId;
+            set
+            {
+                if (_seatId != value)
+                {
+                    _seatId = value;
+                    OnPropertyChanged(nameof(SeatId));
+                }
+            }
+        }
+
+        [BsonElement("passengerId")]
+        public int PassengerId
+        {
+            get => _passengerId;
+            set
+            {
+                if (_passengerId != value)
+                {
+                    _passengerId = value;
+                    OnPropertyChanged(nameof(PassengerId));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -1,46 +1,83 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class Seat
+    public class Seat : INotifyPropertyChanged
     {
+        private int _seatId;
+        private int _number;
+        private string _status;
+        private int _flightId;
+
         [BsonId]
-     
-        public int SeatId { get; set; }
+        public int SeatId
+        {
+            get => _seatId;
+            set
+            {
+                if (_seatId != value)
+                {
+                    _seatId = value;
+                    OnPropertyChanged(nameof(SeatId));
+                }
+            }
+        }
 
         [BsonElement("number")]
-        public int Number { get; set; }
+        public int Number
+        {
+            get => _number;
+            set
+            {
+                if (_number != value)
+                {
+                    _number = value;
+                    OnPropertyChanged(nameof(Number));
+                }
+            }
+        }
 
         [BsonElement("status")]
-        public string Status { get; set; }
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged(nameof(Status));
+                }
+            }
+        }
 
         [BsonElement("flightId")]
-        public int FlightId { get; set; }
+        public int FlightId
+        {
+            get => _flightId;
+            set
+            {
+                if (_flightId != value)
+                {
+                    _flightId = value;
+                    OnPropertyChanged(nameof(FlightId));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public override string ToString()
         {
             return $"Seat ID: {SeatId}, Number: {Number}, Status: {Status}, Flight ID: {FlightId}";
         }
-
-
-        /*public Seat(int seatId, int number, string status, int flightId)
-        {
-            this.seatId = seatId;
-            this.number = number;
-            this.status = status;
-            this.flightId = flightId;
-        }*/
-
-        /* public int SeatId { get => seatId; set => seatId = value; }
-         public int Number { get => number; set => number = value; }
-         public string Status { get => status; set => status = value; }
-         public int FlightId { get => flightId; set => flightId = value; }*/
     }
-
-
 }

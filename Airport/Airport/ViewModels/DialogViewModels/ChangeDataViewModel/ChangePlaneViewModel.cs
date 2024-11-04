@@ -1,14 +1,12 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
+using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+
+
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -17,16 +15,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private readonly StructureUnitService _structureUnitService;
         private readonly PlaneService _planeService;
         private IWindowService _windowService;
+        private AirPlane _plane;
         public ICommand ChnagePassangerCommand { get; }
-        public ChangePlaneViewModel(Models.Plane plane, IWindowService windowService)
+        public ChangePlaneViewModel(AirPlane plane, IWindowService windowService)
         {
             this._windowService = windowService;
-            this._id = plane.PlaneId;
-            _type = plane.Type;
-            _techCondition = plane.TechCondition;
-            _interiorReadiness = plane.InteriorReadiness;
-            NumberFlightsBeforeRepair = plane.NumberFlightsBeforeRepair;
-            TechInspectionDate = plane.TechInspectionDate;
+            this._plane = plane;
             Assigned = plane.Assigned;
             NumberRepairs = plane.NumberRepairs;
             ExploitationDate = plane.ExploitationDate;
@@ -46,12 +40,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         };
      
        
-        private int _id;
+       
         private string _type;
         private string _techCondition;
-        private string _interiorReadiness;
-        private int _numberFlightsBeforeRepair;
-        private DateTime _techInspectionDate;
         private bool _assigned;
         private int _numberRepairs;
         private DateTime _exploitationDate;
@@ -59,48 +50,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
        
 
 
-       /* public string SelectedTechCondition
-        {
-            get => _techCondition;
-            set
-            {
-                _techCondition = value;
-                OnPropertyChanged(nameof(TechCondition));
-            }
-        }
+      
+
+        
 
 
-        public string SelectedInteriorReadiness
-        {
-            get => _interiorReadiness;
-            set
-            {
-                _interiorReadiness = value;
-                OnPropertyChanged(nameof(InteriorReadiness));
-            }
-        }*/
-
-
-        public int NumberFlightsBeforeRepair
-        {
-            get => _numberFlightsBeforeRepair;
-            set
-            {
-                _numberFlightsBeforeRepair = value;
-                OnPropertyChanged(nameof(NumberFlightsBeforeRepair));
-            }
-        }
-
-
-        public DateTime TechInspectionDate
-        {
-            get => _techInspectionDate;
-            set
-            {
-                _techInspectionDate = value;
-                OnPropertyChanged(nameof(TechInspectionDate));
-            }
-        }
+        
 
         public bool Assigned
         {
@@ -135,21 +90,14 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ExecuteChangePlane(object parameter)
         {
-            var newPlane = new Models.Plane
-            {
-                PlaneId = _id,
-                Type = _type,
-                TechCondition = _techCondition,
-                InteriorReadiness = _interiorReadiness,
-                NumberFlightsBeforeRepair = NumberFlightsBeforeRepair,
-                TechInspectionDate = TechInspectionDate,
-                Assigned = Assigned,
-                NumberRepairs = NumberRepairs,
-                ExploitationDate = ExploitationDate,
+            _plane.TechCondition = _techCondition;
+            _plane.Assigned = Assigned;
+            _plane.NumberRepairs = NumberRepairs;
+            _plane.ExploitationDate = ExploitationDate;
 
-            };
+            
 
-            _planeService.UpdatePlane(newPlane);
+            _planeService.UpdatePlane(_plane);
         }
 
 

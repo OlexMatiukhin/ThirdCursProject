@@ -18,12 +18,14 @@ namespace Airport.ViewModels.DialogViewModels.Change
         private readonly PlaneRepairService _planeRepairService;
         private BrigadeService _brigadeService;
         private PlaneService _planeService;
+        private PlaneRepair _planeRepair;
+
         private IWindowService _windowService;
 
         public ICommand ChangePlaneRepairCommand { get; }
 
         public ObservableCollection<Brigade> Brigades { get; set; }
-        public ObservableCollection<Plane> Planes { get; set; }
+        public ObservableCollection<AirPlane> Planes { get; set; }
 
         public Dictionary<int, string> BrigadesDictionary { get; set; }
         public Dictionary<int, string> PlanesDictionary { get; set; }
@@ -55,7 +57,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
         private string _reason;
         private string _result;
         private int _brigadeId;
-        private int _planeId;
+     
 
         public DateTime StartDate
         {
@@ -127,15 +129,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
             }
         }
 
-        public int SelectedPlaneId
-        {
-            get => _planeId;
-            set
-            {
-                _planeId = value;
-                OnPropertyChanged(nameof(SelectedPlaneId));
-            }
-        }
+     
 
         public ChangePlaneRepairViewModel(PlaneRepair repair, IWindowService _windowService)
         {
@@ -143,9 +137,8 @@ namespace Airport.ViewModels.DialogViewModels.Change
             _planeRepairService = new PlaneRepairService();
             _brigadeService = new BrigadeService();
             _planeService= new PlaneService();
-            
+            _planeRepair = repair;
 
-            this._id = repair.PlaneRepairId;
             this.StartDate=repair.StartDate;
             this.SelectedStatus = repair.Status;
             this.NumberFlights = repair.NumberFlights;
@@ -153,7 +146,6 @@ namespace Airport.ViewModels.DialogViewModels.Change
             this.Reason = repair.Reason;
             this.SelectedResult=repair.Result;
             this.SelectedBrigadeId = repair.BrigadeId;
-            this.SelectedPlaneId = repair.PlaneId;
             this._windowService = _windowService;
 
             
@@ -164,26 +156,14 @@ namespace Airport.ViewModels.DialogViewModels.Change
 
         private void ExecuteChangePlaneRepair(object parameter)
         {
-            PlaneRepair planeRepair = new PlaneRepair
-            {
-                PlaneRepairId = _id,
-                StartDate = StartDate,
-                Status = SelectedStatus,
-                NumberFlights = NumberFlights,
-                EndDate = EndDate,
-                Reason = Reason,
-                Result = SelectedResult,
-                BrigadeId = SelectedBrigadeId,
-                PlaneId = SelectedPlaneId
-            };
-
-            _planeRepairService.UpdatePlaneRepair(planeRepair);
-
-
-
-
-
-
+            _planeRepair.StartDate = StartDate;
+            _planeRepair.Status = SelectedStatus;
+            _planeRepair.NumberFlights = NumberFlights;
+            _planeRepair.EndDate = EndDate;
+            _planeRepair.Reason = Reason;
+            _planeRepair.Result = SelectedResult;
+            _planeRepair.BrigadeId = SelectedBrigadeId;
+            _planeRepairService.UpdatePlaneRepair(_planeRepair);
         }
 
         private void LoadData()
@@ -192,7 +172,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
             Brigades = new ObservableCollection<Brigade>(BrigadesList);
 
             var PlaneList  = _planeService.GetPlanesData();
-            Planes = new ObservableCollection<Plane>(PlaneList);
+            Planes = new ObservableCollection<AirPlane>(PlaneList);
         }
 
         private void CreateDictionaries()

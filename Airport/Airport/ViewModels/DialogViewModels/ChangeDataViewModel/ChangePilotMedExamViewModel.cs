@@ -18,6 +18,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
      
             private readonly WorkerService _workerSevice;
             private PilotMedExamService _pilotMedExamService;
+        private PilotMedExam _pilotMedExam;
             private IWindowService _windowService;
 
             public ICommand ChangeMedExamCommand { get; }
@@ -38,7 +39,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private int _id;
             private string _selectectedResult;
-         public DateTime _dateExamination;
+         public DateTime? _dateExamination;
             private int _selectedPilotId;
             private int _selectedDoctorId;
 
@@ -52,15 +53,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         }
 
-        public int SelectedPilotId
-        {
-            get => _selectedPilotId;
-            set
-            {
-                _selectedPilotId = value;
-                OnPropertyChanged(nameof(SelectedPilotId));
-            }
-        }
+       
 
         public int SelectedDoctorId
         {
@@ -71,7 +64,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 OnPropertyChanged(nameof(SelectedDoctorId));
             }
         }
-        public DateTime DateExamination
+        public DateTime? DateExamination
         {
             get => _dateExamination;
             set
@@ -89,11 +82,11 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 
                 _workerSevice = new WorkerService();
                 _pilotMedExamService= new PilotMedExamService();
+                this._pilotMedExam = medExam;
                 this._windowService= windowService;
 
-                this._id=medExam.ExamId;
+              
                 this.SelectedResult=medExam.Result;
-                this.SelectedPilotId = medExam.PilotId;
                 this.DateExamination = medExam.DateExamination;
                 this.SelectedDoctorId = medExam.DoctorId;
                  ChangeMedExamCommand = new RelayCommand(ExecuteChangePilotMedExam);
@@ -101,22 +94,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 CreateDictionaries();
         }
 
-            private void ExecuteChangePilotMedExam(object parameter) {
-            PilotMedExam pilotMedExam = new PilotMedExam
+            private void ExecuteChangePilotMedExam(object parameter)
             {
-                ExamId = _id,
-                Result = this.SelectedResult,
-                DateExamination = DateExamination,
-                PilotId = this.SelectedPilotId,
-                DoctorId = this.SelectedDoctorId
-            };
-            _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
-
-
-
-
-
-
+               _pilotMedExam.Result = this.SelectedResult;
+               _pilotMedExam.DateExamination = DateExamination;
+               _pilotMedExam.DoctorId = this.SelectedDoctorId;
+               _pilotMedExamService.UpdatePilotMedExam(_pilotMedExam);
             }
 
             private void LoadData()
@@ -132,8 +115,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             {
                 PilotsDictionary = Pilots.ToDictionary(w => w.WorkerId, w => w.ToString());
                 DoctorsDictionary = Doctors.ToDictionary(w => w.WorkerId, w => w.ToString());
-
-        }
+            }
 
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged(string propertyName)

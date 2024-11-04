@@ -111,7 +111,19 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+        public void DeleteTicketsByFlightId(int flightId)
+        {
+            try
+            {
+                var result = _ticketCollection.DeleteMany(f=> f.FlightId == flightId);
+           
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при удалении пассажира: {ex.Message}");
 
+            }
+        }
         public void DeleteTicket(int ticketId)
         {
             try

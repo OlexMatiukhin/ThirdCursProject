@@ -17,6 +17,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         private readonly BrigadeService _brigadeService;
         private readonly PositionService _postitionService;
+        private readonly Worker _worker;
 
 
         private IWindowService _windowService;
@@ -26,7 +27,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         public ICommand ChangeWorkerCommand { get; }
 
         public ChangeWorkerViewModel(Worker worker, IWindowService windowService)
-        {   this._windowService = windowService;
+        {  this._worker = worker;
+            this._windowService = windowService;
             _brigadeService = new BrigadeService();
             _postitionService = new PositionService();
 
@@ -34,38 +36,35 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             CreateDictionaries();
             _workerService = new WorkerService();
             ChangeWorkerCommand = new RelayCommand(ExecuteChangeWorker, canExecute => true);
-            _id = worker.WorkerId;
             FullName = worker.FullName;
-                Age = worker.Age.ToString();
+            Age = worker.Age.ToString();
             SelectedStatus = worker.Status;
-                SelectedGender = worker.Gender;
-                NumberChildren = worker.NumberChildren.ToString();
-                SelectedShift = worker.Shift;
-                Email = worker.Email;
-                PhoneNumber = worker.PhoneNumber;
-                SelectedBrigadeId = worker.BrigadeId;
+            SelectedGender = worker.Gender;
+            NumberChildren = worker.NumberChildren.ToString();
+            SelectedShift = worker.Shift;
+            Email = worker.Email;
+            PhoneNumber = worker.PhoneNumber;
+            SelectedBrigadeId = worker.BrigadeId;
             SelectedPostionId = worker.PositionId;
         }
 
         private void ExecuteChangeWorker(object parameter)
         {
-            Worker worker = new Worker
-            {
-                WorkerId = _id,
-                FullName = FullName,
-                Age = int.Parse(Age),
-                Status = SelectedStatus,
-                Gender = SelectedGender,
-                NumberChildren = int.Parse(NumberChildren),
-                HireDate = DateTime.Now,
-                Shift = SelectedShift,
-                Email = Email,
-                PhoneNumber = PhoneNumber,
-                BrigadeId = SelectedBrigadeId,
-                PositionId = SelectedPostionId
-            };
 
-            _workerService.UpdateWorker(worker);
+            _worker.FullName = FullName;
+            _worker.Age = int.Parse(Age);
+            _worker.Status = SelectedStatus;
+            _worker.Gender = SelectedGender;
+            _worker.NumberChildren = int.Parse(NumberChildren);
+            _worker.HireDate = DateTime.Now;
+            _worker.Shift = SelectedShift;
+            _worker.Email = Email;
+            _worker.PhoneNumber = PhoneNumber;
+            _worker.BrigadeId = SelectedBrigadeId;
+            _worker.PositionId = SelectedPostionId;
+           
+
+            _workerService.UpdateWorker(_worker);
         }
 
 

@@ -16,7 +16,7 @@ namespace Airport.ViewModels.WindowViewModels
 
     public class PlanesViewModel
     {
-        public ObservableCollection<Plane> Planes { get; set; }
+        public ObservableCollection<AirPlane> Planes { get; set; }
         private PlaneService _planeService;
         private PlaneRepairService _planeRepairService;
 
@@ -45,7 +45,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnEdit(object parameter)
         {
 
-            var plane = parameter as Plane;
+            var plane = parameter as AirPlane;
             if (plane != null)
             {
                 _windowService.OpenModalWindow("ChangePlane", plane);
@@ -61,7 +61,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnChangeFuleStatus(object parameter)
         {
 
-            var plane = parameter as Plane;
+            var plane = parameter as AirPlane;
             if (plane != null && plane.PlaneFuelStatus != "заправлений" && plane.TechCondition == "задовільний")
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -98,7 +98,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnChangeInteriorReadines(object parameter)
         {
 
-            var plane = parameter as Plane;
+            var plane = parameter as AirPlane;
             if (plane != null && plane.InteriorReadiness != "готовий" && plane.TechCondition == "задовільний")
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -134,7 +134,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnChangeTechConditionStatus(object parameter)
         {
 
-            var plane = parameter as Plane;
+            var plane = parameter as AirPlane;
             if (plane != null&& plane.TechCondition!="в ремонті")
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -193,7 +193,7 @@ namespace Airport.ViewModels.WindowViewModels
             try
             {
                 var planeList = _planeService.GetPlanesData();
-                Planes = new ObservableCollection<Plane>(planeList);
+                Planes = new ObservableCollection<AirPlane>(planeList);
             }
             catch (Exception ex)
             {

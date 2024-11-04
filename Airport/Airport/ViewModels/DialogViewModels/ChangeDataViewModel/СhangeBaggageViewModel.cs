@@ -23,6 +23,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private readonly BaggageService _baggageService;
             private readonly PassengerService _passengerService;
+             private Baggage _baggage;
 
             private IWindowService _windowService;
             public ICommand ChangeBaggageCommand { get; }
@@ -43,9 +44,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             private string _type;
             private string _weight;
             private string _payment;
-            private int _passangerId;
-            private int _baggageId;
-
+          
         public string BaggeType
             {
                 get => _type;
@@ -77,23 +76,14 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         
             
-
-           
-
-
-
             public СhangeBaggageViewModel(Baggage baggage, IWindowService windowService)
             {
                this._windowService=windowService;
                 _passengerService = new PassengerService();
-                _baggageId = baggage.BaggageId;
+                 this._baggage = baggage;
                 BaggeType=baggage.BaggageType;
                 Weight = baggage.Weight.ToString();
                 Payment = baggage.Payment.ToString();
-                _passangerId = baggage.PassangerId;
-
-
-
                 LoadData();
                 CreateDictionaries();
 
@@ -117,23 +107,18 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             private void CreateDictionaries()
             {
                 PassengersDictionary = Passengers.ToDictionary(b => b.PassengerId, b => b.ToString());
-
-
             }
 
 
             private void OnCahngeBaggageExecuted(object parameter)
-            { 
-                var newBaggage = new Baggage
-                {
-                    BaggageId = _baggageId,
-                    BaggageType = BaggeType,
-                    Weight = double.Parse(Weight),
-                    Payment = decimal.Parse(Payment),
-                    PassangerId = _passangerId
-                };
+            {
+                _baggage.BaggageType = BaggeType;
+                _baggage.Weight = double.Parse(Weight);
+                _baggage.Payment = decimal.Parse(Payment);
+         
+                
 
-                _baggageService.UpdateBaggage(newBaggage);
+                _baggageService.UpdateBaggage(_baggage);
        
             }
 

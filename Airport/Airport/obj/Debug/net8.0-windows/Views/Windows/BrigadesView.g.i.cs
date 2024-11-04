@@ -61,7 +61,7 @@ namespace Airport.Views.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Airport;component/views/windows/brigadesview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Airport;V1.0.0.0;component/views/windows/brigadesview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Windows\BrigadesView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

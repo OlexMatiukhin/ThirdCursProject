@@ -18,11 +18,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         
         private DepartmentService _departmentService;
         private IWindowService _windowService;
+        private Department _departement;
 
         public ICommand ChangeDepartmentCommand { get; }
         public ChangeDepartmentViewModel(Department department, IWindowService windowService)
         {
-            _departmentId = department.DepartmentId;
+            this._departement = department;
             DepartmentName= department.DepartmentName;
             this._windowService = windowService;
 
@@ -34,8 +35,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
 
-
-        public int _departmentId;
+        
+     
         public string _departmentName;
 
 
@@ -53,12 +54,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ChangeDepartment(object parameter)
         {
-            Department newDepartment = new Department
-            {
-                DepartmentId = _departmentId,
-                DepartmentName = DepartmentName,
-            };
-            _departmentService.UpdateDepartment(newDepartment);
+            
+            _departement.DepartmentName= DepartmentName;
+            _departmentService.UpdateDepartment(_departement);
         }
 
 

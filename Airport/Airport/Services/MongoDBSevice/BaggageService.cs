@@ -61,6 +61,35 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+        public void DeleteBaggageByPassanger(List<Passenger> passengers)
+        {
+           foreach (var passenger in passengers)
+            {
+                try
+                {
+                    var result = _baggageCollection.DeleteOne(b => b.PassangerId == passenger.PassengerId);
+                    if (result.DeletedCount > 0)
+                    {
+                        Console.WriteLine("Багаж успешно удален.");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Багаж с указанным ID не найден.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Произошла ошибка при удалении багажа: {ex.Message}");
+                   
+                }
+
+            }
+            
+        }
+
+
+
         public bool DeleteBaggage(int baggageId)
         {
             try

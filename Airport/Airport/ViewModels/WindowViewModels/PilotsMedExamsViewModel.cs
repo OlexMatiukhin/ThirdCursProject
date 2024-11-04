@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -19,26 +20,50 @@ namespace Airport.ViewModels.WindowViewModels
     {
         public ObservableCollection<PilotMedExam> PilotMedExams { get; set; }
         private PilotMedExamService _pilotMedExamService;
-        public ICommand OpenEditWindowCommand { get; }
+    
         private readonly IWindowService _windowService;
+        private ICommand EndExamCommand;
+        private Worker _worker;
+        private WorkerService _workerService;
         public PilotsMedExamsViewModel(IWindowService windowService)
         {
             _pilotMedExamService = new PilotMedExamService();
             LoadPilotMedExams();
             this._windowService = windowService;
+            _workerService = new WorkerService();
+            EndExamCommand = new RelayCommand(OnEndExam);
             _windowService = new WindowService();
-            OpenEditWindowCommand = new RelayCommand(OnEdit);
+          
 
         }
 
-        private void OnEdit(object parameter)
+        private void OnEndExam(object parameter)
         {
 
-            var passanger = parameter as PilotMedExam;
-            if (passanger != null)
+            var pilotMedExam = parameter as PilotMedExam;
+            if (pilotMedExam != null)
             {
-                _windowService.OpenModalWindow("ChangePilotMedExam", passanger);
-            
+                MessageBoxResult result = MessageBox.Show(
+                       "Стан здоров`я задовільний?",
+                       "",
+                       MessageBoxButton.YesNo,
+                       MessageBoxImage.Question);
+                _worker = _workerService.GetWorkerById(pilotMedExam.PilotId);
+                if (result == MessageBoxResult.Yes)
+                {
+                    pilotMedExam.Result = "пройдений";
+                    pilotMedExam.DateExamination = DateTime.Now;
+                    pilotMedExam.DoctorId = 0;
+                    _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
+                    _worker.ResultMedExam = "задовільний";
+                    _worker.LastMedExamDate = DateTime.Now;
+                }
+                else
+                {
+                    _windowService.OpenModalWindow("ChangePilotPositionViewModel", pilotMedExam, _worker);
+                }
+
+
 
             }
 

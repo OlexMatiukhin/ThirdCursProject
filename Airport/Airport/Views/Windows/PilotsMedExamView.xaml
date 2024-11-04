@@ -56,6 +56,14 @@
                 <DataGridTextColumn Header="Дата" Binding="{Binding DateExamination }"  Width="2*" />
                 <DataGridTextColumn Header="Пілот" Binding="{Binding PilotId }"  Width="2*" />
                 <DataGridTextColumn Header="Доктор" Binding="{Binding DoctorId }"  Width="2*" />
+
+                <DataGridTemplateColumn Header="Зміна" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Завершити" Command="{Binding DataContext.EndExamCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Зміна" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

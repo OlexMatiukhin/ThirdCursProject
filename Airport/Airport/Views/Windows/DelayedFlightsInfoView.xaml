@@ -57,7 +57,8 @@
                 <DataGridTextColumn Header="Диспетчерська бриг" Binding="{Binding DispatchBrigadeId}" Width="*" />
                 <DataGridTextColumn Header="Навігаційна бриг" Binding="{Binding NavigationBrigadeId }" Width="*"/>
                 <DataGridTextColumn Header="Льотна бриг" Binding="{Binding FlightBrigadeId }" Width="*" />
-                <DataGridTextColumn Header="Пибуття" Binding="{Binding NewDateDeparture }" Width="*"/>
+                <DataGridTextColumn Header="Дата початку" Binding="{Binding StartDelayDate }" Width="*"/>
+                <DataGridTextColumn Header="Закінчення" Binding="{Binding EndDelayDate }" Width="*"/>
                 <DataGridTextColumn Header="Інспекторська бриг" Binding="{Binding InspectionBrigadeId }" Width="*" />
                 <DataGridTextColumn Header="Рейс" Binding="{Binding FlightId }" Width="*" />
                 <DataGridTextColumn Header="Маршрут" Binding="{Binding  RouteId }" Width="*"/>
@@ -70,10 +71,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Редагування" Width="2*">
+                <DataGridTemplateColumn Header="Закінчення затримки" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Зміни" Click="Button_Click" Width="Auto" />
+                            <Button Content="Закінчити" Command="{Binding DataContext.FinishDelayCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}" Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

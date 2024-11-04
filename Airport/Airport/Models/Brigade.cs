@@ -1,34 +1,78 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.ComponentModel;
 
-namespace Airport.Models
+public class Brigade : INotifyPropertyChanged
 {
-    public  class Brigade
+    private int _brigadeId;
+    private string _brigadeType;
+    private int _structureUnitId;
+    private int _numberWorkers;
+
+    [BsonId]
+    public int BrigadeId
     {
-        
-        [BsonId]
-        public int BrigadeId { get; set; }
-
-        [BsonElement("brigadeType")]
-        public string BrigadeType { get; set; }
-
-        [BsonElement("structureUnitId")]
-        public int StructureUnitId { get; set; }
-
-        [BsonElement("numberWorkers")] 
-        public int NumberWorkers { get; set; }
-        public override string ToString()
+        get => _brigadeId;
+        set
         {
-            return $"{BrigadeId}: Тип:{BrigadeType}, Структурна одиниця: {StructureUnitId}";
+            if (_brigadeId != value)
+            {
+                _brigadeId = value;
+                OnPropertyChanged(nameof(BrigadeId));
+            }
         }
     }
 
-   
+    [BsonElement("brigadeType")]
+    public string BrigadeType
+    {
+        get => _brigadeType;
+        set
+        {
+            if (_brigadeType != value)
+            {
+                _brigadeType = value;
+                OnPropertyChanged(nameof(BrigadeType));
+            }
+        }
+    }
 
+    [BsonElement("structureUnitId")]
+    public int StructureUnitId
+    {
+        get => _structureUnitId;
+        set
+        {
+            if (_structureUnitId != value)
+            {
+                _structureUnitId = value;
+                OnPropertyChanged(nameof(StructureUnitId));
+            }
+        }
+    }
+
+    [BsonElement("numberWorkers")]
+    public int NumberWorkers
+    {
+        get => _numberWorkers;
+        set
+        {
+            if (_numberWorkers != value)
+            {
+                _numberWorkers = value;
+                OnPropertyChanged(nameof(NumberWorkers));
+            }
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public override string ToString()
+    {
+        return $"{BrigadeId}: Тип: {BrigadeType}, Структурна одиниця: {StructureUnitId}";
+    }
 }

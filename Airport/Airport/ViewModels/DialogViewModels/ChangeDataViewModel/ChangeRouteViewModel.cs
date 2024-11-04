@@ -20,16 +20,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             public ICommand ChangeRouteCommand { get; }
             private IWindowService _windowService;
-
-
-
-
-
-
-        public int _id;
+            private Route _route;
             public string _number;
             private string _departurePoint;
-
             private string _arrivalPoint;
             private string _transitAirport;
             private string _flightDirection;
@@ -92,9 +85,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             public ChangeRouteViewModel(Route route, IWindowService windowService)
             {
                 this._windowService = windowService;
+                this._route = route;
                 _routeService = new RouteService();
                 ChangeRouteCommand = new RelayCommand(ExecuteChangeRoute, canExecute => true);
-                this._id = route.RouteId;
                 this.Number= route.Number;
                 this.DeparturePoint = route.DeparturePoint;
                 this.ArrivalPoint = route.ArrivalPoint;
@@ -104,16 +97,13 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private void ExecuteChangeRoute(object parameter)
             {
-                var newRoute = new Route
-                {
-                    RouteId =_id,
-                    Number = Number,
-                    DeparturePoint = DeparturePoint,
-                    ArrivalPoint = ArrivalPoint,
-                    TransitAirport = TransitAirport,
-                    FlightDirection = FlightDirection
-                };
-                _routeService.UpdateRoute(newRoute);
+
+                _route.Number = Number;
+                _route.DeparturePoint = DeparturePoint;
+                _route.ArrivalPoint = ArrivalPoint;
+                _route.TransitAirport = TransitAirport;
+                _route.FlightDirection = FlightDirection;                
+                _routeService.UpdateRoute(_route);
             }
 
 

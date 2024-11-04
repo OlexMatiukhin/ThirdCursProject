@@ -7,7 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Plane = Airport.Models.Plane;
+using AirPlane = Airport.Models.AirPlane;
 
 namespace Airport.Command.AddDataCommands
 {
@@ -31,7 +31,7 @@ namespace Airport.Command.AddDataCommands
 
 
 
-            Plane newPlane = new Plane
+            AirPlane newPlane = new AirPlane
             {
                 PlaneId = _planeService.GetLastPlaneId() + 1,  
                 Type = _addPlaneViewModel.SelectedPlaneType,

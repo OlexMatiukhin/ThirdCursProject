@@ -20,6 +20,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
  
         private readonly DepartmentService _departmentService;
         private readonly StructureUnitService _structureUnitService;
+        private readonly StructureUnit _structureUnit;
         private IWindowService _windowService;
         public ICommand ChangeStructureUnitCommand { get; }
 
@@ -40,7 +41,6 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
 
-        private int _id;
         private string _structureUnitName;
         public string StructureUnitName
         {
@@ -76,15 +76,10 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
         private void ExecuteAddStructureUnit(object parameter)
         {
-            var newStructureUnit = new StructureUnit
-            {
-                StructureUnitId = _id,
-                StructureUnitName = StructureUnitName,
-                Type = SelectedStructureUnitType,
-                DepartmentId = int.Parse(SelectedDepartmentId)
-            };
-
-            _structureUnitService.UpdateStructureUnit(newStructureUnit);
+            _structureUnit.StructureUnitName = StructureUnitName;
+            _structureUnit.Type = SelectedStructureUnitType;
+            _structureUnit.DepartmentId = int.Parse(SelectedDepartmentId);
+            _structureUnitService.UpdateStructureUnit(_structureUnit);
         }
 
 
@@ -98,30 +93,21 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private void CreateDictionaries()
         {
             DepartmentsDictionary = Departments.ToDictionary(b => b.DepartmentId, b => b.ToString());
-
         }
 
         public ChangeStructureUnitViewModel(StructureUnit structureUnit, IWindowService windowService)
         {
             this._windowService = windowService;
+            this._structureUnit = structureUnit;
             _departmentService = new DepartmentService();
             _structureUnitService = new StructureUnitService();
             ChangeStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute => true);
-
-            _id = structureUnit.StructureUnitId;
             StructureUnitName = structureUnit.StructureUnitName;
             SelectedStructureUnitType = structureUnit.Type;
             SelectedDepartmentId = structureUnit.DepartmentId.ToString();
-
-
             LoadData();
             CreateDictionaries();
-
         }
-
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

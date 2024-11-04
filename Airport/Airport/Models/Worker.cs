@@ -1,89 +1,229 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class Worker
+    public class Worker : INotifyPropertyChanged
     {
-        [BsonId]        
-        public int WorkerId { get; set; }
+        private int _workerId;
+        private string _fullName;
+        private int _age;
+        private string _status;
+        private string _gender;
+        private int _numberChildren;
+        private DateTime _hireDate;
+        private string _shift;
+        private string _email;
+        private string _phoneNumber;
+        private int _brigadeId;
+        private int _positionId;
+        private DateTime _lastMedExamDate;
+        private string _resultMedExam;
 
-        [BsonElement("fullName")]
-        public string FullName { get; set; }
-
-        [BsonElement("age")]
-        public int Age { get; set; }
-
-        [BsonElement("status")]
-        public string Status { get; set; }
-
-        [BsonElement("gender")]
-        public string Gender { get; set; }
-
-        [BsonElement("numberChildrens")]
-        public int NumberChildren { get; set; }
-
-        [BsonElement("hireDate")]
-        public DateTime HireDate { get; set; }
-
-        [BsonElement("shift")]
-        public string Shift { get; set; }
-
-        [BsonElement("email")]
-        public string Email { get; set; }
-
-        [BsonElement("phoneNumber")]
-        public string PhoneNumber { get; set; }
-
-
-        [BsonElement("brigadeId")]
-        public int BrigadeId { get; set; }
-
-        [BsonElement("positionId")]
-        public int PositionId { get; set; }
-
-        [BsonElement("lastMedExamDate")]
-        public DateTime LastMedExamDate { get; set; }
-
-        [BsonElement("resultMedExam")]
-        public string ResultMedExam { get; set; }
-
-        /*public Worker(int workerId, string fullName, int age, string status, string gender, int numberChildrens, DateTime hireDate, string shift, string email, string phoneNumber, int structureUnitId, int departmentId, int brigadeId, int positionId)
+        [BsonId]
+        public int WorkerId
         {
-            this.workerId = workerId;
-            this.fullName = fullName;
-            this.age = age;
-            this.status = status;
-            this.gender = gender;
-            this.numberChildrens = numberChildrens;
-            this.hireDate = hireDate;
-            this.shift = shift;
-            this.email = email;
-            this.phoneNumber = phoneNumber;
-            this.structureUnitId = structureUnitId;
-            this.departmentId = departmentId;
-            this.brigadeId = brigadeId;
-            this.positionId = positionId;
+            get => _workerId;
+            set
+            {
+                if (_workerId != value)
+                {
+                    _workerId = value;
+                    OnPropertyChanged(nameof(WorkerId));
+                }
+            }
         }
 
-        public int WorkerId { get => workerId; set => workerId = value; }
-        public string FullName { get => fullName; set => fullName = value; }
-        public int Age { get => age; set => age = value; }
-        public string Status { get => status; set => status = value; }
-        public string Gender { get => gender; set => gender = value; }
-        public int NumberChildrens { get => numberChildrens; set => numberChildrens = value; }
-        public DateTime HireDate { get => hireDate; set => hireDate = value; }
-        public string Shift { get => shift; set => shift = value; }
-        public string Email { get => email; set => email = value; }
-        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        public int StructureUnitId { get => structureUnitId; set => structureUnitId = value; }
-        public int DepartmentId { get => departmentId; set => departmentId = value; }
-        public int BrigadeId { get => brigadeId; set => brigadeId = value; }
-        public int PositionId { get => positionId; set => positionId = value; }*/
+        [BsonElement("fullName")]
+        public string FullName
+        {
+            get => _fullName;
+            set
+            {
+                if (_fullName != value)
+                {
+                    _fullName = value;
+                    OnPropertyChanged(nameof(FullName));
+                }
+            }
+        }
+
+        [BsonElement("age")]
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                if (_age != value)
+                {
+                    _age = value;
+                    OnPropertyChanged(nameof(Age));
+                }
+            }
+        }
+
+        [BsonElement("status")]
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged(nameof(Status));
+                }
+            }
+        }
+
+        [BsonElement("gender")]
+        public string Gender
+        {
+            get => _gender;
+            set
+            {
+                if (_gender != value)
+                {
+                    _gender = value;
+                    OnPropertyChanged(nameof(Gender));
+                }
+            }
+        }
+
+        [BsonElement("numberChildrens")]
+        public int NumberChildren
+        {
+            get => _numberChildren;
+            set
+            {
+                if (_numberChildren != value)
+                {
+                    _numberChildren = value;
+                    OnPropertyChanged(nameof(NumberChildren));
+                }
+            }
+        }
+
+        [BsonElement("hireDate")]
+        public DateTime HireDate
+        {
+            get => _hireDate;
+            set
+            {
+                if (_hireDate != value)
+                {
+                    _hireDate = value;
+                    OnPropertyChanged(nameof(HireDate));
+                }
+            }
+        }
+
+        [BsonElement("shift")]
+        public string Shift
+        {
+            get => _shift;
+            set
+            {
+                if (_shift != value)
+                {
+                    _shift = value;
+                    OnPropertyChanged(nameof(Shift));
+                }
+            }
+        }
+
+        [BsonElement("email")]
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (_email != value)
+                {
+                    _email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
+            }
+        }
+
+        [BsonElement("phoneNumber")]
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                if (_phoneNumber != value)
+                {
+                    _phoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
+                }
+            }
+        }
+
+        [BsonElement("brigadeId")]
+        public int BrigadeId
+        {
+            get => _brigadeId;
+            set
+            {
+                if (_brigadeId != value)
+                {
+                    _brigadeId = value;
+                    OnPropertyChanged(nameof(BrigadeId));
+                }
+            }
+        }
+
+        [BsonElement("positionId")]
+        public int PositionId
+        {
+            get => _positionId;
+            set
+            {
+                if (_positionId != value)
+                {
+                    _positionId = value;
+                    OnPropertyChanged(nameof(PositionId));
+                }
+            }
+        }
+
+        [BsonElement("lastMedExamDate")]
+        public DateTime LastMedExamDate
+        {
+            get => _lastMedExamDate;
+            set
+            {
+                if (_lastMedExamDate != value)
+                {
+                    _lastMedExamDate = value;
+                    OnPropertyChanged(nameof(LastMedExamDate));
+                }
+            }
+        }
+
+        [BsonElement("resultMedExam")]
+        public string ResultMedExam
+        {
+            get => _resultMedExam;
+            set
+            {
+                if (_resultMedExam != value)
+                {
+                    _resultMedExam = value;
+                    OnPropertyChanged(nameof(ResultMedExam));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
+

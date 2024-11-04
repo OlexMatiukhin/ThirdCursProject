@@ -27,7 +27,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<Brigade> DispatchBrigades { get; set; }
         public ObservableCollection<Brigade> NavigationBrigades { get; set; }
         public ObservableCollection<Brigade> TechInspectionBrigades { get; set; }
-        public ObservableCollection<Plane> Planes { get; set; }
+        public ObservableCollection<AirPlane> Planes { get; set; }
         public ObservableCollection<Route> Routes { get; set; }
 
         public Dictionary<int, string> FlightBrigadesDictionary { get; set; }
@@ -39,11 +39,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         public List<string> Category { get; set; } = new List<string>
         {
-            "Внутрішній",
-            "Міжнародний",
-            "Чартерні",
-            "Ванатжоперевезення",
-            "Спіціальний"
+            "внутрішній",
+            "міжнародний",
+            "чартерний",
+            "вантажоперевезний",
+            "спеціальний"
         };
 
         private string _flightNumber;
@@ -184,7 +184,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
       private bool CanExecuteAddCommanrd()
         {
-            Plane plane = Planes.First(p => p.PlaneId == SelectedPlaneId);
+            AirPlane plane = Planes.First(p => p.PlaneId == SelectedPlaneId);
             if (plane ==null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
             {
                 return true;
@@ -227,7 +227,6 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
                 Flight newFlight = new Flight
                 {
-
                     FlightNumber = FlightNumber,
                     FlightId = flightId,
                     Status = "запланований",
@@ -240,8 +239,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                     FlightBrigadeId = SelectedFlightBrigadeId,
                     InspectionBrigadeId = SelectedTechInspectionBrigadeId,
                     RouteId = RouteId,
-                    CustomsControl=false,
-                    PassengerRegistration=false
+                    CustomsControl = "не завершений",
+                    PassengerRegistration = "не завершена",
+                    NumberTickets = int.Parse(_numberTickets),
+                    NumberBoughtTickets = 0
                 };
 
 
@@ -288,7 +289,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             var TechInspectionBrigadesList = _brigadeService.GetBrigadesByType("Диспетчерська бригада");
             TechInspectionBrigades = new ObservableCollection<Brigade>(TechInspectionBrigadesList);
-            Planes = new ObservableCollection<Plane>(_planeService.GetPlanesData());
+            Planes = new ObservableCollection<AirPlane>(_planeService.GetPlanesData());
             Routes = new ObservableCollection<Route>(_routeService.GetRoutes());
         }
 

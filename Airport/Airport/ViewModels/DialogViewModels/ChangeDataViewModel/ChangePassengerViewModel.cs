@@ -11,6 +11,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         private readonly PassengerService _passengerService;
         private IWindowService _windowService;
+        private Passenger _passenger;
+        
 
 
         public ICommand ChangePassengerCommand { get; }
@@ -19,23 +21,16 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         {   "чоловік",
             "жінка"
         };
-      
-
-
-        private int _id;
-        private string _gender;
+   
         private string _passportNumber;
         private string _internPassportNumber;
         private string _selectedGender;
-        private string _baggageStatus;
         private string _phoneNumber;
         private string _email;
         private string _fullName;
-        private int _completedFlightId;
         private int _age;
-        private string _customsControlStatus;
-        private string _registrationStatus;
-        private int _flightId ;
+     
+
 
         public int Age
         {
@@ -76,16 +71,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         }
 
-        public string BaggageStatus 
-
-        {
-            get => _baggageStatus;
-            set
-            {
-                _baggageStatus = value;
-                OnPropertyChanged(nameof(_baggageStatus));
-            }
-        }
+        
 
         public string PhoneNumber
         {
@@ -117,63 +103,39 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         }
 
-        public int CompletedFlightId
-        {
-            get => _completedFlightId;
-            set
-            {
-                _completedFlightId = value;
-                OnPropertyChanged(nameof(CompletedFlightId));
-            }
-        }
+   
+        
 
 
         public ChangePassengerViewModel(Passenger passenger, IWindowService windowService)
         {
+            this._passenger = passenger;
             _passengerService = new PassengerService();
             this._windowService = windowService;
             ChangePassengerCommand = new RelayCommand(ExecutePassangerChange, canExecute => true);
-            _id=passenger.PassengerId;
+          
             FullName = passenger.FullName;
             Age= passenger.Age;
             SelectedGender = passenger.Gender;
             
             PassportNumber= passenger.PassportNumber;
             InternPassportNumber= passenger.InternPassportNumber;
-            BaggageStatus = passenger.BaggageStatus;
             PhoneNumber= passenger.PhoneNumber;
             Email = passenger.Email;
-            _customsControlStatus= passenger.CustomsControlsStatus;
-            _registrationStatus = passenger.RegistrationStatus;
-            _flightId= passenger.FlightId;
+          
+         
         }
 
         private void ExecutePassangerChange(object parameter)
         {
-          
-
-
-            Passenger changePassenger = new Passenger
-            {
-                PassengerId = _id,
-                FullName = FullName,
-                Age = Age,
-                Gender = SelectedGender,
-                PassportNumber = PassportNumber,
-                InternPassportNumber = InternPassportNumber,
-                BaggageStatus = BaggageStatus,
-                PhoneNumber = PhoneNumber,
-                Email = Email,
-                CustomsControlsStatus= _customsControlStatus,
-                RegistrationStatus= _registrationStatus,
-                FlightId = _flightId,
-
-            };
-
-
-
-
-            _passengerService.UpdatePassenger(changePassenger);
+            _passenger.FullName = FullName;
+            _passenger.Age = Age;
+            _passenger.Gender = SelectedGender;
+            _passenger.PassportNumber = PassportNumber;
+            _passenger.InternPassportNumber = InternPassportNumber;
+            _passenger.PhoneNumber = PhoneNumber;
+            _passenger.Email = Email;
+            _passengerService.UpdatePassenger(_passenger);
         }
 
 

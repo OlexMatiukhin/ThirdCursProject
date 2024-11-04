@@ -42,45 +42,34 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-        public void EndCustomControl(int flightId)
+     
+       
+        public void DeleteFlight(int flightId)
         {
             try
             {
-                 _flightCollection.Find(f => f.FlightBrigadeId==flightId).First().CustomsControl=true;
+                var filter = Builders<Flight>.Filter.Eq(f => f.FlightId, flightId);
+                var result = _flightCollection.DeleteOne(filter);
+                if (result.DeletedCount == 0)
+                {
+                    Console.WriteLine($"Рейс с ID {flightId} не найден.");
+                }
             }
             catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении рейса: {ex.Message}");
+            }
+        }
+      
+
+        public void UpdateFlight(Flight updatedFlight)
+        {
+            try
             {
                
-            }
+                var filter = Builders<Flight>.Filter.Eq(f => f.FlightId, updatedFlight.FlightId);
 
-
-
-         }
-
-
-        public void EndRegistration(int flightId)
-        {
-            try
-            {
-                _flightCollection.Find(f => f.FlightBrigadeId == flightId).First().PassengerRegistration = true;
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-
-        }
-
-        public void UpdateFlight(int flightId, Flight updatedFlight)
-        {
-            try
-            {
-                // Создаем фильтр для поиска рейса по FlightId
-                var filter = Builders<Flight>.Filter.Eq(f => f.FlightId, flightId);
-
-                // Выполняем обновление данных
+             
                 var result = _flightCollection.ReplaceOne(filter, updatedFlight);
 
             }
@@ -103,6 +92,23 @@ namespace Airport.Services.MongoDBSevice
                 return new List<Flight>();
             }
         }
+
+        public Flight GetFlightById(int flightId)
+        {
+            try
+            {
+                var filter = Builders<Flight>.Filter.Eq(f => f.FlightId, flightId);
+                return _flightCollection.Find(filter).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при получении рейса с ID {flightId}: {ex.Message}");
+                return null;
+            }
+        }
+
+
+
     }
 }
 

@@ -30,16 +30,16 @@ namespace Airport.Views.Dialog.AddWindow
 
           
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
             var viewModel = DataContext as AddPassengerViewModel;
             if (viewModel != null)
             {
-                // Выполнение команды перед закрытием
-                viewModel.CloseCommand.Execute(null);
+               
+               
             }
 
-        }
+        }*/
     }
 }

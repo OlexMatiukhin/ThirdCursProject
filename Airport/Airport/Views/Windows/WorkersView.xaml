@@ -61,8 +61,17 @@
                 <DataGridTextColumn Header="Номер" Binding="{Binding PhoneNumber}" Width="*"/>
                 <DataGridTextColumn Header="Посада" Binding="{Binding PositionId}" Width="*"/>
                 <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId}" Width="*"/>
+ 
 
-
+                <DataGridTemplateColumn Header="Медогляд" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Медогляд" Command="{Binding DataContext.SendPilotToMedExam, 
+            RelativeSource={RelativeSource AncestorType=DataGrid}}"
+          CommandParameter="{Binding}" Width="Auto "/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Редагування" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -82,7 +91,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Видалити з бриг" Width="*">
+                <DataGridTemplateColumn Header="Видалити з бригади" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Видалити" Width="Auto"/>

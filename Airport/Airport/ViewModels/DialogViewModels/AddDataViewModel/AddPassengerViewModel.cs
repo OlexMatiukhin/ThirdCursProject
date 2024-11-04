@@ -49,7 +49,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private int _completedFlightId;
         private int _age;
-        private Ticket ticket;
+        private Ticket _ticket;
 
 
         
@@ -145,14 +145,15 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public  AddPassengerViewModel(Ticket ticket, IWindowService windowService)
+        public  AddPassengerViewModel(IWindowService windowService,Ticket ticket) 
         {
             _passengerService = new PassengerService();
             
             AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
             this._windowService = windowService;
+            this._ticketService = new TicketService();
 
-            this.ticket = ticket;
+            this._ticket = ticket;
         }
 
         private void ExecutePassangerAdd(object parameter)
@@ -176,11 +177,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 FlightId = 0,
 
             };
-            ticket.PassengerId = passangerId;
+            this._ticket.PassengerId = passangerId;
 
 
 
-            _ticketService.UpdateTicket(ticket);
+            _ticketService.UpdateTicket(this._ticket);
 
             _passengerService.AddPassenger(newPassenger);
             

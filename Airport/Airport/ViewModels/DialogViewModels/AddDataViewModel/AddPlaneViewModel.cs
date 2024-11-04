@@ -32,7 +32,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
         private void ExecuteAddPlane(object parameter)
         {
-            var newPlane = new Plane
+            var newPlane = new AirPlane
             {
                 PlaneId = _planeService.GetLastPlaneId() + 1,
                 Type = SelectedPlaneType,

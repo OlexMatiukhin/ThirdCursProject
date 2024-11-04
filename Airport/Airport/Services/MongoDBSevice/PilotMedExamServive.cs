@@ -31,6 +31,45 @@ namespace Airport.Services.MongoDBSevice
                 return false;
             }
         }
+        public int GetLastPilotId()
+        {
+            try
+            {
+                var lastPassenger = _pilotMedExamCollection
+                                    .Find(p => true)
+                                    .SortByDescending(p => p.ExamId)
+                                    .FirstOrDefault();
+
+                return lastPassenger != null ? lastPassenger.ExamId : 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при получении последнего PassengerId: {ex.Message}");
+                return 0;
+            }
+        }
+        public void AddPilotMedExamForWorker(Worker worker)
+        {
+            try
+            {
+                var newPilotMedExam = new PilotMedExam
+                {
+                    ExamId = this.GetLastPilotId() + 1,
+                    PilotId = worker.WorkerId,
+                    DoctorId = 0,
+                    DateExamination = null,
+                    Result = null,
+                   
+                };
+
+                _pilotMedExamCollection.InsertOne(newPilotMedExam);
+               
+            }
+            catch 
+            { 
+              
+            }
+        }
 
         public List<PilotMedExam> GetPilotMedExamsData()
         {

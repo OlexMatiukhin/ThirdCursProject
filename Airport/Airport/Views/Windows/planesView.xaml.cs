@@ -16,9 +16,9 @@ namespace Airport
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class planesView : Window
+    public partial class PlanesView : Window
     {
-        public planesView()
+        public PlanesView()
         {
             InitializeComponent();
           

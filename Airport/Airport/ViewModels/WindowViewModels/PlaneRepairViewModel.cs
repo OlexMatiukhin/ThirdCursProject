@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Plane = Airport.Models.Plane;
+using AirPlane = Airport.Models.AirPlane;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -22,6 +22,7 @@ namespace Airport.ViewModels.WindowViewModels
         private PlaneService _planeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
+        public ICommand FinishRepairCommand { get; }
         public PlaneRepairsViewModel(IWindowService windowService)
         {
             _planeRepairService = new PlaneRepairService();
@@ -30,9 +31,10 @@ namespace Airport.ViewModels.WindowViewModels
             LoadPlaneRepairs();
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
+            FinishRepairCommand = new RelayCommand(OnRepairFinish);
         }
         private void OnEdit(object parameter)
-        {            var planeRepair = parameter as PlaneRepair;
+        {   var planeRepair = parameter as PlaneRepair;
             if (planeRepair != null)
             {
                 _windowService.OpenModalWindow("ChangePlaneRepair", planeRepair);
@@ -60,11 +62,12 @@ namespace Airport.ViewModels.WindowViewModels
                     "Так",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
-                    Plane plane = _planeService.GetPlaneById(planeRepair.PlaneId);
+                    AirPlane plane = _planeService.GetPlaneById(planeRepair.PlaneId);
                     if (resultQuesion == MessageBoxResult.Yes)
                     {                     
                         plane.TechCondition = "задовільний";
                         plane.TechInspectionDate = DateTime.Now;
+                        planeRepair.EndDate = DateTime.Now;
                         _planeService.UpdatePlane(plane);
                         planeRepair.Status = "завершений";
                         planeRepair.Result = "успіх";
@@ -74,6 +77,7 @@ namespace Airport.ViewModels.WindowViewModels
                         plane.TechCondition = "списання";
                         plane.TechInspectionDate = DateTime.Now;
                         _planeService.UpdatePlane(plane);
+                        planeRepair.EndDate = DateTime.Now;
                         planeRepair.Status = "завершений";
                         planeRepair.Result = "ремонту не підлягає";
                     }

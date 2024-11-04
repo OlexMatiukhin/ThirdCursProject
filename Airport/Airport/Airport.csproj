@@ -48,6 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Dialog\AddWindow\AddDelayedFlightView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddFlightView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +78,10 @@
     <Compile Update="Views\Dialog\ChangeWindow\ChangeWorker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\QueryWindow\" />
   </ItemGroup>
 
 </Project>

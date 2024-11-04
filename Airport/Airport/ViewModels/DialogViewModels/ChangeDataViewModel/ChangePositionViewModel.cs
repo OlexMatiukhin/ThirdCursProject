@@ -17,6 +17,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     {
         private readonly PositionService _positionService;
         private readonly StructureUnitService _structureUnitService;
+        private Position _position;
         private IWindowService _windowService;
         public ICommand ChangePositionCommand { get; }
         public ChangePositionViewModel(Position position, IWindowService windowService)
@@ -25,7 +26,6 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             this._windowService = windowService;
             _positionService = new PositionService();
             _structureUnitService = new StructureUnitService();
-            this._id = position.PositionId;
             this.PositionName = position.PositionName;
             this.Salary = position.Salary.ToString();
             this.StructureUnitId = position.StructureUnitId;
@@ -41,9 +41,6 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         public Dictionary<int, string> StructureUnitDictionary { get; set; }
 
 
-
-
-        public int _id;
         public string _positionName;
         private string _salary;
 
@@ -94,15 +91,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ExecutePostionChange(object parameter)
         {
-            var newPosition = new Position
-            {
-                PositionId = _id,
-                PositionName = PositionName,
-                Salary = int.Parse(Salary),
-                StructureUnitId = StructureUnitId
-            }; 
 
-            _positionService.UpdatePostition(newPosition);
+            _position.PositionName = PositionName;
+            _position.Salary = int.Parse(Salary);
+            _position.StructureUnitId = StructureUnitId;         
+
+            _positionService.UpdatePostition(_position);
         }
 
         private void CreateDictionaries()

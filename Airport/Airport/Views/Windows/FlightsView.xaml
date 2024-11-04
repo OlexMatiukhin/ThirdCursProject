@@ -51,7 +51,7 @@
         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
                   HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
                   FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged" Margin="-2,0,2,-1" RenderTransformOrigin="0.5,0.5"
-                  ItemsSource="{Binding Flights}" SelectedItem="{Binding SelectedFlight, Mode=TwoWay}">
+                  ItemsSource="{Binding Flights}" SelectedItem="{Binding SelectedFlight, Mode=TwoWay}" HorizontalAlignment="Left">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -90,26 +90,54 @@
                 </DataGridTemplateColumn>
 
 
-                <DataGridTemplateColumn Header="Перенесення" Width="2*">
+                <DataGridTemplateColumn Header="Активація рейсу" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Перенести"  Width="Auto" />
+                            <Button Content="Активувати рейс" Command="{Binding DataContext.ActivateFlightCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}"    Width="Auto" />
                         </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                
+                <DataGridTemplateColumn Header="Завершення рейсу" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Завершити рейс" Command="{Binding DataContext.FinishFlightCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}" Width="Auto" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="Затримання" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Затримати" Command="{Binding DataContext.DelayFlightCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
+                        </DataTemplate> 
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="Скасування" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Скасувати"  Width="Auto" />
+                            <Button Content="Скасувати" Command="{Binding DataContext.CancelFlightCommand, 
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                         CommandParameter="{Binding}"  Width="Auto" />
                             
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
+                
+                
                 <DataGridTemplateColumn Header="Митний контрол"  Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Завершити" Command="{Binding DataContext.EndCustomControlCommand, 
+                            <Button Content="Завершити" Command="{Binding DataContext.EndCustomsControlCommand, 
                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
                          CommandParameter="{Binding}" Width="Auto" />
 
@@ -120,7 +148,7 @@
                 <DataGridTemplateColumn Header="Реєстрація пасажирів" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Завершити"  Command="{Binding DataContext.RegisterCommand, 
+                            <Button Content="Завершити"  Command="{Binding DataContext.EndRegistrationPassengersCommand, 
                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
                          CommandParameter="{Binding}" Width="Auto" />
 

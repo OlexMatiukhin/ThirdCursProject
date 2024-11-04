@@ -31,5 +31,45 @@ namespace Airport.Services.MongoDBSevice
                 return new List<DelayedFlightInfo>();
             }
         }
+        public void AddDelayedFlightInfoFromFlight(Flight flight,  string reason, string descritption)
+        {
+            if (flight == null)
+            {
+                throw new ArgumentNullException(nameof(flight), "Flight cannot be null");
+            }
+
+            var delayedFlightInfo = new DelayedFlightInfo
+            {
+                FlightNumber = flight.FlightNumber,
+                Category = flight.Category,
+                DispatchBrigadeId = flight.DispatchBrigadeId,
+                NavigationBrigadeId = flight.NavigationBrigadeId,
+                FlightBrigadeId = flight.FlightBrigadeId,
+                StartDelayDate = DateTime.Now,  
+                EndDelayDate = null,      
+                InspectionBrigadeId = flight.InspectionBrigadeId,
+                Reason = reason,
+                FlightId = flight.FlightId,
+                RouteId = flight.RouteId,
+                Description= descritption,
+                WorkerId = 0
+            };
+
+            try
+            {
+                _delayedFlightCollection.InsertOne(delayedFlightInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при добавлении информации о задержке: {ex.Message}");
+            }
+        }
     }
+
+
+
+
+
+
 }
+

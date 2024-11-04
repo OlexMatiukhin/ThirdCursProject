@@ -18,7 +18,7 @@
      Width="120"/>
         <ComboBox
     ItemsSource="{Binding Category}" 
-            SelectedValue="{Binding SelectedCategory, Mode=TwoWay}"
+    SelectedValue="{Binding SelectedCategory, Mode=TwoWay}"
           
             HorizontalAlignment="Left"
     Margin="263,54,0,0"

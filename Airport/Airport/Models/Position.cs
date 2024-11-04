@@ -1,39 +1,83 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Models
 {
-
-    public class Position
+    public class Position : INotifyPropertyChanged
     {
-        [BsonId]
-        public int PositionId { get; set; }
+        private int _positionId;
+        private string _positionName;
+        private decimal _salary;
+        private int _structureUnitId;
 
-        [BsonElement("positionName")] // Указывает имя поля в MongoDB
-        public string PositionName { get; set; }
+        [BsonId]
+        public int PositionId
+        {
+            get => _positionId;
+            set
+            {
+                if (_positionId != value)
+                {
+                    _positionId = value;
+                    OnPropertyChanged(nameof(PositionId));
+                }
+            }
+        }
+
+        [BsonElement("positionName")]
+        public string PositionName
+        {
+            get => _positionName;
+            set
+            {
+                if (_positionName != value)
+                {
+                    _positionName = value;
+                    OnPropertyChanged(nameof(PositionName));
+                }
+            }
+        }
 
         [BsonElement("salary")]
-        public decimal Salary { get; set; }
+        public decimal Salary
+        {
+            get => _salary;
+            set
+            {
+                if (_salary != value)
+                {
+                    _salary = value;
+                    OnPropertyChanged(nameof(Salary));
+                }
+            }
+        }
 
         [BsonElement("structureUnitId")]
-        public int StructureUnitId { get; set; }
+        public int StructureUnitId
+        {
+            get => _structureUnitId;
+            set
+            {
+                if (_structureUnitId != value)
+                {
+                    _structureUnitId = value;
+                    OnPropertyChanged(nameof(StructureUnitId));
+                }
+            }
+        }
+
         public override string ToString()
         {
             return $"Position: {PositionName}, Salary: {Salary}, Structure Unit ID: {StructureUnitId}";
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-     
-    
-    /*public int PositionId { get => positionId; set => positionId = value; }
-        public string PositionName { get => positionName; set => positionName = value; }
-        public decimal Salary { get => salary; set => salary = value; }
-    }*/
-
-
 }

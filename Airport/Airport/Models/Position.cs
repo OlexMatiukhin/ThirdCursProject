@@ -3,81 +3,87 @@ using MongoDB.Bson;
 using System;
 using System.ComponentModel;
 
-namespace Airport.Models
-{
-    public class Position : INotifyPropertyChanged
+
+    
+
+    namespace Airport.Models
     {
-        private int _positionId;
-        private string _positionName;
-        private decimal _salary;
-        private int _structureUnitId;
-
-        [BsonId]
-        public int PositionId
+        public class Position : INotifyPropertyChanged
         {
-            get => _positionId;
-            set
+            private ObjectId _positionId;
+            private string _positionName;
+            private decimal _salary;
+            private string _structureUnitName;
+
+            [BsonId]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId PositionId
             {
-                if (_positionId != value)
+                get => _positionId;
+                private set
                 {
-                    _positionId = value;
-                    OnPropertyChanged(nameof(PositionId));
+                    if (_positionId != value)
+                    {
+                        _positionId = value;
+                        OnPropertyChanged(nameof(PositionId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("positionName")]
-        public string PositionName
-        {
-            get => _positionName;
-            set
+            [BsonElement("positionName")]
+            public string PositionName
             {
-                if (_positionName != value)
+                get => _positionName;
+                set
                 {
-                    _positionName = value;
-                    OnPropertyChanged(nameof(PositionName));
+                    if (_positionName != value)
+                    {
+                        _positionName = value;
+                        OnPropertyChanged(nameof(PositionName));
+                    }
                 }
             }
-        }
 
-        [BsonElement("salary")]
-        public decimal Salary
-        {
-            get => _salary;
-            set
+            [BsonElement("salary")]
+            public decimal Salary
             {
-                if (_salary != value)
+                get => _salary;
+                set
                 {
-                    _salary = value;
-                    OnPropertyChanged(nameof(Salary));
+                    if (_salary != value)
+                    {
+                        _salary = value;
+                        OnPropertyChanged(nameof(Salary));
+                    }
                 }
             }
-        }
 
-        [BsonElement("structureUnitId")]
-        public int StructureUnitId
-        {
-            get => _structureUnitId;
-            set
+            [BsonElement("structureUnitName")]
+            public string StructureUnitName
             {
-                if (_structureUnitId != value)
+                get => _structureUnitName;
+                set
                 {
-                    _structureUnitId = value;
-                    OnPropertyChanged(nameof(StructureUnitId));
+                    if (_structureUnitName != value)
+                    {
+                        _structureUnitName = value;
+                        OnPropertyChanged(nameof(StructureUnitName));
+                    }
                 }
             }
-        }
 
-        public override string ToString()
-        {
-            return $"Position: {PositionName}, Salary: {Salary}, Structure Unit ID: {StructureUnitId}";
-        }
+            public override string ToString()
+            {
+                return $"Position: {PositionName}, Salary: {Salary}, Structure Unit: {StructureUnitName}";
+            }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
-}
+
+

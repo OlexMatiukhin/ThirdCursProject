@@ -3,17 +3,23 @@ using MongoDB.Bson;
 using System;
 using System.ComponentModel;
 
+using System;
+using System.ComponentModel;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace Airport.Models
 {
     public class Seat : INotifyPropertyChanged
     {
-        private int _seatId;
+        private ObjectId _seatId;
         private int _number;
         private string _status;
-        private int _flightId;
+        private ObjectId _flightId;
 
         [BsonId]
-        public int SeatId
+        [BsonElement("_id")]
+        public ObjectId SeatId
         {
             get => _seatId;
             set
@@ -55,7 +61,7 @@ namespace Airport.Models
         }
 
         [BsonElement("flightId")]
-        public int FlightId
+        public ObjectId FlightId
         {
             get => _flightId;
             set

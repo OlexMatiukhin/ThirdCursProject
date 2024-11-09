@@ -47,7 +47,8 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnSendPilotToMedExam(object parameter) {
             var worker = parameter as Worker;
-            if (worker != null&& worker.PositionId==62)
+            if (worker != null&& worker.PositionName=="Пілот")
+
             {
                 MessageBoxResult result = MessageBox.Show(
                            "Відправити пілота на медогляд?",

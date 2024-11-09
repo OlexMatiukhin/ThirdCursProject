@@ -2,6 +2,7 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,7 +46,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             Email = worker.Email;
             PhoneNumber = worker.PhoneNumber;
             SelectedBrigadeId = worker.BrigadeId;
-            SelectedPostionId = worker.PositionId;
+            SelectedPostionName = worker.PositionName;
         }
 
         private void ExecuteChangeWorker(object parameter)
@@ -61,7 +62,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             _worker.Email = Email;
             _worker.PhoneNumber = PhoneNumber;
             _worker.BrigadeId = SelectedBrigadeId;
-            _worker.PositionId = SelectedPostionId;
+            _worker.PositionName = SelectedPostionName;
            
 
             _workerService.UpdateWorker(_worker);
@@ -72,8 +73,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         public ObservableCollection<Brigade> Brigades { get; set; }
 
 
-        public Dictionary<int, string> PositionsDictionary { get; set; }
-        public Dictionary<int, string> BrigadesDictionary { get; set; }
+        public Dictionary<string, string> PositionsDictionary { get; set; }
+        public Dictionary<ObjectId, string> BrigadesDictionary { get; set; }
 
 
         public List<string> Gender { get; set; } = new List<string>
@@ -103,9 +104,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private string _selectedShift;
         private string _email;
         private string _phoneNumber;
-        private int _selectedBrigadeId;
+        private ObjectId? _selectedBrigadeId;
 
-        private int _selectedPostionId;
+        private string _selectedPostionName;
         public string FullName
         {
             get => _fullName;
@@ -190,18 +191,18 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         }
 
-        public int SelectedPostionId
+        public string SelectedPostionName
         {
-            get => _selectedPostionId;
+            get => _selectedPostionName;
             set
             {
-                _selectedPostionId = value;
-                OnPropertyChanged(nameof(SelectedPostionId));
+                _selectedPostionName = value;
+                OnPropertyChanged(nameof(SelectedPostionName));
             }
         }
 
 
-        public int SelectedBrigadeId
+        public ObjectId? SelectedBrigadeId
         {
             get => _selectedBrigadeId;
             set
@@ -230,7 +231,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private void CreateDictionaries()
         {
             BrigadesDictionary = Brigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
-            PositionsDictionary = Positions.ToDictionary(b => b.PositionId, b => b.ToString());
+            PositionsDictionary = Positions.ToDictionary(b => b.PositionName, b => b.ToString());
 
         }
 

@@ -32,7 +32,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
-        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="490,45,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitName, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="490,45,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="488,24,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="525,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
         ="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>

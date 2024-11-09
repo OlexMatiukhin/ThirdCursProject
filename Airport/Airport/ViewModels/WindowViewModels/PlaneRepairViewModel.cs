@@ -31,7 +31,7 @@ namespace Airport.ViewModels.WindowViewModels
             LoadPlaneRepairs();
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
-            FinishRepairCommand = new RelayCommand(OnRepairFinish);
+            //FinishRepairCommand = new RelayCommand(OnRepairFinish);
         }
         private void OnEdit(object parameter)
         {   var planeRepair = parameter as PlaneRepair;
@@ -48,7 +48,7 @@ namespace Airport.ViewModels.WindowViewModels
         {
 
             var planeRepair = parameter as PlaneRepair;
-            if (planeRepair != null)
+            if (planeRepair != null&& planeRepair.Status!="завершений")
             {
                 MessageBoxResult result = MessageBox.Show(
                   "Завершити ремонт?",
@@ -100,7 +100,7 @@ namespace Airport.ViewModels.WindowViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Console.WriteLine($": {ex.Message}");
             }
         }
     }

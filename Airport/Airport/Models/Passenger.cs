@@ -3,11 +3,16 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.ComponentModel;
 
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel;
+
 namespace Airport.Models
 {
     public class Passenger : INotifyPropertyChanged
     {
-        private int _passengerId;
+        private ObjectId _passengerId;
+      
         private int _age;
         private string _gender;
         private string _passportNumber;
@@ -16,12 +21,13 @@ namespace Airport.Models
         private string _phoneNumber;
         private string _email;
         private string _fullName;
-        private string _customsControlsStatus;
+        private string _customsControlStatus;
         private string _registrationStatus;
-        private int _flightId;
+        private ObjectId? _flightId;
 
         [BsonId]
-        public int PassengerId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId PassengerId
         {
             get => _passengerId;
             set
@@ -33,6 +39,7 @@ namespace Airport.Models
                 }
             }
         }
+
 
         [BsonElement("age")]
         public int Age
@@ -147,15 +154,15 @@ namespace Airport.Models
         }
 
         [BsonElement("customsControlStatus")]
-        public string CustomsControlsStatus
+        public string CustomsControlStatus
         {
-            get => _customsControlsStatus;
+            get => _customsControlStatus;
             set
             {
-                if (_customsControlsStatus != value)
+                if (_customsControlStatus != value)
                 {
-                    _customsControlsStatus = value;
-                    OnPropertyChanged(nameof(CustomsControlsStatus));
+                    _customsControlStatus = value;
+                    OnPropertyChanged(nameof(CustomsControlStatus));
                 }
             }
         }
@@ -175,7 +182,8 @@ namespace Airport.Models
         }
 
         [BsonElement("flightId")]
-        public int FlightId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId? FlightId
         {
             get => _flightId;
             set
@@ -190,10 +198,10 @@ namespace Airport.Models
 
         public override string ToString()
         {
-            return $"PassengerId: {PassengerId}, Fullname: {FullName}, Age: {Age}, Gender: {Gender}, " +
+            return $"PassengerId: {PassengerId}, FullName: {FullName}, Age: {Age}, Gender: {Gender}, " +
                    $"PassportNumber: {PassportNumber}, InternPassportNumber: {InternPassportNumber}, " +
                    $"BaggageStatus: {BaggageStatus}, PhoneNumber: {PhoneNumber}, Email: {Email}, " +
-                   $"CustomControlStatus: {CustomsControlsStatus}, RegistrationStatus: {RegistrationStatus}, " +
+                   $"CustomControlStatus: {CustomsControlStatus}, RegistrationStatus: {RegistrationStatus}, " +
                    $"FlightId: {FlightId}";
         }
 

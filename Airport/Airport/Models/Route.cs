@@ -7,11 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
+using System.ComponentModel;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace Airport.Models
 {
     public class Route : INotifyPropertyChanged
     {
-        private int _routeId;
+        private ObjectId _routeId;
+       
         private string _number;
         private string _departurePoint;
         private string _arrivalPoint;
@@ -19,7 +24,8 @@ namespace Airport.Models
         private string _flightDirection;
 
         [BsonId]
-        public int RouteId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId RouteId
         {
             get => _routeId;
             set
@@ -31,6 +37,8 @@ namespace Airport.Models
                 }
             }
         }
+
+      
 
         [BsonElement("number")]
         public string Number
@@ -111,8 +119,9 @@ namespace Airport.Models
 
         public override string ToString()
         {
-            return $"{RouteId}: Номер {Number}, Точка відправлення {DeparturePoint}, Точка прибуття {ArrivalPoint}, Проміжний пункт {TransitAirport}, Напрям: {FlightDirection}";
+            return $"{RouteId}: Номер {Number}, Точка відправлення {DeparturePoint}, Точка прибуття {ArrivalPoint}, Проміжний пункт {(TransitAirport == "-" ? "Нет" : TransitAirport)}, Напрям: {FlightDirection}";
         }
     }
 }
+
 

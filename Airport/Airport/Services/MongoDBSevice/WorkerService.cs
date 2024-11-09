@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,10 @@ namespace Airport.Services.MongoDBSevice
             _workerCollection = database.GetCollection<Worker>("worker");
 
         }
-       public void DeleteBrigadeFromWorker( int workerId)
+       public void DeleteBrigadeFromWorker( ObjectId workerId)
         {
             try {
-                _workerCollection.Find(w => w.WorkerId == workerId).First().BrigadeId--;
+                _workerCollection.Find(w => w.WorkerId == workerId).First().BrigadeId=null;
             }
             catch (Exception ex)
             {
@@ -29,11 +30,11 @@ namespace Airport.Services.MongoDBSevice
             
 
         }
-        public List<Worker> GetWorkersByPositionId(int positionId)
+        public List<Worker> GetWorkersByPositionName(string positionName)
         {
             try
             {
-                return _workerCollection.Find(w => w.PositionId== positionId).ToList();
+                return _workerCollection.Find(w => w.PositionName== positionName).ToList();
             }
             catch (Exception ex)
             {
@@ -42,11 +43,11 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public List<Worker> GetWorkerDataByPositionId(int positionId)
+        public List<Worker> GetWorkerDataByPositionId(string positionName)
         {
             try
             {
-                return _workerCollection.Find(w => w.PositionId == positionId).ToList();
+                return _workerCollection.Find(w => w.PositionName == positionName).ToList();
             }
             catch (Exception ex)
             {
@@ -69,7 +70,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public Worker GetWorkerById(int workerId)
+        public Worker GetWorkerById(ObjectId? workerId)
         {
             try
             {
@@ -94,7 +95,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public int GetLastWorkerId()
+       /* public int GetLastWorkerId()
         {
             var lastWorker = _workerCollection
                 .Find(Builders<Worker>.Filter.Empty)
@@ -103,7 +104,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastWorker?.WorkerId ?? 0;
-        }
+        }*/
 
         
         public bool UpdateWorker(Worker updatedWorker)
@@ -120,7 +121,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public void DeleteWorker(int workerId)
+        public void DeleteWorker(ObjectId workerId)
         {
             try
             {

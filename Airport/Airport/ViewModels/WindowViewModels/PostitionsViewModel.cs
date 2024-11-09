@@ -57,7 +57,7 @@ namespace Airport.ViewModels.WindowViewModels
             var position = parameter as Position;
             if (position != null)
             {
-                List<Worker> workerList = _workerService.GetWorkerDataByPositionId(position.PositionId);
+                List<Worker> workerList = _workerService.GetWorkerDataByPositionId(position.PositionName);
                 if (workerList.Count == 0)
                 {
                     MessageBoxResult result = MessageBox.Show(

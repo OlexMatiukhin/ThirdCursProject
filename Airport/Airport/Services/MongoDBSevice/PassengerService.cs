@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public List<Passenger> GetPassengersByFlightId(int flightId) {
+        public List<Passenger> GetPassengersByFlightId(ObjectId flightId) {
 
             try
             {
@@ -76,7 +77,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public bool DeletePassangersByFlightId(int flightId)
+        public bool DeletePassangersByFlightId(ObjectId flightId)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace Airport.Services.MongoDBSevice
 
 
 
-        public bool DeletePassenger(int passengerId)
+        public bool DeletePassenger(ObjectId? passengerId)
         {
             try
             {
@@ -105,7 +106,7 @@ namespace Airport.Services.MongoDBSevice
                 return false;
             }
         }
-        public int GetLastPassengerId()
+        /*public int GetLastPassengerId()
         {
             try
             {
@@ -121,7 +122,7 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Произошла ошибка при получении последнего PassengerId: {ex.Message}");
                 return 0;
             }
-        }
+        }*/
 
     }
 }

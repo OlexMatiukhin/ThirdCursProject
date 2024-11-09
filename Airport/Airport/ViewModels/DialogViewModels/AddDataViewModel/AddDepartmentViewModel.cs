@@ -31,17 +31,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
         }
-
-       
-
-
-
         public string _departmentName;
-
-
-
-
-
         public string DepartmentName
         {
             get => _departmentName;
@@ -55,17 +45,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             Department newDepartment = new Department
             {
-                DepartmentId = _departmentService.GetLastDepartmentId() + 1,
                 DepartmentName = DepartmentName,
             };
-            _departmentService.AddDepartment(newDepartment); 
+            _departmentService.AddDepartment(newDepartment);
         }
-
-
-
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

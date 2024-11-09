@@ -53,7 +53,7 @@ namespace Airport.Views.MenuWindows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Airport;V1.0.0.0;component/views/menuwindows/mainmenuview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Airport;component/views/menuwindows/mainmenuview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\MenuWindows\MainMenuView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

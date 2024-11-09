@@ -27,7 +27,7 @@ namespace Airport.Command.AddDataCommands
 
             Department newDepartment = new Department
             {
-                DepartmentId = _departmentService.GetLastDepartmentId() + 1,
+               
                 DepartmentName = _addDepartmentViewModel.DepartmentName,
             };
             _departmentService.AddDepartment(newDepartment);

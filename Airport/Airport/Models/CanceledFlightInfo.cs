@@ -1,33 +1,27 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.ComponentModel;
 
 public class CanceledFlightInfo : INotifyPropertyChanged
 {
-    private int _canceledFlightInfoId;
+    private ObjectId _canceledFlightInfoId;  
     private string _flightNumber;
     private string _status;
     private string _category;
-    private int _dispatchBrigadeId;
-    private int _navigationBrigadeId;
-    private int _flightBrigadeId;
+    private ObjectId _dispatchBrigadeId;
+    private ObjectId _navigationBrigadeId;
+    private ObjectId _flightBrigadeId;
     private int _unoccupiedSeatNumber;
     private int _seatNumber;
-    private int _inspectionBrigadeId;
-    private int _routeId;
+    private ObjectId _inspectionBrigadeId;
+    private string _routeNumber;
     private string _description;
-    private int _workerId;
+    private ObjectId? _workerId;
     private string _reason;
 
-    [BsonId]
-    public int CanceledFlightInfoId
+    [BsonId]  
+    public ObjectId CanceledFlightInfoId
     {
         get => _canceledFlightInfoId;
         set
@@ -83,7 +77,7 @@ public class CanceledFlightInfo : INotifyPropertyChanged
     }
 
     [BsonElement("dispatchBrigadeId")]
-    public int DispatchBrigadeId
+    public ObjectId DispatchBrigadeId
     {
         get => _dispatchBrigadeId;
         set
@@ -97,7 +91,7 @@ public class CanceledFlightInfo : INotifyPropertyChanged
     }
 
     [BsonElement("navigationBrigadeId")]
-    public int NavigationBrigadeId
+    public ObjectId NavigationBrigadeId
     {
         get => _navigationBrigadeId;
         set
@@ -111,7 +105,7 @@ public class CanceledFlightInfo : INotifyPropertyChanged
     }
 
     [BsonElement("flightBrigadeId")]
-    public int FlightBrigadeId
+    public ObjectId FlightBrigadeId
     {
         get => _flightBrigadeId;
         set
@@ -153,7 +147,7 @@ public class CanceledFlightInfo : INotifyPropertyChanged
     }
 
     [BsonElement("inspectionBrigadeId")]
-    public int InspectionBrigadeId
+    public ObjectId InspectionBrigadeId
     {
         get => _inspectionBrigadeId;
         set
@@ -166,22 +160,22 @@ public class CanceledFlightInfo : INotifyPropertyChanged
         }
     }
 
-    [BsonElement("routeId")]
-    public int RouteId
+    [BsonElement("routeNumber")]
+    public string RouteNumber
     {
-        get => _routeId;
+        get => _routeNumber;
         set
         {
-            if (_routeId != value)
+            if (_routeNumber != value)
             {
-                _routeId = value;
-                OnPropertyChanged(nameof(RouteId));
+                _routeNumber = value;
+                OnPropertyChanged(nameof(RouteNumber));
             }
         }
     }
 
     [BsonElement("workerId")]
-    public int WorkerId
+    public ObjectId? WorkerId
     {
         get => _workerId;
         set
@@ -208,8 +202,7 @@ public class CanceledFlightInfo : INotifyPropertyChanged
         }
     }
 
-
-    [BsonElement("description")] 
+    [BsonElement("description")]
     public string Description
     {
         get => _description;

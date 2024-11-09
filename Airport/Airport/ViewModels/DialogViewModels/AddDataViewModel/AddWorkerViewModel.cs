@@ -36,7 +36,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecuteAddWorker(object parameter)
         {
-            Worker worker = new Worker
+            /*Worker worker = new Worker
             {
                 WorkerId = _workerService.GetLastWorkerId() + 1,
                 FullName = FullName,
@@ -53,7 +53,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             };
             _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
 
-            _workerService.AddWorker(worker);
+            _workerService.AddWorker(worker);*/
         }
 
 
@@ -61,8 +61,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<Brigade> Brigades { get; set; }
 
 
-        public Dictionary<int, string> PositionsDictionary { get; set; }
-        public Dictionary<int, string> BrigadesDictionary { get; set; }
+        public Dictionary<ObjectId, string> PositionsDictionary { get; set; }
+        public Dictionary<ObjectId, string> BrigadesDictionary { get; set; }
 
 
         public List<string> Gender { get; set; } = new List<string>
@@ -92,9 +92,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private string _selectedShift;
         private string _email;
         private string _phoneNumber;
-        private int _selectedBrigadeId;
+        private ObjectId _selectedBrigadeId;
 
-        private int _selectedPostionId;
+        private ObjectId _selectedPostionId;
         public string FullName
         {
             get => _fullName;
@@ -179,7 +179,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedPostionId
+        public ObjectId SelectedPostionId
         {
             get => _selectedPostionId;
             set
@@ -190,7 +190,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public int SelectedBrigadeId
+        public ObjectId SelectedBrigadeId
         {
             get => _selectedBrigadeId;
             set

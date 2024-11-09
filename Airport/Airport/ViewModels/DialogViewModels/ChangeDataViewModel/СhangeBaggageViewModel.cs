@@ -106,7 +106,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private void CreateDictionaries()
             {
-                PassengersDictionary = Passengers.ToDictionary(b => b.PassengerId, b => b.ToString());
+                //PassengersDictionary = Passengers.ToDictionary(b => b.PassengerId, b => b.ToString());
             }
 
 

@@ -67,7 +67,7 @@
                 <DataGridTextColumn Header="Категорія" Binding="{Binding Category }"  Width="2*" />
                 <DataGridTextColumn Header="Дата відправ" Binding="{Binding DateDeparture }"  Width="2*"/>
                 <DataGridTextColumn Header="Дата прибут" Binding="{Binding DateArrival }"   Width="2*"/>
-                <DataGridTextColumn Header="Літак" Binding="{Binding PlaneId }"   Width="2*" />
+                <DataGridTextColumn Header="Літак" Binding="{Binding PlaneNumber }"   Width="2*" />
                 <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding DispatchBrigadeId }"   Width="2*" />
                 <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding NavigationBrigadeId }"  Width="2*" />
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="2*" />

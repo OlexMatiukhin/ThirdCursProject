@@ -84,7 +84,7 @@ namespace Airport.ViewModels.WindowViewModels
 
             var ticket = parameter as Ticket;
 
-            if (ticket != null && ticket.Status == "проданий" && ticket.Status == "заброньований")
+           if (ticket != null && ticket.Status == "проданий" && ticket.Status == "заброньований")
             {
                 MessageBoxResult result = MessageBox.Show(
                     $"Ви точно хочете повернути білет",
@@ -95,7 +95,7 @@ namespace Airport.ViewModels.WindowViewModels
 
                     ticket.Status = "доступний";
                     _passengerService.DeletePassenger(ticket.PassengerId);
-                    ticket.PassengerId = 0;
+                    ticket.PassengerId = null;
 
                     
                 }

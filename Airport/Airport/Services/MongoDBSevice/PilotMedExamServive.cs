@@ -31,7 +31,7 @@ namespace Airport.Services.MongoDBSevice
                 return false;
             }
         }
-        public int GetLastPilotId()
+        /*public int GetLastPilotId()
         {
             try
             {
@@ -47,10 +47,10 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Произошла ошибка при получении последнего PassengerId: {ex.Message}");
                 return 0;
             }
-        }
+        }*/
         public void AddPilotMedExamForWorker(Worker worker)
         {
-            try
+         /*  try
             {
                 var newPilotMedExam = new PilotMedExam
                 {
@@ -68,7 +68,7 @@ namespace Airport.Services.MongoDBSevice
             catch 
             { 
               
-            }
+            }*/
         }
 
         public List<PilotMedExam> GetPilotMedExamsData()

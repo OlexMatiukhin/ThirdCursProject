@@ -61,7 +61,7 @@
                 <DataGridTextColumn Header="Закінчення" Binding="{Binding EndDelayDate }" Width="*"/>
                 <DataGridTextColumn Header="Інспекторська бриг" Binding="{Binding InspectionBrigadeId }" Width="*" />
                 <DataGridTextColumn Header="Рейс" Binding="{Binding FlightId }" Width="*" />
-                <DataGridTextColumn Header="Маршрут" Binding="{Binding  RouteId }" Width="*"/>
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding  RouteNumber }" Width="*"/>
                 <DataGridTextColumn Header="Працівник" Binding="{Binding WorkerId }" Width="*" />
                 <DataGridTextColumn Header="Причина" Binding="{Binding Reason }" Width="*"/>
                 <DataGridTemplateColumn Header="Видалення" Width="2*">

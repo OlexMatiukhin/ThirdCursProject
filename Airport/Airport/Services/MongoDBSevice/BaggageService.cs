@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Airport.Services.MongoDBSevice
             _baggageCollection = database.GetCollection<Baggage>("baggage");
         }
 
-        public int GetLastBaggeId()
+       /* public int GetLastBaggeId()
         {
             var allBaggage = _baggageCollection.Find(Builders<Baggage>.Filter.Empty).ToList();
             foreach (var baggage in allBaggage)
@@ -33,7 +34,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastBaggage?.BaggageId ?? 0;
-        }
+        }*/
 
         public List<Baggage> GetBaggageData()
         {
@@ -67,7 +68,7 @@ namespace Airport.Services.MongoDBSevice
             {
                 try
                 {
-                    var result = _baggageCollection.DeleteOne(b => b.PassangerId == passenger.PassengerId);
+                    var result = _baggageCollection.DeleteOne(b => b.PassengerId == passenger.PassengerId);
                     if (result.DeletedCount > 0)
                     {
                         Console.WriteLine("Багаж успешно удален.");
@@ -90,7 +91,7 @@ namespace Airport.Services.MongoDBSevice
 
 
 
-        public bool DeleteBaggage(int baggageId)
+        public bool DeleteBaggage(ObjectId baggageId)
         {
             try
             {

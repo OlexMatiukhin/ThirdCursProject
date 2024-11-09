@@ -55,7 +55,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding PositionName }" Width="*"/>
                 <DataGridTextColumn Header="Id" Binding="{Binding PositionId }" Width="*"/>
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}"  Width="2*" />
-                <DataGridTextColumn Header="Структурна одиниця" Binding="{Binding StructureUnitId}"  Width="2*" />
+                <DataGridTextColumn Header="Структурна одиниця" Binding="{Binding StructureUnitName}"  Width="2*" />
                 <DataGridTemplateColumn Header="Змінити" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

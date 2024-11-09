@@ -26,14 +26,14 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
         public ICommand RegestrationPassangerCommand { get; }
         private readonly IWindowService _windowService;
 
-        public RegistraionPassangerViewModel(Flight flight)
+        /*public RegistraionPassangerViewModel(Flight flight)
         {
             _passengerService = new PassengerService();
             RegestrationPassangerCommand = new RelayCommand(OnRegestrationPassanger);
             _windowService = new WindowService();
             LoadPassengers();
             _flightId = flight.FlightId;
-        }
+        }*/
 
 
 
@@ -42,7 +42,7 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
         private void OnRegestrationPassanger(object parameter)
         {
 
-            var passenger = parameter as Passenger;
+            /*var passenger = parameter as Passenger;
             Ticket ticket = ticketService.GetTicketByPassangerId(passenger.FlightId);
             if (passenger != null && ticket.Status == "проданий" && passenger.CustomsControlsStatus == "допущений")
             {
@@ -74,13 +74,13 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             {
 
                 MessageBox.Show("Пасажира не може бути зареєстрований, оскільки не купив білет або не пройшов митну перевірку!", "", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            }*/
         }
 
 
         private void LoadPassengers()
         {
-            try
+            /*try
             {
                 var passengerList = _passengerService.GetPassengersByFlightId(_flightId);
                 Passengers = new ObservableCollection<Passenger>(passengerList);
@@ -88,7 +88,7 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             catch (Exception ex)
             {
                 Console.WriteLine($"Произошла ошибка: {ex.Message}");
-            }
+            }*/
         }
     }
 }

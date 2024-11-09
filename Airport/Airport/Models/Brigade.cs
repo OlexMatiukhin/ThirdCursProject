@@ -1,78 +1,86 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
 
-public class Brigade : INotifyPropertyChanged
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel;
+
+namespace Airport.Models
 {
-    private int _brigadeId;
-    private string _brigadeType;
-    private int _structureUnitId;
-    private int _numberWorkers;
-
-    [BsonId]
-    public int BrigadeId
+    public class Brigade : INotifyPropertyChanged
     {
-        get => _brigadeId;
-        set
+        private ObjectId _brigadeId;
+        private string _brigadeType;
+        private int _numberWorkers;
+        private string _structureUnitName;
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId BrigadeId
         {
-            if (_brigadeId != value)
+            get => _brigadeId;
+            private set
             {
-                _brigadeId = value;
-                OnPropertyChanged(nameof(BrigadeId));
+                if (_brigadeId != value)
+                {
+                    _brigadeId = value;
+                    OnPropertyChanged(nameof(BrigadeId));
+                }
             }
         }
-    }
 
-    [BsonElement("brigadeType")]
-    public string BrigadeType
-    {
-        get => _brigadeType;
-        set
+        [BsonElement("brigadeType")]
+        public string BrigadeType
         {
-            if (_brigadeType != value)
+            get => _brigadeType;
+            set
             {
-                _brigadeType = value;
-                OnPropertyChanged(nameof(BrigadeType));
+                if (_brigadeType != value)
+                {
+                    _brigadeType = value;
+                    OnPropertyChanged(nameof(BrigadeType));
+                }
             }
         }
-    }
 
-    [BsonElement("structureUnitId")]
-    public int StructureUnitId
-    {
-        get => _structureUnitId;
-        set
+        [BsonElement("numberWorkers")]
+        public int NumberWorkers
         {
-            if (_structureUnitId != value)
+            get => _numberWorkers;
+            set
             {
-                _structureUnitId = value;
-                OnPropertyChanged(nameof(StructureUnitId));
+                if (_numberWorkers != value)
+                {
+                    _numberWorkers = value;
+                    OnPropertyChanged(nameof(NumberWorkers));
+                }
             }
         }
-    }
 
-    [BsonElement("numberWorkers")]
-    public int NumberWorkers
-    {
-        get => _numberWorkers;
-        set
+        [BsonElement("structureUnitName")]
+        public string StructureUnitName
         {
-            if (_numberWorkers != value)
+            get => _structureUnitName;
+            set
             {
-                _numberWorkers = value;
-                OnPropertyChanged(nameof(NumberWorkers));
+                if (_structureUnitName != value)
+                {
+                    _structureUnitName = value;
+                    OnPropertyChanged(nameof(StructureUnitName));
+                }
             }
         }
-    }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-    public override string ToString()
-    {
-        return $"{BrigadeId}: Тип: {BrigadeType}, Структурна одиниця: {StructureUnitId}";
+        public override string ToString()
+        {
+            return $"ID: {BrigadeId}, Тип: {BrigadeType}, Кількість працівників: {NumberWorkers}, Назва структурної одиниці: {StructureUnitName}";
+        }
     }
 }

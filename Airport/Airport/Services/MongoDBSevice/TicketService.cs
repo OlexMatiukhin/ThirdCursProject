@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Airport.Services.MongoDBSevice
             _ticketCollection = database.GetCollection<Ticket>("ticket");
         }
 
-        public Ticket GetTicketByPassangerId(int passangerId)
+        public Ticket GetTicketByPassangerId(ObjectId passangerId)
         {
             try
             {
@@ -31,7 +32,7 @@ namespace Airport.Services.MongoDBSevice
             }
 
         }
-        public int GetLastTicketId()
+       /* public int GetLastTicketId()
         {
             var lastTicket = _ticketCollection
                 .Find(Builders<Ticket>.Filter.Empty)
@@ -40,9 +41,9 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastTicket?.TicketId ?? 0;
-        }
+        }*/
         
-       public List<Ticket>GetTicketsByFlightId(int flightId)
+       public List<Ticket>GetTicketsByFlightId(ObjectId flightId)
         {
 
             try
@@ -71,7 +72,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public Ticket GetTicketById(int ticketId)
+        public Ticket GetTicketById(ObjectId ticketId)
         {
             try
             {
@@ -111,7 +112,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public void DeleteTicketsByFlightId(int flightId)
+        public void DeleteTicketsByFlightId(ObjectId flightId)
         {
             try
             {
@@ -124,7 +125,7 @@ namespace Airport.Services.MongoDBSevice
 
             }
         }
-        public void DeleteTicket(int ticketId)
+        public void DeleteTicket(ObjectId ticketId)
         {
             try
             {

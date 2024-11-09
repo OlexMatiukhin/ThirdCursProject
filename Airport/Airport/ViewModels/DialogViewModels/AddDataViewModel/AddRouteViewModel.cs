@@ -102,7 +102,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             var newRoute = new Route
             {
-                RouteId = _routeService.GetLastRouteId() + 1,
+             
                 Number = Number,
                 DeparturePoint = DeparturePoint,
                 ArrivalPoint = ArrivalPoint,

@@ -35,12 +35,12 @@ namespace Airport.Command.AddDataCommands
 
         public override void Execute(object parameter)
         {
-            int flightId = _flightService.GetLastFlightId() + 1;
-            int firstSeatId = _seatservice.GetLastSeatId() + 1;
-            int firstTicketId = _ticketService.GetLastTicketId() + 1;
+           
+           // int firstSeatId = _seatservice.GetLastSeatId() + 1;
+            //int firstTicketId = _ticketService.GetLastTicketId() + 1;
 
 
-            Flight newFlight = new Flight
+            /*Flight newFlight = new Flight
             {
                 //FlightId= _flightService.Get
                 FlightNumber = _addFlightViewModel.FlightNumber,
@@ -86,7 +86,7 @@ namespace Airport.Command.AddDataCommands
                 _seatservice.AddSeat(seat);
                 _ticketService.AddTicket(ticket);
             }
-            _flightService.AddFlight(newFlight);
+            _flightService.AddFlight(newFlight);*/
         }
 
     }

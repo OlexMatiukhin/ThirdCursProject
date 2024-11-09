@@ -33,7 +33,7 @@ namespace Airport.Command.AddDataCommands
 
             AirPlane newPlane = new AirPlane
             {
-                PlaneId = _planeService.GetLastPlaneId() + 1,  
+               
                 Type = _addPlaneViewModel.SelectedPlaneType,
                 TechCondition = "Задовільний",
                 InteriorReadiness = "Готовий",

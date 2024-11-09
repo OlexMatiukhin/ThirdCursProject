@@ -2,6 +2,7 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,8 +28,8 @@ namespace Airport.ViewModels.DialogViewModels.Change
         public ObservableCollection<Brigade> Brigades { get; set; }
         public ObservableCollection<AirPlane> Planes { get; set; }
 
-        public Dictionary<int, string> BrigadesDictionary { get; set; }
-        public Dictionary<int, string> PlanesDictionary { get; set; }
+        public Dictionary<ObjectId, string> BrigadesDictionary { get; set; }
+        public Dictionary<ObjectId, string> PlanesDictionary { get; set; }
 
 
         public List<string> Result { get; set; } = new List<string>
@@ -56,7 +57,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
         private DateTime? _endDate;
         private string _reason;
         private string _result;
-        private int _brigadeId;
+        private ObjectId _brigadeId;
      
 
         public DateTime StartDate
@@ -119,7 +120,7 @@ namespace Airport.ViewModels.DialogViewModels.Change
             }
         }
 
-        public int SelectedBrigadeId
+        public ObjectId SelectedBrigadeId
         {
             get => _brigadeId;
             set
@@ -177,8 +178,8 @@ namespace Airport.ViewModels.DialogViewModels.Change
 
         private void CreateDictionaries()
         {
-            PlanesDictionary = Planes.ToDictionary(p => p.PlaneId, p => p.ToString());
-            BrigadesDictionary = Brigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
+           /* PlanesDictionary = Planes.ToDictionary(p => p.PlaneId, p => p.ToString());
+           BrigadesDictionary = Brigades.ToDictionary(b => b.BrigadeId, b => b.ToString());*/
 
         }
 

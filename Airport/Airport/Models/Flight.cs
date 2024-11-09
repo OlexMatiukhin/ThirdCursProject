@@ -5,266 +5,280 @@ using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class Flight : INotifyPropertyChanged
-    {
-        private int _flightId;
-        private string _flightNumber;
-        private string _status;
-        private string _category;
-        private DateTime _dateDeparture;
-        private DateTime _dateArrival;
-        private int _planeId;
-        private int _dispatchBrigadeId;
-        private int _navigationBrigadeId;
-        private int _flightBrigadeId;
-        private int _inspectionBrigadeId;
-        private string _customsControl;
-        private string _passengerRegistration ;
-        private int _numberTickets = 0;
-        private int _numberBoughtTickets = 0;
-        private int _routeId;
-
-        [BsonId]
-        public int FlightId
+   
+    
+        public class Flight : INotifyPropertyChanged
         {
-            get => _flightId;
-            set
+            private ObjectId _flightId;
+     
+            private string _flightNumber;
+            private string _status;
+            private string _category;
+            private DateTime _dateDeparture;
+            private DateTime _dateArrival;
+            private string _planeNumber;
+            private ObjectId _dispatchBrigadeId;
+            private ObjectId _navigationBrigadeId;
+            private ObjectId _flightBrigadeId;
+            private ObjectId _inspectionBrigadeId;
+            private string _customsControl;
+            private string _passengerRegistration;
+            private int _numberTickets;
+            private int _numberBoughtTickets;
+            private string _routeNumber;
+
+            [BsonId]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId FlightId
             {
-                if (_flightId != value)
+                get => _flightId;
+                set
                 {
-                    _flightId = value;
-                    OnPropertyChanged(nameof(FlightId));
+                    if (_flightId != value)
+                    {
+                        _flightId = value;
+                        OnPropertyChanged(nameof(FlightId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("flightNumber")]
-        public string FlightNumber
-        {
-            get => _flightNumber;
-            set
+          
+
+            [BsonElement("flightNumber")]
+            public string FlightNumber
             {
-                if (_flightNumber != value)
+                get => _flightNumber;
+                set
                 {
-                    _flightNumber = value;
-                    OnPropertyChanged(nameof(FlightNumber));
+                    if (_flightNumber != value)
+                    {
+                        _flightNumber = value;
+                        OnPropertyChanged(nameof(FlightNumber));
+                    }
                 }
             }
-        }
 
-        [BsonElement("status")]
-        public string Status
-        {
-            get => _status;
-            set
+            [BsonElement("status")]
+            public string Status
             {
-                if (_status != value)
+                get => _status;
+                set
                 {
-                    _status = value;
-                    OnPropertyChanged(nameof(Status));
+                    if (_status != value)
+                    {
+                        _status = value;
+                        OnPropertyChanged(nameof(Status));
+                    }
                 }
             }
-        }
 
-        [BsonElement("category")]
-        public string Category
-        {
-            get => _category;
-            set
+            [BsonElement("category")]
+            public string Category
             {
-                if (_category != value)
+                get => _category;
+                set
                 {
-                    _category = value;
-                    OnPropertyChanged(nameof(Category));
+                    if (_category != value)
+                    {
+                        _category = value;
+                        OnPropertyChanged(nameof(Category));
+                    }
                 }
             }
-        }
 
-        [BsonElement("dateDeparture")]
-        public DateTime DateDeparture
-        {
-            get => _dateDeparture;
-            set
+            [BsonElement("dateDeparture")]
+            public DateTime DateDeparture
             {
-                if (_dateDeparture != value)
+                get => _dateDeparture;
+                set
                 {
-                    _dateDeparture = value;
-                    OnPropertyChanged(nameof(DateDeparture));
+                    if (_dateDeparture != value)
+                    {
+                        _dateDeparture = value;
+                        OnPropertyChanged(nameof(DateDeparture));
+                    }
                 }
             }
-        }
 
-        [BsonElement("dateArrival")]
-        public DateTime DateArrival
-        {
-            get => _dateArrival;
-            set
+            [BsonElement("dateArrival")]
+            public DateTime DateArrival
             {
-                if (_dateArrival != value)
+                get => _dateArrival;
+                set
                 {
-                    _dateArrival = value;
-                    OnPropertyChanged(nameof(DateArrival));
+                    if (_dateArrival != value)
+                    {
+                        _dateArrival = value;
+                        OnPropertyChanged(nameof(DateArrival));
+                    }
                 }
             }
-        }
 
-        [BsonElement("planeId")]
-        public int PlaneId
-        {
-            get => _planeId;
-            set
+            [BsonElement("planeNumber")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public string PlaneNumber
             {
-                if (_planeId != value)
+                get => _planeNumber;
+                set
                 {
-                    _planeId = value;
-                    OnPropertyChanged(nameof(PlaneId));
+                    if (_planeNumber != value)
+                    {
+                    _planeNumber = value;
+                        OnPropertyChanged(nameof(PlaneNumber));
+                    }
                 }
             }
-        }
 
-        [BsonElement("dispatchBrigadeId")]
-        public int DispatchBrigadeId
-        {
-            get => _dispatchBrigadeId;
-            set
+            [BsonElement("dispatchBrigadeId")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId DispatchBrigadeId
             {
-                if (_dispatchBrigadeId != value)
+                get => _dispatchBrigadeId;
+                set
                 {
-                    _dispatchBrigadeId = value;
-                    OnPropertyChanged(nameof(DispatchBrigadeId));
+                    if (_dispatchBrigadeId != value)
+                    {
+                        _dispatchBrigadeId = value;
+                        OnPropertyChanged(nameof(DispatchBrigadeId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("navigationBrigadeId")]
-        public int NavigationBrigadeId
-        {
-            get => _navigationBrigadeId;
-            set
+            [BsonElement("navigationBrigadeId")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId NavigationBrigadeId
             {
-                if (_navigationBrigadeId != value)
+                get => _navigationBrigadeId;
+                set
                 {
-                    _navigationBrigadeId = value;
-                    OnPropertyChanged(nameof(NavigationBrigadeId));
+                    if (_navigationBrigadeId != value)
+                    {
+                        _navigationBrigadeId = value;
+                        OnPropertyChanged(nameof(NavigationBrigadeId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("flightBrigadeId")]
-        public int FlightBrigadeId
-        {
-            get => _flightBrigadeId;
-            set
+            [BsonElement("flightBrigadeId")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId FlightBrigadeId
             {
-                if (_flightBrigadeId != value)
+                get => _flightBrigadeId;
+                set
                 {
-                    _flightBrigadeId = value;
-                    OnPropertyChanged(nameof(FlightBrigadeId));
+                    if (_flightBrigadeId != value)
+                    {
+                        _flightBrigadeId = value;
+                        OnPropertyChanged(nameof(FlightBrigadeId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("inspectionBrigadeId")]
-        public int InspectionBrigadeId
-        {
-            get => _inspectionBrigadeId;
-            set
+            [BsonElement("inspectionBrigadeId")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId InspectionBrigadeId
             {
-                if (_inspectionBrigadeId != value)
+                get => _inspectionBrigadeId;
+                set
                 {
-                    _inspectionBrigadeId = value;
-                    OnPropertyChanged(nameof(InspectionBrigadeId));
+                    if (_inspectionBrigadeId != value)
+                    {
+                        _inspectionBrigadeId = value;
+                        OnPropertyChanged(nameof(InspectionBrigadeId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("customsControl")]
-        public string CustomsControl
-        {
-            get => _customsControl;
-            set
+            [BsonElement("customsControl")]
+            public string CustomsControl
             {
-                if (_customsControl != value)
+                get => _customsControl;
+                set
                 {
-                    _customsControl = value;
-                    OnPropertyChanged(nameof(CustomsControl));
+                    if (_customsControl != value)
+                    {
+                        _customsControl = value;
+                        OnPropertyChanged(nameof(CustomsControl));
+                    }
                 }
             }
-        }
 
-        [BsonElement("passengerRegistration")]
-        public string PassengerRegistration
-        {
-            get => _passengerRegistration;
-            set
+            [BsonElement("passengerRegistration")]
+            public string PassengerRegistration
             {
-                if (_passengerRegistration != value)
+                get => _passengerRegistration;
+                set
                 {
-                    _passengerRegistration = value;
-                    OnPropertyChanged(nameof(PassengerRegistration));
+                    if (_passengerRegistration != value)
+                    {
+                        _passengerRegistration = value;
+                        OnPropertyChanged(nameof(PassengerRegistration));
+                    }
                 }
             }
-        }
 
-        [BsonElement("numberTickets")]
-        public int NumberTickets
-        {
-            get => _numberTickets;
-            set
+            [BsonElement("numberTickets")]
+            public int NumberTickets
             {
-                if (_numberTickets != value)
+                get => _numberTickets;
+                set
                 {
-                    _numberTickets = value;
-                    OnPropertyChanged(nameof(NumberTickets));
+                    if (_numberTickets != value)
+                    {
+                        _numberTickets = value;
+                        OnPropertyChanged(nameof(NumberTickets));
+                    }
                 }
             }
-        }
 
-        [BsonElement("numberBoughtTickets")]
-        public int NumberBoughtTickets
-        {
-            get => _numberBoughtTickets;
-            set
+            [BsonElement("numberBoughtTickets")]
+            public int NumberBoughtTickets
             {
-                if (_numberBoughtTickets != value)
+                get => _numberBoughtTickets;
+                set
                 {
-                    _numberBoughtTickets = value;
-                    OnPropertyChanged(nameof(NumberBoughtTickets));
+                    if (_numberBoughtTickets != value)
+                    {
+                        _numberBoughtTickets = value;
+                        OnPropertyChanged(nameof(NumberBoughtTickets));
+                    }
                 }
             }
-        }
 
-        [BsonElement("routeId")]
-        public int RouteId
-        {
-            get => _routeId;
-            set
+            [BsonElement("routeNumber")]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public String RouteNumber
             {
-                if (_routeId != value)
+                get => _routeNumber;
+                set
                 {
-                    _routeId = value;
-                    OnPropertyChanged(nameof(RouteId));
+                    if (_routeNumber != value)
+                    {
+                    _routeNumber = value;
+                        OnPropertyChanged(nameof(RouteNumber));
+                    }
                 }
             }
-        }
 
-        public override string ToString()
-        {
-            return $"Flight ID: {FlightId}, Flight Number: {FlightNumber}, Status: {Status}, " +
-                   $"Category: {Category}, Departure: {DateDeparture}, Arrival: {DateArrival}, " +
-                   $"Plane ID: {PlaneId}, Dispatch Brigade ID: {DispatchBrigadeId}, " +
-                   $"Navigation Brigade ID: {NavigationBrigadeId}, Flight Brigade ID: {FlightBrigadeId}, " +
-                   $"Inspection Brigade ID: {InspectionBrigadeId}, Route ID: {RouteId}, " +
-                   $"Customs Control: {CustomsControl}, Passenger Registration: {PassengerRegistration}, " +
-                   $"Number of Tickets: {NumberTickets}, Number of Bought Tickets: {NumberBoughtTickets}";
-        }
+            public override string ToString()
+            {
+                return $"Flight ID: {FlightId}, Flight Number: {FlightNumber}, Status: {Status}, " +
+                       $"Category: {Category}, Departure: {DateDeparture}, Arrival: {DateArrival}, " +
+                       $"Plane ID: {PlaneNumber}, Dispatch Brigade ID: {DispatchBrigadeId}, " +
+                       $"Navigation Brigade ID: {NavigationBrigadeId}, Flight Brigade ID: {FlightBrigadeId}, " +
+                       $"Inspection Brigade ID: {InspectionBrigadeId}, Route Number: {RouteNumber}, " +
+                       $"Customs Control: {CustomsControl}, Passenger Registration: {PassengerRegistration}, " +
+                       $"Number of Tickets: {NumberTickets}, Number of Bought Tickets: {NumberBoughtTickets}";
+            }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
-    }
-}
+ }
+
+
 

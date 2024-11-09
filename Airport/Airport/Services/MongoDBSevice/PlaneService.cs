@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка при добавлении данных: {ex.Message}");
+                Console.WriteLine($": {ex.Message}");
             }
         }
 
@@ -41,11 +42,11 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка при обновлении данных: {ex.Message}");
+                Console.WriteLine($": {ex.Message}");
             }
         }
 
-        public AirPlane GetPlaneById(int planeId)
+        public AirPlane GetPlaneById(ObjectId planeId)
         {
             try
             {
@@ -53,21 +54,25 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                Console.WriteLine($": {ex.Message}");
                 return null;
             }
         }
-        public int GetLastPlaneId()
+
+
+        public AirPlane GetPlaneByPlaneNumber(string planeNumber)
         {
-            var lastBaggage = _planeCollection
-                .Find(Builders<AirPlane>.Filter.Empty)
-                .Sort(Builders<AirPlane>.Sort.Descending(w => w.PlaneId))
-                .Limit(1)
-                .FirstOrDefault();
-
-            return lastBaggage?.PlaneId ?? 0;
+            try
+            {
+                return _planeCollection.Find(f => f.PlaneNumber == planeNumber).First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($": {ex.Message}");
+                return null;
+            }
         }
-
+    
         public List<AirPlane> GetPlanesData()
         {
             try
@@ -76,7 +81,7 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                Console.WriteLine($": {ex.Message}");
                 return new List<AirPlane>();
             }
         }

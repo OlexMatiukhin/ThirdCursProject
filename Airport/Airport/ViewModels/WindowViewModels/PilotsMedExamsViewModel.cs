@@ -53,7 +53,7 @@ namespace Airport.ViewModels.WindowViewModels
                 {
                     pilotMedExam.Result = "пройдений";
                     pilotMedExam.DateExamination = DateTime.Now;
-                    pilotMedExam.DoctorId = 0;
+                    pilotMedExam.DoctorId = null;
                     _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
                     _worker.ResultMedExam = "задовільний";
                     _worker.LastMedExamDate = DateTime.Now;
@@ -66,7 +66,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
             }
-
+            
 
 
 

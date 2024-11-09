@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="AddPlaneView" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Тип"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="360,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Тип"/></TextBlock>
         <Button Content="Додати" Command="{Binding AddPlaneCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
-        <TextBlock HorizontalAlignment="Left" Margin="269,39,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписаний"/><LineBreak/><Run/></TextBlock>
-        <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="295,57,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" RenderTransformOrigin="1,0.731"/>
-        <ComboBox  ItemsSource="{Binding PlaneTypeList }"  SelectedValue="{Binding  SelectedPlaneType, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="103,55,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="477,38,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписаний"/><LineBreak/><Run/></TextBlock>
+        <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="503,56,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" RenderTransformOrigin="1,0.731"/>
+        <ComboBox  ItemsSource="{Binding PlaneTypeList }"  SelectedValue="{Binding  SelectedPlaneType, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="311,54,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="110,49,0,0" TextWrapping="Wrap" Text="{Binding PlaneNumber}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="159,27,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Тип"/></TextBlock>
 
     </Grid>
 </Window>

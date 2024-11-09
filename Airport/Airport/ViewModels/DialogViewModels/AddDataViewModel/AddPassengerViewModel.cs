@@ -158,12 +158,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecutePassangerAdd(object parameter)
         {
-            int passangerId = _passengerService.GetLastPassengerId()+ 1;
+           
 
 
             Passenger newPassenger = new Passenger
             {
-                PassengerId = passangerId,
+              
                 FullName = FullName,
                 Age = Age,
                 Gender = SelectedGender,
@@ -172,12 +172,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 BaggageStatus = BaggageStatus,
                 PhoneNumber = PhoneNumber,
                 Email = Email,
-                CustomsControlsStatus = "не перевірений",
+                CustomsControlStatus = "не перевірений",
                 RegistrationStatus = "не зареєстрований",
-                FlightId = 0,
+                FlightId = null,
 
             };
-            this._ticket.PassengerId = passangerId;
+            //this._ticket.PassengerId = passangerId;
 
 
 

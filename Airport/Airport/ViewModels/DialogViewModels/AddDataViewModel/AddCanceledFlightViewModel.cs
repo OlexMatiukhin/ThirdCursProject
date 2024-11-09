@@ -84,7 +84,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private void AddCanceledFlight(object parameter)
         {    
            
-            if (_flight != null && CancelingDescription!=""&& SelectedCancelingReason!="")
+            /*if (_flight != null && CancelingDescription!=""&& SelectedCancelingReason!="")
             {
                 if (_flight.Category == "внутрішній" || _flight.Category == "міжнародний")
                 {
@@ -105,9 +105,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
                 }
 
-            }
-
-
+            }*/
 
         }
 

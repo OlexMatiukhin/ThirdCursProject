@@ -147,3 +147,5 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AddWindow\AddDelayedFlightView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\ChangePilotPositionView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\ChangePilotPositionView.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeBrigade.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeBrigade.baml

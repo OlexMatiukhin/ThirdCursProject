@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Airport.Command.AddDataCommands
 {
-    class AddBrigadeCommand : CommandBase
+    class AddBrigadeCommand 
     {
-        private AddBrigadeViewModel _addBrigadeViewModle;
+       /* private AddBrigadeViewModel _addBrigadeViewModle;
         private BrigadeService _brigadeService;
 
 
@@ -26,7 +26,7 @@ namespace Airport.Command.AddDataCommands
         {
 
 
-            Brigade newBrigade = new Brigade
+           /* Brigade newBrigade = new Brigade
             {
                 BrigadeId = _brigadeService.GetLastBrigadeId() + 1,
                 BrigadeType = _addBrigadeViewModle.BrigadeType,
@@ -34,6 +34,6 @@ namespace Airport.Command.AddDataCommands
 
             };
             _brigadeService.AddBrigade(newBrigade);
-        }
+        }*/
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,13 @@ public class BrigadeService
                 return new List<Brigade>();
             }
         }
-    public void AddWorkerToBrigade(int briadeId)
+    public void AddWorkerToBrigade(ObjectId briadeId)
     {
         _brigadeCollection.Find((b)=> b.BrigadeId==briadeId).FirstOrDefault().NumberWorkers++;
 
 
     }
-    public void DeleteWorkerFromBrigade(int briadeId)
+    public void DeleteWorkerFromBrigade(ObjectId briadeId)
     {
         _brigadeCollection.Find((b) => b.BrigadeId == briadeId).FirstOrDefault().NumberWorkers--;
 
@@ -45,7 +46,7 @@ public class BrigadeService
 
     }
 
-    public int GetLastBrigadeId()
+   /* public int GetLastBrigadeId()
         {
             var lastBaggage = _brigadeCollection
                 .Find(Builders<Brigade>.Filter.Empty)
@@ -54,9 +55,9 @@ public class BrigadeService
                 .FirstOrDefault();
 
             return lastBaggage?.BrigadeId ?? 0;
-        }
+        }*/
 
-    public Brigade GetBrigadeById(int brigadeId)
+    public Brigade GetBrigadeById(ObjectId brigadeId)
         {
             try
             {
@@ -110,7 +111,7 @@ public class BrigadeService
         }
 
       
-        public void DeleteBrigade(int brigadeId)
+        public void DeleteBrigade(ObjectId brigadeId)
         {
             try
             {

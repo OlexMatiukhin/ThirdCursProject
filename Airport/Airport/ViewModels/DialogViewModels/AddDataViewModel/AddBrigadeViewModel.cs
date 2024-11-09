@@ -3,6 +3,7 @@ using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,13 +35,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
 
 
-        public Dictionary<int, string> StructureUnitDictionary { get; set; }
+        public Dictionary<string, string> StructureUnitDictionary { get; set; }
 
 
         public string _brigadeType;
 
 
-        private int _structureUnitId;
+        private string _structureUnitName;
     
 
 
@@ -55,13 +56,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public int StructureUnitId
+        public string StructureUnitName
         {
-            get => _structureUnitId;
+            get => _structureUnitName;
             set
             {
-                _structureUnitId = value;
-                OnPropertyChanged(nameof(StructureUnitId));
+                _structureUnitName = value;
+                OnPropertyChanged(nameof(StructureUnitName));
             }
         }
 
@@ -80,16 +81,15 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void CreateDictionaries()
         {
-            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
+            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
 
         }
         private void AddBrigade(object parameter)
         {
             Brigade newBrigade = new Brigade
             {
-                BrigadeId = _brigadeService.GetLastBrigadeId() + 1,
+           
                 BrigadeType = BrigadeType,
-                StructureUnitId = StructureUnitId,
                 NumberWorkers = 0,
             };
             _brigadeService.AddBrigade(newBrigade);

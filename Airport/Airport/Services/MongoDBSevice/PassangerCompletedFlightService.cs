@@ -75,7 +75,7 @@ namespace Airport.Services.MongoDBSevice
                     BaggageStatus = p.BaggageStatus,
                     PhoneNumber = p.PhoneNumber,
                     Email = p.Email,
-                    CompletedFlightId = p.FlightId,
+                   // CompletedFlightId = p.FlightId,
                 }).ToList();
 
                 _passengerCompletedFlightCollection.InsertMany(passengerCompletedFlights);

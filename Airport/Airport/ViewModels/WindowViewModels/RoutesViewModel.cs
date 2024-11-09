@@ -49,7 +49,7 @@ namespace Airport.ViewModels.WindowViewModels
         {
             try
             {
-                var routeList = _routeService.GetRoutes(); // Обновите метод на подходящий для RouteService
+                var routeList = _routeService.GetRoutes(); 
                 Routes = new ObservableCollection<Route>(routeList);
             }
             catch (Exception ex)

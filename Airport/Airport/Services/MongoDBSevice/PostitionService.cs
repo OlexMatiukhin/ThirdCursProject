@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Airport.Services.MongoDBSevice
         }
         public ICommand AddPositionCommand { get; }
 
-        public int GetLastPositionId()
+       /* public int GetLastPositionId()
         {
             var lastPosition = _positionCollection
                 .Find(Builders<Position>.Filter.Empty)
@@ -29,7 +30,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastPosition?.PositionId ?? 0;
-        }
+        }*/
         public void AddPostion(Position position)
         {
             try
@@ -68,7 +69,7 @@ namespace Airport.Services.MongoDBSevice
                 return new List<Position>();
             }
         }
-        public bool DeletePostion(int positionId)
+        public bool DeletePostion(ObjectId positionId)
         {
             try
             {
@@ -82,11 +83,11 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public List<Position> GetPositionsDataByStructureUnitId(int structureUnitId)
+        public List<Position> GetPositionsDataByStructureUnitName(string structureUnitName)
         {
             try
             {
-                return _positionCollection.Find(p => p.StructureUnitId==structureUnitId).ToList();
+                return _positionCollection.Find(p => p.StructureUnitName == structureUnitName).ToList();
             }
             catch (Exception ex)
             {

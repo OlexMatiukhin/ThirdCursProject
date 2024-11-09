@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
+
 namespace Airport.Models
 {
     public class Baggage : INotifyPropertyChanged
     {
-        private int _baggageId;
+        private ObjectId _baggageId;
+        private ObjectId _flightId;
         private string _baggageType;
         private double _weight;
         private decimal _payment;
-        private int _passangerId;
+        private ObjectId? _passengerId;
 
+        // MongoDB ObjectId for the baggage
         [BsonId]
-        [BsonRepresentation(BsonType.Int32)]
-        public int BaggageId
+        public ObjectId BaggageId
         {
             get => _baggageId;
             set
@@ -29,6 +31,20 @@ namespace Airport.Models
                 {
                     _baggageId = value;
                     OnPropertyChanged(nameof(BaggageId));
+                }
+            }
+        }
+
+        [BsonElement("flightId")]
+        public ObjectId FlightId
+        {
+            get => _flightId;
+            set
+            {
+                if (_flightId != value)
+                {
+                    _flightId = value;
+                    OnPropertyChanged(nameof(FlightId));
                 }
             }
         }
@@ -75,16 +91,16 @@ namespace Airport.Models
             }
         }
 
-        [BsonElement("passangerId")]
-        public int PassangerId
+        [BsonElement("passengerId")]
+        public ObjectId? PassengerId
         {
-            get => _passangerId;
+            get => _passengerId;
             set
             {
-                if (_passangerId != value)
+                if (_passengerId != value)
                 {
-                    _passangerId = value;
-                    OnPropertyChanged(nameof(PassangerId));
+                    _passengerId = value;
+                    OnPropertyChanged(nameof(PassengerId));
                 }
             }
         }

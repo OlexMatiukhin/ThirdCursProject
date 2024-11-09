@@ -22,11 +22,11 @@ namespace Airport.Command.AddDataCommands
         }
         public override void Execute(object parameter)
         {
-            int baggadeId = _routeService.GetLastRouteId() + 1;
+           
 
             Route newRoute = new Route
             {
-                RouteId = _routeService.GetLastRouteId() + 1,
+    
                 Number = _addRouteViewModel.Number,
                 DeparturePoint = _addRouteViewModel.DeparturePoint,
                 ArrivalPoint = _addRouteViewModel.ArrivalPoint,

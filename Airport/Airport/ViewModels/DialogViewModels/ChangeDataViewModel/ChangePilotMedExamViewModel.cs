@@ -2,6 +2,7 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,8 +27,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             public ObservableCollection<Worker> Doctors { get; set; }
             public ObservableCollection<Worker> Pilots { get; set; }
 
-            public Dictionary<int, string> DoctorsDictionary { get; set; }
-            public Dictionary<int, string> PilotsDictionary { get; set; }
+            public Dictionary<ObjectId, string> DoctorsDictionary { get; set; }
+            public Dictionary<ObjectId, string> PilotsDictionary { get; set; }
             
 
             public List<string> Result { get; set; } = new List<string>
@@ -37,11 +38,11 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             
             };
 
-            private int _id;
+          
             private string _selectectedResult;
          public DateTime? _dateExamination;
-            private int _selectedPilotId;
-            private int _selectedDoctorId;
+            private ObjectId _selectedPilotId;
+            private ObjectId? _selectedDoctorId;
 
         public string SelectedResult
         {
@@ -55,7 +56,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
        
 
-        public int SelectedDoctorId
+        public ObjectId? SelectedDoctorId
         {
             get => _selectedDoctorId;
             set
@@ -104,17 +105,17 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private void LoadData()
             {
-                var PilotsList = _workerSevice.GetWorkersByPositionId(62);
+                var PilotsList = _workerSevice.GetWorkersByPositionName("Пілот");
                 Pilots = new ObservableCollection<Worker>(PilotsList);
 
-                var DoctorList = _workerSevice.GetWorkersByPositionId(81);
+                var DoctorList = _workerSevice.GetWorkersByPositionName("Пілот");
                 Doctors = new ObservableCollection<Worker>(DoctorList);
             }
 
             private void CreateDictionaries()
             {
-                PilotsDictionary = Pilots.ToDictionary(w => w.WorkerId, w => w.ToString());
-                DoctorsDictionary = Doctors.ToDictionary(w => w.WorkerId, w => w.ToString());
+               /* PilotsDictionary = Pilots.ToDictionary(w => w.WorkerId, w => w.ToString());
+                DoctorsDictionary = Doctors.ToDictionary(w => w.WorkerId, w => w.ToString());*/
             }
 
             public event PropertyChangedEventHandler PropertyChanged;

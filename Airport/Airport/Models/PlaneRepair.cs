@@ -5,20 +5,25 @@ using System.ComponentModel;
 
 namespace Airport.Models
 {
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+    using System;
+    using System.ComponentModel;
+
     public class PlaneRepair : INotifyPropertyChanged
     {
-        private int _planeRepairId;
+        private ObjectId _planeRepairId;
         private DateTime _startDate;
         private string _status;
         private int _numberFlights;
         private DateTime? _endDate;
         private string _reason;
         private string _result;
-        private int _brigadeId;
-        private int _planeId;
+        private ObjectId _brigadeId;
+        private ObjectId _planeId;
 
         [BsonId]
-        public int PlaneRepairId
+        public ObjectId PlaneRepairId
         {
             get => _planeRepairId;
             set
@@ -116,7 +121,7 @@ namespace Airport.Models
         }
 
         [BsonElement("brigadeId")]
-        public int BrigadeId
+        public ObjectId BrigadeId
         {
             get => _brigadeId;
             set
@@ -130,7 +135,7 @@ namespace Airport.Models
         }
 
         [BsonElement("planeId")]
-        public int PlaneId
+        public ObjectId PlaneId
         {
             get => _planeId;
             set
@@ -151,4 +156,5 @@ namespace Airport.Models
         }
     }
 }
+
 

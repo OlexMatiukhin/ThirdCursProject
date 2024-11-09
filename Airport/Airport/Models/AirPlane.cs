@@ -3,12 +3,29 @@ using MongoDB.Bson;
 using System;
 using System.ComponentModel;
 
+
 namespace Airport.Models
 {
+
+
     public class AirPlane : INotifyPropertyChanged
     {
+        private ObjectId _planeId;
+
         [BsonId]
-        public int PlaneId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId PlaneId
+        {
+            get => _planeId;
+            private set
+            {
+                if (_planeId != value)
+                {
+                    _planeId = value;
+                    OnPropertyChanged(nameof(PlaneId));
+                }
+            }
+        }
 
         private string _type;
         [BsonElement("type")]
@@ -70,6 +87,21 @@ namespace Airport.Models
             }
         }
 
+        private string _planeNumber;
+        [BsonElement("planeNumber")]
+        public string PlaneNumber
+        {
+            get => _planeNumber;
+            set
+            {
+                if (_planeNumber != value)
+                {
+                    _planeNumber = value;
+                    OnPropertyChanged(nameof(PlaneNumber));
+                }
+            }
+        }
+
         private int _numberFlightsBeforeRepair;
         [BsonElement("numberFlightsBeforeRepair")]
         public int NumberFlightsBeforeRepair
@@ -87,6 +119,7 @@ namespace Airport.Models
 
         private DateTime _techInspectionDate;
         [BsonElement("techInspectionDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime TechInspectionDate
         {
             get => _techInspectionDate;
@@ -102,6 +135,7 @@ namespace Airport.Models
 
         private bool _assigned;
         [BsonElement("assigned")]
+        [BsonRepresentation(BsonType.Boolean)]
         public bool Assigned
         {
             get => _assigned;
@@ -132,6 +166,7 @@ namespace Airport.Models
 
         private DateTime _exploitationDate;
         [BsonElement("explotationDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime ExploitationDate
         {
             get => _exploitationDate;
@@ -149,7 +184,8 @@ namespace Airport.Models
         {
             return $"Id: {PlaneId}, Тип: {Type}, Технічний стан: {TechCondition}, Готовність салону: {InteriorReadiness}, " +
                    $"Кількість польотів до ремонту: {NumberFlightsBeforeRepair}, Дата техінспекції: {TechInspectionDate.ToShortDateString()}, " +
-                   $"Приписка: {Assigned}, Кількість ремонтів: {NumberRepairs}, Дата експлуатацї: {ExploitationDate.ToShortDateString()}";
+                   $"Приписка: {Assigned}, Кількість ремонтів: {NumberRepairs}, Дата експлуатацї: {ExploitationDate.ToShortDateString()}, " +
+                   $"Номер літака: {PlaneNumber}";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -160,3 +196,4 @@ namespace Airport.Models
         }
     }
 }
+

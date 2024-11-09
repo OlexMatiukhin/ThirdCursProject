@@ -29,6 +29,7 @@ namespace Airport.ViewModels.WindowViewModels
         private SeatService _seatService;
         private PassengerCompletedFlightService _passangerCompletedFlightService;
         private CompletedFlightService _completedFlightService;
+        private PlaneService _planeService;
 
 
         public ICommand OpenEditWindowCommand { get; }
@@ -51,6 +52,8 @@ namespace Airport.ViewModels.WindowViewModels
             _seatService= new SeatService();
             _passangerCompletedFlightService  = new PassengerCompletedFlightService();
             _completedFlightService = new CompletedFlightService();
+            _planeService= new PlaneService();
+
 
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             EndCustomsControlCommand = new RelayCommand(EndCustomsControl);
@@ -105,10 +108,7 @@ namespace Airport.ViewModels.WindowViewModels
                 if (result == MessageBoxResult.Yes) {
                     flight.CustomsControl = "завершений";
                     _flightService.UpdateFlight(flight);
-                }
-               
-
-       
+                }      
 
             }
         }
@@ -137,6 +137,21 @@ namespace Airport.ViewModels.WindowViewModels
 
 
          }   
+
+        private bool CheckPlaneForActivation(Flight flight)
+        {
+            AirPlane plane = _planeService.GetPlaneById
+            if (plane == null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Літак не готовий до польоту", "Літак", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+
+            }
+        }
         
         private void ActivateFlight(object parameter)
         {
@@ -214,7 +229,7 @@ namespace Airport.ViewModels.WindowViewModels
             if(flight!=null&& flight.Status == "активний")
             {
 
-
+                
                 MessageBoxResult result = MessageBox.Show(
                  "Завершети рейс?",
                  "Завершення рейсу",

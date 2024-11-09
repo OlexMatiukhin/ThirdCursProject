@@ -55,7 +55,7 @@
                 <DataGridTextColumn Header="Тип" Binding="{Binding BaggageType}" Width="*"/>
                 <DataGridTextColumn Header="Вага" Binding="{Binding Weight}" Width="*"/>
                 <DataGridTextColumn Header="Оплата" Binding="{Binding Payment}" Width="*"/>
-                <DataGridTextColumn Header="Пасажир" Binding="{Binding PassangerId}" Width="*"/>
+                <DataGridTextColumn Header="Пасажир" Binding="{Binding PassengerId}" Width="*"/>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

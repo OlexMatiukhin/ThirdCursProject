@@ -10,11 +10,7 @@ using System.Windows.Input;
 
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
-{
-
-
-
-   
+{  
     public class AddBaggeViewModle : INotifyPropertyChanged
     {
         IWindowService _windowService;
@@ -27,7 +23,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<Passenger> Passengers { get; set; }
 
 
-        public Dictionary<int, string> PassengersDictionary { get; set; }
+        public Dictionary<ObjectId, string> PassengersDictionary { get; set; }
 
         public List<string> TypeBaggeList { get; set; } = new List<string>
         {
@@ -41,7 +37,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private string _type;
         private string _weight;
         private string _payment;
-        private int _selectedPassangerId;
+        private ObjectId _selectedPassangerId;
 
         public string BaggeType
         {
@@ -73,7 +69,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedPassengerId
+        public ObjectId SelectedPassengerId
         {
             get => _selectedPassangerId;
             set
@@ -121,15 +117,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void OnAddBaggageExecuted(object parameter)
         {
-            int baggageId = _baggageService.GetLastBaggeId() + 1;
+ 
 
             var newBaggage = new Baggage
             {
-                BaggageId = baggageId,
-                BaggageType = BaggeType,
+               BaggageType = BaggeType,
                 Weight = int.Parse(Weight),
                 Payment = int.Parse(Payment),
-                PassangerId = SelectedPassengerId
+                PassengerId = SelectedPassengerId
             };
 
             _baggageService.AddBaggage(newBaggage);

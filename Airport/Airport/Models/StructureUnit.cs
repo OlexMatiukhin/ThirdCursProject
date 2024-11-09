@@ -9,79 +9,90 @@ using System.ComponentModel;
 
 namespace Airport.Models
 {
-    public class StructureUnit : INotifyPropertyChanged
-    {
-        private int _structureUnitId;
-        private string _structureUnitName;
-        private string _type;
-        private int _departmentId;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+    using System.ComponentModel;
 
-        [BsonId]
-        public int StructureUnitId
+
+  
+        public class StructureUnit : INotifyPropertyChanged
         {
-            get => _structureUnitId;
-            set
+            private ObjectId _structureUnitId;
+            private string _departmentName;
+            private string _structureUnitName;
+            private string _type;
+
+            [BsonId]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public ObjectId StructureUnitId
             {
-                if (_structureUnitId != value)
+                get => _structureUnitId;
+                private set
                 {
-                    _structureUnitId = value;
-                    OnPropertyChanged(nameof(StructureUnitId));
+                    if (_structureUnitId != value)
+                    {
+                        _structureUnitId = value;
+                        OnPropertyChanged(nameof(StructureUnitId));
+                    }
                 }
             }
-        }
 
-        [BsonElement("structureUnitName")]
-        public string StructureUnitName
-        {
-            get => _structureUnitName;
-            set
+            [BsonElement("departmentName")]
+            public string DepartmentName
             {
-                if (_structureUnitName != value)
+                get => _departmentName;
+                set
                 {
-                    _structureUnitName = value;
-                    OnPropertyChanged(nameof(StructureUnitName));
+                    if (_departmentName != value)
+                    {
+                        _departmentName = value;
+                        OnPropertyChanged(nameof(DepartmentName));
+                    }
                 }
             }
-        }
 
-        [BsonElement("type")]
-        public string Type
-        {
-            get => _type;
-            set
+            [BsonElement("structureUnitName")]
+            public string StructureUnitName
             {
-                if (_type != value)
+                get => _structureUnitName;
+                set
                 {
-                    _type = value;
-                    OnPropertyChanged(nameof(Type));
+                    if (_structureUnitName != value)
+                    {
+                        _structureUnitName = value;
+                        OnPropertyChanged(nameof(StructureUnitName));
+                    }
                 }
             }
-        }
 
-        [BsonElement("departmentId")]
-        public int DepartmentId
-        {
-            get => _departmentId;
-            set
+            [BsonElement("type")]
+            public string Type
             {
-                if (_departmentId != value)
+                get => _type;
+                set
                 {
-                    _departmentId = value;
-                    OnPropertyChanged(nameof(DepartmentId));
+                    if (_type != value)
+                    {
+                        _type = value;
+                        OnPropertyChanged(nameof(Type));
+                    }
                 }
             }
-        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
 
-        public override string ToString()
-        {
-            return $"ID: {StructureUnitId}, Name: {StructureUnitName}, Type: {Type}";
+            public override string ToString()
+            {
+                return $"ID: {StructureUnitId}, Department Name: {DepartmentName}, Structure Unit Name: {StructureUnitName}, Type: {Type}";
+            }
         }
-    }
+    
+
+
+
 }

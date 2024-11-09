@@ -34,7 +34,7 @@ namespace Airport.Command.AddDataCommands
         public ObservableCollection<Department> Departments { get; set; }
 
 
-        public Dictionary<int, string> DepartmentsDictionary { get; set; }
+        public Dictionary<string, string> DepartmentsDictionary { get; set; }
 
 
 
@@ -62,14 +62,14 @@ namespace Airport.Command.AddDataCommands
             }
         }
 
-        private string _selectedDepartmentId;
-        public string SelectedDepartmentId
+        private string _selectedDepartmentName;
+        public string SelectedDepartmentName
         {
-            get => _selectedDepartmentId;
+            get => _selectedDepartmentName;
             set
             {
-                _selectedDepartmentId = value;
-                OnPropertyChanged(nameof(SelectedDepartmentId));
+                _selectedDepartmentName = value;
+                OnPropertyChanged(nameof(SelectedDepartmentName));
             }
         }
 
@@ -77,10 +77,9 @@ namespace Airport.Command.AddDataCommands
         {
             var newStructureUnit = new StructureUnit
             {
-                StructureUnitId = _structureUnitService.GetLastStructureUnitd() + 1,
                 StructureUnitName = StructureUnitName,
                 Type = SelectedStructureUnitType,
-                DepartmentId = int.Parse(SelectedDepartmentId)
+                DepartmentName = SelectedDepartmentName
             };
 
             _structureUnitService.AddStructureUnit(newStructureUnit);
@@ -96,7 +95,7 @@ namespace Airport.Command.AddDataCommands
 
         private void CreateDictionaries()
         {
-            DepartmentsDictionary = Departments.ToDictionary(b => b.DepartmentId, b => b.ToString());
+            DepartmentsDictionary = Departments.ToDictionary(b => b.DepartmentName, b => b.ToString());
 
         }
 

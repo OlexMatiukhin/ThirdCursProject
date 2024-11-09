@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="Зміна" Binding="{Binding Shift}" Width="*"/>
                 <DataGridTextColumn Header="Еmail" Binding="{Binding Email}" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding PhoneNumber}" Width="*"/>
-                <DataGridTextColumn Header="Посада" Binding="{Binding PositionId}" Width="*"/>
+                <DataGridTextColumn Header="Посада" Binding="{Binding PositionName}" Width="*"/>
                 <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId}" Width="*"/>
  
 

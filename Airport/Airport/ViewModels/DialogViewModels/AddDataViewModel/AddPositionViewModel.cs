@@ -38,7 +38,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
 
 
-        public Dictionary<int, string> StructureUnitDictionary { get; set; }
+        public Dictionary<string, string> StructureUnitDictionary { get; set; }
 
 
 
@@ -47,7 +47,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public string _positionName;
         private string _salary;
 
-        private int _structureUnitId;
+        private string _structureUnitName;
 
 
         public string PositionName
@@ -70,13 +70,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public int StructureUnitId
+        public string StructureUnitName
         {
-            get => _structureUnitId;
+            get => _structureUnitName;
             set
             {
-                _structureUnitId = value;
-                OnPropertyChanged(nameof(StructureUnitId));
+                _structureUnitName = value;
+                OnPropertyChanged(nameof(StructureUnitName));
             }
         }
 
@@ -96,10 +96,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             var newPosition = new Position
             {
-                PositionId = _positionService.GetLastPositionId() + 1,
                 PositionName = PositionName,
                 Salary = int.Parse(Salary),
-                StructureUnitId = StructureUnitId
+                StructureUnitName = _structureUnitName
+
             };
 
             _positionService.AddPostion(newPosition);
@@ -107,7 +107,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void CreateDictionaries()
         {
-            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
+           // StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
 
         }
 

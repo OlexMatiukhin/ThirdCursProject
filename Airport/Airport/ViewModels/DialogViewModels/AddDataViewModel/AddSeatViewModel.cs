@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,6 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             {
                 Seat seat = new Seat
                 {
-                    SeatId = _seatSevice.GetLastSeatId() + 1,
                     Status = this.SelectedStatus,
                     Number= _seatSevice.GetLastSeatNumber() + 1,
                     FlightId = this.SelectedFlightId,
@@ -58,7 +58,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
 
-            public Dictionary<int, string> FlightsDictionary { get; set; }
+            public Dictionary<ObjectId, string> FlightsDictionary { get; set; }
             
 
 
@@ -77,7 +77,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         
         public string _status;
-        public int _flightId;
+        public ObjectId _flightId;
 
 
        
@@ -94,7 +94,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedFlightId
+        public ObjectId SelectedFlightId
         {
             get => _flightId;
             set

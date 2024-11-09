@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -34,10 +35,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             var newPlane = new AirPlane
             {
-                PlaneId = _planeService.GetLastPlaneId() + 1,
+                PlaneNumber=this.PlaneNumber,
                 Type = SelectedPlaneType,
                 TechCondition = "задовільний",
                 InteriorReadiness = "готовий",
+              
                 NumberFlightsBeforeRepair = 0,
                 TechInspectionDate = DateTime.Now,
                 Assigned = Assigned,
@@ -60,6 +62,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         };
 
         public string _planeType;
+        public string _planeNumber;
 
 
         private bool _assigned;
@@ -74,6 +77,17 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 OnPropertyChanged(nameof(SelectedPlaneType));
             }
         }
+
+        public string PlaneNumber
+        {
+            get => _planeType;
+            set
+            {
+                _planeType = value;
+                OnPropertyChanged(nameof(PlaneNumber));
+            }
+        }
+
 
 
         public bool Assigned

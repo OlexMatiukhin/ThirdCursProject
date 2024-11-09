@@ -61,7 +61,7 @@
                 <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding DateArrivial}"   Width="2*" />
                 <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding FlightBrigadeId}"  Width="2*" />
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding InspectionBrigadeId}"  Width="2*" />
-                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding RouteId}" Width="2*" />
+                <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding RouteNumber}" Width="2*" />
                 <DataGridTemplateColumn Header="Видалення" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

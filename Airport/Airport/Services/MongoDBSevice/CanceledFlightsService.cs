@@ -33,8 +33,8 @@ namespace Airport.Services.MongoDBSevice
                 NavigationBrigadeId = flight.NavigationBrigadeId,
                 FlightBrigadeId = flight.FlightBrigadeId,
                 InspectionBrigadeId = flight.InspectionBrigadeId,
-                RouteId = flight.RouteId,
-                WorkerId = 0,
+                RouteNumber = flight.RouteNumber,
+                WorkerId = null,
                 Reason = reason,
                 Description = description
 

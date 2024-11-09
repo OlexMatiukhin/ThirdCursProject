@@ -33,7 +33,7 @@ namespace Airport.Services.MongoDBSevice
         }
         public void AddDelayedFlightInfoFromFlight(Flight flight,  string reason, string descritption)
         {
-            if (flight == null)
+           if (flight == null)
             {
                 throw new ArgumentNullException(nameof(flight), "Flight cannot be null");
             }
@@ -50,9 +50,9 @@ namespace Airport.Services.MongoDBSevice
                 InspectionBrigadeId = flight.InspectionBrigadeId,
                 Reason = reason,
                 FlightId = flight.FlightId,
-                RouteId = flight.RouteId,
+                RouteNumber = flight.RouteNumber,
                 Description= descritption,
-                WorkerId = 0
+                WorkerId = null
             };
 
             try

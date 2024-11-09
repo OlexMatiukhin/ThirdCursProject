@@ -33,7 +33,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
             var structureUnit = parameter as StructureUnit;
-            List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentId(structureUnit.DepartmentId);
+            List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentName(structureUnit.DepartmentName);
             if (positionsList.Count == 0)
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -46,7 +46,7 @@ namespace Airport.ViewModels.WindowViewModels
                 {
 
                     StructureUnits.Remove(structureUnit);
-                    _structureUnitService.DeleteStructureUnit(structureUnit.DepartmentId);
+                    _structureUnitService.DeleteStructureUnit(structureUnit.StructureUnitId);
 
                     MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

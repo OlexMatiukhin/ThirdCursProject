@@ -7,7 +7,7 @@ namespace Airport.Models
 {
     public class Worker : INotifyPropertyChanged
     {
-        private int _workerId;
+        private ObjectId _workerId;
         private string _fullName;
         private int _age;
         private string _status;
@@ -17,13 +17,14 @@ namespace Airport.Models
         private string _shift;
         private string _email;
         private string _phoneNumber;
-        private int _brigadeId;
-        private int _positionId;
+        private ObjectId? _brigadeId;
+        private string _positionName;
         private DateTime _lastMedExamDate;
         private string _resultMedExam;
 
         [BsonId]
-        public int WorkerId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId WorkerId
         {
             get => _workerId;
             set
@@ -107,6 +108,7 @@ namespace Airport.Models
         }
 
         [BsonElement("hireDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime HireDate
         {
             get => _hireDate;
@@ -163,7 +165,7 @@ namespace Airport.Models
         }
 
         [BsonElement("brigadeId")]
-        public int BrigadeId
+        public ObjectId? BrigadeId
         {
             get => _brigadeId;
             set
@@ -176,21 +178,22 @@ namespace Airport.Models
             }
         }
 
-        [BsonElement("positionId")]
-        public int PositionId
+        [BsonElement("positionName")]
+        public string PositionName
         {
-            get => _positionId;
+            get => _positionName;
             set
             {
-                if (_positionId != value)
+                if (_positionName != value)
                 {
-                    _positionId = value;
-                    OnPropertyChanged(nameof(PositionId));
+                    _positionName = value;
+                    OnPropertyChanged(nameof(PositionName));
                 }
             }
         }
 
         [BsonElement("lastMedExamDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime LastMedExamDate
         {
             get => _lastMedExamDate;

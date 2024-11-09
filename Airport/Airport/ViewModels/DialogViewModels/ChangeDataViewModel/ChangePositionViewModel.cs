@@ -28,7 +28,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             _structureUnitService = new StructureUnitService();
             this.PositionName = position.PositionName;
             this.Salary = position.Salary.ToString();
-            this.StructureUnitId = position.StructureUnitId;
+            this.StructureUnitName = position.StructureUnitName;
 
 
             LoadData();
@@ -38,13 +38,13 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
 
 
-        public Dictionary<int, string> StructureUnitDictionary { get; set; }
+        public Dictionary<string, string> StructureUnitDictionary { get; set; }
 
 
         public string _positionName;
         private string _salary;
 
-        private int _structureUnitId;
+        private string _structureUnitName;
 
 
         public string PositionName
@@ -67,13 +67,13 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
 
 
-        public int StructureUnitId
+        public string StructureUnitName
         {
-            get => _structureUnitId;
+            get => _structureUnitName;
             set
             {
-                _structureUnitId = value;
-                OnPropertyChanged(nameof(StructureUnitId));
+                _structureUnitName = value;
+                OnPropertyChanged(nameof(_structureUnitName));
             }
         }
 
@@ -94,14 +94,14 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             _position.PositionName = PositionName;
             _position.Salary = int.Parse(Salary);
-            _position.StructureUnitId = StructureUnitId;         
+                   
 
             _positionService.UpdatePostition(_position);
         }
 
         private void CreateDictionaries()
         {
-            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
+           StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
 
         }
 

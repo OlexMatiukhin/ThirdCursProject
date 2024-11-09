@@ -22,8 +22,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             this._windowService = windowService;
             this._plane = plane;
             Assigned = plane.Assigned;
-            NumberRepairs = plane.NumberRepairs;
-            ExploitationDate = plane.ExploitationDate;
+            NumberRepairs = plane.NumberRepairs;          
+            PlaneNumber = plane.PlaneNumber;
             _planeService = new PlaneService();
             ChnagePassangerCommand = new RelayCommand(ExecuteChangePlane, canExecute => true);    
         }
@@ -45,16 +45,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         private string _techCondition;
         private bool _assigned;
         private int _numberRepairs;
+        private string _planeNumber;
         private DateTime _exploitationDate;
-      
-       
-
-
-      
-
-        
-
-
         
 
         public bool Assigned
@@ -77,23 +69,25 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 OnPropertyChanged(nameof(NumberRepairs));
             }
         }
-
-
-        public DateTime ExploitationDate
+      
+      
+        public string PlaneNumber
         {
-            get => _exploitationDate;
+            get => _planeNumber;
             set
             {
-                _exploitationDate = value;
-                OnPropertyChanged(nameof(ExploitationDate));
+                _planeNumber = value;
+                OnPropertyChanged(nameof(PlaneNumber));
             }
+
         }
         private void ExecuteChangePlane(object parameter)
         {
             _plane.TechCondition = _techCondition;
             _plane.Assigned = Assigned;
             _plane.NumberRepairs = NumberRepairs;
-            _plane.ExploitationDate = ExploitationDate;
+         
+            _plane.PlaneNumber= PlaneNumber;
 
             
 

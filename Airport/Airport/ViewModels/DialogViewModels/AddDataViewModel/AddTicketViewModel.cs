@@ -2,6 +2,7 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,14 +44,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             Ticket ticket  = new Ticket 
             {
-                TicketId = _tickietSevice.GetLastTicketId() + 1,
                 Status=this.SelectedStatus,
                 Availability=this.Availability,
                 DateChanges=this.DateChanges,
                 Price=decimal.Parse(this.Price),
                 FlightId=this.SelectedFlightId,
                 SeatId= this.SelectedSeatId,
-                PassengerId= 0
+                PassengerId=null
 
     };
 
@@ -64,9 +64,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
       
 
 
-        public Dictionary<int, string> FlightsDictionary { get; set; }
-        public Dictionary<int, string> SeatsDictionary { get; set; }
-        public Dictionary<int, string> PasengersDictionary { get; set; }
+        public Dictionary<ObjectId, string> FlightsDictionary { get; set; }
+        public Dictionary<ObjectId, string> SeatsDictionary { get; set; }
+        public Dictionary<ObjectId, string> PasengersDictionary { get; set; }
 
     
 
@@ -87,8 +87,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public bool _availability;
         public DateTime _dateChanges;
         public string _price;
-        public int _flightId;
-        public int _seatId;
+        public ObjectId _flightId;
+        public ObjectId _seatId;
     
 
         
@@ -134,7 +134,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedFlightId
+        public ObjectId SelectedFlightId
         {
             get => _flightId;
             set
@@ -144,7 +144,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedSeatId
+        public ObjectId SelectedSeatId
         {
             get => _seatId;
             set

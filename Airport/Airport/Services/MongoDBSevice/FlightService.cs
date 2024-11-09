@@ -20,7 +20,7 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _flightCollection = database.GetCollection<Flight>("flight");
         }
-        public int GetLastFlightId()
+      /* public int GetLastFlightId()
         {
             var lastFlight = _flightCollection
                 .Find(Builders<Flight>.Filter.Empty)
@@ -29,7 +29,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastFlight?.FlightId ?? 0;
-        }
+        }*/
 
         public void AddFlight(Flight flight)
         {
@@ -44,7 +44,7 @@ namespace Airport.Services.MongoDBSevice
         }
      
        
-        public void DeleteFlight(int flightId)
+        public void DeleteFlight(ObjectId flightId)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public Flight GetFlightById(int flightId)
+        public Flight GetFlightById(ObjectId flightId)
         {
             try
             {

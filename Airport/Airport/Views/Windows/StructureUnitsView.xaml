@@ -58,7 +58,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding StructureUnitId }"  Width="*"/>
                 <DataGridTextColumn Header="Назва" Binding="{Binding StructureUnitName }" Width="2*"/>
                 <DataGridTextColumn Header="Тип" Binding="{Binding Type }"  Width="2*" />
-                <DataGridTextColumn Header="Департамент" Binding="{Binding DepartmentId }" Width="2*"/>                
+                <DataGridTextColumn Header="Департамент" Binding="{Binding DepartmentName }" Width="2*"/>                
                 <DataGridTemplateColumn Header="Actions" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

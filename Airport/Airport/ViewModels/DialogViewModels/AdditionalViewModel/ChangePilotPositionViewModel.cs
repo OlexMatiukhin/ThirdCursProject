@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
+using MongoDB.Bson;
 
 namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
 {
@@ -40,11 +41,11 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
         private void ExecuteChangePilotPossition(object parameter)
         {
 
-            if (_worker != null&& SelectedPostionId!=0) {
-                _worker.PositionId = SelectedPostionId;
+            if (_worker != null&& SelectedPostionId!=null) {
+                //_worker.PositionId = SelectedPostionId;
                 _pilotMedExam.Result = "не пройдений";
                 _pilotMedExam.DateExamination = DateTime.Now;
-                _pilotMedExam.DoctorId = 0;
+                _pilotMedExam.DoctorId = null;
                 _pilotMedExamService.UpdatePilotMedExam(_pilotMedExam);
                 _worker.ResultMedExam = "пройдений";
                 _worker.LastMedExamDate = DateTime.Now;
@@ -64,16 +65,16 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
   
 
 
-        public Dictionary<int, string> PositionsDictionary { get; set; }
+        public Dictionary<ObjectId, string> PositionsDictionary { get; set; }
        
 
 
        
 
-        private int _selectedPostionId;  
+        private ObjectId _selectedPostionId;  
        
 
-        public int SelectedPostionId
+        public ObjectId SelectedPostionId
         {
             get => _selectedPostionId;
             set

@@ -7,6 +7,7 @@ using Airport.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -22,7 +23,7 @@ namespace Airport.Services.MongoDBSevice
             _structureUnitCollection = database.GetCollection<StructureUnit>("structureUnit");
         }
 
-        public int GetLastStructureUnitd()
+        /*public int GetLastStructureUnitd()
         {
             var lastWorker = _structureUnitCollection
                 .Find(Builders<StructureUnit>.Filter.Empty)
@@ -31,7 +32,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastWorker?.StructureUnitId ?? 0;
-        }
+        }*/
 
         public List<StructureUnit> GetStructureUnitsData()
         {
@@ -47,11 +48,11 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public List<StructureUnit> GetStructureUnitsDataByDepartmentId(int departmentId)
+        public List<StructureUnit> GetStructureUnitsDataByDepartmentName(string departmentName)
         {
             try
             {
-                return _structureUnitCollection.Find(s => s.DepartmentId== departmentId).ToList();
+                return _structureUnitCollection.Find(s => s.DepartmentName== departmentName).ToList();
             }
             catch (Exception ex)
             {
@@ -59,7 +60,8 @@ namespace Airport.Services.MongoDBSevice
                 return new List<StructureUnit>();
             }
         }
-        public StructureUnit GetStructureUnitById(int structureUnitId)
+        
+        public StructureUnit GetStructureUnitById(ObjectId structureUnitId)
         {
             try
             {
@@ -99,7 +101,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public void DeleteStructureUnit(int structureUnitId)
+        public void DeleteStructureUnit(ObjectId structureUnitId)
         {
             try
             {

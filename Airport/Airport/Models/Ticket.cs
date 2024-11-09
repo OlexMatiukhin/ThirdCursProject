@@ -1,5 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.ComponentModel;
 
@@ -7,17 +7,18 @@ namespace Airport.Models
 {
     public class Ticket : INotifyPropertyChanged
     {
-        private int _ticketId;
+        private ObjectId _ticketId;
         private string _status;
         private bool _availability;
         private DateTime _dateChanges;
         private decimal _price;
-        private int _flightId;
-        private int _seatId;
-        private int _passengerId;
+        private ObjectId _flightId;
+        private ObjectId _seatId;
+        private ObjectId? _passengerId;
 
         [BsonId]
-        public int TicketId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId TicketId
         {
             get => _ticketId;
             set
@@ -59,6 +60,7 @@ namespace Airport.Models
         }
 
         [BsonElement("dateChanges")]
+       
         public DateTime DateChanges
         {
             get => _dateChanges;
@@ -87,7 +89,8 @@ namespace Airport.Models
         }
 
         [BsonElement("flightId")]
-        public int FlightId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId FlightId
         {
             get => _flightId;
             set
@@ -101,7 +104,8 @@ namespace Airport.Models
         }
 
         [BsonElement("seatId")]
-        public int SeatId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId SeatId
         {
             get => _seatId;
             set
@@ -115,7 +119,8 @@ namespace Airport.Models
         }
 
         [BsonElement("passengerId")]
-        public int PassengerId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId? PassengerId
         {
             get => _passengerId;
             set
@@ -134,5 +139,12 @@ namespace Airport.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public override string ToString()
+        {
+            return $"TicketId: {TicketId}, Status: {Status}, Availability: {Availability}, DateChanges: {DateChanges}, " +
+                   $"Price: {Price}, FlightId: {FlightId}, SeatId: {SeatId}, PassengerId: {PassengerId}";
+        }
     }
 }
+

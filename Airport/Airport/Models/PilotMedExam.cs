@@ -7,14 +7,14 @@ namespace Airport.Models
 {
     public class PilotMedExam : INotifyPropertyChanged
     {
-        private int _examId;
+        private ObjectId _examId;
         private string _result;
-        private int _pilotId;
-        private int _doctorId;
+        private ObjectId? _pilotId; 
+        private ObjectId? _doctorId;
         private DateTime? _dateExamination;
 
         [BsonId]
-        public int ExamId
+        public ObjectId ExamId
         {
             get => _examId;
             set
@@ -42,7 +42,7 @@ namespace Airport.Models
         }
 
         [BsonElement("pilotId")]
-        public int PilotId
+        public ObjectId? PilotId
         {
             get => _pilotId;
             set
@@ -56,7 +56,7 @@ namespace Airport.Models
         }
 
         [BsonElement("doctorId")]
-        public int DoctorId
+        public ObjectId? DoctorId
         {
             get => _doctorId;
             set

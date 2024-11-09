@@ -7,6 +7,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using Airport.Models;
+using MongoDB.Bson;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -21,7 +22,7 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _seatCollection = database.GetCollection<Seat>("seat");
         }
-        public int GetLastSeatId()
+       /* public int GetLastSeatId()
         {
             var lastSeat = _seatCollection
                 .Find(Builders<Seat>.Filter.Empty)
@@ -30,7 +31,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastSeat?.SeatId ?? 0;
-        }
+        }*/
         public int GetLastSeatNumber()
         {
             var lastSeat = _seatCollection
@@ -56,7 +57,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public Seat GetSeatById(int seatId)
+        public Seat GetSeatById(ObjectId seatId)
         {
             try
             {
@@ -96,7 +97,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public void DeleteSeatsByFlightId(int flightId)
+        public void DeleteSeatsByFlightId(ObjectId flightId)
         {
             try
             {
@@ -109,7 +110,7 @@ namespace Airport.Services.MongoDBSevice
 
             }
         }
-        public void DeleteSeat(int seatId)
+        public void DeleteSeat(ObjectId seatId)
         {
             try
             {

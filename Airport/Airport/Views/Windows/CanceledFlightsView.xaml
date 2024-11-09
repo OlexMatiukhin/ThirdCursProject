@@ -60,8 +60,8 @@
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="*" />
                 <DataGridTextColumn Header="Інспекторська бригад" Binding="{Binding InspectionBrigadeId    }" Width="*" />
                 <DataGridTextColumn Header="Незайняті місця" Binding="{Binding UnoccupiedSeatNumber  }" Width="*" />
-                <DataGridTextColumn Header="Місця" Binding="{Binding SeatNumber  }" Width="*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding RouteId   }" Width="*" />
+                <DataGridTextColumn Header="Місця" Binding="{Binding SeatNumber}" Width="*" />
+                <DataGridTextColumn Header="Машрут" Binding="{Binding RouteNumber }" Width="*" />
                 <DataGridTextColumn Header="Працівник" Binding="{Binding WorkerId  }" Width="*" />
                 <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="*" FontSize="10" />
                 <DataGridTemplateColumn Header="Зміна" Width="*">

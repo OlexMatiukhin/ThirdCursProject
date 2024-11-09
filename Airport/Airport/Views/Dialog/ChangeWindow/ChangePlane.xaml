@@ -11,22 +11,20 @@
 
     <Grid Margin="3,0,-3,0">
         <xctk:DateTimePicker  HorizontalAlignment="Left"
-     VerticalAlignment="Top"  Background="Aqua" Format="Custom" FormatString="dd/MM/yyyy/ HH:mm"   Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Margin="21,40,0,0" 
+     VerticalAlignment="Top"  Background="Aqua" Format="Custom" FormatString="dd/MM/yyyy/ HH:mm"   Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Margin="251,52,0,0" 
                        Value="{Binding TechInspectionDate, Mode=TwoWay,
      UpdateSourceTrigger=PropertyChanged}"  Width="140" Height="20" MaxWidth="140" />
 
         <xctk:DateTimePicker  HorizontalAlignment="Left"
-     VerticalAlignment="Top"  Background="Aqua" Format="Custom" FormatString="dd/MM/yyyy/ HH:mm"   Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Margin="184,40,0,0" 
+     VerticalAlignment="Top"  Background="Aqua" Format="Custom" FormatString="dd/MM/yyyy/ HH:mm"   Foreground="Black" CalendarDisplayMode="Year"  ShowButtonSpinner ="False" Margin="414,52,0,0" 
      Value="{Binding ExploitationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="140" Height="20" MaxWidth="140" />
-        <TextBlock HorizontalAlignment="Left" Margin="44,20,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="637,20,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписка"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="492,20,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість ремонтів"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <Button Content="Змінити" HorizontalAlignment="Left" Margin="317,94,0,0" VerticalAlignment="Top" Width="140"  Command="{Binding ChnagePassangerCommand}" />
-        <TextBox Text="{Binding NumberFlightsBeforeRepair}" HorizontalAlignment="Left" Margin="481,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="126" Height="21"/>
-        <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="659,42,0,0" VerticalAlignment="Top"  RenderTransformOrigin="1,0.731" Height="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="184,20,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="експлуатації"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="340,22,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="333,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" Height="21" Text="{Binding NumberRepairs}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="274,32,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="597,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Приписка"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <Button Content="Змінити" HorizontalAlignment="Left" Margin="317,197,0,0" VerticalAlignment="Top" Width="140"  Command="{Binding ChnagePassangerCommand}" />
+        <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="619,56,0,0" VerticalAlignment="Top"  RenderTransformOrigin="1,0.731" Height="17"/>
+        <TextBlock HorizontalAlignment="Left" Margin="414,32,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="експлуатації"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="94,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Дата "/><Run Language="uk-ua" Text="техогляду"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="87,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" Height="21" Text="{Binding PlaneNumber}"/>
 
 
 

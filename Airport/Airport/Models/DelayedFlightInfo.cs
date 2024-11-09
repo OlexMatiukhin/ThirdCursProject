@@ -2,27 +2,28 @@
 using MongoDB.Bson;
 using System.ComponentModel;
 
+
 namespace Airport.Models
 {
     public class DelayedFlightInfo : INotifyPropertyChanged
     {
-        private int _delayedFlightInfoId;
+        private ObjectId _delayedFlightInfoId;
         private string _flightNumber;
         private string _category;
-        private int _dispatchBrigadeId;
-        private int _navigationBrigadeId;
-        private int _flightBrigadeId;
+        private ObjectId _dispatchBrigadeId;
+        private ObjectId _navigationBrigadeId;
+        private ObjectId _flightBrigadeId;
         private DateTime _startDelayDate;
         private DateTime? _endDelayDate;
-        private int _inspectionBrigadeId;
+        private ObjectId _inspectionBrigadeId;
         private string _reason;
-        private int _flightId;
-        private int _routeId;
-        private int _workerId;
+        private ObjectId _flightId;
+        private string _routeNumber;
+        private ObjectId? _workerId;
         private string _description;
 
         [BsonId]
-        public int DelayedFlightInfoId
+        public ObjectId DelayedFlightInfoId
         {
             get => _delayedFlightInfoId;
             set
@@ -64,7 +65,7 @@ namespace Airport.Models
         }
 
         [BsonElement("dispatchBrigadeId")]
-        public int DispatchBrigadeId
+        public ObjectId DispatchBrigadeId
         {
             get => _dispatchBrigadeId;
             set
@@ -78,7 +79,7 @@ namespace Airport.Models
         }
 
         [BsonElement("navigationBrigadeId")]
-        public int NavigationBrigadeId
+        public ObjectId NavigationBrigadeId
         {
             get => _navigationBrigadeId;
             set
@@ -92,7 +93,7 @@ namespace Airport.Models
         }
 
         [BsonElement("flightBrigadeId")]
-        public int FlightBrigadeId
+        public ObjectId FlightBrigadeId
         {
             get => _flightBrigadeId;
             set
@@ -134,7 +135,7 @@ namespace Airport.Models
         }
 
         [BsonElement("inspectionBrigadeId")]
-        public int InspectionBrigadeId
+        public ObjectId InspectionBrigadeId
         {
             get => _inspectionBrigadeId;
             set
@@ -161,8 +162,7 @@ namespace Airport.Models
             }
         }
 
-
-        [BsonElement("description")] 
+        [BsonElement("description")]
         public string Description
         {
             get => _description;
@@ -177,7 +177,7 @@ namespace Airport.Models
         }
 
         [BsonElement("flightId")]
-        public int FlightId
+        public ObjectId FlightId
         {
             get => _flightId;
             set
@@ -190,22 +190,22 @@ namespace Airport.Models
             }
         }
 
-        [BsonElement("routeId")]
-        public int RouteId
+        [BsonElement("routeNumber")]
+        public string RouteNumber
         {
-            get => _routeId;
+            get => _routeNumber;
             set
             {
-                if (_routeId != value)
+                if (_routeNumber != value)
                 {
-                    _routeId = value;
-                    OnPropertyChanged(nameof(RouteId));
+                    _routeNumber = value;
+                    OnPropertyChanged(nameof(RouteNumber));
                 }
             }
         }
 
         [BsonElement("workerId")]
-        public int WorkerId
+        public ObjectId? WorkerId
         {
             get => _workerId;
             set
@@ -226,5 +226,6 @@ namespace Airport.Models
         }
     }
 }
+
 
 

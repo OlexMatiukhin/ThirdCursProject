@@ -1,4 +1,5 @@
-﻿using Airport.Models; // Убедитесь, что этот using корректен
+﻿using Airport.Models; 
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public Route GetRouteById(int routeId)
+        public Route GetRouteById(ObjectId routeId)
         {
             try
             {
@@ -57,7 +58,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public int GetLastRouteId()
+        /*public int GetLastRouteId()
         {
             var lastWorker = _routeCollection
                 .Find(Builders<Route>.Filter.Empty)
@@ -66,7 +67,7 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastWorker?.RouteId ?? 0;
-        }
+        }*/
 
 
         public void UpdateRoute(Route route)
@@ -83,7 +84,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public void DeleteRoute(int routeId)
+        public void DeleteRoute(ObjectId routeId)
         {
             try
             {

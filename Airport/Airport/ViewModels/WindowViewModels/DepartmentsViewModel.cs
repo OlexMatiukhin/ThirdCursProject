@@ -53,7 +53,7 @@ namespace Airport.ViewModels.WindowViewModels
           
 
             var department = parameter as Department;
-            List<StructureUnit> structureUnitList = _structureUnitService.GetStructureUnitsDataByDepartmentId(department.DepartmentId);
+            List<StructureUnit> structureUnitList = _structureUnitService.GetStructureUnitsDataByDepartmentName(department.DepartmentName);
             if (structureUnitList.Count==0)
             {
                 MessageBoxResult result = MessageBox.Show(

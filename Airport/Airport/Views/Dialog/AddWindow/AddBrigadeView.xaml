@@ -16,7 +16,7 @@
             Width="120"/>
         <ComboBox
     ItemsSource="{Binding StructureUnitDictionary}"
-    SelectedValue="{Binding StructureUnitId, Mode=TwoWay}"
+    SelectedValue="{Binding StructureUnitName, Mode=TwoWay}"
     SelectedValuePath="Key"
             DisplayMemberPath="Value"
       

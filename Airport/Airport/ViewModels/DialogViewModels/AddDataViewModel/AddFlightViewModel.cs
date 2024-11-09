@@ -30,12 +30,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<AirPlane> Planes { get; set; }
         public ObservableCollection<Route> Routes { get; set; }
 
-        public Dictionary<int, string> FlightBrigadesDictionary { get; set; }
-        public Dictionary<int, string> DispatchBrigadesDictionary { get; set; }
-        public Dictionary<int, string> NavigationBrigadesDictionary { get; set; }
-        public Dictionary<int, string> TechInspectionBrigadesDictionary { get; set; }
-        public Dictionary<int, string> PlanesDictionary { get; set; }
-        public Dictionary<int, string> RoutesDictionary { get; set; }
+        public Dictionary<ObjectId, string> FlightBrigadesDictionary { get; set; }
+        public Dictionary<ObjectId, string> DispatchBrigadesDictionary { get; set; }
+        public Dictionary<ObjectId, string> NavigationBrigadesDictionary { get; set; }
+        public Dictionary<ObjectId, string> TechInspectionBrigadesDictionary { get; set; }
+        public Dictionary<string, string> PlanesDictionary { get; set; }
+        public Dictionary<string, string> RoutesDictionary { get; set; }
 
         public List<string> Category { get; set; } = new List<string>
         {
@@ -48,12 +48,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private string _flightNumber;
         private string _selectedCategory;
-        private int _selectedPlaneId;
-        private int _selectedFlightBrigadeId;
-        private int _selectedDispatchBrigadeId;
-        private int _selectedNavigationBrigadeId;
-        private int _selectedTechInspectionBrigadeId;
-        private int _routeId;
+        private string _selectedPlaneNumber;
+        private ObjectId _selectedFlightBrigadeId;
+        private ObjectId _selectedDispatchBrigadeId;
+        private ObjectId _selectedNavigationBrigadeId;
+        private ObjectId _selectedTechInspectionBrigadeId;
+        private string _routeNumber;
         private string _numberTickets;
         private string _ticketPrice;
 
@@ -97,17 +97,17 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedPlaneId
+        public string SelectedPlaneNumber
         {
-            get => _selectedPlaneId;
+            get => _selectedPlaneNumber;
             set
             {
-                _selectedPlaneId = value;
-                OnPropertyChanged(nameof(SelectedPlaneId));
+                _selectedPlaneNumber = value;
+                OnPropertyChanged(nameof(SelectedPlaneNumber));
             }
         }
 
-        public int SelectedFlightBrigadeId
+        public ObjectId SelectedFlightBrigadeId
         {
             get => _selectedFlightBrigadeId;
             set
@@ -117,7 +117,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedDispatchBrigadeId
+        public ObjectId SelectedDispatchBrigadeId
         {
             get => _selectedDispatchBrigadeId;
             set
@@ -127,7 +127,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedNavigationBrigadeId
+        public ObjectId SelectedNavigationBrigadeId
         {
             get => _selectedNavigationBrigadeId;
             set
@@ -137,7 +137,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int SelectedTechInspectionBrigadeId
+        public ObjectId SelectedTechInspectionBrigadeId
         {
             get => _selectedTechInspectionBrigadeId;
             set
@@ -147,13 +147,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public int RouteId
+        public string RouteNumber
         {
-            get => _routeId;
+            get => _routeNumber;
             set
             {
-                _routeId = value;
-                OnPropertyChanged(nameof(RouteId));
+                _routeNumber = value;
+                OnPropertyChanged(nameof(RouteNumber));
             }
         }
 
@@ -184,14 +184,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
       private bool CanExecuteAddCommanrd()
         {
-            AirPlane plane = Planes.First(p => p.PlaneId == SelectedPlaneId);
-            if (plane ==null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
+            AirPlane plane = Planes.First(p => p.PlaneNumber == SelectedPlaneNumber);
+            if (plane ==null &&  plane.TechCondition!= "в ремонті")
             {
                 return true;
             }
             else
             {
-                MessageBox.Show("Літак не готовий до польоту", "Літак", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Помилка, літак знаходиться у ремонті!", "Літак", MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
 
             }
@@ -221,24 +221,22 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             if (CanExecuteAddCommanrd())
             {
-                int flightId = _flightService.GetLastFlightId() + 1;
-                int firstSeatId = _seatService.GetLastSeatId() + 1;
-                int firstTicketId = _ticketService.GetLastTicketId() + 1;
+               
+               
 
                 Flight newFlight = new Flight
                 {
                     FlightNumber = FlightNumber,
-                    FlightId = flightId,
+               
                     Status = "запланований",
                     Category = SelectedCategory,
                     DateDeparture = DateDeparture,
                     DateArrival = DateArrivial,
-                    PlaneId = SelectedPlaneId,
                     DispatchBrigadeId = SelectedDispatchBrigadeId,
                     NavigationBrigadeId = SelectedNavigationBrigadeId,
                     FlightBrigadeId = SelectedFlightBrigadeId,
                     InspectionBrigadeId = SelectedTechInspectionBrigadeId,
-                    RouteId = RouteId,
+                    RouteNumber = RouteNumber,
                     CustomsControl = "не завершений",
                     PassengerRegistration = "не завершена",
                     NumberTickets = int.Parse(_numberTickets),
@@ -246,26 +244,26 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 };
 
 
-                for (int i = 0; i < int.Parse(NumberTickets); i++)
+               for (int i = 0; i < int.Parse(NumberTickets); i++)
                 {
                     Seat seat = new Seat
                     {
-                        SeatId = firstSeatId + i,
+                       
                         Number = i + 1,
                         Status = "вільне",
-                        FlightId = flightId
+                        FlightId = newFlight.FlightId,
                     };
 
                     Ticket ticket = new Ticket
                     {
-                        TicketId = firstTicketId + i,
+
                         DateChanges = DateTime.Now,
                         Availability = true,
                         Status = "доступний",
                         Price = int.Parse(TicketPrice),
-                        FlightId = flightId,
-                        SeatId = firstSeatId + i,
-                        PassengerId = 0
+                        FlightId = newFlight.FlightId,
+                        SeatId = seat.SeatId,
+                        PassengerId = null
                     };
 
                     _seatService.AddSeat(seat);
@@ -295,12 +293,12 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void CreateDictionaries()
         {
-            FlightBrigadesDictionary = FlightBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
+           FlightBrigadesDictionary = FlightBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
             DispatchBrigadesDictionary = DispatchBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
             NavigationBrigadesDictionary = NavigationBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
             TechInspectionBrigadesDictionary = TechInspectionBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
-            PlanesDictionary = Planes.ToDictionary(b => b.PlaneId, b => b.ToString());
-            RoutesDictionary = Routes.ToDictionary(b => b.RouteId, b => b.ToString());
+            PlanesDictionary = Planes.ToDictionary(b => b.PlaneNumber, b => b.ToString());
+            RoutesDictionary = Routes.ToDictionary(b => b.Number, b => b.ToString());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

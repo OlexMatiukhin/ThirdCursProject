@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Airport.Services.MongoDBSevice
     {
         private readonly IMongoCollection<Department> _departmentCollection;
 
-        // Під`єднання до  департаменту
+
         public DepartmentService()
         {
 
@@ -24,7 +25,7 @@ namespace Airport.Services.MongoDBSevice
 
 
 
-        // Додавання департаменту
+
         public void AddDepartment(Department department)
         {
             try
@@ -36,16 +37,7 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Произошла ошибка при добавлении данных: {ex.Message}");
             }
         }
-        public int GetLastDepartmentId()
-        {
-            var lastBaggage = _departmentCollection
-                .Find(Builders<Department>.Filter.Empty)
-                .Sort(Builders<Department>.Sort.Descending(w => w.DepartmentId))
-                .Limit(1)
-                .FirstOrDefault();
-
-            return lastBaggage?.DepartmentId ?? 0;
-        }
+      
         public List<Department> GetDepartmentsData()
         {
             try
@@ -58,7 +50,7 @@ namespace Airport.Services.MongoDBSevice
                 return new List<Department>();
             }
         }
-        // Метод редагування департаменту в базі
+
         public bool UpdateDepartment(Department updatedDepartment)
         {
             try
@@ -82,9 +74,9 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        // Метод видалення департаменту
+      
 
-        public bool DeleteDepartment(int departmentId)
+        public bool DeleteDepartment(ObjectId departmentId)
         {
             try
             {

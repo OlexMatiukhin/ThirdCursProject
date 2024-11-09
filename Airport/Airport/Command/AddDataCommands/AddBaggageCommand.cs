@@ -26,15 +26,14 @@ namespace Airport.Command.AddDataCommands
         }
         public override void Execute(object parameter)
         {
-            int baggadeId = _baggageService.GetLastBaggeId() + 1;
 
             Baggage newBagge = new Baggage
             {
-                BaggageId = _baggageService.GetLastBaggeId() + 1,
+               
                 BaggageType = _addBaggeViewModle.BaggeType,
                 Weight = int.Parse(_addBaggeViewModle.Weight),
                 Payment = int.Parse(_addBaggeViewModle.Payment),
-                PassangerId = _addBaggeViewModle.SelectedPassengerId
+                PassengerId = _addBaggeViewModle.SelectedPassengerId
             };
             _baggageService.AddBaggage(newBagge);
         }

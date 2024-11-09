@@ -61,7 +61,7 @@ namespace Airport {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Airport;V1.0.0.0;component/views/windows/ticketsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Airport;component/views/windows/ticketsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Windows\TicketsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -167,6 +167,14 @@ namespace Airport.Services
                         modalWindow.DataContext = new СhangeBaggageViewModel(baggage, this);
                     }
                     break;
+
+                case "ChangeBrigade":
+                    modalWindow = new ChangeBrigade();
+                    if (parameter is Brigade brigade)
+                    {
+                        modalWindow.DataContext = new ChangeBrigadeViewModel(brigade, this);
+                    }
+                    break;
                 case "ChangeDepartment":
                     modalWindow = new ChangeDepartment();
                     if (parameter is Department department)
@@ -310,9 +318,6 @@ namespace Airport.Services
                     }
                     break;
 
-
-
-                //AdditionalWindow
                 case "ChangePilotPositionViewModel":
                     if (parameter is PilotMedExam pilotMedExam1 && paramet2 is Worker worker1)
                     {

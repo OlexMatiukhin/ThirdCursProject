@@ -26,10 +26,10 @@ namespace Airport.Command.AddDataCommands
 
             Position newPosition = new Position
             {
-                PositionId = _postionService.GetLastPositionId() + 1,
+               
                 PositionName = _addPostionViewModel.PositionName,
                 Salary = int.Parse(_addPostionViewModel.Salary),
-                StructureUnitId = _addPostionViewModel.StructureUnitId
+                StructureUnitName = _addPostionViewModel.StructureUnitName
             };
             _postionService.AddPostion(newPosition);
         }

@@ -19,23 +19,7 @@ namespace Airport.Services.MongoDBSevice
             _baggageCollection = database.GetCollection<Baggage>("baggage");
         }
 
-       /* public int GetLastBaggeId()
-        {
-            var allBaggage = _baggageCollection.Find(Builders<Baggage>.Filter.Empty).ToList();
-            foreach (var baggage in allBaggage)
-            {
-                MessageBox.Show($"BaggageId: {baggage.BaggageId}, Type: {baggage.BaggageType}, Weight: {baggage.Weight}, Payment: {baggage.Payment}, PassengerId: {baggage.PassangerId}");
-            }
-
-            var lastBaggage = _baggageCollection
-                .Find(Builders<Baggage>.Filter.Empty)
-                .Sort(Builders<Baggage>.Sort.Descending(b => b.PassangerId))
-                .Limit(1)
-                .FirstOrDefault();
-
-            return lastBaggage?.BaggageId ?? 0;
-        }*/
-
+     
         public List<Baggage> GetBaggageData()
         {
             try

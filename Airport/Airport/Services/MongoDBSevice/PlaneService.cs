@@ -3,12 +3,15 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace Airport.Services.MongoDBSevice
 {
     internal class PlaneService
     {
         private readonly IMongoCollection<AirPlane> _planeCollection;
+        private readonly IMongoCollection<Flight> _flightCollection;
 
         public PlaneService()
         {
@@ -16,6 +19,23 @@ namespace Airport.Services.MongoDBSevice
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
             _planeCollection = database.GetCollection<AirPlane>("plane");
+            _flightCollection = database.GetCollection<Flight>("flight");
+
+        }
+
+        public bool IsPlaneInFlight(string PlaneNumber)
+        {
+            try
+            {
+            
+                var filter = Builders<Flight>.Filter.Eq(f => f.PlaneNumber, PlaneNumber);
+                return _flightCollection.Find(filter).Any();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking if plane is in flight: {ex.Message}");
+                return false;
+            }
         }
 
         public void AddPlane(AirPlane plane)
@@ -46,6 +66,68 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+        /*public List<AirPlane> Search(string query)
+        {
+            var filterBuilder = Builders<AirPlane>.Filter;
+            var filters = new List<FilterDefinition<AirPlane>>();
+            
+            if (ObjectId.TryParse(query, out ObjectId planeId))
+            {
+                filters.Add(filterBuilder.Eq(ap => ap.PlaneId, planeId));
+            }
+
+           
+            else if (DateTime.TryParseExact(query,
+                new[] { "dd.MM.yyyy HH:mm:ss", "dd.MM.yyyy" },
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            {
+                filters.Add(filterBuilder.Eq(ap => ap.TechInspectionDate, date) |
+                            filterBuilder.Eq(ap => ap.ExploitationDate, date));
+
+
+                var startOfDay = date.Date; 
+                var endOfDay = startOfDay.AddDays(1).AddTicks(-1); 
+                
+                filters.Add(
+                    filterBuilder.And(
+                        filterBuilder.Gte(ap => ap.TechInspectionDate, startOfDay),
+                        filterBuilder.Lte(ap => ap.TechInspectionDate, endOfDay)
+                    ) |
+                    filterBuilder.And(
+                        filterBuilder.Gte(ap => ap.ExploitationDate, startOfDay),
+                        filterBuilder.Lte(ap => ap.ExploitationDate, endOfDay)
+                    )
+                );
+            }
+
+        
+            else if (int.TryParse(query, out int number))
+            {
+                filters.Add(filterBuilder.Eq(ap => ap.NumberFlightsBeforeRepair, number) |
+                            filterBuilder.Eq(ap => ap.NumberRepairs, number));
+            }
+
+            else if (bool.TryParse(query, out bool assigned))
+            {
+                filters.Add(filterBuilder.Eq(ap => ap.Assigned, assigned));
+            }
+
+            else
+            {
+                filters.Add(filterBuilder.Regex(ap => ap.Type, new BsonRegularExpression(query, "i")) |
+                            filterBuilder.Regex(ap => ap.TechCondition, new BsonRegularExpression(query, "i")) |
+                            filterBuilder.Regex(ap => ap.InteriorReadiness, new BsonRegularExpression(query, "i")) |
+                            filterBuilder.Regex(ap => ap.PlaneFuelStatus, new BsonRegularExpression(query, "i")) |
+                            filterBuilder.Regex(ap => ap.PlaneNumber, new BsonRegularExpression(query, "i")));
+            }
+
+        
+            var combinedFilter = filterBuilder.Or(filters);
+            return _planeCollection.Find(combinedFilter).ToList();
+        }*/
+
+
+
         public AirPlane GetPlaneById(ObjectId planeId)
         {
             try
@@ -72,7 +154,28 @@ namespace Airport.Services.MongoDBSevice
                 return null;
             }
         }
-    
+
+        public void DeletePlane(ObjectId planeId)
+        {
+            try
+            {
+              
+                var result = _planeCollection.DeleteOne(p => p.PlaneId == planeId);
+
+                if (result.DeletedCount > 0)
+                {
+                    Console.WriteLine($"Літак с ID {planeId} усішно видалено.");
+                }
+                else
+                {
+                    Console.WriteLine($"Літак с ID {planeId} не знайдено.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении данных: {ex.Message}");
+            }
+        }
         public List<AirPlane> GetPlanesData()
         {
             try

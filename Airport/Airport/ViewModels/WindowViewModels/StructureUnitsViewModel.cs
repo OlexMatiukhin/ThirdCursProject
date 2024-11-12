@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
@@ -10,21 +11,102 @@ using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
 {
-    public class StructureUnitsViewModel
+    public class StructureUnitsViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<StructureUnit> StructureUnits { get; set; }
-        private StructureUnitService _structureUnitService;
-     
+        private ObservableCollection<StructureUnit> _structureUnits;
+        public ICommand DeleteWindowCommand { get; }
 
+        public ObservableCollection<StructureUnit> StructureUnits
+        {
+            get => _structureUnits;
+            set
+            {
+                if (_structureUnits != value)
+                {
+                    _structureUnits = value;
+                    OnPropertyChanged(nameof(StructureUnits));
+                }
+            }
+        }
+
+        private string _searchLine;
+
+
+
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {
+
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+
+
+            }
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadStructureUnits();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchStructureUnits(searchLine);
+
+                StructureUnits = new ObservableCollection<StructureUnit>(searchResult);
+
+            }
+
+        }
+
+
+
+
+
+        private StructureUnitService _structureUnitService;
+
+        public ICommand OpenMainWindowCommand { get; }
         private readonly IWindowService _windowService;
         public ICommand OpenEditWindowCommand { get; }
+        public ICommand OpenAddWindowCommand { get; }
         public StructureUnitsViewModel(IWindowService _windowService)
         {
             _structureUnitService = new StructureUnitService();
             this._windowService= _windowService;
             LoadStructureUnits();
             _windowService = new WindowService();
+            OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenEditWindowCommand = new RelayCommand(OnEdit);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            DeleteWindowCommand = new RelayCommand(OnDelete);
+        }
+
+
+        private void OnAdd(object parameter)
+        {
+            _windowService.OpenModalWindow("AddStructureUnit");
+
+
+
+        }
+        public List<StructureUnit> SearchStructureUnits(string query)
+        {
+            return StructureUnits.Where(unit =>
+                unit.StructureUnitId.ToString().Contains(query) ||                           // Поиск по StructureUnitId
+                (!string.IsNullOrEmpty(unit.DepartmentName) && unit.DepartmentName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по DepartmentName
+                (!string.IsNullOrEmpty(unit.StructureUnitName) && unit.StructureUnitName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по StructureUnitName
+                (!string.IsNullOrEmpty(unit.Type) && unit.Type.Contains(query, StringComparison.OrdinalIgnoreCase)) // Поиск по Type
+            ).ToList();
+        }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
+
         }
 
         private void OnDelete(object parameter)
@@ -91,5 +173,14 @@ namespace Airport.ViewModels.WindowViewModels
                 Console.WriteLine($"Произошла ошибка: {ex.Message}");
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
     }
 }

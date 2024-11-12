@@ -7,7 +7,7 @@ namespace Airport.Models
 {
     public class PassengerCompletedFlight : INotifyPropertyChanged
     {
-        private int _passengerId;
+        private ObjectId _passengerId;
         private int _age;
         private string _gender;
         private string _passportNumber;
@@ -16,11 +16,12 @@ namespace Airport.Models
         private string _phoneNumber;
         private string _email;
         private string _fullName;
-        private int _completedFlightId;
+        private ObjectId _completedFlightId;
 
         [BsonId]
-        [BsonRepresentation(BsonType.Int32)]
-        public int PassengerId
+        [BsonRepresentation(BsonType.ObjectId)]
+       
+        public ObjectId PassengerId
         {
             get => _passengerId;
             set
@@ -146,7 +147,8 @@ namespace Airport.Models
         }
 
         [BsonElement("completedFlightId")]
-        public int CompletedFlightId
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId CompletedFlightId
         {
             get => _completedFlightId;
             set

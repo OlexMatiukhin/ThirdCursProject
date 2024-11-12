@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Windows.Media.Media3D;
 using Airport.Services.Airport.Services;
 using SharpCompress.Compressors.Deflate;
+using System.Windows;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -84,7 +85,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private void AddCanceledFlight(object parameter)
         {    
            
-            /*if (_flight != null && CancelingDescription!=""&& SelectedCancelingReason!="")
+            if (_flight != null && CancelingDescription!=""&& SelectedCancelingReason!="")
             {
                 if (_flight.Category == "внутрішній" || _flight.Category == "міжнародний")
                 {
@@ -105,7 +106,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
                 }
 
-            }*/
+            }
+            else
+            {
+                MessageBox.Show("Рейс не було відмінено! При відміні сталася помилка!", "Помилка скасування рейсу!",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,28 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Ошибка при добавлении данных: {ex.Message}");
             }
         }
+
+
+        public void DeleteCanceledFlight(ObjectId flightId)
+        {
+            try
+            {
+                var result = _canceledFlightCollection.DeleteOne(f => f.CanceledFlightInfoId == flightId);
+                if (result.DeletedCount > 0)
+                {
+                    Console.WriteLine($"Рейс с ID {flightId} упішно видалнео з canceled flights.");
+                }
+                else
+                {
+                    Console.WriteLine($"Рейс с ID {flightId} не знайдено.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Помилка видаленення даних: {ex.Message}");
+            }
+        }
+
 
         public List<CanceledFlightInfo> GetCanceledFlightsData()
         {

@@ -35,6 +35,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         
 
         private string _type;
+
+
+       
+
         private string _weight;
         private string _payment;
         private ObjectId _selectedPassangerId;
@@ -48,6 +52,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 OnPropertyChanged(nameof(Type));
             }
         }
+
 
         public string Weight
         {
@@ -125,8 +130,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 Weight = int.Parse(Weight),
                 Payment = int.Parse(Payment),
                 PassengerId = SelectedPassengerId
+
             };
 
+            Passenger passenger = _passengerService.GetPassengerById(SelectedPassengerId);
+            passenger.BaggageStatus = "наявний";
             _baggageService.AddBaggage(newBaggage);
         }
 

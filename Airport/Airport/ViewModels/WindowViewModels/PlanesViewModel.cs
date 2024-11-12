@@ -2,27 +2,52 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Airport.ViewModels.WindowViewModels
 {
 
+    
 
-
-    public class PlanesViewModel
+    public class PlanesViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<AirPlane> Planes { get; set; }
+
+        public ICommand DeleteWindowCommand { get; }
+
+        public ObservableCollection<AirPlane> _planes;
         private PlaneService _planeService;
         private PlaneRepairService _planeRepairService;
-
+        public ICommand OpenMainWindowCommand { get; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly IWindowService _windowService;
-     
+
+
+
+
+        private string _searchLine;
+
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {   
+               
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+              
+
+            }
+        }
 
 
         public PlanesViewModel(IWindowService windowService)
@@ -34,6 +59,42 @@ namespace Airport.ViewModels.WindowViewModels
             ChangeFuelStatusCommand = new RelayCommand(OnChangeFuleStatus);
             ChangeInteriorReadines = new RelayCommand(OnChangeInteriorReadines);
             ChangeTechConditionStatus = new RelayCommand(OnChangeTechConditionStatus);
+            OpenAddWindowCommand = new RelayCommand(OnAdd);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            DeleteWindowCommand = new RelayCommand(OnDelete);
+
+
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadPlanes();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchAirplanes(searchLine);
+               
+                Planes = new ObservableCollection<AirPlane>(searchResult); 
+                
+            }
+         
+        }
+
+
+        public ObservableCollection<AirPlane> Planes
+        {
+            get => _planes;
+            set
+            {
+                _planes = value;
+                OnPropertyChanged(nameof(Planes));
+            }
+        }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
 
         }
         public ICommand OpenEditWindowCommand { get; }
@@ -41,6 +102,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand ChangeFuelStatusCommand { get; }
         public ICommand ChangeInteriorReadines { get; }
         public ICommand ChangeTechConditionStatus { get; }
+        public ICommand OpenAddWindowCommand { get; }
 
         private void OnEdit(object parameter)
         {
@@ -53,6 +115,13 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
 
+
+
+
+        }
+        private void OnAdd(object parameter)
+        {
+            _windowService.OpenModalWindow("AddPlane");
 
 
 
@@ -91,6 +160,70 @@ namespace Airport.ViewModels.WindowViewModels
                 }
 
             }
+
+        }
+
+        public List<AirPlane> SearchAirplanes(string query)
+        {
+            
+            
+                return Planes.Where(plane =>
+                    plane.PlaneId.ToString().Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.Type.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.TechCondition.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.InteriorReadiness.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.PlaneFuelStatus.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.PlaneNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    plane.NumberFlightsBeforeRepair.ToString().Contains(query) ||
+                    plane.TechInspectionDate.ToString("dd.MM.yyyy HH:mm:ss").Contains(query) ||
+                    plane.TechInspectionDate.ToString("dd/MM/yyyy HH:mm:ss").Contains(query) || 
+                    plane.Assigned.ToString().Contains(query) ||
+                    plane.NumberRepairs.ToString().Contains(query) ||
+                    plane.ExploitationDate.ToString("dd.MM.yyyy HH:mm:ss").Contains(query) || 
+                    plane.ExploitationDate.ToString("dd/MM/yyyy HH:mm:ss").Contains(query) 
+                ).ToList();
+            
+        }
+
+        private void OnDelete(object parameter)
+        {
+
+            var plane = parameter as AirPlane;
+            if (plane != null && _planeService.IsPlaneInFlight(plane.PlaneNumber))
+            {
+
+                MessageBoxResult resultOther = MessageBox.Show(
+                             "Ви точно хочете видалити літак?",
+                             "Видалення інформації",
+                             MessageBoxButton.YesNo,
+                             MessageBoxImage.Warning);
+                if (resultOther == MessageBoxResult.Yes)
+                {
+
+                    _planeRepairService.DeletePlaneRepair(plane.PlaneId);
+                    MessageBox.Show(
+                            "Літак успішно видалено!",
+                              "Видалення інформації",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show(
+                            "Видалення літака неможливо, з ним заплановано рейси!",
+                              "Видалення інформації",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+
+            }
+
+
+
+
+
 
         }
 
@@ -199,6 +332,10 @@ namespace Airport.ViewModels.WindowViewModels
             {
                 Console.WriteLine($"Помилка завнатаження: {ex.Message}");
             }
+        }
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

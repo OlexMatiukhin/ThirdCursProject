@@ -1,10 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
-
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel;
-
 namespace Airport.Models
 {
     public class Brigade : INotifyPropertyChanged
@@ -82,5 +78,16 @@ namespace Airport.Models
         {
             return $"ID: {BrigadeId}, Тип: {BrigadeType}, Кількість працівників: {NumberWorkers}, Назва структурної одиниці: {StructureUnitName}";
         }
+
+        public static List<Brigade> SearchBrigades(List<Brigade> brigades, string query)
+        {
+            return brigades.Where(brigade =>
+                brigade.BrigadeId.ToString().Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                brigade.BrigadeType.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                brigade.NumberWorkers.ToString().Contains(query) ||
+                brigade.StructureUnitName.Contains(query, StringComparison.OrdinalIgnoreCase)
+            ).ToList();
+        }
     }
+
 }

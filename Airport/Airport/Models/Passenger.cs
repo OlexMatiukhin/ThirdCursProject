@@ -23,7 +23,7 @@ namespace Airport.Models
         private string _fullName;
         private string _customsControlStatus;
         private string _registrationStatus;
-        private ObjectId? _flightId;
+        private ObjectId _flightId;
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -183,7 +183,7 @@ namespace Airport.Models
 
         [BsonElement("flightId")]
         [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId? FlightId
+        public ObjectId FlightId
         {
             get => _flightId;
             set
@@ -195,6 +195,9 @@ namespace Airport.Models
                 }
             }
         }
+
+
+
 
         public override string ToString()
         {

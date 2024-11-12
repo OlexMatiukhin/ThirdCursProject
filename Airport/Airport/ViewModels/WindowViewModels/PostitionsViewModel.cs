@@ -5,6 +5,7 @@ using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,15 +13,66 @@ namespace Airport.ViewModels.WindowViewModels
 {
 
   
-    public class PositionsViewModel
+    public class PositionsViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Position> Positions { get; set; }
+        private ObservableCollection<Position> _positions;
+
+
+
+        public ObservableCollection<Position> Positions
+        {
+            get => _positions;
+            set
+            {
+                if (_positions != value)
+                {
+                    _positions = value;
+                    OnPropertyChanged(nameof(Positions));
+                }
+            }
+        }
+
         private PositionService _positionService;
         private WorkerService _workerService;
+
+
+
+        private string _searchLine;
+
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {
+
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+
+
+            }
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadPositions();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchPositions(searchLine);
+
+                Positions = new ObservableCollection<Position>(searchResult);
+
+            }
+
+        }
+
+        public ICommand OpenMainWindowCommand { get; }
         private readonly IWindowService _windowService;
         
         public ICommand OpenEditWindowCommand { get; }
         public ICommand DeleteElmentCommand { get; }
+        public ICommand OpenAddWindowCommand { get; }
 
         public PositionsViewModel(IWindowService windowService)
         {
@@ -30,8 +82,25 @@ namespace Airport.ViewModels.WindowViewModels
             _workerService = new WorkerService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             DeleteElmentCommand = new RelayCommand(OnDelete);
+            OpenAddWindowCommand = new RelayCommand(OnAdd);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
         }
-     
+        private void OnAdd(object parameter)
+        {
+            _windowService.OpenModalWindow("AddPosition");
+
+
+
+        }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
+
+        }
+
         private void OnEdit(object parameter)
         {
 
@@ -45,6 +114,15 @@ namespace Airport.ViewModels.WindowViewModels
         }
 
 
+        public List<Position> SearchPositions(string query)
+        {
+            return Positions.Where(position =>
+                position.PositionId.ToString().Contains(query) ||                            // Поиск по PositionId
+                (!string.IsNullOrEmpty(position.PositionName) && position.PositionName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по PositionName
+                position.Salary.ToString().Contains(query) ||                               // Поиск по Salary
+                (!string.IsNullOrEmpty(position.StructureUnitName) && position.StructureUnitName.Contains(query, StringComparison.OrdinalIgnoreCase)) // Поиск по StructureUnitName
+            ).ToList();
+        }
 
 
 
@@ -102,6 +180,14 @@ namespace Airport.ViewModels.WindowViewModels
             {
                 Console.WriteLine($"Произошла ошибка: {ex.Message}");
             }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

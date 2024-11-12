@@ -11,12 +11,59 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {  
-    public class DepartmentsViewModel
+    public class DepartmentsViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Department> Departments { get; set; }
+        private ObservableCollection<Department> _departments;
+
+        public ObservableCollection<Department> Departments
+        {
+            get => _departments;
+            set
+            {
+                if (_departments != value)
+                {
+                    _departments = value;
+                    OnPropertyChanged(nameof(Departments));
+                }
+            }
+        }
+
+
+
+        private string _searchLine;
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {
+
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+
+
+            }
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadDepartments();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchDepartments(searchLine);
+
+                Departments = new ObservableCollection<Department>(searchResult);
+
+            }
+
+        }
 
         public ICommand OpenEditWindowCommand { get; }
         public ICommand DeleteWindowCommand { get; }
+        public ICommand OpenMainWindowCommand { get; }
+
+        public ICommand OpenAddWindowCommand { get; }
 
         private DepartmentService _departmentService;
         private IWindowService _windowService;
@@ -29,29 +76,47 @@ namespace Airport.ViewModels.WindowViewModels
             _structureUnitService = new StructureUnitService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            OpenAddWindowCommand = new RelayCommand(OnAdd);
             LoadDepartments();
 
         }
+
+
+        public List<Department> SearchDepartments(string query)
+        {
+            return Departments.Where(department =>
+                department.DepartmentId.ToString().Contains(query) ||
+                department.DepartmentName.Contains(query, StringComparison.OrdinalIgnoreCase)
+            ).ToList();
+        }
+
         private void OnEdit(object parameter)
         {
             var department = parameter as Department;
             if (department != null)
             {
-                _windowService.OpenModalWindow("ChangeDepartment", department);        
-             
+                _windowService.OpenModalWindow("ChangeDepartment", department);         
 
             }
-             
+        
+        }
+        private void OnMainWindowOpen(object parameter)
+        {
 
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
+
+        }
+        private void OnAdd(object parameter)
+        {
+            _windowService.OpenModalWindow("AddDepartment");
+           
 
 
         }
-
         private void OnDelete(object parameter)
         {
-
-          
-
             var department = parameter as Department;
             List<StructureUnit> structureUnitList = _structureUnitService.GetStructureUnitsDataByDepartmentName(department.DepartmentName);
             if (structureUnitList.Count==0)
@@ -67,7 +132,7 @@ namespace Airport.ViewModels.WindowViewModels
                   
                     Departments.Remove(department);
                     _departmentService.DeleteDepartment(department.DepartmentId);
-                    MessageBox.Show("Департамент успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Департамент успішно видалено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

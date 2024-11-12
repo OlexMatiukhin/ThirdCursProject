@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using Airport.Models;
+using MongoDB.Bson;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -17,11 +18,27 @@ namespace Airport.Services.MongoDBSevice
 
         public CompletedFlightService()
         {
-            // Connecting to MongoDB
+           
 
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
             _completedFlightCollection = database.GetCollection<CompletedFlight>("completedFlight");
+        }
+
+
+        public void DeleteCompletedFlight(ObjectId completedFlightId)
+        {
+            try
+            {
+                var result = _completedFlightCollection.DeleteOne(c => c.CompletedFlightId == completedFlightId);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
         }
 
 

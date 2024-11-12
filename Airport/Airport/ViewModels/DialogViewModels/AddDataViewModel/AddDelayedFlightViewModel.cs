@@ -76,7 +76,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private void AddDelayedFlight(object parameter)
         {
 
-            if (_flight != null && _flight.Status!="спеціальний" && DelayDescription != "" && SelectedDelayReason != "")
+            if (_flight != null && _flight.Category!="спеціальний"&& _flight.Status!="активний" && DelayDescription != "" && SelectedDelayReason != "")
             {
                 
                     _delayedFlightsService.AddDelayedFlightInfoFromFlight(_flight, SelectedDelayReason, DelayDescription);

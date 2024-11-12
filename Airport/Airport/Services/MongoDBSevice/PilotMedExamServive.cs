@@ -1,5 +1,6 @@
 ﻿using Airport.Models;
 using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -50,13 +51,13 @@ namespace Airport.Services.MongoDBSevice
         }*/
         public void AddPilotMedExamForWorker(Worker worker)
         {
-         /*  try
+           try
             {
                 var newPilotMedExam = new PilotMedExam
                 {
-                    ExamId = this.GetLastPilotId() + 1,
+                    
                     PilotId = worker.WorkerId,
-                    DoctorId = 0,
+                    DoctorId = null,
                     DateExamination = null,
                     Result = null,
                    
@@ -68,7 +69,30 @@ namespace Airport.Services.MongoDBSevice
             catch 
             { 
               
-            }*/
+            }
+        }
+        public void DeletePilotMedExam(ObjectId examId)
+        {
+            try
+            {
+                var result = _pilotMedExamCollection.DeleteOne(p => p.ExamId == examId);
+
+                if (result.DeletedCount > 0)
+                {
+                    Console.WriteLine($"Медицинское обследование с ID {examId} успешно удалено.");
+                  
+                }
+                else
+                {
+                    Console.WriteLine($"Медицинское обследование с ID {examId} не найдено.");
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении медицинского обследования: {ex.Message}");
+               
+            }
         }
 
         public List<PilotMedExam> GetPilotMedExamsData()
@@ -79,7 +103,7 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                
                 return new List<PilotMedExam>();
             }
         }

@@ -14,7 +14,7 @@ namespace Airport
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            windowService.OpenWindow("MainMenuView");
+            windowService.OpenWindow("LoginView", this);
         }
     }
 

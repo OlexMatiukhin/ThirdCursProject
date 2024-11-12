@@ -9,47 +9,54 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" MinHeight="149"/>
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="Auto" MinHeight="76" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
 
-        <!-- Верхняя панель с логином и должностью -->
         <StackPanel Margin="0,1,513,2" Orientation="Horizontal" Width="181" HorizontalAlignment="Right">
-            <Image RenderTransformOrigin="0.5,0.5" Height="15" Width="16" Source="/Images/Key.png"/>
+            <Image RenderTransformOrigin="3,2.348" Height="15" Width="16" Source="/Images/Key.png"/>
             <TextBlock TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter"
-                       FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0" Text="VovaShumchuchek"/>
-        </StackPanel>
+    FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0" Text="VovaShumchuchek"/>
 
-        <StackPanel Margin="0,1,200,3" Orientation="Horizontal" HorizontalAlignment="Right" Width="310">
-            <Image Height="15" Width="16" RenderTransformOrigin="0.5,0.5" Source="/Images/Position.png"/>
+
+        </StackPanel>
+        <StackPanel Margin="0,1,200,3" Orientation="Horizontal"   HorizontalAlignment="Right" Width="310">
+            <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="/Images/Position.png"/>
             <TextBlock TextWrapping="Wrap" Height="20" 
-                       FontFamily="pack://application:,,,/Fonts/#Inter"
-                       FontSize="16" FontWeight="Bold" Width="284" Text="Начальник бригади рятувальників" VerticalAlignment="Center" Margin="0,0,2,0"/>
+    FontFamily="pack://application:,,,/Fonts/#Inter"
+    FontSize="16" FontWeight="Bold" Width="284" Text="Начальник бригади рятувальників" VerticalAlignment="Center" Margin="0,0,2,0" HorizontalAlignment="Right" />
+
+
         </StackPanel>
 
         <StackPanel Margin="0,4,99.5,5" Orientation="Horizontal" HorizontalAlignment="Right" Width="93">
-            <Image Source="/Images/Main.png" RenderTransformOrigin="0.5,0.5" Height="18" Width="16"/>
-            <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" 
-                       Height="19" Width="70" Margin="0,0,2,0"/>
+            <Image Source="/Images/Main.png" RenderTransformOrigin="3,2.348" Height="18" Width="16"/>
+            <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" RenderTransformOrigin="0.955,0.627" Height="19" Width="70" Margin="0,0,2,0"/>
+
+            <StackPanel.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding OpenMainWindowCommand}" />
+            </StackPanel.InputBindings>
         </StackPanel>
 
         <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right" Width="80">
-            <Image RenderTransformOrigin="0.5,0.5" Source="/Images/Logout.png" Width="13" Height="15"/>
+            <Image RenderTransformOrigin="3,2.348" Source="/Images/Logout.png"  Width="13" Height="15"/>
             <TextBlock TextWrapping="Wrap" Height="20" 
-                       FontFamily="pack://application:,,,/Fonts/#Inter"
-                       FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0">
-                <Run Language="ru-ru" Text="Вийти"/>
-            </TextBlock>
+    FontFamily="pack://application:,,,/Fonts/#Inter"
+    FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru" Text="Вийти"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
         </StackPanel>
+        <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-      
-        <Image HorizontalAlignment="Left" Width="67" Margin="7,0,0,5" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-  
-        <DataGrid  ItemsSource="{Binding Routes}"  x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
-                  HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  FontWeight="Bold" IsReadOnly="True" FontSize="10"  Margin="-4,0,0,0">
+
+
+        <DataGrid x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter"
+              HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
+              FontWeight="Bold" IsReadOnly="True" FontSize="10" 
+          ItemsSource="{Binding Routes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding RouteId }" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Number}" Width="2*"/>
@@ -63,7 +70,7 @@
                             <Button Content="Змінити" Width="Auto" Command="{Binding DataContext.OpenEditWindowCommand, 
                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
                          CommandParameter="{Binding}"/>
-                            
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -77,44 +84,11 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Комбобоксы для фильтрации -->
-        <ComboBox HorizontalAlignment="Left" Margin="55,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="190,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="465,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="603,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="55,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="191,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="465,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-
-        <Button Content="Фільтрувати" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="55,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120"  Background="#FFFAF100" FontWeight="Bold"/>
-        <Button Content="Загальна кількість" HorizontalAlignment="Left" FontFamily="pack://application:,,,/Fonts/#Inter" Margin="191,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="120" Background="#FFFAF100" FontWeight="Bold"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="84,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Категорія"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="222,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Напрям"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="355,8,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Тип літака"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="498,7,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Маршрут"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="619,6,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="81">
-            <Run Language="uk-ua" Text="Тривалість перельоту"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="78,57,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Ціна квитка"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="195,56,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Width="110">
-            <Run Language="uk-ua" Text="Кількість квитків"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="353,55,0,0" Grid.Row="1" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14">
-            <Run Language="uk-ua" Text="Час вильоту"/>
-        </TextBlock>
-
+        <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,1,0,-1" />
+        <TextBox Margin="10,25,430,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox Grid.Row="1" VerticalAlignment="Top" MinWidth="120" MaxWidth="267" MinHeight="28" HorizontalAlignment="Right" Margin="0,25,270,0" Height="30"/>
+        <Button Content="Шукати" Margin="0,25,25,0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" MinHeight="28" MinWidth="95" MaxWidth="212" RenderTransformOrigin="0.5,0.5" Height="32"/>
+        <Button Content="Скинути" Margin="0,24,145,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="28" MinWidth="95" Width="95" MaxWidth="212" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Height="32" />
     </Grid>
+
 </Window>

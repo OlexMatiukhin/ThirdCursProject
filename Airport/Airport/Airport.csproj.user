@@ -46,6 +46,9 @@
     <Compile Update="Views\Dialog\AddWindow\AddTicketView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Dialog\AddWindow\AddUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Dialog\AddWindow\AddWorkerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,10 +64,16 @@
     <Compile Update="Views\Dialog\ChangeWindow\ChangePlaneRepair.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Dialog\ChangeWindow\ChangeUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\MenuWindows\MainMenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\BrigadesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\UsersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -114,6 +123,9 @@
     <Page Update="Views\Dialog\AddWindow\AddTicketView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Dialog\AddWindow\AddUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Dialog\AddWindow\AddWorkerView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -147,6 +159,9 @@
     <Page Update="Views\Dialog\ChangeWindow\ChangeStructureUnit.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Dialog\ChangeWindow\ChangeUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Dialog\ChangeWindow\ChangeWorker.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -160,6 +175,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\PassengerCompletedFlightView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\UsersView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

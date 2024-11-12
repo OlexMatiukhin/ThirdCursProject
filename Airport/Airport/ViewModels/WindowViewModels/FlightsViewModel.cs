@@ -19,9 +19,53 @@ using System.Windows.Media.Media3D;
 namespace Airport.ViewModels.WindowViewModels
 {
     
-    public class FlightsViewModel
+    public class FlightsViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Flight> Flights { get; set; }
+        private ObservableCollection<Flight> _flights;
+
+        public ObservableCollection<Flight> Flights
+        {
+            get => _flights;
+            set
+            {
+                if (_flights != value)
+                {
+                    _flights = value;
+                    OnPropertyChanged(nameof(Flights));
+                }
+            }
+        }
+
+
+        private string _searchLine;
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {
+
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+
+
+            }
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadFlights();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchFlights(searchLine);
+
+                Flights = new ObservableCollection<Flight>(searchResult);
+
+            }
+
+        }
+
         private FlightService _flightService;
         private PassengerService _passengerService;
         private BaggageService _baggageService;
@@ -30,6 +74,7 @@ namespace Airport.ViewModels.WindowViewModels
         private PassengerCompletedFlightService _passangerCompletedFlightService;
         private CompletedFlightService _completedFlightService;
         private PlaneService _planeService;
+        public ICommand OpenMainWindowCommand { get; }
 
 
         public ICommand OpenEditWindowCommand { get; }
@@ -39,14 +84,15 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand FinishFlightCommand { get; }
         public ICommand CancelFlightCommand { get; }
         public ICommand DelayFlightCommand { get; }
+        public ICommand OpenAddWindowCommand { get; }
 
         private readonly IWindowService _windowService;
         public FlightsViewModel(IWindowService windowService)
         {
              this._windowService = windowService;
             _flightService = new FlightService();
-
-           _passengerService= new PassengerService();
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            _passengerService = new PassengerService();
             _baggageService= new BaggageService();
             _ticketService= new TicketService();
             _seatService= new SeatService();
@@ -61,6 +107,7 @@ namespace Airport.ViewModels.WindowViewModels
             FinishFlightCommand = new RelayCommand(FinishFlight);   
             ActivateFlightCommand = new RelayCommand(ActivateFlight);
             CancelFlightCommand = new RelayCommand(CancelFlight);
+            OpenAddWindowCommand = new RelayCommand(OnAdd);
             DelayFlightCommand = new RelayCommand(DelayFlight);
             LoadFlights();
         }
@@ -94,6 +141,20 @@ namespace Airport.ViewModels.WindowViewModels
 
         }
 
+        private void OnMainWindowOpen(object parameter)
+        {
+
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
+
+        }
+        private void OnAdd(object parameter)
+        {
+            _windowService.OpenModalWindow("AddFlight");
+
+
+
+        }
         private void EndCustomsControl(object parameter)
         {
 
@@ -140,14 +201,14 @@ namespace Airport.ViewModels.WindowViewModels
 
         private bool CheckPlaneForActivation(Flight flight)
         {
-            AirPlane plane = _planeService.GetPlaneById
+            AirPlane plane = _planeService.GetPlaneByPlaneNumber(flight.PlaneNumber);
             if (plane == null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
             {
                 return true;
             }
             else
             {
-                MessageBox.Show("Літак не готовий до польоту", "Літак", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Рейс неможливо активувати, літак неготовий до польоту!", "Помилка активації", MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
 
             }
@@ -158,63 +219,70 @@ namespace Airport.ViewModels.WindowViewModels
 
 
             var flight = parameter as Flight;
+            
 
-            switch (flight.Category)
-            {
-                case "міжнародний":
-                case "пасажирський":
-                    float boughtTicketPercent = flight.NumberTickets > 0
-                    ? (float)flight.NumberBoughtTickets / flight.NumberTickets * 100
-                    : 0;
+                switch (flight.Category)
+                {
 
-                    if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена" && boughtTicketPercent >= 50)
-                    {
-                        MessageBoxResult result = MessageBox.Show(
-                          "Активувати рейс?",
-                          "Активація рейсу",
-                          MessageBoxButton.YesNo,
-                          MessageBoxImage.Warning);
-                        if (result == MessageBoxResult.Yes)
+                    case "міжнародний":
+                    case "пасажирський":
+                        float boughtTicketPercent = flight.NumberTickets > 0
+                        ? (float)flight.NumberBoughtTickets / flight.NumberTickets * 100
+                        : 0;
+
+                        if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена" && boughtTicketPercent >= 50&& CheckPlaneForActivation(flight))
                         {
-                            flight.Status = "активний";
-                            _flightService.UpdateFlight(flight); 
+                            MessageBoxResult result = MessageBox.Show(
+                              "Активувати рейс?",
+                              "Активація рейсу",
+                              MessageBoxButton.YesNo,
+                              MessageBoxImage.Warning);
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                flight.Status = "активний";
+                                _flightService.UpdateFlight(flight);
+                            }
+
+
+
+                        }
+                        break;
+                    case "чартерний":
+
+                        if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена" && CheckPlaneForActivation(flight))
+                        {
+                            MessageBoxResult resultCharter = MessageBox.Show(
+                              "Активувати рейс?",
+                              "Активація рейсу",
+                              MessageBoxButton.YesNo,
+                              MessageBoxImage.Warning);
+                            if (resultCharter == MessageBoxResult.Yes)
+                            {
+                                flight.Status = "активний";
+                                _flightService.UpdateFlight(flight);
+                            }
                         }
 
-
-
-                    }
-                break;
-                case "чартерний":
-
-                    if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена")
+                        break;
+                    default:
+                    if (CheckPlaneForActivation(flight))
                     {
-                        MessageBoxResult resultCharter = MessageBox.Show(
+                        MessageBoxResult resultOther = MessageBox.Show(
                           "Активувати рейс?",
                           "Активація рейсу",
                           MessageBoxButton.YesNo,
                           MessageBoxImage.Warning);
-                        if (resultCharter == MessageBoxResult.Yes)
+                        if (resultOther == MessageBoxResult.Yes)
                         {
                             flight.Status = "активний";
                             _flightService.UpdateFlight(flight);
                         }
-                    }
-
-                    break;
-                default:
-
-                    MessageBoxResult resultOther = MessageBox.Show(
-                      "Активувати рейс?",
-                      "Активація рейсу",
-                      MessageBoxButton.YesNo,
-                      MessageBoxImage.Warning);
-                    if (resultOther == MessageBoxResult.Yes)
-                    {
-                        flight.Status = "активний";
-                        _flightService.UpdateFlight(flight);
+                       
                     }
                     break;
-            }
+
+                }
+
 
           
         }
@@ -276,6 +344,28 @@ namespace Airport.ViewModels.WindowViewModels
      
             
         }
+        public List<Flight> SearchFlights(string query)
+        {
+            return Flights.Where(flight =>
+                flight.FlightId.ToString().Contains(query) ||
+                flight.FlightNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.Status.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.Category.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.DateDeparture.ToString("yyyy-MM-dd HH:mm:ss").Contains(query) ||
+                flight.DateArrival.ToString("yyyy-MM-dd HH:mm:ss").Contains(query) ||
+                flight.PlaneNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.DispatchBrigadeId.ToString().Contains(query) ||
+                flight.NavigationBrigadeId.ToString().Contains(query) ||
+                flight.FlightBrigadeId.ToString().Contains(query) ||
+                flight.InspectionBrigadeId.ToString().Contains(query) ||
+                flight.CustomsControl.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.PassengerRegistration.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                flight.NumberTickets.ToString().Contains(query) ||
+                flight.NumberBoughtTickets.ToString().Contains(query) ||
+                flight.RouteNumber.Contains(query, StringComparison.OrdinalIgnoreCase)
+            ).ToList();
+        }
+
 
 
         private void DelayFlight(object parameter)

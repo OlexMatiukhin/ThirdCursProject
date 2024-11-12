@@ -1,4 +1,5 @@
 ﻿using Airport.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public int GetLastPassengerCompletedFlightId()
+        /*public int GetLastPassengerCompletedFlightId()
         {
             var lastFlight = _passengerCompletedFlightCollection
                 .Find(Builders<PassengerCompletedFlight>.Filter.Empty)
@@ -43,10 +44,10 @@ namespace Airport.Services.MongoDBSevice
                 .FirstOrDefault();
 
             return lastFlight?.PassengerId ?? 0;
-        }
+        }*/
 
 
-        public PassengerCompletedFlight GetPassengerCompletedFlightById(int id)
+        public PassengerCompletedFlight GetPassengerCompletedFlightById(ObjectId id)
         {
             try
             {
@@ -66,7 +67,6 @@ namespace Airport.Services.MongoDBSevice
                 var passengerCompletedFlights = passengers.Select(p => new PassengerCompletedFlight
                 {
                     
-                    PassengerId = this.GetLastPassengerCompletedFlightId()+1,
                     FullName = p.FullName,
                     Age = p.Age,
                     Gender = p.Gender,
@@ -75,7 +75,7 @@ namespace Airport.Services.MongoDBSevice
                     BaggageStatus = p.BaggageStatus,
                     PhoneNumber = p.PhoneNumber,
                     Email = p.Email,
-                   // CompletedFlightId = p.FlightId,
+                   CompletedFlightId = p.FlightId,
                 }).ToList();
 
                 _passengerCompletedFlightCollection.InsertMany(passengerCompletedFlights);
@@ -118,7 +118,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public void DeletePassengerCompletedFlight(int id)
+        public void DeletePassengerCompletedFlight( ObjectId id)
         {
             try
             {

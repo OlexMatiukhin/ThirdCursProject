@@ -5,6 +5,7 @@ using Airport.ViewModels.DialogViewModels.Change;
 using Airport.ViewModels.DialogViewModels.ChangeDataViewModel;
 using Airport.ViewModels.MenuViewModels;
 using Airport.ViewModels.WindowViewModels;
+using Airport.Views;
 using Airport.Views.Dialog;
 using Airport.Views.Dialog.AddWindow;
 using Airport.Views.Dialog.ChangeWindow;
@@ -118,6 +119,11 @@ namespace Airport.Services
                     window = new MainMenuView();
                     window.DataContext = new MainMenuViewModel(this);
                     break;
+                case "LoginView":
+                    window = new Login();
+                    window.DataContext = new LoginViewModel(this);
+                    break;
+
 
 
 
@@ -239,28 +245,38 @@ namespace Airport.Services
                     }
                     break;
 
+                case "ChangePilotPosition":
+                    if (parameter is PilotMedExam pilotMedExam1 && paramet2 is Worker worker1)
+                    {
+                        modalWindow = new AddDelayedFlightView();
+                        modalWindow.DataContext = new ChangePilotPositionViewModel(this, pilotMedExam1, worker1);
+
+
+                    }
+                    break;
+
 
                 //AddWindows
-                case "AddBaggeViewModel":
+                case "AddBaggage":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
 
                     break;
-                case "AddBrigadeViewModel":
+                case "AddBrigade":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddDepartmetnViewModel":
+                case "AddDepartmetn":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddFlightViewModel":
+                case "AddFlight":
 
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
 
-                case "AddPassangerViewModel":
+                case "AddPassanger":
 
                     if (parameter is Models.Ticket ticket)
                     {
@@ -273,44 +289,45 @@ namespace Airport.Services
                     break;
 
 
-                case "AddPlaneViewModel":
+
+                case "AddPlane":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddPositionViewModel":
+                case "AddPosition":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddRouteViewModel":
+                case "AddRoute":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddSeatViewModel":
+                case "AddSeat":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
 
-                case "AddStructureUnitViewModel":
+                case "AddStructureUnit":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddTicketViewModel":
+                case "AddTicketView":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
 
                     break;
-                case "AddWorkerViewModel":
+                case "AddWorker":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
-                case "AddCanceledFlightInfoView":
+                case "AddCanceledFlightInfo":
                     if (parameter is Flight flightToCacnel&& paramet2 is ObservableCollection<Flight> flights)
                     {   modalWindow = new AddCanceledFlightView();
                         modalWindow.DataContext = new AddCanceledFlightViewModel(this, flightToCacnel, flights);
                     }
                 break;
 
-                case "AddDelayedFlightInfoView":
+                case "AddDelayedFlightInfo":
                     if (parameter is Flight flightToDelay)
                     {
                         modalWindow = new AddDelayedFlightView();
@@ -318,15 +335,15 @@ namespace Airport.Services
                     }
                     break;
 
-                case "ChangePilotPositionViewModel":
-                    if (parameter is PilotMedExam pilotMedExam1 && paramet2 is Worker worker1)
+                case "AddUser":
+                    if (parameter is User user)
                     {
-                        modalWindow = new AddDelayedFlightView();
-                        modalWindow.DataContext = new ChangePilotPositionViewModel(this, pilotMedExam1, worker1);
-
-
+                        modalWindow = new AddUserView();
+                        modalWindow.DataContext = new AddUserViewModel(this, user);
                     }
-                 break;
+                    break;
+
+
 
 
             }

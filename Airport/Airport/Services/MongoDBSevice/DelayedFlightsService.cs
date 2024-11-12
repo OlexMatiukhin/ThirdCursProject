@@ -2,7 +2,7 @@
 
 namespace Airport.Services.MongoDBSevice
 {
-
+    using MongoDB.Bson;
     using MongoDB.Driver;
     using System;
     using System.Collections.Generic;
@@ -30,6 +30,26 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
                 return new List<DelayedFlightInfo>();
             }
+        }
+
+
+
+        public void DeleteDelayedFlight (ObjectId flightId)
+        {
+           
+                
+                var result = _delayedFlightCollection.DeleteOne(f => f.DelayedFlightInfoId == flightId);
+
+                if (result.DeletedCount > 0)
+                {
+                    Console.WriteLine($"Рейс  з ID {flightId} успешно удален.");
+                }
+                else
+                {
+                    Console.WriteLine($"Завершенный рейс с ID {flightId} не найден.");
+                }
+           
+          
         }
         public void AddDelayedFlightInfoFromFlight(Flight flight,  string reason, string descritption)
         {

@@ -7,9 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-using System.ComponentModel;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Airport.Models
 {

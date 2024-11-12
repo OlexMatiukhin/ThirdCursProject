@@ -19,18 +19,10 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _positionCollection = database.GetCollection<Position>("position");
         }
+
+
         public ICommand AddPositionCommand { get; }
 
-       /* public int GetLastPositionId()
-        {
-            var lastPosition = _positionCollection
-                .Find(Builders<Position>.Filter.Empty)
-                .Sort(Builders<Position>.Sort.Descending(w => w.PositionId))
-                .Limit(1)
-                .FirstOrDefault();
-
-            return lastPosition?.PositionId ?? 0;
-        }*/
         public void AddPostion(Position position)
         {
             try

@@ -11,12 +11,13 @@ namespace Airport.Services.MongoDBSevice
     internal class RouteService
     {
         private readonly IMongoCollection<Route> _routeCollection;
-
+        private readonly IMongoCollection<Flight> _flightCollection;
         public RouteService()
         {
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
             _routeCollection = database.GetCollection<Route>("route");
+            _flightCollection = database.GetCollection<Flight>("flight");
         }
 
         public List<Route> GetRoutes()
@@ -44,7 +45,19 @@ namespace Airport.Services.MongoDBSevice
                 return null;
             }
         }
-
+        public bool HasFlightsWithRoute(ObjectId routeId)
+        {
+            try
+            {
+                var filter = Builders<Flight>.Filter.Eq(f => f.RouteNumber, routeId.ToString());
+                return _flightCollection.Find(filter).Any();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при проверке рейсов по маршруту: {ex.Message}");
+                return false;
+            }
+        }
 
         public void AddRoute(Route route)
         {

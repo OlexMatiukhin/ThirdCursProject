@@ -13,83 +13,83 @@ using System.ComponentModel;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
-    public class ChangeBrigadeViewModel:INotifyPropertyChanged
+    public class ChangeBrigadeViewModel : INotifyPropertyChanged
     {
-       
-            private readonly StructureUnitService _structureUnitService;
-            public ICommand ChangeBrigadeCommand { get; }
-            private BrigadeService _brigadeService;
-            private IWindowService _windowService;
 
-            public ChangeBrigadeViewModel(Brigade brigade,IWindowService windowService)
+        private readonly StructureUnitService _structureUnitService;
+        public ICommand ChangeBrigadeCommand { get; }
+        private BrigadeService _brigadeService;
+        private IWindowService _windowService;
+
+        public ChangeBrigadeViewModel(Brigade brigade, IWindowService windowService)
+        {
+            _structureUnitService = new StructureUnitService();
+            LoadData();
+            CreateDictionaries();
+            ChangeBrigadeCommand = new RelayCommand(ChangeBrigade, canExecute => true);
+            _brigadeService = new BrigadeService();
+            this._brigade = brigade;
+            BrigadeType = brigade.BrigadeType;
+            StructureUnitName = brigade.StructureUnitName;
+
+        }
+        public ObservableCollection<StructureUnit> StructureUnits { get; set; }
+
+        public Dictionary<string, string> StructureUnitDictionary { get; set; }
+
+        private Brigade _brigade;
+
+        public string _brigadeType;
+
+
+        private string _structureUnitName;
+        public string BrigadeType
+        {
+            get => _brigadeType;
+            set
             {
-                _structureUnitService = new StructureUnitService();
-                LoadData();
-                CreateDictionaries();
-                ChangeBrigadeCommand = new RelayCommand(ChangeBrigade, canExecute => true);
-                _brigadeService = new BrigadeService();
-                this._brigade = brigade;
-                BrigadeType = brigade.BrigadeType;
-                StructureUnitName=brigade.StructureUnitName;
-
+                _brigadeType = value;
+                OnPropertyChanged(nameof(BrigadeType));
             }
-            public ObservableCollection<StructureUnit> StructureUnits { get; set; }
-
-            public Dictionary<string, string> StructureUnitDictionary { get; set; }
-
-            private Brigade _brigade;
-        
-            public string _brigadeType;
-
-
-            private string _structureUnitName;
-            public string BrigadeType
+        }
+        public string StructureUnitName
+        {
+            get => _structureUnitName;
+            set
             {
-                get => _brigadeType;
-                set
-                {
-                    _brigadeType = value;
-                    OnPropertyChanged(nameof(BrigadeType));
-                }
+                _structureUnitName = value;
+                OnPropertyChanged(nameof(StructureUnitName));
             }
-            public string StructureUnitName
-            {
-                get => _structureUnitName;
-                set
-                {
-                    _structureUnitName = value;
-                    OnPropertyChanged(nameof(StructureUnitName));
-                }
-            }
+        }
 
-            private void LoadData()
-            {
+        private void LoadData()
+        {
 
 
-                var StructureUnitsList = _structureUnitService.GetStructureUnitsData();
+            var StructureUnitsList = _structureUnitService.GetStructureUnitsData();
 
-                StructureUnits = new ObservableCollection<StructureUnit>(StructureUnitsList);
-            }
+            StructureUnits = new ObservableCollection<StructureUnit>(StructureUnitsList);
+        }
 
-            private void CreateDictionaries()
-            {
-                StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
+        private void CreateDictionaries()
+        {
+            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
 
-            }
-            private void ChangeBrigade(object parameter)
-            {
-               _brigade.BrigadeType=this.BrigadeType;
-                _brigade.StructureUnitName=this.StructureUnitName;
-                
-                _brigadeService.UpdateBrigade(_brigade);
-            }
+        }
+        private void ChangeBrigade(object parameter)
+        {
+            _brigade.BrigadeType = this.BrigadeType;
+            _brigade.StructureUnitName = this.StructureUnitName;
 
-            public event PropertyChangedEventHandler PropertyChanged;
-            protected virtual void OnPropertyChanged(string propertyName)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+            _brigadeService.UpdateBrigade(_brigade);
+        }
 
-     }
-    
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+
 }

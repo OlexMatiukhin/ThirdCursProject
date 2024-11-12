@@ -30,7 +30,6 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\PlanesView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\PositionsView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\RefundedTicketsView.g.cs
-C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\Registration.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\RoutesView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\SeatsView.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\StructureUnitsView.g.cs
@@ -51,7 +50,6 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\PlanesView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\PositionsView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\RefundedTicketsView.baml
-C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\Registration.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\RoutesView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\SeatsView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\StructureUnitsView.baml
@@ -149,3 +147,11 @@ C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AdditionalWindow\ChangePilotPositionView.baml
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeBrigade.g.cs
 C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeBrigade.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AddWindow\AddUser.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeUser.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\Login.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\UsersView.g.cs
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\AddWindow\AddUser.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Dialog\ChangeWindow\ChangeUser.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\Login.baml
+C:\Users\sasha\Desktop\Інститут\Curs project 3 curs\Airport\Airport\obj\Debug\net8.0-windows\Views\Windows\UsersView.baml

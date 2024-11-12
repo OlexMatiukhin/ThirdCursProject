@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -158,32 +159,38 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecutePassangerAdd(object parameter)
         {
-           
-
-
-            Passenger newPassenger = new Passenger
+            MessageBoxResult result = MessageBox.Show(
+                    "Завершити затримку?",
+                    "Завершення затримки",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
             {
-              
-                FullName = FullName,
-                Age = Age,
-                Gender = SelectedGender,
-                PassportNumber = PassportNumber,
-                InternPassportNumber = InternPassportNumber,
-                BaggageStatus = BaggageStatus,
-                PhoneNumber = PhoneNumber,
-                Email = Email,
-                CustomsControlStatus = "не перевірений",
-                RegistrationStatus = "не зареєстрований",
-                FlightId = null,
 
-            };
-            //this._ticket.PassengerId = passangerId;
+                Passenger newPassenger = new Passenger
+                {
+
+                    FullName = FullName,
+                    Age = Age,
+                    Gender = SelectedGender,
+                    PassportNumber = PassportNumber,
+                    InternPassportNumber = InternPassportNumber,
+                    BaggageStatus = BaggageStatus,
+                    PhoneNumber = PhoneNumber,
+                    Email = Email,
+                    CustomsControlStatus = "не перевірений",
+                    RegistrationStatus = "не зареєстрований",
+                    FlightId = _ticket.FlightId,
+
+                };
+                this._ticket.PassengerId = newPassenger.PassengerId;
+                this._ticket.Status = "куплений";
 
 
+                _ticketService.UpdateTicket(this._ticket);
 
-            _ticketService.UpdateTicket(this._ticket);
-
-            _passengerService.AddPassenger(newPassenger);
+                _passengerService.AddPassenger(newPassenger);
+            }
             
         }
 

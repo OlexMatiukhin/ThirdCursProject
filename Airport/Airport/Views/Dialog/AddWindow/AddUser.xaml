@@ -1,0 +1,69 @@
+﻿<Window x:Class="Airport.Views.Dialog.AddUserView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport.Views.Dialog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Add User">
+
+    <Grid>
+        <TextBox Name="Login" 
+                 Text="{Binding Login, Mode=TwoWay}" 
+                 HorizontalAlignment="Left" 
+                 Margin="122,54,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+
+        <TextBox Name="Password" 
+                 Text="{Binding Password, Mode=TwoWay}" 
+                 HorizontalAlignment="Left" 
+                 Margin="257,54,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+
+        <ComboBox ItemsSource="{Binding AccessRights}"  
+                  SelectedValue="{Binding SelectedAccessRight, Mode=TwoWay}" 
+                  HorizontalAlignment="Left" 
+                  Margin="383,54,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="122,35,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" 
+                   Height="14">
+            Логін
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="257,35,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" 
+                   Height="14">
+            Пароль
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="383,35,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" 
+                   Height="14">
+            Права доступу
+        </TextBlock>
+
+        <Button Content="Додати" 
+                Command="{Binding AddUserCommand}" 
+                HorizontalAlignment="Left" 
+                Margin="277,224,0,0" 
+                VerticalAlignment="Top" 
+                Width="211" 
+                Height="30"/>
+    </Grid>
+</Window>
+

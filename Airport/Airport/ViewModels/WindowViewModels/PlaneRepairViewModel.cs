@@ -5,6 +5,7 @@ using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -15,11 +16,59 @@ using AirPlane = Airport.Models.AirPlane;
 
 namespace Airport.ViewModels.WindowViewModels
 {
-    public class PlaneRepairsViewModel
+    public class PlaneRepairsViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<PlaneRepair> PlaneRepairs { get; set; }
+        private ObservableCollection<PlaneRepair> _planeRepairs;
+        public ICommand DeleteWindowCommand { get; }
+
+
+        public ObservableCollection<PlaneRepair> PlaneRepairs
+        {
+            get => _planeRepairs;
+            set
+            {
+                if (_planeRepairs != value)
+                {
+                    _planeRepairs = value;
+                    OnPropertyChanged(nameof(PlaneRepairs));
+                }
+            }
+        }
+
+
+        private string _searchLine;
+
+
+        public string SearchLine
+        {
+            get => _searchLine;
+            set
+            {
+
+                _searchLine = value;
+                SearchOperation(_searchLine);
+                OnPropertyChanged(nameof(SearchLine));
+
+
+            }
+        }
+
+        public void SearchOperation(string searchLine)
+        {
+            LoadPlaneRepairs();
+            if (!string.IsNullOrEmpty(searchLine))
+            {
+                var searchResult = SearchRepairs(searchLine);
+
+                PlaneRepairs = new ObservableCollection<PlaneRepair>(searchResult);
+
+            }
+
+        }
+
         private PlaneRepairService _planeRepairService;
         private PlaneService _planeService;
+        public ICommand OpenMainWindowCommand { get; }
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
         public ICommand FinishRepairCommand { get; }
@@ -31,8 +80,76 @@ namespace Airport.ViewModels.WindowViewModels
             LoadPlaneRepairs();
             _windowService = new WindowService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
-            //FinishRepairCommand = new RelayCommand(OnRepairFinish);
+            FinishRepairCommand = new RelayCommand(OnRepairFinish);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            DeleteWindowCommand = new RelayCommand(OnDelete);
         }
+
+        public List<PlaneRepair> SearchRepairs(string query)
+        {
+            return PlaneRepairs.Where(repair =>
+                repair.PlaneRepairId.ToString().Contains(query) ||                        
+                repair.StartDate.ToString("yyyy-MM-dd").Contains(query) ||                
+                (!string.IsNullOrEmpty(repair.Status) && repair.Status.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                repair.NumberFlights.ToString().Contains(query) ||                     
+                (repair.EndDate.HasValue && repair.EndDate.Value.ToString("yyyy-MM-dd").Contains(query)) || 
+                (!string.IsNullOrEmpty(repair.Reason) && repair.Reason.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                (!string.IsNullOrEmpty(repair.Result) && repair.Result.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                repair.BrigadeId.ToString().Contains(query) ||                           
+                repair.PlaneId.ToString().Contains(query)                                 
+            ).ToList();
+        }
+
+        private void OnDelete(object parameter)
+        {
+
+            var planeRepair = parameter as PlaneRepair;
+            if (planeRepair != null && planeRepair.Result == "пройдено")
+            {
+
+                MessageBoxResult resultOther = MessageBox.Show(
+                             "Ви точно хочете видалити інформацію про ремонт",
+                             "Видалення інформації",
+                             MessageBoxButton.YesNo,
+                             MessageBoxImage.Warning);
+                if (resultOther == MessageBoxResult.Yes)
+                {
+
+                    _planeRepairService.DeletePlaneRepair(planeRepair.PlaneRepairId);
+                    MessageBox.Show(
+                            " Інформацію упішно видалено!",
+                              "Видалення інформації",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show(
+                            "Видалення інформації неможливе!",
+                              "Видалення інформації",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+
+            }
+
+
+
+
+
+
+        }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+
+            _windowService.OpenWindow("MainMenuView");
+            _windowService.CloseWindow();
+
+        }
+
         private void OnEdit(object parameter)
         {   var planeRepair = parameter as PlaneRepair;
             if (planeRepair != null)
@@ -103,5 +220,14 @@ namespace Airport.ViewModels.WindowViewModels
                 Console.WriteLine($": {ex.Message}");
             }
         }
+
+
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+}
 }

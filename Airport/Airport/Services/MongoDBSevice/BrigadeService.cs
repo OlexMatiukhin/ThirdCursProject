@@ -11,14 +11,16 @@ public class BrigadeService
 {
       
         private readonly IMongoCollection<Brigade> _brigadeCollection;
+    private readonly IMongoCollection<Worker> _workerCollection;
 
-        public BrigadeService()
+    public BrigadeService()
         {
         
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
-            _brigadeCollection = database.GetCollection<Brigade>("brigade"); 
-        }
+            _brigadeCollection = database.GetCollection<Brigade>("brigade");
+            _workerCollection = database.GetCollection<Worker>("worker");
+    }
 
         public List<Brigade> GetBrigadesData()
         {
@@ -46,18 +48,50 @@ public class BrigadeService
 
     }
 
-   /* public int GetLastBrigadeId()
+    public void RemoveBrigadeFromWorkers(ObjectId brigadeId)
+    {
+        try
         {
-            var lastBaggage = _brigadeCollection
-                .Find(Builders<Brigade>.Filter.Empty)
-                .Sort(Builders<Brigade>.Sort.Descending(w => w.BrigadeId))
-                .Limit(1)
-                .FirstOrDefault();
+           
+            var filter = Builders<Worker>.Filter.Eq(w => w.BrigadeId, brigadeId);
+            var update = Builders<Worker>.Update.Set(w => w.BrigadeId, null);
 
-            return lastBaggage?.BrigadeId ?? 0;
-        }*/
+            _workerCollection.UpdateMany(filter, update);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Произошла ошибка при удалении бригады у работников: {ex.Message}");
+        }
+    }
 
-    public Brigade GetBrigadeById(ObjectId brigadeId)
+
+    public bool HasWorkersInBrigade(ObjectId brigadeId)
+    {
+        try
+        {
+            var workersInBrigade = _workerCollection.Find(w => w.BrigadeId == brigadeId).ToList();
+            return workersInBrigade.Any();  
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Произошла ошибка при проверке работников в бригаде: {ex.Message}");
+            return false;  
+        }
+    }
+
+
+/* public int GetLastBrigadeId()
+     {
+         var lastBaggage = _brigadeCollection
+             .Find(Builders<Brigade>.Filter.Empty)
+             .Sort(Builders<Brigade>.Sort.Descending(w => w.BrigadeId))
+             .Limit(1)
+             .FirstOrDefault();
+
+         return lastBaggage?.BrigadeId ?? 0;
+     }*/
+
+public Brigade GetBrigadeById(ObjectId brigadeId)
         {
             try
             {
@@ -123,6 +157,8 @@ public class BrigadeService
                 Console.WriteLine($"Произошла ошибка при удалении данных: {ex.Message}");
             }
         }
+
+   
 }
 
 

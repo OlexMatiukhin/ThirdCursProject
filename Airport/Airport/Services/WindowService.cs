@@ -34,113 +34,178 @@ namespace Airport.Services
 
             switch (windowName)
             {
-
-
                 case "BaggageView":
-                    window = new BaggageView();
-                    window.DataContext = new BaggageViewModel(this);
+                    if (parameter is User user1)
+                    {
+                        window = new BaggageView();
+                        window.DataContext = new BaggageViewModel(this, user1);
+                    }
                     break;
+
                 case "BrigadesView":
-                    window = new BrigadesView();
-                    window.DataContext = new BrigadesViewModel(this);
+                    if (parameter is User user2)
+                    {
+                        window = new BrigadesView();
+                        window.DataContext = new BrigadesViewModel(this, user2);
+                    }
                     break;
+
                 case "CanceledFlightsView":
-                    window = new CanceledFlightsView();
-                    window.DataContext = new CanceledFligthsViewModel(this);
+                    if (parameter is User user3)
+                    {
+                        window = new CanceledFlightsView();
+                        window.DataContext = new CanceledFlightsViewModel(this, user3);
+                    }
                     break;
+
                 case "CompletedFlightsView":
-                    window = new CompletedFlightsView();
-                    window.DataContext = new CompletedFlightsViewModel(this);
+                    if (parameter is User user4)
+                    {
+                        window = new CompletedFlightsView();
+                        window.DataContext = new CompletedFlightsViewModel(this, user4);
+                    }
                     break;
+
                 case "DelayedFlightsInfoView":
-                    window = new DelayedFlightsInfoView();
-                    window.DataContext = new DelayedFlightsViewModel(this);
+                    if (parameter is User user5)
+                    {
+                        window = new DelayedFlightsInfoView();
+                        window.DataContext = new DelayedFlightsViewModel(this, user5);
+                    }
                     break;
+
                 case "DepartmentsView":
-                    window = new DepartmentsView();
-                    window.DataContext = new DepartmentsViewModel(this);
+                    if (parameter is User user6)
+                    {
+                        window = new DepartmentsView();
+                        window.DataContext = new DepartmentsViewModel(this, user6);
+                    }
                     break;
+
                 case "FlightsView":
-                    window = new FlightsView();
-                    window.DataContext = new FlightsViewModel(this);
+                    if (parameter is User user7)
+                    {
+                        window = new FlightsView();
+                        window.DataContext = new FlightsViewModel(this, user7);
+                    }
                     break;
+
                 case "PassengerCompletedFlightView":
-                    window = new PassengerCompletedFlightView();
-                    window.DataContext = new PassengersCompletedFlightViewModel(this);
+                    if (parameter is User user8)
+                    {
+                        window = new PassengerCompletedFlightView();
+                        window.DataContext = new PassengersCompletedFlightViewModel(this, user8);
+                    }
                     break;
+
                 case "PassengersView":
-                    window = new PassengersView();
-                    window.DataContext = new PassengersViewModel(this);
+                    if (parameter is User user9)
+                    {
+                        window = new PassengersView();
+                        window.DataContext = new PassengersViewModel(this, user9);
+                    }
                     break;
+
                 case "PilotsMedExamView":
-                    
+                    if (parameter is User user10)
+                    {
                         window = new PilotsMedExamView();
-                        window.DataContext = new PilotsMedExamsViewModel(this);                    
+                        window.DataContext = new PilotsMedExamsViewModel(this, user10);
+                    }
                     break;
+
                 case "PlaneRepairView":
-                    window = new PlaneRepairView();
-                    window.DataContext = new PlaneRepairsViewModel(this);
+                    if (parameter is User user11)
+                    {
+                        window = new PlaneRepairView();
+                        window.DataContext = new PlaneRepairsViewModel(this, user11);
+                    }
                     break;
 
                 case "PlanesView":
-                    window = new PlanesView();
-                    window.DataContext = new PlanesViewModel(this);
+                    if (parameter is User user12)
+                    {
+                        window = new PlanesView();
+                        window.DataContext = new PlanesViewModel(this, user12);
+                    }
                     break;
-                case "PositionsView":
-                    window = new PositionsView();
-                    window.DataContext = new PositionsViewModel(this);
-                    break;
-                case "RefundedTicketsView":
-                    window = new RefundedTicketsView();
-                    window.DataContext = new RefundedTicketsViewModel(this);
 
+                case "PositionsView":
+                    if (parameter is User user13)
+                    {
+                        window = new PositionsView();
+                        window.DataContext = new PositionsViewModel(this, user13);
+                    }
                     break;
+
+                case "RefundedTicketsView":
+                    if (parameter is User user14)
+                    {
+                        window = new RefundedTicketsView();
+                        window.DataContext = new RefundedTicketsViewModel(this, user14);
+                    }
+                    break;
+
                 case "RoutesView":
-                    window = new RoutesView();
-                    window.DataContext = new RoutesViewModel(this);
+                    if (parameter is User user15)
+                    {
+                        window = new RoutesView();
+                        window.DataContext = new RoutesViewModel(this, user15);
+                    }
                     break;
+
                 case "SeatsView":
-                    window = new SeatsView();
-                    window.DataContext = new SeatsViewModel(this);
+                    if (parameter is User user16)
+                    {
+                        window = new SeatsView();
+                        window.DataContext = new SeatsViewModel(this, user16);
+                    }
                     break;
+
                 case "StructureUnitsView":
-                    window = new StructureUnitsView();
-                    window.DataContext = new StructureUnitsViewModel(this);
+                    if (parameter is User user17)
+                    {
+                        window = new StructureUnitsView();
+                        window.DataContext = new StructureUnitsViewModel(this, user17);
+                    }
                     break;
+
                 case "TicketsView":
-                    window = new TicketsView();
-                    window.DataContext = new TicketsViewModel(this);
+                    if (parameter is User user18)
+                    {
+                        window = new TicketsView();
+                        window.DataContext = new TicketsViewModel(this, user18);
+                    }
                     break;
+
                 case "WorkersView":
-                    window = new WorkersView();
-                    window.DataContext = new WorkersViewModel(this);
+                    if (parameter is User user19)
+                    {
+                        window = new WorkersView();
+                        window.DataContext = new WorkersViewModel(this, user19);
+                    }
                     break;
+
                 case "MainMenuView":
-                    window = new MainMenuView();
-                    window.DataContext = new MainMenuViewModel(this);
+                    if (parameter is User user20)
+                    {
+                        window = new MainMenuView();
+                        window.DataContext = new MainMenuViewModel(this, user20);
+                    }
                     break;
+
                 case "LoginView":
-                    window = new Login();
+                    window = new LoginView();
                     window.DataContext = new LoginViewModel(this);
                     break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                case "UserView":
+                    if (parameter is User user21)
+                    {
+                        window = new UsersView();
+                        window.DataContext = new UserViewModel(this, user21);
+                    }
+                    break;
             }
 
             if (window != null)
@@ -254,9 +319,14 @@ namespace Airport.Services
 
                     }
                     break;
-
-
-                //AddWindows
+                case "ChangeUser":
+                    if (parameter is User user1)
+                    {
+                        modalWindow = new ChangeUser();
+                        modalWindow.DataContext = new ChangeUserViewModel(this, user1);
+                    }                                  
+                    break;
+                   
                 case "AddBaggage":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
@@ -266,10 +336,12 @@ namespace Airport.Services
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
+
                 case "AddDepartmetn":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
+
                 case "AddFlight":
 
                     modalWindow = new AddBaggageView();
@@ -294,14 +366,22 @@ namespace Airport.Services
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
+
+
+
                 case "AddPosition":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
+
+
+
                 case "AddRoute":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
                     break;
+
+
                 case "AddSeat":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
@@ -335,17 +415,10 @@ namespace Airport.Services
                     }
                     break;
 
-                case "AddUser":
-                    if (parameter is User user)
-                    {
+                case "AddUser":                   
                         modalWindow = new AddUserView();
-                        modalWindow.DataContext = new AddUserViewModel(this, user);
-                    }
-                    break;
-
-
-
-
+                        modalWindow.DataContext = new AddUserViewModel(this);                   
+                        break;
             }
             
             

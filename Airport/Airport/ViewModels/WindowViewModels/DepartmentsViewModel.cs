@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace Airport.ViewModels.WindowViewModels
     public class DepartmentsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Department> _departments;
+        private readonly UserService _userService;
 
+        private User _user;
         public ObservableCollection<Department> Departments
         {
             get => _departments;
@@ -27,6 +30,33 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
+
 
 
 
@@ -69,16 +99,22 @@ namespace Airport.ViewModels.WindowViewModels
         private IWindowService _windowService;
         private StructureUnitService _structureUnitService;
 
-       public DepartmentsViewModel(IWindowService _windowService)
+       public DepartmentsViewModel(IWindowService _windowService, User user)
         {
             _departmentService = new DepartmentService();
             this._windowService= _windowService;
+            _userService = new UserService();
+            this._user = user;
             _structureUnitService = new StructureUnitService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             DeleteWindowCommand = new RelayCommand(OnDelete);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             OpenAddWindowCommand = new RelayCommand(OnAdd);
+
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
             LoadDepartments();
+
 
         }
 
@@ -110,36 +146,47 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnAdd(object parameter)
         {
-            _windowService.OpenModalWindow("AddDepartment");
+
+
+            if (_userService.IfUserCanDoCrud(_user))
+            {
+
+                _windowService.OpenModalWindow("AddDepartment");
+            }
            
 
 
         }
         private void OnDelete(object parameter)
         {
-            var department = parameter as Department;
-            List<StructureUnit> structureUnitList = _structureUnitService.GetStructureUnitsDataByDepartmentName(department.DepartmentName);
-            if (structureUnitList.Count==0)
+
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Якщо ви натисните так, департамент назавжди буде видалено з бази!", 
-                  "Ви дійсно хочете видалити департамент?",
-                
-                 MessageBoxButton.YesNo,
-                 MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+
+                var department = parameter as Department;
+                List<StructureUnit> structureUnitList = _structureUnitService.GetStructureUnitsDataByDepartmentName(department.DepartmentName);
+                if (structureUnitList.Count == 0)
                 {
-                  
-                    Departments.Remove(department);
-                    _departmentService.DeleteDepartment(department.DepartmentId);
-                    MessageBox.Show("Департамент успішно видалено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxResult result = MessageBox.Show(
+                      "Якщо ви натисните так, департамент назавжди буде видалено з бази!",
+                      "Ви дійсно хочете видалити департамент?",
+
+                     MessageBoxButton.YesNo,
+                     MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+
+                        Departments.Remove(department);
+                        _departmentService.DeleteDepartment(department.DepartmentId);
+                        MessageBox.Show("Департамент успішно видалено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-            }
-            else
-            {
-               MessageBox.Show("В базі наявні структурні одиниці, що підпорядковуються даному департаменту! Видаліть, структурні одинці даного департаменту, для виконання операції видалення!", "Помилка видалення департаменту",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
+                else
+                {
+                    MessageBox.Show("В базі наявні структурні одиниці, що підпорядковуються даному департаменту! Видаліть, структурні одинці даного департаменту, для виконання операції видалення!", "Помилка видалення департаменту",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                }
             }
 
 

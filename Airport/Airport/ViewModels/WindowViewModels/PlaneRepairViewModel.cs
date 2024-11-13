@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,9 @@ namespace Airport.ViewModels.WindowViewModels
     public class PlaneRepairsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<PlaneRepair> _planeRepairs;
+        private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
-
+        private User _user;
 
         public ObservableCollection<PlaneRepair> PlaneRepairs
         {
@@ -52,6 +54,32 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
         }
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
 
         public void SearchOperation(string searchLine)
         {
@@ -72,7 +100,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
         public ICommand FinishRepairCommand { get; }
-        public PlaneRepairsViewModel(IWindowService windowService)
+        public PlaneRepairsViewModel(IWindowService windowService, User user)
         {
             _planeRepairService = new PlaneRepairService();
             _planeService = new PlaneService();
@@ -83,6 +111,10 @@ namespace Airport.ViewModels.WindowViewModels
             FinishRepairCommand = new RelayCommand(OnRepairFinish);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
         }
 
         public List<PlaneRepair> SearchRepairs(string query)
@@ -102,37 +134,41 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDelete(object parameter)
         {
-
-            var planeRepair = parameter as PlaneRepair;
-            if (planeRepair != null && planeRepair.Result == "пройдено")
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про ремонт",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+
+                var planeRepair = parameter as PlaneRepair;
+                if (planeRepair != null && planeRepair.Result == "пройдено")
                 {
 
-                    _planeRepairService.DeletePlaneRepair(planeRepair.PlaneRepairId);
-                    MessageBox.Show(
-                            " Інформацію упішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про ремонт",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _planeRepairService.DeletePlaneRepair(planeRepair.PlaneRepairId);
+                        MessageBox.Show(
+                                " Інформацію упішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
+                else
+                {
+                    MessageBox.Show(
+                                "Видалення інформації неможливе!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
 
-
-            }
-            else
-            {
-                MessageBox.Show(
-                            "Видалення інформації неможливе!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
-
+                }
             }
 
 
@@ -163,45 +199,47 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnRepairFinish(object parameter)
         {
-
-            var planeRepair = parameter as PlaneRepair;
-            if (planeRepair != null&& planeRepair.Status!="завершений")
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Завершити ремонт?",
-                  "Завершення ремонту",
-                  MessageBoxButton.YesNo,
-                  MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {                  
-                     MessageBoxResult resultQuesion = MessageBox.Show(
-                    "Результат успішний?",
-                    "Так",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning);
-                    AirPlane plane = _planeService.GetPlaneById(planeRepair.PlaneId);
-                    if (resultQuesion == MessageBoxResult.Yes)
-                    {                     
-                        plane.TechCondition = "задовільний";
-                        plane.TechInspectionDate = DateTime.Now;
-                        planeRepair.EndDate = DateTime.Now;
-                        _planeService.UpdatePlane(plane);
-                        planeRepair.Status = "завершений";
-                        planeRepair.Result = "успіх";
-                    }
-                    else
+                var planeRepair = parameter as PlaneRepair;
+                if (planeRepair != null && planeRepair.Status != "завершений")
+                {
+                    MessageBoxResult result = MessageBox.Show(
+                      "Завершити ремонт?",
+                      "Завершення ремонту",
+                      MessageBoxButton.YesNo,
+                      MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
                     {
-                        plane.TechCondition = "списання";
-                        plane.TechInspectionDate = DateTime.Now;
-                        _planeService.UpdatePlane(plane);
-                        planeRepair.EndDate = DateTime.Now;
-                        planeRepair.Status = "завершений";
-                        planeRepair.Result = "ремонту не підлягає";
+                        MessageBoxResult resultQuesion = MessageBox.Show(
+                       "Результат успішний?",
+                       "Так",
+                       MessageBoxButton.YesNo,
+                       MessageBoxImage.Warning);
+                        AirPlane plane = _planeService.GetPlaneById(planeRepair.PlaneId);
+                        if (resultQuesion == MessageBoxResult.Yes)
+                        {
+                            plane.TechCondition = "задовільний";
+                            plane.TechInspectionDate = DateTime.Now;
+                            planeRepair.EndDate = DateTime.Now;
+                            _planeService.UpdatePlane(plane);
+                            planeRepair.Status = "завершений";
+                            planeRepair.Result = "успіх";
+                        }
+                        else
+                        {
+                            plane.TechCondition = "списання";
+                            plane.TechInspectionDate = DateTime.Now;
+                            _planeService.UpdatePlane(plane);
+                            planeRepair.EndDate = DateTime.Now;
+                            planeRepair.Status = "завершений";
+                            planeRepair.Result = "ремонту не підлягає";
+                        }
+
                     }
+
 
                 }
-
-
             }
 
 

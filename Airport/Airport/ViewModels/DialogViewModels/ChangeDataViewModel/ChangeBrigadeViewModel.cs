@@ -31,8 +31,16 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             this._brigade = brigade;
             BrigadeType = brigade.BrigadeType;
             StructureUnitName = brigade.StructureUnitName;
+            
 
         }
+
+
+
+       
+
+
+
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
 
         public Dictionary<string, string> StructureUnitDictionary { get; set; }

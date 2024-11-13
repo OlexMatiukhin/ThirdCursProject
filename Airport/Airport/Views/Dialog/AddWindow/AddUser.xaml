@@ -23,8 +23,8 @@
                  VerticalAlignment="Top" 
                  Width="120"/>
 
-        <ComboBox ItemsSource="{Binding AccessRights}"  
-                  SelectedValue="{Binding SelectedAccessRight, Mode=TwoWay}" 
+        <ComboBox ItemsSource="{Binding Roles}"  
+              SelectedValue="{Binding AccessRight, Mode=TwoWay}" 
                   HorizontalAlignment="Left" 
                   Margin="383,54,0,0" 
                   VerticalAlignment="Top" 

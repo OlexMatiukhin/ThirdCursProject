@@ -11,14 +11,17 @@ using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using System.ComponentModel;
 using System.Windows;
+using Airport.Services.MongoDBService;
 
 namespace Airport.ViewModels.WindowViewModels
 {
     public class RefundedTicketsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<RefundedTicketInfo> _refundedTickets;
+        private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
 
+        private User _user;
         public ObservableCollection<RefundedTicketInfo> RefundedTickets
         {
             get => _refundedTickets;
@@ -31,7 +34,30 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+        private string _login;
+        private string _accessRight;
 
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
 
 
 
@@ -67,14 +93,21 @@ namespace Airport.ViewModels.WindowViewModels
         private RefundedTicketService _ticketService;
         private IWindowService _windowService;
         public ICommand OpenMainWindowCommand { get; }
-        public RefundedTicketsViewModel(IWindowService windowService)
+        public RefundedTicketsViewModel(IWindowService windowService, User user)
         {
+            
+            
             this._windowService = windowService;
 
             _ticketService = new RefundedTicketService();
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             LoadTickets();
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+            this._user = user;
 
         }
         private void OnMainWindowOpen(object parameter)
@@ -116,28 +149,31 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDelete(object parameter)
         {
-
-            var refundedTicket = parameter as RefundedTicketInfo;
-            if (refundedTicket != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про повернений кивток?",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+                var refundedTicket = parameter as RefundedTicketInfo;
+                if (refundedTicket != null)
                 {
 
-                    _ticketService.DeleteRefundedTicket(refundedTicket.RefundedTicketId);
-                    MessageBox.Show(
-                            "Інформацію успішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про повернений кивток?",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _ticketService.DeleteRefundedTicket(refundedTicket.RefundedTicketId);
+                        MessageBox.Show(
+                                "Інформацію успішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
-
-
             }
 
 

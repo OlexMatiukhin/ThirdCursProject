@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using Airport.ViewModels.DialogViewModels.AddDataViewModel;
 using Airport.Views.Dialog.ChangeWindow;
@@ -23,6 +24,9 @@ namespace Airport.ViewModels.WindowViewModels
     {
         private ObservableCollection<Flight> _flights;
 
+
+        private User _user;
+
         public ObservableCollection<Flight> Flights
         {
             get => _flights;
@@ -35,7 +39,7 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
-
+        private readonly UserService _userService;
 
         private string _searchLine;
 
@@ -50,6 +54,31 @@ namespace Airport.ViewModels.WindowViewModels
                 OnPropertyChanged(nameof(SearchLine));
 
 
+            }
+        }
+
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
             }
         }
 
@@ -87,7 +116,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenAddWindowCommand { get; }
 
         private readonly IWindowService _windowService;
-        public FlightsViewModel(IWindowService windowService)
+        public FlightsViewModel(IWindowService windowService, User user)
         {
              this._windowService = windowService;
             _flightService = new FlightService();
@@ -99,8 +128,6 @@ namespace Airport.ViewModels.WindowViewModels
             _passangerCompletedFlightService  = new PassengerCompletedFlightService();
             _completedFlightService = new CompletedFlightService();
             _planeService= new PlaneService();
-
-
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             EndCustomsControlCommand = new RelayCommand(EndCustomsControl);
             EndRegistrationPassengersCommand = new RelayCommand(EndRegistration);
@@ -109,7 +136,12 @@ namespace Airport.ViewModels.WindowViewModels
             CancelFlightCommand = new RelayCommand(CancelFlight);
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             DelayFlightCommand = new RelayCommand(DelayFlight);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
             LoadFlights();
+
         }
 
 
@@ -127,13 +159,17 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnEdit(object parameter)
         {
-            
-            var flight = parameter as Flight;
-            if (flight != null)
-            {
-                _windowService.OpenModalWindow("ChangeFlight", flight);
-               
 
+            if (_userService.IfUserCanDoCrud(_user))
+            {
+
+                var flight = parameter as Flight;
+                if (flight != null)
+                {
+                    _windowService.OpenModalWindow("ChangeFlight", flight);
+
+
+                }
             }
             
 
@@ -150,7 +186,14 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnAdd(object parameter)
         {
-            _windowService.OpenModalWindow("AddFlight");
+
+
+
+            if (_userService.IfUserCanDoCrud(_user))
+            {
+                _windowService.OpenModalWindow("AddFlight");
+            }
+            
 
 
 
@@ -158,31 +201,36 @@ namespace Airport.ViewModels.WindowViewModels
         private void EndCustomsControl(object parameter)
         {
 
-            var flight = parameter as Flight;
-            if (flight != null&& flight.Status=="запланований" && (flight.Category=="чартений"|| flight.Category=="міжнародний" ||flight.Category=="внутрішний") )
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Митний контроль завершено?",
-                  "Завершення митного контролю",
-                  MessageBoxButton.YesNo,
-                  MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes) {
-                    flight.CustomsControl = "завершений";
-                    _flightService.UpdateFlight(flight);
-                }      
+                var flight = parameter as Flight;
+                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішний"))
+                {
+                    MessageBoxResult result = MessageBox.Show(
+                      "Митний контроль завершено?",
+                      "Завершення митного контролю",
+                      MessageBoxButton.YesNo,
+                      MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        flight.CustomsControl = "завершений";
+                        _flightService.UpdateFlight(flight);
+                    }
 
+                }
             }
+            
         }
 
         private void EndRegistration(object parameter)
         {
-
-
-            var flight = parameter as Flight;
-            if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішний"))
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                
-                   
+                var flight = parameter as Flight;
+                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішний"))
+                {
+
+
                     MessageBoxResult result = MessageBox.Show(
                      "Реєстрацію пасажирів на рейс завершено?",
                      "Завершення реєстрації пасажирів",
@@ -193,7 +241,10 @@ namespace Airport.ViewModels.WindowViewModels
                         flight.PassengerRegistration = "завершена";
                         _flightService.UpdateFlight(flight);
                     }
+                }
             }
+
+            
               
 
 
@@ -380,14 +431,18 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void LoadFlights()
         {
-            try
+
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                var flightList = _flightService.GetFlightsData();
-                Flights = new ObservableCollection<Flight>(flightList);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                try
+                {
+                    var flightList = _flightService.GetFlightsData();
+                    Flights = new ObservableCollection<Flight>(flightList);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                }
             }
         }
 

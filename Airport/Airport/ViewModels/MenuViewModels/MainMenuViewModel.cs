@@ -19,11 +19,13 @@ namespace Airport.ViewModels.MenuViewModels
     {
         private string _selectedItem;
         private IWindowService _windowService;
+        private User _user;
         public ICommand OpenPageCommand { get; }
-        public MainMenuViewModel(IWindowService windowService)
+        public MainMenuViewModel(IWindowService windowService, User user)
         {
             _windowService = windowService;
-            OpenPageCommand = new RelayCommand(OnOpenPage, canExecute=>true);
+            OpenPageCommand = new RelayCommand(OnOpenPage, canExecute => true);
+            _user = user;
         }
 
         public string SelectedItem
@@ -39,7 +41,7 @@ namespace Airport.ViewModels.MenuViewModels
         public void OnOpenPage(object parameter)
         {
             if(SelectedItem!=null&& SelectedItem != "")
-            {   _windowService.OpenWindow(SelectedItem);
+            {   _windowService.OpenWindow(SelectedItem, _user);
                 _windowService.CloseWindow();
                 
              
@@ -69,7 +71,9 @@ namespace Airport.ViewModels.MenuViewModels
             { "Пасажири завершених рейсів", "PassengerCompletedFlightView" },
             { "Повернення квитків", "RefundedTicketsView" },
             { "Ремонт літаків", "PlaneRepairView" },
-            { "Медогляд пілотів", "PilotsMedExamView" }
+            { "Медогляд пілотів", "PilotsMedExamView" },
+              { "Користувачі", "UserView" }
+
         };
 
 

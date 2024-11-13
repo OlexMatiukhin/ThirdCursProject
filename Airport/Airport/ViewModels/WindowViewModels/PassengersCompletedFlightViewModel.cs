@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Airport.ViewModels.WindowViewModels
     public class PassengersCompletedFlightViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<PassengerCompletedFlight> _passengers;
+        private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
         public ObservableCollection<PassengerCompletedFlight> Passengers
         {
@@ -31,6 +33,31 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
         private string _searchLine;
 
 
@@ -48,6 +75,9 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+       
+
+
         public void SearchOperation(string searchLine)
         {
             LoadPassengers();
@@ -60,6 +90,7 @@ namespace Airport.ViewModels.WindowViewModels
             }
 
         }
+        private User _user;
 
         private void OnDelete(object parameter)
         {
@@ -98,26 +129,32 @@ namespace Airport.ViewModels.WindowViewModels
 
         private IWindowService _windowService;
         public ICommand OpenMainWindowCommand { get; }
-        public PassengersCompletedFlightViewModel(IWindowService _windowService)
+        public PassengersCompletedFlightViewModel(IWindowService _windowService, User user)
         {
             _passengerService = new PassengerCompletedFlightService();
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             this._windowService = _windowService;
             DeleteWindowCommand = new RelayCommand(OnDelete);
             LoadPassengers();
+            _userService = new UserService();
+
+
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+            this._user = user;
         }
         public List<PassengerCompletedFlight> SearchPassengers(string query)
         {
             return Passengers.Where(passenger =>
-                passenger.PassengerId.ToString().Contains(query) ||                     // Поиск по PassengerId
-                passenger.Age.ToString().Contains(query) ||                             // Поиск по Age
-                passenger.Gender.Contains(query, StringComparison.OrdinalIgnoreCase) || // Поиск по Gender
-                passenger.PassportNumber.Contains(query, StringComparison.OrdinalIgnoreCase) || // Поиск по PassportNumber
-                passenger.InternPassportNumber.Contains(query, StringComparison.OrdinalIgnoreCase) || // Поиск по InternPassportNumber
-                passenger.BaggageStatus.Contains(query, StringComparison.OrdinalIgnoreCase) || // Поиск по BaggageStatus
-                passenger.PhoneNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||   // Поиск по PhoneNumber
-                passenger.Email.Contains(query, StringComparison.OrdinalIgnoreCase) ||         // Поиск по Email
-                passenger.FullName.Contains(query, StringComparison.OrdinalIgnoreCase) ||      // Поиск по FullName
+                passenger.PassengerId.ToString().Contains(query) ||                     
+                passenger.Age.ToString().Contains(query) ||                             
+                passenger.Gender.Contains(query, StringComparison.OrdinalIgnoreCase) || 
+                passenger.PassportNumber.Contains(query, StringComparison.OrdinalIgnoreCase) || 
+                passenger.InternPassportNumber.Contains(query, StringComparison.OrdinalIgnoreCase) || 
+                passenger.BaggageStatus.Contains(query, StringComparison.OrdinalIgnoreCase) || 
+                passenger.PhoneNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||   
+                passenger.Email.Contains(query, StringComparison.OrdinalIgnoreCase) ||        
+                passenger.FullName.Contains(query, StringComparison.OrdinalIgnoreCase) ||     
                 passenger.CompletedFlightId.ToString().Contains(query) // Поиск по CompletedFlightId
             ).ToList();
         }
@@ -125,9 +162,12 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnMainWindowOpen(object parameter)
         {
+            if (_userService.IfUserCanDoCrud(_user))
+            {
 
-            _windowService.OpenWindow("MainMenuView");
-            _windowService.CloseWindow();
+                _windowService.OpenWindow("MainMenuView");
+                _windowService.CloseWindow();
+            }
 
         }
         private void LoadPassengers()

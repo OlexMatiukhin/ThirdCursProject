@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,35 @@ namespace Airport.ViewModels.WindowViewModels
     public class PilotsMedExamsViewModel:INotifyPropertyChanged
     {
         private ObservableCollection<PilotMedExam> _pilotMedExams;
+        private readonly UserService _userService;
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
+
+
 
         public ObservableCollection<PilotMedExam> PilotMedExams
         {
@@ -65,6 +95,7 @@ namespace Airport.ViewModels.WindowViewModels
             }
 
         }
+        private User _user;
         private PilotMedExamService _pilotMedExamService;
         public ICommand OpenMainWindowCommand { get; }
         public ICommand DeleteWindowCommand { get; }
@@ -73,7 +104,7 @@ namespace Airport.ViewModels.WindowViewModels
         private ICommand EndExamCommand;
         private Worker _worker;
         private WorkerService _workerService;
-        public PilotsMedExamsViewModel(IWindowService windowService)
+        public PilotsMedExamsViewModel(IWindowService windowService, User user)
         {
             _pilotMedExamService = new PilotMedExamService();
             LoadPilotMedExams();
@@ -83,7 +114,11 @@ namespace Airport.ViewModels.WindowViewModels
             _windowService = new WindowService();
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
-
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+           
 
         }
         private void OnMainWindowOpen(object parameter)
@@ -96,37 +131,40 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDelete(object parameter)
         {
-
-            var pilotMedExam = parameter as PilotMedExam;
-            if (pilotMedExam != null&& pilotMedExam.Result=="пройдено")
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про завершений рейс?",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+                var pilotMedExam = parameter as PilotMedExam;
+                if (pilotMedExam != null && pilotMedExam.Result == "пройдено")
                 {
 
-                    _pilotMedExamService.DeletePilotMedExam(pilotMedExam.ExamId);
-                    MessageBox.Show(
-                            " Інформацію упішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про завершений рейс?",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _pilotMedExamService.DeletePilotMedExam(pilotMedExam.ExamId);
+                        MessageBox.Show(
+                                " Інформацію упішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
+                else
+                {
+                    MessageBox.Show(
+                                "Видалення інформації неможливе!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
 
-
-            }
-            else
-            {
-                MessageBox.Show(
-                            "Видалення інформації неможливе!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
-
+                }
             }
 
 
@@ -138,31 +176,36 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnEndExam(object parameter)
         {
 
-            var pilotMedExam = parameter as PilotMedExam;
-            if (pilotMedExam != null)
+
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                       "Стан здоров`я задовільний?",
-                       "",
-                       MessageBoxButton.YesNo,
-                       MessageBoxImage.Question);
-                _worker = _workerService.GetWorkerById(pilotMedExam.PilotId);
-                if (result == MessageBoxResult.Yes)
+
+                var pilotMedExam = parameter as PilotMedExam;
+                if (pilotMedExam != null)
                 {
-                    pilotMedExam.Result = "пройдений";
-                    pilotMedExam.DateExamination = DateTime.Now;
-                    pilotMedExam.DoctorId = null;
-                    _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
-                    _worker.ResultMedExam = "задовільний";
-                    _worker.LastMedExamDate = DateTime.Now;
+                    MessageBoxResult result = MessageBox.Show(
+                           "Стан здоров`я задовільний?",
+                           "",
+                           MessageBoxButton.YesNo,
+                           MessageBoxImage.Question);
+                    _worker = _workerService.GetWorkerById(pilotMedExam.PilotId);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        pilotMedExam.Result = "пройдений";
+                        pilotMedExam.DateExamination = DateTime.Now;
+                        pilotMedExam.DoctorId = null;
+                        _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
+                        _worker.ResultMedExam = "задовільний";
+                        _worker.LastMedExamDate = DateTime.Now;
+                    }
+                    else
+                    {
+                        _windowService.OpenModalWindow("ChangePilotPositionViewModel", pilotMedExam, _worker);
+                    }
+
+
+
                 }
-                else
-                {
-                    _windowService.OpenModalWindow("ChangePilotPositionViewModel", pilotMedExam, _worker);
-                }
-
-
-
             }
             
 

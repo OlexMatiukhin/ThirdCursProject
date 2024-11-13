@@ -22,7 +22,7 @@ namespace Airport
         {
             InitializeComponent();
             var windowService = new WindowService();
-            DataContext = new BaggageViewModel(windowService);
+        
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -106,6 +106,77 @@ namespace Airport.Services.MongoDBSevice
                 return null;
             }
         }
+        public List<Flight> GetCharterPassengerFlights(string category, string planeType, string flightDirection)
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "plane" },
+                    { "localField", "planeNumber" },
+                    { "foreignField", "planeNumber" },
+                    { "as", "planeDetail" }
+                }),
+                new BsonDocument("$unwind", "$planeDetail"),
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "route" },
+                    { "localField", "routeNumber" },
+                    { "foreignField", "number" },
+                    { "as", "routeDetail" }
+                }),
+                new BsonDocument("$unwind", "$routeDetail"),
+                new BsonDocument("$match", new BsonDocument
+                {
+                    { "category", category },
+                    { "planeDetail.planeType", planeType },
+                    { "routeDetail.flightDirection", flightDirection }
+                }),
+                new BsonDocument("$project", new BsonDocument
+                {
+                    { "planeDetail", 0 },
+                    { "routeDetail", 0 }
+                })
+            };
+
+            return _flightCollection.Aggregate<Flight>(pipeline).ToList();
+        }
+
+        public int GetTotalCharterPassengerFlightsCount(string category, string planeType, string flightDirection)
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "plane" },
+                    { "localField", "planeNumber" },
+                    { "foreignField", "planeNumber" },
+                    { "as", "planeDetail" }
+                }),
+                new BsonDocument("$unwind", "$planeDetail"),
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "route" },
+                    { "localField", "routeNumber" },
+                    { "foreignField", "number" },
+                    { "as", "routeDetail" }
+                }),
+                new BsonDocument("$unwind", "$routeDetail"),
+                new BsonDocument("$match", new BsonDocument
+                {
+                    { "category", category },
+                    { "planeDetail.planeType", planeType },
+                    { "routeDetail.flightDirection", flightDirection }
+                }),
+                new BsonDocument("$count", "totalFlights")
+            };
+
+            var result = _flightCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+            return result == null ? 0 : result["totalFlights"].AsInt32;
+        }
+
+
+
 
 
 

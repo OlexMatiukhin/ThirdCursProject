@@ -11,14 +11,16 @@ using Airport.Command.AddDataCommands.Airport.Commands;
 using System.Reflection.Metadata;
 using System.Windows;
 using System.ComponentModel;
+using Airport.Services.MongoDBService;
 
 namespace Airport.ViewModels.WindowViewModels
 {
     public class WorkersViewModel: INotifyPropertyChanged
     {
         private ObservableCollection<Worker> _workers;
+        private readonly UserService _userService;
 
-
+        private User _user;
         public ObservableCollection<Worker> Workers
         {
             get => _workers;
@@ -31,6 +33,32 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+
+
+        private string _accessRight;
+        private string _login;
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
         private string _searchLine;
 
         public string SearchLine
@@ -71,7 +99,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand SendPilotToMedExam { get; }
    
 
-        public WorkersViewModel( IWindowService windowService)
+        public WorkersViewModel( IWindowService windowService, User user)
         {
             _workerService = new WorkerService();
             LoadWorkers();
@@ -82,6 +110,10 @@ namespace Airport.ViewModels.WindowViewModels
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
 
         }
         private void OnMainWindowOpen(object parameter)
@@ -94,20 +126,20 @@ namespace Airport.ViewModels.WindowViewModels
         public List<Worker> SearchWorkers(string query)
         {
             return Workers.Where(worker =>
-                worker.WorkerId.ToString().Contains(query) ||                            // Поиск по WorkerId
-                (!string.IsNullOrEmpty(worker.FullName) && worker.FullName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по FullName
-                worker.Age.ToString().Contains(query) ||                                 // Поиск по Age
-                (!string.IsNullOrEmpty(worker.Status) && worker.Status.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по Status
-                (!string.IsNullOrEmpty(worker.Gender) && worker.Gender.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по Gender
-                worker.NumberChildren.ToString().Contains(query) ||                     // Поиск по NumberChildren
-                worker.HireDate.ToString("d").Contains(query) ||                         // Поиск по HireDate
-                (!string.IsNullOrEmpty(worker.Shift) && worker.Shift.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по Shift
-                (!string.IsNullOrEmpty(worker.Email) && worker.Email.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по Email
-                (!string.IsNullOrEmpty(worker.PhoneNumber) && worker.PhoneNumber.Contains(query)) || // Поиск по PhoneNumber
-                (worker.BrigadeId.HasValue && worker.BrigadeId.Value.ToString().Contains(query)) || // Поиск по BrigadeId
-                (!string.IsNullOrEmpty(worker.PositionName) && worker.PositionName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по PositionName
-                worker.LastMedExamDate.ToString("d").Contains(query) ||                  // Поиск по LastMedExamDate
-                (!string.IsNullOrEmpty(worker.ResultMedExam) && worker.ResultMedExam.Contains(query, StringComparison.OrdinalIgnoreCase)) // Поиск по ResultMedExam
+                worker.WorkerId.ToString().Contains(query) ||                           
+                (!string.IsNullOrEmpty(worker.FullName) && worker.FullName.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                worker.Age.ToString().Contains(query) ||                                
+                (!string.IsNullOrEmpty(worker.Status) && worker.Status.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                (!string.IsNullOrEmpty(worker.Gender) && worker.Gender.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                worker.NumberChildren.ToString().Contains(query) ||                   
+                worker.HireDate.ToString("d").Contains(query) ||                         
+                (!string.IsNullOrEmpty(worker.Shift) && worker.Shift.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                (!string.IsNullOrEmpty(worker.Email) && worker.Email.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                (!string.IsNullOrEmpty(worker.PhoneNumber) && worker.PhoneNumber.Contains(query)) || 
+                (worker.BrigadeId.HasValue && worker.BrigadeId.Value.ToString().Contains(query)) || 
+                (!string.IsNullOrEmpty(worker.PositionName) && worker.PositionName.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                worker.LastMedExamDate.ToString("d").Contains(query) ||                 
+                (!string.IsNullOrEmpty(worker.ResultMedExam) && worker.ResultMedExam.Contains(query, StringComparison.OrdinalIgnoreCase)) 
             ).ToList();
         }
 
@@ -124,29 +156,37 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnAdd(object parameter)
         {
-            _windowService.OpenModalWindow("AddWorker");
+            if (_userService.IfUserCanDoCrudUsers(_user))
+            {
+                _windowService.OpenModalWindow("AddWorker");
+            }
 
 
 
         }
         private void OnSendPilotToMedExam(object parameter) {
-            var worker = parameter as Worker;
-            if (worker != null&& worker.PositionName=="Пілот")
 
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                           "Відправити пілота на медогляд?",
-                           "",
-                           MessageBoxButton.YesNo,
-                           MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes) {
-                    _pilotMedExamService.AddPilotMedExamForWorker(worker);
+                var worker = parameter as Worker;
+                if (worker != null && worker.PositionName == "Пілот")
+
+                {
+                    MessageBoxResult result = MessageBox.Show(
+                               "Відправити пілота на медогляд?",
+                               "",
+                               MessageBoxButton.YesNo,
+                               MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        _pilotMedExamService.AddPilotMedExamForWorker(worker);
+                    }
+
                 }
-
-            }
-            else
-            {
-                Console.WriteLine("Данна функція доступна лише для пілотів");
+                else
+                {
+                    Console.WriteLine("Данна функція доступна лише для пілотів");
+                }
             }
 
         }
@@ -165,37 +205,39 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnDelete(object parameter)
         {
-
-            var worker= parameter as Worker;
-            if (worker != null && worker.BrigadeId==null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити працівника?",
-                             "Видалення інформації про працівника",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+                var worker = parameter as Worker;
+                if (worker != null && worker.BrigadeId == null)
                 {
 
-                    _workerService.DeleteWorker(worker.WorkerId);
-                    MessageBox.Show(
-                            "Працівника успішно видалено!",
-                            "Видалення інформації про працівника",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити працівника?",
+                                 "Видалення інформації про працівника",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _workerService.DeleteWorker(worker.WorkerId);
+                        MessageBox.Show(
+                                "Працівника успішно видалено!",
+                                "Видалення інформації про працівника",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
+                else
+                {
+                    MessageBox.Show(
+                                "Видалення літака неможливо, з ним заплановано рейси!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
 
-
-            }
-            else
-            {
-                MessageBox.Show(
-                            "Видалення літака неможливо, з ним заплановано рейси!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
-
+                }
             }
 
 
@@ -208,11 +250,15 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDeleteFromBrigade(object parameter)
         {
-            var worker = parameter as Worker;
-            if (worker != null)
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                _workerService.DeleteBrigadeFromWorker(worker.WorkerId);
 
+                var worker = parameter as Worker;
+                if (worker != null)
+                {
+                    _workerService.DeleteBrigadeFromWorker(worker.WorkerId);
+
+                }
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

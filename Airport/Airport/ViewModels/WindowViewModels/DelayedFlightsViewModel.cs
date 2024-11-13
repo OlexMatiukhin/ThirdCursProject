@@ -14,6 +14,7 @@ using System.Windows.Media.Media3D;
 using System.Windows;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using System.ComponentModel;
+using Airport.Services.MongoDBService;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -22,7 +23,10 @@ namespace Airport.ViewModels.WindowViewModels
     public class DelayedFlightsViewModel: INotifyPropertyChanged
     {
         private readonly IWindowService _windowService;
+
+     
         public ICommand OpenMainWindowCommand { get; }
+        private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
 
         private ObservableCollection<DelayedFlightInfo> _delayedFlights;
@@ -42,9 +46,37 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
-
+        private User _user;
 
         private string _searchLine;
+
+
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
 
         public string SearchLine
         {
@@ -79,7 +111,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         public ICommand FinishDelayCommand { get; }
 
-        public DelayedFlightsViewModel(IWindowService _windowService)
+        public DelayedFlightsViewModel(IWindowService _windowService, User user)
         {
             _delayedFlightsService = new DelayedFlightsService();
             _flightService = new FlightService();
@@ -87,8 +119,12 @@ namespace Airport.ViewModels.WindowViewModels
             FinishDelayCommand = new RelayCommand(FinishDelay);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
-
+            _userService = new UserService();
+            this._user = user;
             LoadDelayedFlights();
+
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
         }
         private void OnMainWindowOpen(object parameter)
         {
@@ -100,61 +136,68 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void FinishDelay(object parameter)
         {
-            
-
-            var delayedFlightInfo = parameter as DelayedFlightInfo;
-            if (delayedFlightInfo != null && delayedFlightInfo.EndDelayDate != null)
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                    "Завершити затримку?",
-                    "Завершення затримки",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+
+
+                var delayedFlightInfo = parameter as DelayedFlightInfo;
+                if (delayedFlightInfo != null && delayedFlightInfo.EndDelayDate != null)
                 {
-                    delayedFlightInfo = parameter as DelayedFlightInfo;
-                    delayedFlightInfo.EndDelayDate = DateTime.Now;
-                    Flight flight = _flightService.GetFlightById(delayedFlightInfo.FlightId);
+                    MessageBoxResult result = MessageBox.Show(
+                        "Завершити затримку?",
+                        "Завершення затримки",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        delayedFlightInfo = parameter as DelayedFlightInfo;
+                        delayedFlightInfo.EndDelayDate = DateTime.Now;
+                        Flight flight = _flightService.GetFlightById(delayedFlightInfo.FlightId);
 
-                    flight.Status = "запланований";
+                        flight.Status = "запланований";
 
 
+                    }
                 }
             }
         }
         private void OnDelete(object parameter)
         {
-
-            var delayedFlight = parameter as DelayedFlightInfo;
-            if( delayedFlight != null&& delayedFlight.EndDelayDate!=null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про завершений рейс?",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+
+                var delayedFlight = parameter as DelayedFlightInfo;
+                if (delayedFlight != null && delayedFlight.EndDelayDate != null)
                 {
 
-                    _delayedFlightsService.DeleteDelayedFlight(delayedFlight.DelayedFlightInfoId);
-                    MessageBox.Show(
-                            " Інформацію упішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про завершений рейс?",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _delayedFlightsService.DeleteDelayedFlight(delayedFlight.DelayedFlightInfoId);
+                        MessageBox.Show(
+                                " Інформацію упішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
+                else
+                {
+                    MessageBox.Show(
+                                " Неможливо видалити рейс, який відкладенний у даний момент!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
 
-
-            }
-            else
-            {
-                MessageBox.Show(
-                            " Неможливо видалити рейс, який відкладенний у даний момент!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
-
+                }
             }
 
 

@@ -2,6 +2,7 @@
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,35 @@ namespace Airport.ViewModels.WindowViewModels
     {
         private ObservableCollection<CompletedFlight> _completedFlights;
         public event PropertyChangedEventHandler PropertyChanged;
+        private User _user;
+
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
         public ICommand DeleteWindowCommand { get; }
+        private readonly UserService _userService;
         public ObservableCollection<CompletedFlight> CompletedFlights
         {
             get => _completedFlights;
@@ -48,7 +77,18 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
         }
-
+        public CompletedFlightsViewModel(IWindowService _windowService, User user)
+        {
+            _completedFlightService = new CompletedFlightService();
+            LoadCompletedFlights();
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            this._windowService = _windowService;
+            DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+        }
         public void SearchOperation(string searchLine)
         {
             LoadCompletedFlights();
@@ -69,28 +109,30 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnDelete(object parameter)
         {
-
-            var completedFlight = parameter as CompletedFlight;
-            if (completedFlight != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про завершений рейс?",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+                var completedFlight = parameter as CompletedFlight;
+                if (completedFlight != null)
                 {
 
-                    _completedFlightService.DeleteCompletedFlight(completedFlight.CompletedFlightId);
-                    MessageBox.Show(
-                            " Інформацію упішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про завершений рейс?",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _completedFlightService.DeleteCompletedFlight(completedFlight.CompletedFlightId);
+                        MessageBox.Show(
+                                " Інформацію упішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
-
-
             }
 
 
@@ -117,14 +159,7 @@ namespace Airport.ViewModels.WindowViewModels
             ).ToList();
         }
 
-        public CompletedFlightsViewModel( IWindowService _windowService)
-        {
-            _completedFlightService = new CompletedFlightService();
-            LoadCompletedFlights();
-            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
-            this._windowService = _windowService;
-            DeleteWindowCommand = new RelayCommand(OnDelete);
-        }
+       
         private void OnMainWindowOpen(object parameter)
         {
 

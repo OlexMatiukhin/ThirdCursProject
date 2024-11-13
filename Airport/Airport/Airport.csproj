@@ -81,7 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\QueryWindow\" />
+    <Folder Include="Views\Новая папка\" />
   </ItemGroup>
 
 </Project>

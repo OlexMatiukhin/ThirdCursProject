@@ -17,15 +17,17 @@
         <StackPanel Margin="0,1,513,2" Orientation="Horizontal" Width="181" HorizontalAlignment="Right">
             <Image RenderTransformOrigin="3,2.348" Height="15" Width="16" Source="/Images/Key.png"/>
             <TextBlock TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter"
-    FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0" Text="VovaShumchuchek"/>
-
+FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0"
+Text="{Binding Login}" />
 
         </StackPanel>
         <StackPanel Margin="0,1,200,3" Orientation="Horizontal"   HorizontalAlignment="Right" Width="310">
             <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="/Images/Position.png"/>
-            <TextBlock TextWrapping="Wrap" Height="20" 
-    FontFamily="pack://application:,,,/Fonts/#Inter"
-    FontSize="16" FontWeight="Bold" Width="284" Text="Начальник бригади рятувальників" VerticalAlignment="Center" Margin="0,0,2,0" HorizontalAlignment="Right" />
+
+            <TextBlock TextWrapping="Wrap" Height="20" FontFamily="pack://application:,,,/Fonts/#Inter"
+           FontSize="16" FontWeight="Bold" Width="284" VerticalAlignment="Center"
+           HorizontalAlignment="Right" Margin="0,0,2,0"
+           Text="{Binding AccessRight}" />
 
 
         </StackPanel>

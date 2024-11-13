@@ -13,6 +13,7 @@ using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Services;
 using System.ComponentModel;
 using System.Windows;
+using Airport.Services.MongoDBService;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -24,6 +25,8 @@ namespace Airport.ViewModels.WindowViewModels
 
         public ICommand OpenMainWindowCommand { get; }
         public ICommand DeleteWindowCommand { get; }
+
+        private readonly UserService _userService;
 
         private ObservableCollection<Route> _routes;
 
@@ -40,7 +43,30 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+        private string _login;
+        private string _accessRight;
 
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
 
         private string _searchLine;
 
@@ -71,14 +97,17 @@ namespace Airport.ViewModels.WindowViewModels
             }
 
         }
+        private User _user;
 
         private RouteService _routeService;
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
         private readonly PlaneRepairService _planeService;
         public ICommand OpenAddWindowCommand { get; }
-        public RoutesViewModel(IWindowService windowService)
+        public RoutesViewModel(IWindowService windowService, User user)
         {
+
+            _userService = new UserService();
             _routeService = new RouteService();
             this._windowService = windowService;
             OpenEditWindowCommand = new RelayCommand(OnEdit);
@@ -86,6 +115,10 @@ namespace Airport.ViewModels.WindowViewModels
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
 
             LoadRoutes();
         }
@@ -100,20 +133,26 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnAdd(object parameter)
         {
-            _windowService.OpenModalWindow("AddRoute");
+            if (_userService.IfUserCanDoCrud(_user))
+            {
+                _windowService.OpenModalWindow("AddRoute");
+            }
 
 
 
         }
         private void OnEdit(object parameter)
         {
-
-            var route = parameter as Route;
-            if (route != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                _windowService.OpenModalWindow("СhangeRoute", route);
-                
 
+                var route = parameter as Route;
+                if (route != null)
+                {
+                    _windowService.OpenModalWindow("СhangeRoute", route);
+
+
+                }
             }
 
 
@@ -147,39 +186,42 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnDelete(object parameter)
         {
-
-            var route = parameter as Route;
-            if (route != null && !_routeService.HasFlightsWithRoute(route.RouteId))
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити маршрут?",
-                             "Видалення маршруту",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+                var route = parameter as Route;
+                if (route != null && !_routeService.HasFlightsWithRoute(route.RouteId))
                 {
 
-                    _routeService.DeleteRoute(route.RouteId);
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити маршрут?",
+                                 "Видалення маршруту",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _routeService.DeleteRoute(route.RouteId);
+                        MessageBox.Show(
+                                "Маршрут успішно видалено!",
+                                "Видалення інформації про маршрут",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
+                }
+                else
+                {
                     MessageBox.Show(
-                            "Маршрут успішно видалено!",
-                            "Видалення інформації про маршрут",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                                "Видалення літака неможливо, з ним заплановано рейси!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+
                 }
 
-
             }
-            else
-            {
-                MessageBox.Show(
-                            "Видалення літака неможливо, з ним заплановано рейси!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
-
-            }
-
 
 
 

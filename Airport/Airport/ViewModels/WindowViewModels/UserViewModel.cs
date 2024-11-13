@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
@@ -16,6 +17,12 @@ namespace Airport.ViewModels.WindowViewModels
         private string _searchLine;
         private readonly UserService _userService;
         private readonly IWindowService _windowService;
+        private User _user;
+
+        public ICommand DeleteUserCommand { get; }
+
+
+
 
         public ICommand OpenMainWindowCommand { get; }
         public ICommand OpenAddWindowCommand { get; }
@@ -35,6 +42,29 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+        private string _login;
+        private string _accessRight;
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
         public string SearchLine
         {
             get => _searchLine;
@@ -46,7 +76,7 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
-        public UserViewModel(IWindowService windowService)
+        public UserViewModel(IWindowService windowService, User user)
         {
             _windowService = windowService;
             _userService = new UserService();
@@ -54,9 +84,50 @@ namespace Airport.ViewModels.WindowViewModels
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             OpenAddWindowCommand = new RelayCommand(OnOpenAddWindow);
             OpenEditWindowCommand = new RelayCommand(OnOpenEditWindow);
-
-
+            this._user = user;
+            DeleteUserCommand = new RelayCommand(OnDeleteUser);
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
             LoadUsers();
+        }
+
+
+        private void OnDeleteUser(object parameter)
+        {
+            if (_userService.IfUserCanDoCrudUsers(_user))
+            {
+
+                var selectedUser = parameter as User;
+                if (selectedUser != null && selectedUser.AccessRight != "власник")
+                {
+                    var result = MessageBox.Show(
+                        $"Ви впевнинені що хочете вдиалити користувача з логіном {selectedUser.Login}?",
+                        "Подтвердження видалення",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning
+                    );
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        try
+                        {
+
+                            _userService.DeleteUser(selectedUser);
+                            Users.Remove(selectedUser);
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Помилка при видаленні користувача: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Помилка при видаленні користувача з {selectedUser.Login}. Неможливо видаляти власника", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
         }
 
         private void LoadUsers()
@@ -72,6 +143,8 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+               
+        
         private void SearchOperation(string searchLine)
         {
             LoadUsers();
@@ -99,15 +172,26 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnOpenAddWindow(object parameter)
         {
-            _windowService.OpenWindow("AddUserWindow");
+
+            if (_userService.IfUserCanDoCrudUsers(_user))
+            {
+                _windowService.OpenModalWindow("AddUser");
+            }
         }
+
+
+      
+
 
         private void OnOpenEditWindow(object parameter)
         {
-            var selectedUser = parameter as User;
-            if (selectedUser != null)
+            if (_userService.IfUserCanDoCrudUsers(_user))
             {
-                _windowService.OpenWindow("EditUserWindow", selectedUser);
+                var selectedUser = parameter as User;
+                if (selectedUser != null)
+                {
+                    _windowService.OpenModalWindow("ChangeUser", selectedUser);
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Airport.ViewModels.WindowViewModels
     public class PositionsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Position> _positions;
-
+        private readonly UserService _userService;
 
 
         public ObservableCollection<Position> Positions
@@ -35,7 +36,30 @@ namespace Airport.ViewModels.WindowViewModels
         private PositionService _positionService;
         private WorkerService _workerService;
 
+        private string _login;
+        private string _accessRight;
 
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
 
         private string _searchLine;
 
@@ -66,6 +90,7 @@ namespace Airport.ViewModels.WindowViewModels
             }
 
         }
+        private User _user;
 
         public ICommand OpenMainWindowCommand { get; }
         private readonly IWindowService _windowService;
@@ -74,7 +99,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand DeleteElmentCommand { get; }
         public ICommand OpenAddWindowCommand { get; }
 
-        public PositionsViewModel(IWindowService windowService)
+        public PositionsViewModel(IWindowService windowService, User user)
         {
             _positionService = new PositionService();
             this._windowService = windowService;
@@ -84,10 +109,20 @@ namespace Airport.ViewModels.WindowViewModels
             DeleteElmentCommand = new RelayCommand(OnDelete);
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+
+
+
         }
         private void OnAdd(object parameter)
         {
-            _windowService.OpenModalWindow("AddPosition");
+            if (_userService.IfUserCanDoCrud(_user))
+            {
+                _windowService.OpenModalWindow("AddPosition");
+            }
 
 
 
@@ -103,13 +138,15 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnEdit(object parameter)
         {
-
-            var position = parameter as Position;
-            if (position != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                _windowService.OpenModalWindow("ChangePosition", position);
-              
+                var position = parameter as Position;
+                if (position != null)
+                {
+                    _windowService.OpenModalWindow("ChangePosition", position);
 
+
+                }
             }
         }
 
@@ -131,34 +168,37 @@ namespace Airport.ViewModels.WindowViewModels
         {
 
 
-
-            var position = parameter as Position;
-            if (position != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                List<Worker> workerList = _workerService.GetWorkerDataByPositionId(position.PositionName);
-                if (workerList.Count == 0)
-                {
-                    MessageBoxResult result = MessageBox.Show(
-                      "Якщо ви натисните так, cтруктурну одиницю назавжди буде видалено з бази!",
-                      "Ви дійсно хочете видалити cтруктурну одиницю?",
 
-                     MessageBoxButton.YesNo,
-                     MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.Yes)
+                var position = parameter as Position;
+                if (position != null)
+                {
+                    List<Worker> workerList = _workerService.GetWorkerDataByPositionId(position.PositionName);
+                    if (workerList.Count == 0)
                     {
+                        MessageBoxResult result = MessageBox.Show(
+                          "Якщо ви натисните так, cтруктурну одиницю назавжди буде видалено з бази!",
+                          "Ви дійсно хочете видалити cтруктурну одиницю?",
 
-                        Positions.Remove(position);
-                        _positionService.DeletePostion(position.PositionId);
+                         MessageBoxButton.YesNo,
+                         MessageBoxImage.Warning);
+                        if (result == MessageBoxResult.Yes)
+                        {
 
-                        MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Positions.Remove(position);
+                            _positionService.DeletePostion(position.PositionId);
+
+                            MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
-                }
 
-                else
-                {
-                    MessageBox.Show("В базі наявні посади , що підпорядковуються даному департаменту! Видаліть, посади даної структурної одиниці, для виконання операції видалення!", "Помилка видалення департаменту",
-                     MessageBoxButton.OK,
-                     MessageBoxImage.Error);
+                    else
+                    {
+                        MessageBox.Show("В базі наявні посади , що підпорядковуються даному департаменту! Видаліть, посади даної структурної одиниці, для виконання операції видалення!", "Помилка видалення департаменту",
+                         MessageBoxButton.OK,
+                         MessageBoxImage.Error);
+                    }
                 }
             }
 

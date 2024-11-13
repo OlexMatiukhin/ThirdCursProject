@@ -22,8 +22,8 @@
              VerticalAlignment="Top" 
              Width="120"/>
 
-        <ComboBox ItemsSource="{Binding AccessRights}"  
-              SelectedValue="{Binding SelectedAccessRight, Mode=TwoWay}" 
+        <ComboBox ItemsSource="{Binding Roles}"  
+              SelectedValue="{Binding AccessRight, Mode=TwoWay}" 
               HorizontalAlignment="Left" 
               Margin="383,54,0,0" 
               VerticalAlignment="Top" 
@@ -56,8 +56,8 @@
         Права доступу
         </TextBlock>
 
-        <Button Content="Додати" 
-            Command="{Binding AddUserCommand}" 
+        <Button Content="Змінити" 
+            Command="{Binding ChangeUserCommand}" 
             HorizontalAlignment="Left" 
             Margin="277,224,0,0" 
             VerticalAlignment="Top" 

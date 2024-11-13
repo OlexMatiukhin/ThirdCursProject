@@ -3,80 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\windowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\windowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\querywindow\\queryone.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\querywindow\\queryone.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\windows\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\windows\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\pilotmedexamservive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\pilotmedexamservive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\windows\\seatsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\windows\\seatsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\passangercompletedflightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\passangercompletedflightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\windows\\usersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\windows\\usersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\seatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\seatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\planeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\planeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\planesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\planesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\flightsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\flightsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\images\\position.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\images\\position.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\dialog\\addwindow\\adduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\dialog\\addwindow\\adduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\dialog\\addwindow\\adduser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\dialog\\addwindow\\adduser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\routesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\routesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\workersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\workersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\dialogviewmodels\\adddataviewmodel\\addplaneviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\dialogviewmodels\\adddataviewmodel\\addplaneviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\services\\mongodbsevice\\flightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\services\\mongodbsevice\\flightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\dialogviewmodels\\changedataviewmodel\\changedepartmentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\dialogviewmodels\\changedataviewmodel\\changedepartmentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\models\\delayedflightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\models\\delayedflightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\windowviewmodels\\baggageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\windowviewmodels\\baggageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\viewmodels\\dialogviewmodels\\adddataviewmodel\\addflightviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\viewmodels\\dialogviewmodels\\adddataviewmodel\\addflightviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\windows\\flightsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\windows\\flightsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|c:\\users\\sasha\\desktop\\\u0456\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\curs project 3 curs\\airport\\airport\\views\\windows\\baggageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9FE019AB-3B5F-4B5D-9CBB-7FBCC4A16958}|Airport\\Airport.csproj|solutionrelative:airport\\views\\windows\\baggageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,198 +62,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SeatsView.xaml",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\SeatsView.xaml",
-              "RelativeDocumentMoniker": "Airport\\Views\\Windows\\SeatsView.xaml",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\SeatsView.xaml",
-              "RelativeToolTip": "Airport\\Views\\Windows\\SeatsView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-12T08:24:20.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersView.xaml",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\UsersView.xaml",
-              "RelativeDocumentMoniker": "Airport\\Views\\Windows\\UsersView.xaml",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\UsersView.xaml",
-              "RelativeToolTip": "Airport\\Views\\Windows\\UsersView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-12T08:23:51.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\UserViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\UserViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\UserViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\UserViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T08:20:27.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FlightsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\FlightsViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\FlightsViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\FlightsViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\FlightsViewModel.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T08:20:11.803Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\UserService.cs",
-              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\UserService.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\UserService.cs",
-              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\UserService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwEQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T08:10:47.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "WorkerService.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\WorkerService.cs",
-              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\WorkerService.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\WorkerService.cs",
-              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\WorkerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T08:10:46.141Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Position.png",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Images\\Position.png",
-              "RelativeDocumentMoniker": "Airport\\Images\\Position.png",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Images\\Position.png",
-              "RelativeToolTip": "Airport\\Images\\Position.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-11-12T08:10:18.868Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\LoginViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\LoginViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\LoginViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\LoginViewModel.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAgwDYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:49:00.126Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.xaml",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\Login.xaml",
-              "RelativeDocumentMoniker": "Airport\\Views\\Windows\\Login.xaml",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\Login.xaml",
-              "RelativeToolTip": "Airport\\Views\\Windows\\Login.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-12T07:48:36.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AddUser.xaml",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml",
-              "RelativeDocumentMoniker": "Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml",
-              "RelativeToolTip": "Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-12T07:36:25.971Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WindowService.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\WindowService.cs",
-              "RelativeDocumentMoniker": "Airport\\Services\\WindowService.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\WindowService.cs",
-              "RelativeToolTip": "Airport\\Services\\WindowService.cs",
-              "ViewState": "AgIAADoBAAAAAAAAAAAvwFIBAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:22:22.762Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Flight.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Models\\Flight.cs",
-              "RelativeDocumentMoniker": "Airport\\Models\\Flight.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Models\\Flight.cs",
-              "RelativeToolTip": "Airport\\Models\\Flight.cs",
-              "ViewState": "AgIAABwBAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:08:50.449Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FlightService.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\FlightService.cs",
-              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\FlightService.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\FlightService.cs",
-              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\FlightService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:08:41.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AddUser.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml.cs",
-              "RelativeDocumentMoniker": "Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml.cs",
-              "RelativeToolTip": "Airport\\Views\\Dialog\\AddWindow\\AddUser.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T06:31:24.798Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "WorkersViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\WorkersViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\WorkersViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\WorkersViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\WorkersViewModel.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAMwFMAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T06:31:04.433Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -292,51 +78,168 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RoutesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\RoutesViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\RoutesViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\RoutesViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\RoutesViewModel.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAnwJcAAABDAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PilotMedExamServive.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PilotMedExamServive.cs",
+              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\PilotMedExamServive.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PilotMedExamServive.cs",
+              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\PilotMedExamServive.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAowIwAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T00:42:13.288Z",
+              "WhenOpened": "2024-11-13T13:24:42.688Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ChangeDepartmentViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\ChangeDataViewModel\\ChangeDepartmentViewModel.cs",
-              "RelativeDocumentMoniker": "Airport\\ViewModels\\DialogViewModels\\ChangeDataViewModel\\ChangeDepartmentViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\ChangeDataViewModel\\ChangeDepartmentViewModel.cs",
-              "RelativeToolTip": "Airport\\ViewModels\\DialogViewModels\\ChangeDataViewModel\\ChangeDepartmentViewModel.cs",
+              "DocumentIndex": 2,
+              "Title": "PassangerCompletedFlightService.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PassangerCompletedFlightService.cs",
+              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\PassangerCompletedFlightService.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PassangerCompletedFlightService.cs",
+              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\PassangerCompletedFlightService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T00:41:58.68Z"
+              "WhenOpened": "2024-11-13T13:09:22.261Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\App.xaml.cs",
-              "RelativeDocumentMoniker": "Airport\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\App.xaml.cs",
-              "RelativeToolTip": "Airport\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "PlaneService.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PlaneService.cs",
+              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\PlaneService.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\PlaneService.cs",
+              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\PlaneService.cs",
+              "ViewState": "AgIAAM4AAAAAAAAAAAAgwOEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T00:37:31.996Z"
+              "WhenOpened": "2024-11-13T13:05:45.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SeatService.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\SeatService.cs",
+              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\SeatService.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\SeatService.cs",
+              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\SeatService.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAArwJQAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:57:20.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QueryOne.xaml",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\QueryWindow\\QueryOne.xaml",
+              "RelativeDocumentMoniker": "Airport\\Views\\QueryWindow\\QueryOne.xaml",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\QueryWindow\\QueryOne.xaml",
+              "RelativeToolTip": "Airport\\Views\\QueryWindow\\QueryOne.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T11:44:14.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlanesViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\PlanesViewModel.cs",
+              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\PlanesViewModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\PlanesViewModel.cs",
+              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\PlanesViewModel.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAwGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T13:03:09.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddPlaneViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddPlaneViewModel.cs",
+              "RelativeDocumentMoniker": "Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddPlaneViewModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddPlaneViewModel.cs",
+              "RelativeToolTip": "Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddPlaneViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:07:15.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DelayedFlightInfo.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Models\\DelayedFlightInfo.cs",
+              "RelativeDocumentMoniker": "Airport\\Models\\DelayedFlightInfo.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Models\\DelayedFlightInfo.cs",
+              "RelativeToolTip": "Airport\\Models\\DelayedFlightInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T11:58:29.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaggageViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\BaggageViewModel.cs",
+              "RelativeDocumentMoniker": "Airport\\ViewModels\\WindowViewModels\\BaggageViewModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\WindowViewModels\\BaggageViewModel.cs",
+              "RelativeToolTip": "Airport\\ViewModels\\WindowViewModels\\BaggageViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T11:58:52.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FlightService.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\FlightService.cs",
+              "RelativeDocumentMoniker": "Airport\\Services\\MongoDBSevice\\FlightService.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Services\\MongoDBSevice\\FlightService.cs",
+              "RelativeToolTip": "Airport\\Services\\MongoDBSevice\\FlightService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T11:47:54.826Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\App.xaml",
-              "RelativeDocumentMoniker": "Airport\\App.xaml",
-              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\App.xaml",
-              "RelativeToolTip": "Airport\\App.xaml",
+              "Title": "AddFlightViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddFlightViewModel.cs",
+              "RelativeDocumentMoniker": "Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddFlightViewModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddFlightViewModel.cs",
+              "RelativeToolTip": "Airport\\ViewModels\\DialogViewModels\\AddDataViewModel\\AddFlightViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T11:58:38.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FlightsView.xaml",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\FlightsView.xaml",
+              "RelativeDocumentMoniker": "Airport\\Views\\Windows\\FlightsView.xaml",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\FlightsView.xaml",
+              "RelativeToolTip": "Airport\\Views\\Windows\\FlightsView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-12T00:37:27.36Z",
+              "WhenOpened": "2024-11-13T11:44:36.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BaggageView.xaml",
+              "DocumentMoniker": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\BaggageView.xaml",
+              "RelativeDocumentMoniker": "Airport\\Views\\Windows\\BaggageView.xaml",
+              "ToolTip": "C:\\Users\\sasha\\Desktop\\\u0406\u043D\u0441\u0442\u0438\u0442\u0443\u0442\\Curs project 3 curs\\Airport\\Airport\\Views\\Windows\\BaggageView.xaml",
+              "RelativeToolTip": "Airport\\Views\\Windows\\BaggageView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T11:44:30.525Z",
               "EditorCaption": ""
             }
           ]

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Numerics;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -187,6 +188,69 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($": {ex.Message}");
                 return new List<AirPlane>();
             }
+        }
+
+
+
+
+
+        public List<Plane> GetPlanesWithFlightsAndRepair(DateTime startDate, DateTime endDate, string assigned, string status)
+        {
+            var pipeline = new[] {
+            new BsonDocument("$lookup", new BsonDocument {
+                { "from", "flight" },
+                { "localField", "planeNumber" },
+                { "foreignField", "planeNumber" },
+                { "as", "flights" }
+            }),
+            new BsonDocument("$unwind", "$flights"),
+            new BsonDocument("$match", new BsonDocument {
+                { "assigned", assigned },
+                { "flights.status", status },
+                { "flights.dateArrival", new BsonDocument {
+                    { "$gte", new BsonDateTime(startDate) },
+                    { "$lte", new BsonDateTime(endDate) }
+                }}
+            }),
+            new BsonDocument("$sort", new BsonDocument {
+                { "flights.dateArrival", 1 },
+                { "numberFlightsBeforeRepair", -1 }
+            }),
+            new BsonDocument("$project", new BsonDocument {
+                { "flights", 0 }
+            })
+        };
+
+            return _planeCollection.Aggregate<Plane>(pipeline).ToList();
+        }
+
+        public int GetPlanesCountWithFlightsAndRepair(DateTime startDate, DateTime endDate, string assigned, string status)
+        {
+            var pipeline = new[] {
+            new BsonDocument("$lookup", new BsonDocument {
+                { "from", "flight" },
+                { "localField", "planeNumber" },
+                { "foreignField", "planeNumber" },
+                { "as", "flights" }
+            }),
+            new BsonDocument("$unwind", "$flights"),
+            new BsonDocument("$match", new BsonDocument {
+                { "assigned", assigned },
+                { "flights.status", status },
+                { "flights.dateArrival", new BsonDocument {
+                    { "$gte", new BsonDateTime(startDate) },
+                    { "$lte", new BsonDateTime(endDate) }
+                }}
+            }),
+            new BsonDocument("$sort", new BsonDocument {
+                { "flights.dateArrival", 1 },
+                { "numberFlightsBeforeRepair", -1 }
+            }),
+            new BsonDocument("$count", "totalPlanes")
+        };
+
+            var result = _planeCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+            return result != null ? result["totalPlanes"].ToInt32() : 0;
         }
     }
 }

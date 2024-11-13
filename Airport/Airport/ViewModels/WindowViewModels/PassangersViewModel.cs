@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace Airport.ViewModels.WindowViewModels
     
     public class PassengersViewModel : INotifyPropertyChanged
     {
+
+
+        private readonly UserService _userService;
         private ObservableCollection<Passenger> _passengers;
 
         public ObservableCollection<Passenger> Passengers
@@ -27,6 +31,31 @@ namespace Airport.ViewModels.WindowViewModels
                     _passengers = value;
                     OnPropertyChanged(nameof(Passengers));
                 }
+            }
+        }
+
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
             }
         }
 
@@ -48,7 +77,7 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
         }
-
+        private User _user;
         public void SearchOperation(string searchLine)
         {
             LoadPassengers();
@@ -70,13 +99,18 @@ namespace Airport.ViewModels.WindowViewModels
         
         private readonly IWindowService _windowService;
 
-        public PassengersViewModel(IWindowService _windowService)
+        public PassengersViewModel(IWindowService _windowService, User user)
         {
             _passengerService = new PassengerService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             _windowService = new WindowService();
             this._windowService=_windowService;
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+
             LoadPassengers();
         }
 
@@ -110,49 +144,54 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void СheckCustomsControl(object parameter)
         {
-
-            var passenger = parameter as Passenger;
-            if (passenger != null)
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Пасажир пройшов перевікрку?",
-                  "Проходження митної перервірки",
-                  MessageBoxButton.YesNo,
-                  MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+                var passenger = parameter as Passenger;
+                if (passenger != null)
                 {
-                    passenger.CustomsControlStatus = "перевірений";
-                    _passengerService.UpdatePassenger(passenger);
-                }
+                    MessageBoxResult result = MessageBox.Show(
+                      "Пасажир пройшов перевікрку?",
+                      "Проходження митної перервірки",
+                      MessageBoxButton.YesNo,
+                      MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        passenger.CustomsControlStatus = "перевірений";
+                        _passengerService.UpdatePassenger(passenger);
+                    }
 
+                }
             }
         }
 
         private void PasangerRegistration(object parameter)
         {
 
-            var passenger = parameter as Passenger;
-            if (passenger != null && passenger.CustomsControlStatus == "перевірений")
+            if (_userService.IfUserCanDoAdditionalActions(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Пасажир підходить?",
-                  "Реєстрація пасажира",
-                  MessageBoxButton.YesNo,
-                  MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+                var passenger = parameter as Passenger;
+                if (passenger != null && passenger.CustomsControlStatus == "перевірений")
                 {
-                    passenger.RegistrationStatus = "зареєстрований";
-                    _passengerService.UpdatePassenger(passenger);
-                }
+                    MessageBoxResult result = MessageBox.Show(
+                      "Пасажир підходить?",
+                      "Реєстрація пасажира",
+                      MessageBoxButton.YesNo,
+                      MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        passenger.RegistrationStatus = "зареєстрований";
+                        _passengerService.UpdatePassenger(passenger);
+                    }
 
-            }
-            else
-            {
-                MessageBox.Show(
-                      "Спершу пасжир має пройти митний контроль!",
-                      "",
-                      MessageBoxButton.OK,
-                      MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(
+                          "Спершу пасжир має пройти митний контроль!",
+                          "",
+                          MessageBoxButton.OK,
+                          MessageBoxImage.Error);
+                }
             }
                 
         }
@@ -162,11 +201,15 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnEdit(object parameter)
         {
 
-            var passanger = parameter as Passenger;
-            if (passanger != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                _windowService.OpenModalWindow("ChangePilotMedExam", passanger);         
 
+                var passanger = parameter as Passenger;
+                if (passanger != null)
+                {
+                    _windowService.OpenModalWindow("ChangePilotMedExam", passanger);
+
+                }
             }
 
         }

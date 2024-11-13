@@ -9,11 +9,13 @@ using Airport.Services;
 using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using System.Windows;
+using Airport.Services.MongoDBService;
 
 public class BrigadesViewModel:INotifyPropertyChanged
 {
     private ObservableCollection<Brigade> _brigades;
-
+    private readonly UserService _userService;
+    private User _user;
     public ObservableCollection<Brigade> Brigades
     {
         get => _brigades;
@@ -87,28 +89,32 @@ public class BrigadesViewModel:INotifyPropertyChanged
     public ICommand OpenAddWindowCommand { get; }
 
     public ICommand DeleteCommand  { get; }
-    public BrigadesViewModel(IWindowService windowService)
+    public BrigadesViewModel(IWindowService windowService, User user)
     {
         _brigadeService = new BrigadeService();
         OpenEditWindowCommand = new RelayCommand(OnEdit);
         OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
         OpenAddWindowCommand = new RelayCommand(OnAdd);
         DeleteWindowCommand = new RelayCommand(OnDelete);
-
+        _userService = new UserService();
+        this._user = user;
         _windowService = windowService;
         LoadBrigades();
     }
     private void OnEdit(object parameter)
     {
-
-        var brigade = parameter as Brigade;
-        if (brigade != null)
+        if (_userService.IfUserCanDoCrud(_user))
         {
+            var brigade = parameter as Brigade;
+            if (brigade != null)
+            {
 
-            _windowService.OpenModalWindow("ChangeBrigade", brigade);
+                _windowService.OpenModalWindow("ChangeBrigade", brigade);
 
 
+            }
         }
+        
 
 
 
@@ -118,29 +124,32 @@ public class BrigadesViewModel:INotifyPropertyChanged
 
     private void OnDelete(object parameter)
     {
+        if (_userService.IfUserCanDoCrud(_user))
+        {
 
-                    var brigade = parameter as Brigade;
-                    if (brigade != null)
-                    {
+            var brigade = parameter as Brigade;
+            if (brigade != null)
+            {
 
-                        MessageBoxResult resultOther = MessageBox.Show(
-                                     "Ви точно хочете видалити бригаду?",
-                                     "Видалення бригади",
-                                     MessageBoxButton.YesNo,
-                                     MessageBoxImage.Warning);
-                        if (resultOther == MessageBoxResult.Yes)
-                        {
-                            _brigadeService.RemoveBrigadeFromWorkers(brigade.BrigadeId);
-                            _brigadeService.DeleteBrigade(brigade.BrigadeId);
-                            MessageBox.Show(
-                                    "Бригаду упішно видалено!",
-                                    "Видалення бригади",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
-                        }
+                MessageBoxResult resultOther = MessageBox.Show(
+                             "Ви точно хочете видалити бригаду?",
+                             "Видалення бригади",
+                             MessageBoxButton.YesNo,
+                             MessageBoxImage.Warning);
+                if (resultOther == MessageBoxResult.Yes)
+                {
+                    _brigadeService.RemoveBrigadeFromWorkers(brigade.BrigadeId);
+                    _brigadeService.DeleteBrigade(brigade.BrigadeId);
+                    MessageBox.Show(
+                            "Бригаду упішно видалено!",
+                            "Видалення бригади",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                }
 
 
-                    }       
+            }
+        }
 
 
 
@@ -168,9 +177,12 @@ public class BrigadesViewModel:INotifyPropertyChanged
 
     private void OnAdd(object parameter)
     {
+        if (_userService.IfUserCanDoCrud(_user))
+        {
 
 
-        _windowService.OpenModalWindow("AddBrigade");
+            _windowService.OpenModalWindow("AddBrigade");
+        }
 
 
 

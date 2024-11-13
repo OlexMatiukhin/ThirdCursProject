@@ -26,7 +26,7 @@ namespace Airport
         {
             var windowService = new WindowService();
        
-            DataContext = new FlightsViewModel(windowService);
+          
             InitializeComponent();
         }
 

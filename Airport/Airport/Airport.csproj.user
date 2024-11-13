@@ -70,6 +70,9 @@
     <Compile Update="Views\MenuWindows\MainMenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\QueryWindow\QueryOne.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\BrigadesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,6 +172,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MenuWindows\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\QueryOne.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\BrigadesView.xaml">

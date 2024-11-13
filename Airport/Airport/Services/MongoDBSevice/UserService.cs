@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using MongoDB.Driver;
 
 namespace Airport.Services.MongoDBService
@@ -13,6 +14,54 @@ namespace Airport.Services.MongoDBService
             var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
             var database = client.GetDatabase("airport");
             _userCollection = database.GetCollection<User>("users");
+        }
+        public bool IfUserCanDoCrud(User user)
+        {
+
+
+            if (user.AccessRight == "власник" || user.AccessRight == "адміністратор")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Цю операцію може виконувати тільки користувач з рівнями доступу: власник або адміністратор!", "Відмова у доступі", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+
+            }
+        }
+
+        
+        public bool IfUserCanDoAdditionalActions(User user)
+        {
+            if (user.AccessRight == "власник" || user.AccessRight == "адміністратор" || user.AccessRight == "оператор")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Цю операцію може виконувати тільки користувач з рівнями доступу: власник,адміністратор, оператор ", "Відмова у доступі", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+                
+            }
+            
+        }
+        public bool IfUserCanDoCrudUsers(User user)
+        {
+            
+
+
+
+            if (user.AccessRight == "власник")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Цю операцію може виконувати тільки користувач з рівнями доступу: власник", "Відмова у доступі", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+
+            }
         }
 
 

@@ -10,6 +10,7 @@ using global::Airport.Services;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Airport.Models;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -19,6 +20,8 @@ namespace Airport.ViewModels.WindowViewModels
         public class LoginViewModel : INotifyPropertyChanged
         {
             private readonly UserService _userService;
+
+
 
         public ICommand LoginCommand { get; }
         public ICommand ForgotPasswordCommand { get; }
@@ -47,12 +50,13 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
 
+
             public LoginViewModel(IWindowService windowService)
             {
                 _userService = new UserService();
                 _windowService = windowService;
                 LoginCommand = new RelayCommand(ExecuteLogin);
-            ForgotPasswordCommand = new RelayCommand(ExecuteForgotPassword);
+            ForgotPasswordCommand = new RelayCommand(ExecuteForgotPassword);         
         }
 
           
@@ -70,7 +74,10 @@ namespace Airport.ViewModels.WindowViewModels
 
                         MessageBox.Show("Вхід успішний!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        _windowService.OpenWindow("MainMenuView", _windowService); // Метод для открытия главного окна
+                        _windowService.OpenWindow("MainMenuView", user); 
+                        _windowService.CloseWindow();
+
+
                     }
                     else
                     {
@@ -81,6 +88,11 @@ namespace Airport.ViewModels.WindowViewModels
                 }
                
             }
+
+      
+
+       
+
         private void ExecuteForgotPassword(object parameter)
         {
             if (!string.IsNullOrEmpty(Login))
@@ -101,6 +113,9 @@ namespace Airport.ViewModels.WindowViewModels
                 MessageBox.Show("Будь ласка, введіть логін.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

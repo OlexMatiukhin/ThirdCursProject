@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
@@ -14,6 +15,7 @@ namespace Airport.ViewModels.WindowViewModels
     public class SeatsViewModel:INotifyPropertyChanged
     {
         private ObservableCollection<Seat> _seats;
+        private readonly UserService _userService;
 
         public ObservableCollection<Seat> Seats
         {
@@ -27,6 +29,34 @@ namespace Airport.ViewModels.WindowViewModels
                 }
             }
         }
+
+
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
 
 
         private string _searchLine;
@@ -63,13 +93,20 @@ namespace Airport.ViewModels.WindowViewModels
         private IWindowService _windowService;
         public ICommand OpenMainWindowCommand { get; }
         public ICommand OpenAddWindowCommand { get; }
-        public SeatsViewModel(IWindowService _windowService)
+
+        private User _user;
+        public SeatsViewModel(IWindowService _windowService, User user)
         {
             _seatService = new SeatService();
             this._windowService = _windowService;
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             LoadSeats();
+            _userService = new UserService();
+            this._user = user;
+
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
 
         }
         private void OnMainWindowOpen(object parameter)

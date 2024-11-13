@@ -21,6 +21,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
+
         public List<PassengerCompletedFlight> GetPassengerCompletedFlightsData()
         {
             try
@@ -33,6 +34,8 @@ namespace Airport.Services.MongoDBSevice
                 return new List<PassengerCompletedFlight>();
             }
         }
+
+
 
 
         /*public int GetLastPassengerCompletedFlightId()
@@ -128,6 +131,96 @@ namespace Airport.Services.MongoDBSevice
             catch (Exception ex)
             {
                 Console.WriteLine($"Произошла ошибка при удалении данных: {ex.Message}");
+            }
+        }
+
+
+        public List<PassengerCompletedFlight> GetFilteredPassengers(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge, string flightStatus)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+            new BsonDocument
+            {
+                { "$lookup", new BsonDocument
+                    {
+                        { "from", "completedFlight" },
+                        { "localField", "completedFlightId" },
+                        { "foreignField", "_id" },
+                        { "as", "flightDetails" }
+                    }
+                }
+            },
+            new BsonDocument("$unwind", "$flightDetails"),
+            new BsonDocument
+            {
+                { "$match", new BsonDocument
+                    {
+                        { "flightDetails.dateDeparture", new BsonDocument { { "$gte", startDate }, { "$lt", endDate } } },
+                        { "flightDetails.category", flightCategory },
+                        { "baggageStatus", baggageStatus },
+                        { "gender", gender },
+                        { "age", new BsonDocument { { "$gte", minAge } } },
+                        { "flightDetails.status", flightStatus }
+                    }
+                }
+            },
+            new BsonDocument ("$project", new BsonDocument { { "flightDetails", 0 } } )
+        };
+
+                return _passengerCompletedFlightCollection.Aggregate<PassengerCompletedFlight>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при выполнении агрегационного запроса для выборки пассажиров: {ex.Message}");
+                return new List<PassengerCompletedFlight>();
+            }
+        }
+
+
+        // Метод для получения количества пассажиров, соответствующих условиям
+        public int GetFilteredPassengerCount(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge, string flightStatus)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument
+                    {
+                        { "$lookup", new BsonDocument
+                            {
+                                { "from", "completedFlight" },
+                                { "localField", "completedFlightId" },
+                                { "foreignField", "_id" },
+                                { "as", "flightDetails" }
+                            }
+                        }
+                    },
+                    new BsonDocument ("$unwind", "$flightDetails"),
+                    new BsonDocument
+                    {
+                        { "$match", new BsonDocument
+                            {
+                                { "flightDetails.dateDeparture", new BsonDocument { { "$gte", startDate }, { "$lt", endDate } } },
+                                { "flightDetails.category", flightCategory },
+                                { "baggageStatus", baggageStatus },
+                                { "gender", gender },
+                                { "age", new BsonDocument { { "$gte", minAge } } },
+                                { "flightDetails.status", flightStatus }
+                            }
+                        }
+                    },
+                    new BsonDocument ("$count", "totalPassengers")
+                };
+
+                var result = _passengerCompletedFlightCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+                return result?["totalPassengers"].AsInt32 ?? 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при выполнении агрегационного запроса для подсчета пассажиров: {ex.Message}");
+                return 0;
             }
         }
     }

@@ -22,17 +22,144 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _seatCollection = database.GetCollection<Seat>("seat");
         }
-       /* public int GetLastSeatId()
-        {
-            var lastSeat = _seatCollection
-                .Find(Builders<Seat>.Filter.Empty)
-                .Sort(Builders<Seat>.Sort.Descending(f => f.SeatId))
-                .Limit(1)
-                .FirstOrDefault();
 
-            return lastSeat?.SeatId ?? 0;
-        }*/
-        public int GetLastSeatNumber()
+
+        public List<Seat> GetFilteredSeats(ObjectId flightId, DateTime departureDate, ObjectId routeId, decimal price, int departureHour, int departureMinute)
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument
+                {
+                    { "$lookup", new BsonDocument
+                        {
+                            { "from", "flight" },
+                            { "localField", "flightId" },
+                            { "foreignField", "_id" },
+                            { "as", "flight" }
+                        }
+                    }
+                },
+                new BsonDocument ("$unwind", "$flight"),
+                new BsonDocument
+                {
+                    { "$lookup", new BsonDocument
+                        {
+                            { "from", "route" },
+                            { "localField", "flight.routeNumber" },
+                            { "foreignField", "number" },
+                            { "as", "route" }
+                        }
+                    }
+                },
+                new BsonDocument ("$unwind", "$route"),
+                new BsonDocument
+                {
+                    { "$match", new BsonDocument
+                        {
+                            { "flight._id", flightId },
+                            { "flight.dateDeparture", new BsonDocument
+                                {
+                                    { "$gte", departureDate.ToUniversalTime() },
+                                    { "$lt", departureDate.AddDays(1).ToUniversalTime() }
+                                }
+                            },
+                            { "route._id", routeId },
+                            { "flight.price", price },
+                            { "$expr", new BsonDocument
+                                {
+                                    { "$and", new BsonArray
+                                        {
+                                            new BsonDocument("$eq", new BsonArray { new BsonDocument("$hour", "$flight.dateDeparture"), departureHour }),
+                                            new BsonDocument("$eq", new BsonArray { new BsonDocument("$minute", "$flight.dateDeparture"), departureMinute })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new BsonDocument
+                {
+                    { "$project", new BsonDocument
+                        {
+                            { "flight", 0 },
+                            { "route", 0 }
+                        }
+                    }
+                }
+            };
+
+            return _seatCollection.Aggregate<Seat>(pipeline).ToList();
+        }
+
+        public int GetFilteredSeatsCount(ObjectId flightId, DateTime departureDate, ObjectId routeId, decimal price, int departureHour, int departureMinute)
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument
+                {
+                    { "$lookup", new BsonDocument
+                        {
+                            { "from", "flight" },
+                            { "localField", "flightId" },
+                            { "foreignField", "_id" },
+                            { "as", "flight" }
+                        }
+                    }
+                },
+                new BsonDocument ("$unwind", "$flight"),
+                new BsonDocument
+                {
+                    { "$lookup", new BsonDocument
+                        {
+                            { "from", "route" },
+                            { "localField", "flight.routeNumber" },
+                            { "foreignField", "number" },
+                            { "as", "route" }
+                        }
+                    }
+                },
+                new BsonDocument ("$unwind", "$route"),
+                new BsonDocument
+                {
+                    { "$match", new BsonDocument
+                        {
+                            { "flight._id", flightId },
+                            { "flight.dateDeparture", new BsonDocument
+                                {
+                                    { "$gte", departureDate.ToUniversalTime() },
+                                    { "$lt", departureDate.AddDays(1).ToUniversalTime() }
+                                }
+                            },
+                            { "route._id", routeId },
+                            { "flight.price", price },
+                            { "$expr", new BsonDocument
+                                {
+                                    { "$and", new BsonArray
+                                        {
+                                            new BsonDocument("$eq", new BsonArray { new BsonDocument("$hour", "$flight.dateDeparture"), departureHour }),
+                                            new BsonDocument("$eq", new BsonArray { new BsonDocument("$minute", "$flight.dateDeparture"), departureMinute })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new BsonDocument ("$count", "seatCount")
+            };
+
+            var result = _seatCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+            return result != null ? result["seatCount"].AsInt32 : 0;
+        }
+    
+
+
+
+
+
+
+    public int GetLastSeatNumber()
         {
             var lastSeat = _seatCollection
                 .Find(Builders<Seat>.Filter.Empty)

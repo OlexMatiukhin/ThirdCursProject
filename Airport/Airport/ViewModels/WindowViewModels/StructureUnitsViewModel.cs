@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 
 namespace Airport.ViewModels.WindowViewModels
@@ -14,6 +15,7 @@ namespace Airport.ViewModels.WindowViewModels
     public class StructureUnitsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<StructureUnit> _structureUnits;
+        private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
 
         public ObservableCollection<StructureUnit> StructureUnits
@@ -29,10 +31,36 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
+
         private string _searchLine;
 
 
-
+        private User _user;
 
         public string SearchLine
         {
@@ -71,7 +99,7 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly IWindowService _windowService;
         public ICommand OpenEditWindowCommand { get; }
         public ICommand OpenAddWindowCommand { get; }
-        public StructureUnitsViewModel(IWindowService _windowService)
+        public StructureUnitsViewModel(IWindowService _windowService, User user)
         {
             _structureUnitService = new StructureUnitService();
             this._windowService= _windowService;
@@ -81,6 +109,11 @@ namespace Airport.ViewModels.WindowViewModels
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            _userService = new UserService();
+            this._user = user;
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+
         }
 
 
@@ -112,32 +145,34 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnDelete(object parameter)
         {
 
-
-
-            var structureUnit = parameter as StructureUnit;
-            List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentName(structureUnit.DepartmentName);
-            if (positionsList.Count == 0)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                MessageBoxResult result = MessageBox.Show(
-                  "Якщо ви натисните так, cтруктурну одиницю назавжди буде видалено з бази!",
-                  "Ви дійсно хочете видалити cтруктурну одиницю?",
 
-                 MessageBoxButton.YesNo,
-                 MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+                var structureUnit = parameter as StructureUnit;
+                List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentName(structureUnit.DepartmentName);
+                if (positionsList.Count == 0)
                 {
+                    MessageBoxResult result = MessageBox.Show(
+                      "Якщо ви натисните так, cтруктурну одиницю назавжди буде видалено з бази!",
+                      "Ви дійсно хочете видалити cтруктурну одиницю?",
 
-                    StructureUnits.Remove(structureUnit);
-                    _structureUnitService.DeleteStructureUnit(structureUnit.StructureUnitId);
+                     MessageBoxButton.YesNo,
+                     MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
 
-                    MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                        StructureUnits.Remove(structureUnit);
+                        _structureUnitService.DeleteStructureUnit(structureUnit.StructureUnitId);
+
+                        MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("В базі наявні посади , що підпорядковуються даному департаменту! Видаліть, посади даної структурної одиниці, для виконання операції видалення!", "Помилка видалення департаменту",
-                 MessageBoxButton.OK,
-                 MessageBoxImage.Error);
+                else
+                {
+                    MessageBox.Show("В базі наявні посади , що підпорядковуються даному департаменту! Видаліть, посади даної структурної одиниці, для виконання операції видалення!", "Помилка видалення департаменту",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                }
             }
 
 
@@ -148,13 +183,15 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnEdit(object parameter)
         {
-
-            var position = parameter as StructureUnit;
-            if (position != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
-                _windowService.OpenModalWindow("ChangeStructureUnit", parameter);
-             
+                var position = parameter as StructureUnit;
+                if (position != null)
+                {
+                    _windowService.OpenModalWindow("ChangeStructureUnit", parameter);
 
+
+                }
             }
 
 

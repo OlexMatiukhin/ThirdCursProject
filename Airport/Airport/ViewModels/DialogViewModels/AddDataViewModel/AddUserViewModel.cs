@@ -32,7 +32,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private string _login;
         private string _password;
-        private string _selectedRole;
+        private string _accesRight;
 
         public string Login
         {
@@ -54,13 +54,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public string SelectedRole
+        public string AccessRight
         {
-            get => _selectedRole;
+            get => _accesRight;
             set
             {
-                _selectedRole = value;
-                OnPropertyChanged(nameof(SelectedRole));
+                _accesRight = value;
+                OnPropertyChanged(nameof(AccessRight));
             }
         }
 
@@ -68,37 +68,41 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         {
             _userService = new UserService();
             this._windowService = windowService;
-            AddUserCommand = new RelayCommand(ExecuteAddUser, canExecute => CanExecuteAddUser());
+            AddUserCommand = new RelayCommand(ExecuteAddUser);
 
             LoadData();
         }
 
-        private bool CanExecuteAddUser()
-        {
-            return !string.IsNullOrEmpty(Login) &&
-                   !string.IsNullOrEmpty(Password) &&
-                   !string.IsNullOrEmpty(SelectedRole);
-        }
+        
 
         private void ExecuteAddUser(object parameter)
         {
-            var newUser = new User
+            if(!string.IsNullOrEmpty(Login) &&
+                   !string.IsNullOrEmpty(Password) &&
+                   !string.IsNullOrEmpty(AccessRight))
             {
-                Login = Login,
-                Password = Password,
-                AccessRight = SelectedRole
-            };
+                var newUser = new User
+                {
+                    Login = Login,
+                    Password = Password,
+                    AccessRight = AccessRight
+                };
+
+                _userService.AddUser(newUser);
 
 
-            _userService.AddUser(newUser);
+                MessageBox.Show("Користувач успішно доданий!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                Login = string.Empty;
+                Password = string.Empty;
+                AccessRight = string.Empty;
+
+            }
+
+
 
       
-            MessageBox.Show("Користувач успішно доданий!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
-
-       
-            Login = string.Empty;
-            Password = string.Empty;
-            SelectedRole = string.Empty;
         }
 
         private void LoadData()

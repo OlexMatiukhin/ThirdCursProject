@@ -1,6 +1,7 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
+using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
-    class CanceledFligthsViewModel:INotifyPropertyChanged
+    class CanceledFlightsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<CanceledFlightInfo> _canceledFlights;
         public ICommand DeleteWindowCommand { get; }
+        private readonly UserService _userService;
+        private User _user;
         public ObservableCollection<CanceledFlightInfo> CanceledFlights
         {
             get => _canceledFlights;
@@ -36,6 +39,31 @@ namespace Airport.ViewModels.WindowViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
 
+        private string _login;
+        private string _accessRight;
+
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+
+        public string AccessRight
+        {
+            get => _accessRight;
+            set
+            {
+                _accessRight = value;
+                OnPropertyChanged(nameof(AccessRight));
+            }
+        }
+
         private string _searchLine;
 
         public string SearchLine
@@ -52,6 +80,20 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+
+        public CanceledFlightsViewModel(IWindowService _windowService, User user)
+        {
+            _canceledeFlightsService = new CanceledFlightsService();
+            this._windowService = _windowService;
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            DeleteWindowCommand = new RelayCommand(OnDelete);
+            LoadCanceledFlights();
+            this._user = user;
+            _userService = new UserService();
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
+        }
+
         public void SearchOperation(string searchLine)
         {
             LoadCanceledFlights();
@@ -66,30 +108,36 @@ namespace Airport.ViewModels.WindowViewModels
         }
 
 
+
+
         private void OnDelete(object parameter)
         {
-
-            var canceledFlight = parameter as CanceledFlightInfo;
-            if (canceledFlight != null)
+            if (_userService.IfUserCanDoCrud(_user))
             {
 
-                MessageBoxResult resultOther = MessageBox.Show(
-                             "Ви точно хочете видалити інформацію про скасований рейс?",
-                             "Видалення інформації",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Warning);
-                if (resultOther == MessageBoxResult.Yes)
+
+                var canceledFlight = parameter as CanceledFlightInfo;
+                if (canceledFlight != null)
                 {
-                    
-                    _canceledeFlightsService.DeleteCanceledFlight(canceledFlight.CanceledFlightInfoId);
-                    MessageBox.Show(
-                            " Інформацію упішно видалено!",
-                              "Видалення інформації",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+
+                    MessageBoxResult resultOther = MessageBox.Show(
+                                 "Ви точно хочете видалити інформацію про скасований рейс?",
+                                 "Видалення інформації",
+                                 MessageBoxButton.YesNo,
+                                 MessageBoxImage.Warning);
+                    if (resultOther == MessageBoxResult.Yes)
+                    {
+
+                        _canceledeFlightsService.DeleteCanceledFlight(canceledFlight.CanceledFlightInfoId);
+                        MessageBox.Show(
+                                " Інформацію упішно видалено!",
+                                  "Видалення інформації",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+
+
                 }
-
-
             }
 
 
@@ -98,14 +146,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         }
 
-        public CanceledFligthsViewModel(IWindowService _windowService)
-        {
-            _canceledeFlightsService = new CanceledFlightsService();
-            this._windowService = _windowService;
-            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
-            DeleteWindowCommand = new RelayCommand(OnDelete);
-            LoadCanceledFlights();
-        }
+       
         private void OnMainWindowOpen(object parameter)
         {
 

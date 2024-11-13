@@ -11,6 +11,7 @@ using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Services.MongoDBSevice;
 using System.Numerics;
 using System.Windows.Controls;
+using Airport.Services.MongoDBService;
 
 
 
@@ -19,8 +20,10 @@ public class BaggageViewModel:INotifyPropertyChanged
 {
     public ObservableCollection<Baggage> _baggages;
 
+    private readonly UserService _userService;
 
-     public ObservableCollection<Baggage> Baggages
+    private User _user;
+    public ObservableCollection<Baggage> Baggages
     {
         get => _baggages;
         set
@@ -37,6 +40,30 @@ public class BaggageViewModel:INotifyPropertyChanged
     private readonly IWindowService _windowService;
     public event PropertyChangedEventHandler PropertyChanged;
 
+    private string _login;
+    private string _accessRight;
+
+
+    public string Login
+    {
+        get => _login;
+        set
+        {
+            _login = value;
+            OnPropertyChanged(nameof(Login));
+        }
+    }
+
+
+    public string AccessRight
+    {
+        get => _accessRight;
+        set
+        {
+            _accessRight = value;
+            OnPropertyChanged(nameof(AccessRight));
+        }
+    }
 
 
     private string _searchLine;
@@ -57,6 +84,22 @@ public class BaggageViewModel:INotifyPropertyChanged
         }
     }
 
+
+
+    public BaggageViewModel(IWindowService windowService, User user)
+    {
+        _baggageService = new BaggageService();
+        _windowService = windowService;
+        _userService= new UserService();
+        LoadBagge();
+        OpenEditWindowCommand = new RelayCommand(OnEdit);
+        OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+        OpenAddWindowCommand = new RelayCommand(OnAdd);
+        this._user = user;
+        Login = _user.Login;
+        AccessRight = _user.AccessRight;    
+    }
+
     public void SearchOperation(string searchLine)
     {
         LoadBagge();
@@ -74,24 +117,21 @@ public class BaggageViewModel:INotifyPropertyChanged
 
 
 
-    public BaggageViewModel(IWindowService windowService)
-    {
-        _baggageService = new BaggageService();
-        _windowService = windowService;
-        LoadBagge();
-        OpenEditWindowCommand = new RelayCommand(OnEdit);
-        OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
-        OpenAddWindowCommand = new RelayCommand(OnAdd);
-    }
+  
     private void OnEdit(object parameter)
     {
-
-        var baggage = parameter as Baggage;
-        if (baggage != null)
+        if (_userService.IfUserCanDoCrud(_user))
         {
-            _windowService.OpenModalWindow("ChangeBaggage", baggage);
-            
+            var baggage = parameter as Baggage;
+            if (baggage != null)
+            {
+                _windowService.OpenModalWindow("ChangeBaggage", baggage);
+
+            }
         }
+
+
+       
 
 
 
@@ -129,8 +169,11 @@ public class BaggageViewModel:INotifyPropertyChanged
     private void OnAdd(object parameter)
     {
 
-        
+        if (_userService.IfUserCanDoCrud(_user))
+        {
             _windowService.OpenModalWindow("AddBaggage");
+        }
+        
 
         
 

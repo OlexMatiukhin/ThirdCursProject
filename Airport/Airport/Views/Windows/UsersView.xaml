@@ -54,8 +54,7 @@
                 <DataGridTextColumn Header="Логін" Binding="{Binding Login}" Width="*" />
                 <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="*" />
                 <DataGridTextColumn Header="Права доступу" Binding="{Binding AccessRight}" Width="*" />
-                <DataGridTextColumn Header="Ім'я" Binding="{Binding FirstName}" Width="*" />
-                <DataGridTextColumn Header="Призвище" Binding="{Binding LastName}" Width="*" />
+
 
                 <DataGridTemplateColumn Header="Зміни" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -75,10 +74,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Кнопка додавання нового користувача -->
         <Button Content="Додати користувача" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,1,0,-1" />
-
-        <!-- Поле для пошуку -->
         <TextBox Margin="10,25,430,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

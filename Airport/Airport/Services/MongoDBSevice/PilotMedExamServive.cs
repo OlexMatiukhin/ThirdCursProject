@@ -107,6 +107,95 @@ namespace Airport.Services.MongoDBSevice
                 return new List<PilotMedExam>();
             }
         }
+
+        public List<BsonDocument> GetPilotMedExamsWithPilotInfo(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument
+                    {
+                        { "$match", new BsonDocument
+                            {
+                                { "dateExamination", new BsonDocument
+                                    {
+                                        { "$gte", startDate },
+                                        { "$lt", endDate }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new BsonDocument
+                    {
+                        { "$lookup", new BsonDocument
+                            {
+                                { "from", "worker" },
+                                { "localField", "pilotId" },
+                                { "foreignField", "_id" },
+                                { "as", "pilotInfo" }
+                            }
+                        }
+                    },
+                    new BsonDocument ("$unwind", "$pilotInfo"),
+                    new BsonDocument
+                    {
+                        { "$project", new BsonDocument
+                            {
+                                { "pilotInfo", 1 },
+                                { "_id", 0 }
+                            }
+                        }
+                    }
+                };
+
+                return _pilotMedExamCollection.Aggregate<BsonDocument>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при выполнении агрегационного запроса для получения информации о пилотах: {ex.Message}");
+                return new List<BsonDocument>();
+            }
+        }
+
+
+        public int GetTotalPilotMedExamsCount(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument
+                    {
+                        { "$match", new BsonDocument
+                            {
+                                { "dateExamination", new BsonDocument
+                                    {
+                                        { "$gte", startDate },
+                                        { "$lt", endDate }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new BsonDocument ("$count", "totalExams")
+                };
+
+                var result = _pilotMedExamCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+                return result?["totalExams"].AsInt32 ?? 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при выполнении агрегационного запроса для подсчета медицинских обследований: {ex.Message}");
+                return 0;
+            }
+        }
+
+
+
+
+
     }
 
 }

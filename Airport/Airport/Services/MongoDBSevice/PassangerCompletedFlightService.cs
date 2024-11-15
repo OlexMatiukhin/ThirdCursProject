@@ -135,7 +135,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public List<PassengerCompletedFlight> GetFilteredPassengers(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge, string flightStatus)
+        public List<PassengerCompletedFlight> GetFilteredPassengers(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace Airport.Services.MongoDBSevice
                         { "baggageStatus", baggageStatus },
                         { "gender", gender },
                         { "age", new BsonDocument { { "$gte", minAge } } },
-                        { "flightDetails.status", flightStatus }
+                        
                     }
                 }
             },
@@ -178,9 +178,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-
-        // Метод для получения количества пассажиров, соответствующих условиям
-        public int GetFilteredPassengerCount(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge, string flightStatus)
+        public int GetFilteredPassengerCount(DateTime startDate, DateTime endDate, string flightCategory, string baggageStatus, string gender, int minAge)
         {
             try
             {
@@ -207,7 +205,7 @@ namespace Airport.Services.MongoDBSevice
                                 { "baggageStatus", baggageStatus },
                                 { "gender", gender },
                                 { "age", new BsonDocument { { "$gte", minAge } } },
-                                { "flightDetails.status", flightStatus }
+                               
                             }
                         }
                     },

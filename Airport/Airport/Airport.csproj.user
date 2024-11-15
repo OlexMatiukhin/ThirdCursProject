@@ -70,6 +70,45 @@
     <Compile Update="Views\MenuWindows\MainMenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\MenuWindows\QueryMenuView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query11.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query12.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query13.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query4.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query5.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query7.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query8.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query9.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query6.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueryWindow\Query10.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\QueryWindow\QueryOne.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -172,6 +211,45 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MenuWindows\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MenuWindows\QueryMenuView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query11.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query12.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query13.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query4.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query5.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query7.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query8.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query9.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query6.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueryWindow\Query10.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\QueryWindow\QueryOne.xaml">

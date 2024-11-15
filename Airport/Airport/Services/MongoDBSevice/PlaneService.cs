@@ -194,7 +194,7 @@ namespace Airport.Services.MongoDBSevice
 
 
 
-        public List<Plane> GetPlanesWithFlightsAndRepair(DateTime startDate, DateTime endDate, string assigned, string status)
+        public List<AirPlane> GetPlanesWithFlightsAndRepair(DateTime startDate, DateTime endDate, string assigned, string status)
         {
             var pipeline = new[] {
             new BsonDocument("$lookup", new BsonDocument {
@@ -221,7 +221,7 @@ namespace Airport.Services.MongoDBSevice
             })
         };
 
-            return _planeCollection.Aggregate<Plane>(pipeline).ToList();
+            return _planeCollection.Aggregate<AirPlane>(pipeline).ToList();
         }
 
         public int GetPlanesCountWithFlightsAndRepair(DateTime startDate, DateTime endDate, string assigned, string status)

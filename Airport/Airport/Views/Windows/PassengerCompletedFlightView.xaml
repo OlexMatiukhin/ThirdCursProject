@@ -76,7 +76,8 @@ Text="{Binding Login}" />
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити" Click="Button_Click" Width="Auto"/>
+                            <Button Content="Видалити"  Command="{Binding DataContext.DeleteWindowCommand, 
+        RelativeSource={RelativeSource AncestorType=DataGrid}}"  CommandParameter="{Binding}" Click="Button_Click" Width="Auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

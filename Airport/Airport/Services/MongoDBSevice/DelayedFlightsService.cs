@@ -34,6 +34,31 @@ namespace Airport.Services.MongoDBSevice
 
 
 
+        public List<DelayedFlightInfo> GetDelayedFlightsByReasonAndRoute(string reason, string routeNumber)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "reason", reason },
+                        { "routeNumber", routeNumber }
+                    })
+                };
+
+                return _delayedFlightCollection.Aggregate<DelayedFlightInfo>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при выполнении агрегации: {ex.Message}");
+                return new List<DelayedFlightInfo>();
+            }
+        }
+
+
+
         public void DeleteDelayedFlight (ObjectId flightId)
         {
            

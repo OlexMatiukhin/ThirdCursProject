@@ -110,6 +110,7 @@ namespace Airport.ViewModels.WindowViewModels
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
             DeleteWindowCommand = new RelayCommand(OnDelete);
+            SendPilotToMedExam = new RelayCommand(OnSendPilotToMedExam);
             _userService = new UserService();
             this._user = user;
             Login = _user.Login;
@@ -119,7 +120,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnMainWindowOpen(object parameter)
         {
 
-            _windowService.OpenWindow("MainMenuView");
+            _windowService.OpenWindow("MainMenuView",_user);
             _windowService.CloseWindow();
 
         }

@@ -72,13 +72,7 @@
                 <DataGridTextColumn Header="Диспетчер бригада" Binding="{Binding Email}" Width="2*"/>
                 <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding CompletedFlightId}" Width="2*"/>
 
-                <DataGridTemplateColumn Header="Редагування" Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Редагувати"  Width="Auto"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+             
 
              
             </DataGrid.Columns>

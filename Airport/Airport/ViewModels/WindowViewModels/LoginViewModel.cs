@@ -74,8 +74,8 @@ namespace Airport.ViewModels.WindowViewModels
 
                         MessageBox.Show("Вхід успішний!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        _windowService.OpenWindow("MainMenuView", user); 
-                        _windowService.CloseWindow();
+                    _windowService.OpenWindow("MainMenuView", user);
+                    _windowService.CloseWindow();
 
 
                     }

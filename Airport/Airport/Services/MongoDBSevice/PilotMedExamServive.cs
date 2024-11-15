@@ -108,56 +108,64 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-        public List<BsonDocument> GetPilotMedExamsWithPilotInfo(DateTime startDate, DateTime endDate)
+        public List<PilotMedExam> GetPilotMedExamsWithPilotInfo(DateTime startDate, DateTime endDate)
         {
             try
             {
                 var pipeline = new[]
                 {
-                    new BsonDocument
+            new BsonDocument
+            {
+                { "$match", new BsonDocument
                     {
-                        { "$match", new BsonDocument
+                        { "dateExamination", new BsonDocument
                             {
-                                { "dateExamination", new BsonDocument
-                                    {
-                                        { "$gte", startDate },
-                                        { "$lt", endDate }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    new BsonDocument
-                    {
-                        { "$lookup", new BsonDocument
-                            {
-                                { "from", "worker" },
-                                { "localField", "pilotId" },
-                                { "foreignField", "_id" },
-                                { "as", "pilotInfo" }
-                            }
-                        }
-                    },
-                    new BsonDocument ("$unwind", "$pilotInfo"),
-                    new BsonDocument
-                    {
-                        { "$project", new BsonDocument
-                            {
-                                { "pilotInfo", 1 },
-                                { "_id", 0 }
+                                { "$gte", startDate },
+                                { "$lt", endDate }
                             }
                         }
                     }
-                };
+                }
+            },
+            new BsonDocument
+            {
+                { "$lookup", new BsonDocument
+                    {
+                        { "from", "worker" },
+                        { "localField", "pilotId" },
+                        { "foreignField", "_id" },
+                        { "as", "pilotInfo" }
+                    }
+                }
+            },
+            new BsonDocument
+            {
+                { "$unwind", "$pilotInfo" }
+            },
+            new BsonDocument
+            {
+                { "$project", new BsonDocument
+                    {
+                        { "examId", 1 },
+                        { "result", 1 },
+                        { "pilotId", 1 },
+                        { "doctorId", 1 },
+                        { "dateExamination", 1 }
+                       
+                    }
+                }
+            }
+        };
 
-                return _pilotMedExamCollection.Aggregate<BsonDocument>(pipeline).ToList();
+                return _pilotMedExamCollection.Aggregate<PilotMedExam>(pipeline).ToList();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при выполнении агрегационного запроса для получения информации о пилотах: {ex.Message}");
-                return new List<BsonDocument>();
+                
+                throw;
             }
         }
+
 
 
         public int GetTotalPilotMedExamsCount(DateTime startDate, DateTime endDate)

@@ -1,4 +1,6 @@
 ﻿using Airport.Services;
+using Airport.ViewModels.QueriesViewModel;
+using Airport.Views.QueryWindow;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -15,6 +17,10 @@ namespace Airport
         {
             base.OnStartup(e);
             windowService.OpenWindow("LoginView", this);
+            /*User user = null;
+            Query query = new Query();
+            query.DataContext= new Query3ViewModel(windowService, user);
+            query.Show();*/
         }
     }
 

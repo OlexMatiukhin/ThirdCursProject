@@ -166,7 +166,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnMainWindowOpen(object parameter)
         {
-            _windowService.OpenWindow("MainMenuView");
+            _windowService.OpenWindow("MainMenuView", _user);
             _windowService.CloseWindow();
         }
 
@@ -176,6 +176,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrudUsers(_user))
             {
                 _windowService.OpenModalWindow("AddUser");
+                LoadUsers();
             }
         }
 
@@ -191,6 +192,7 @@ namespace Airport.ViewModels.WindowViewModels
                 if (selectedUser != null)
                 {
                     _windowService.OpenModalWindow("ChangeUser", selectedUser);
+                  
                 }
             }
         }

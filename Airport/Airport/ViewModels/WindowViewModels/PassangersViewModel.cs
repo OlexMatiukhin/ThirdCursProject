@@ -119,8 +119,8 @@ namespace Airport.ViewModels.WindowViewModels
              private void OnMainWindowOpen(object parameter)
             {
 
-                _windowService.OpenWindow("MainMenuView");
-                _windowService.CloseWindow();
+            _windowService.OpenWindow("MainMenuView", _user);
+            _windowService.CloseWindow();
 
                 }
         public List<Passenger> SearchPassengers(string query)

@@ -95,18 +95,243 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
-       /* public int GetLastWorkerId()
+
+
+
+
+        public List<Worker> GetFilteredPilots(string gender, string positionName, int minAge, int maxAge, decimal minSalary, decimal maxSalary)
         {
-            var lastWorker = _workerCollection
-                .Find(Builders<Worker>.Filter.Empty)
-                .Sort(Builders<Worker>.Sort.Descending(w => w.WorkerId))
-                .Limit(1)
-                .FirstOrDefault();
+            try
+            {
+                var pipeline = new[]
+                {
+            new BsonDocument("$lookup", new BsonDocument
+            {
+                { "from", "position" },
+                { "localField", "positionName" },
+                { "foreignField", "positionName" },
+                { "as", "positionInfo" }
+            }),
+            new BsonDocument("$match", new BsonDocument
+            {
+                { "gender", gender },
+                { "positionName", positionName },
+                { "age", new BsonDocument { { "$gte", minAge }, { "$lte", maxAge } } },
+                { "positionInfo.salary", new BsonDocument { { "$gte", minSalary }, { "$lte", maxSalary } } }
+            }),
+            new BsonDocument("$project", new BsonDocument { { "positionInfo", 0 } })
+        };
 
-            return lastWorker?.WorkerId ?? 0;
-        }*/
+                return _workerCollection.Aggregate<Worker>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при выполнении агрегации: {ex.Message}");
+                return new List<Worker>();
+            }
+        }
 
-        
+        public int GetFilteredPilotCount(string gender, string positionName, int minAge, int maxAge, decimal minSalary, decimal maxSalary)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+            new BsonDocument("$lookup", new BsonDocument
+            {
+                { "from", "position" },
+                { "localField", "positionName" },
+                { "foreignField", "positionName" },
+                { "as", "positionInfo" }
+            }),
+            new BsonDocument("$match", new BsonDocument
+            {
+                { "gender", gender },
+                { "positionName", positionName },
+                { "age", new BsonDocument { { "$gte", minAge }, { "$lte", maxAge } } },
+                { "positionInfo.salary", new BsonDocument { { "$gte", minSalary }, { "$lte", maxSalary } } }
+            }),
+            new BsonDocument("$count", "pilotCount")
+        };
+
+                var result = _workerCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+                return result != null ? result["pilotCount"].AsInt32 : 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при выполнении агрегации: {ex.Message}");
+                return 0;
+            }
+        }
+
+
+        //8 
+        public List<Worker> GetWorkersByBrigadeIdAndMinAge(ObjectId brigadeId, int minAge)
+        {
+            try
+            {
+                var filter = Builders<Worker>.Filter.And(
+                    Builders<Worker>.Filter.Eq("brigadeId", brigadeId),
+                    Builders<Worker>.Filter.Gte("age", minAge)
+                );
+                return _workerCollection.Find(filter).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при получении данных: {ex.Message}");
+                return new List<Worker>();
+            }
+        }
+
+        public List<Worker> GetWorkersByFlightId(ObjectId flightId)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument("$lookup", new BsonDocument
+                    {
+                        { "from", "flight" },
+                        { "localField", "brigadeId" },
+                        { "foreignField", "dispatchBrigadeId" }, // Используем соответствующее поле из рейса
+                        { "as", "flights" }
+                    }),
+                    new BsonDocument("$match", new BsonDocument("flights._id", flightId)),
+                    new BsonDocument("$project", new BsonDocument("flights", 0)) // Исключаем поле "flights" из результата
+                };
+
+                return _workerCollection.Aggregate<Worker>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при выполнении агрегации: {ex.Message}");
+                return new List<Worker>();
+            }
+        }
+
+
+        //10 
+        public List<Worker> GetWorkersByGenderAgeAndPosition(string gender, int minAge, int maxAge, int minSalary, string structureUnitName)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument("$lookup", new BsonDocument
+                    {
+                        { "from", "position" },
+                        { "localField", "positionName" },
+                        { "foreignField", "positionName" },
+                        { "as", "positionInfo" }
+                    }),
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "gender", gender },
+                        { "age", new BsonDocument { { "$gte", minAge } } },
+                        { "numberChildrens", 0 },
+                        { "positionInfo", new BsonDocument("$elemMatch", new BsonDocument
+                            {
+                                { "salary", new BsonDocument { { "$gte", minSalary } } },
+                                { "structureUnitName", structureUnitName }
+                            })
+                        }
+                    }),
+                    new BsonDocument("$project", new BsonDocument { { "salaryInfo", 0 } })
+                };
+
+                return _workerCollection.Aggregate<Worker>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during aggregation: {ex.Message}");
+                return new List<Worker>();
+            }
+        }
+
+
+        public int GetTotalWorkersByStatusGenderAgeAndPosition(string status, string gender, int minAge, int maxAge, int minSalary)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument("$lookup", new BsonDocument
+                    {
+                        { "from", "position" },
+                        { "localField", "positionName" },
+                        { "foreignField", "positionName" },
+                        { "as", "positionInfo" }
+                    }),
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "status", status },
+                        { "gender", gender },
+                        { "age", new BsonDocument { { "$gte", minAge } } },
+                        { "numberChildrens", 0 },
+                        { "positionInfo", new BsonDocument("$elemMatch", new BsonDocument
+                            {
+                                { "salary", new BsonDocument { { "$gte", minSalary } } }
+                            })
+                        }
+                    }),
+                    new BsonDocument("$project", new BsonDocument { { "salaryInfo", 0 } }),
+                    new BsonDocument("$count", "totalWorkers")
+                };
+
+                var result = _workerCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+                return result != null ? result["totalWorkers"].ToInt32() : 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during aggregation: {ex.Message}");
+                return 0;
+            }
+        }
+
+        public int GetTotalWorkersByStructureUnit(string gender, int minAge, int maxAge, int minSalary, string structureUnitName)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+                    new BsonDocument("$lookup", new BsonDocument
+                    {
+                        { "from", "position" },
+                        { "localField", "positionName" },
+                        { "foreignField", "positionName" },
+                        { "as", "positionInfo" }
+                    }),
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "gender", gender },
+                        { "age", new BsonDocument { { "$gte", minAge } } },
+                        { "numberChildrens", 0 },
+                        { "positionInfo", new BsonDocument("$elemMatch", new BsonDocument
+                            {
+                                { "salary", new BsonDocument { { "$gte", minSalary } } },
+                                { "structureUnitName", structureUnitName }
+                            })
+                        }
+                    }),
+                    new BsonDocument("$project", new BsonDocument { { "salaryInfo", 0 } }),
+                    new BsonDocument("$count", "totalWorkers")
+                };
+
+                var result = _workerCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+                return result != null ? result["totalWorkers"].ToInt32() : 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during aggregation: {ex.Message}");
+                return 0;
+            }
+        }
+
+
+
+
+
+
         public bool UpdateWorker(Worker updatedWorker)
         {
             try

@@ -4,7 +4,9 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -20,16 +22,7 @@ namespace Airport.Services.MongoDBSevice
             var database = client.GetDatabase("airport");
             _flightCollection = database.GetCollection<Flight>("flight");
         }
-      /* public int GetLastFlightId()
-        {
-            var lastFlight = _flightCollection
-                .Find(Builders<Flight>.Filter.Empty)
-                .Sort(Builders<Flight>.Sort.Descending(f => f.FlightId))
-                .Limit(1)
-                .FirstOrDefault();
 
-            return lastFlight?.FlightId ?? 0;
-        }*/
 
         public void AddFlight(Flight flight)
         {
@@ -42,8 +35,8 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-     
-       
+
+
         public void DeleteFlight(ObjectId flightId)
         {
             try
@@ -60,16 +53,16 @@ namespace Airport.Services.MongoDBSevice
                 Console.WriteLine($"Ошибка при удалении рейса: {ex.Message}");
             }
         }
-      
+
 
         public void UpdateFlight(Flight updatedFlight)
         {
             try
             {
-               
+
                 var filter = Builders<Flight>.Filter.Eq(f => f.FlightId, updatedFlight.FlightId);
 
-             
+
                 var result = _flightCollection.ReplaceOne(filter, updatedFlight);
 
             }
@@ -92,6 +85,8 @@ namespace Airport.Services.MongoDBSevice
                 return new List<Flight>();
             }
         }
+
+        //1
 
         public Flight GetFlightById(ObjectId flightId)
         {
@@ -129,7 +124,7 @@ namespace Airport.Services.MongoDBSevice
                 new BsonDocument("$match", new BsonDocument
                 {
                     { "category", category },
-                    { "planeDetail.planeType", planeType },
+                    { "planeDetail.type", planeType },
                     { "routeDetail.flightDirection", flightDirection }
                 }),
                 new BsonDocument("$project", new BsonDocument
@@ -165,7 +160,7 @@ namespace Airport.Services.MongoDBSevice
                 new BsonDocument("$match", new BsonDocument
                 {
                     { "category", category },
-                    { "planeDetail.planeType", planeType },
+                    { "planeDetail.type", planeType },
                     { "routeDetail.flightDirection", flightDirection }
                 }),
                 new BsonDocument("$count", "totalFlights")
@@ -177,11 +172,116 @@ namespace Airport.Services.MongoDBSevice
 
 
 
+        //6
+        public List<Flight> GetFlightsByRouteWithDuration(string routeNumber, double minDurationHours, double maxDurationHours)
+        {
+            var pipeline = new[]
+            {
+        new BsonDocument("$match", new BsonDocument("routeNumber", routeNumber)),
+        new BsonDocument("$addFields", new BsonDocument("flightDuration", new BsonDocument("$subtract", new BsonArray { "$dateArrival", "$dateDeparture" }))),
+        new BsonDocument("$match", new BsonDocument("flightDuration", new BsonDocument
+        {
+            { "$gte", minDurationHours * 60 * 60 * 1000 },
+            { "$lte", maxDurationHours * 60 * 60 * 1000 }
+        })),
+        new BsonDocument("$project", new BsonDocument("flightDuration", 0))
+        };
+
+            return _flightCollection.Aggregate<Flight>(pipeline).ToList();
+        }
 
 
+        //7
+        public double GetAverageTicketsSold(double minTicketPrice, double maxTicketPrice, string routeNumber, double minDurationHours, double maxDurationHours)
+        {
+            var pipeline = new[]
+            {
+            new BsonDocument("$lookup", new BsonDocument
+            {
+                { "from", "ticket" },
+                { "localField", "_id" },
+                { "foreignField", "flightId" },
+                { "as", "tickets" }
+            }),
+            new BsonDocument("$unwind", "$tickets"),
+            new BsonDocument("$match", new BsonDocument("tickets.price", new BsonDocument
+            {
+                { "$gte", minTicketPrice },
+                { "$lte", maxTicketPrice }
+            })),
+            new BsonDocument("$lookup", new BsonDocument
+            {
+                { "from", "route" },
+                { "localField", "routeNumber" },
+                { "foreignField", "number" },
+                { "as", "routeInfo" }
+            }),
+            new BsonDocument("$unwind", "$routeInfo"),
+            new BsonDocument("$addFields", new BsonDocument("flightDuration", new BsonDocument("$subtract", new BsonArray { "$dateArrival", "$dateDeparture" }))),
+            new BsonDocument("$match", new BsonDocument
+            {
+                { "routeNumber", routeNumber },
+                { "flightDuration", new BsonDocument
+                    {
+                        { "$gte", minDurationHours * 60 * 60 * 1000 },
+                        { "$lte", maxDurationHours * 60 * 60 * 1000 }
+                    }
+                }
+            }),
+            new BsonDocument("$group", new BsonDocument
+            {
+                { "_id", "$routeNumber" },
+                { "averageTicketsSold", new BsonDocument("$avg", "$numberBoughtTickets") }
+            }),
+            new BsonDocument("$project", new BsonDocument
+            {
+                { "_id", 0 },
+                { "averageTicketsSold", 1 }
+            })
+        };
 
+            var result = _flightCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
+            return result != null ? result["averageTicketsSold"].AsDouble : 0;
+        }
+
+
+        public List<Flight> GetFlightsByPlaneType(string planeType)
+        {
+            var pipeline = new[]
+            {
+            new BsonDocument("$lookup", new BsonDocument
+            {
+                { "from", "plane" },
+                { "localField", "planeNumber" },
+                { "foreignField", "planeNumber" },
+                { "as", "planeInfo" }
+            }),
+            new BsonDocument("$unwind", "$planeInfo"),
+            new BsonDocument("$match", new BsonDocument("planeInfo.type", planeType)),
+            new BsonDocument("$project", new BsonDocument("planeInfo", 0)) // Исключаем информацию о самолете
+        };
+
+            return _flightCollection.Aggregate<Flight>(pipeline).ToList();
+        }
     }
+
+
+    
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -127,10 +127,10 @@ namespace Airport.ViewModels.WindowViewModels
         public List<StructureUnit> SearchStructureUnits(string query)
         {
             return StructureUnits.Where(unit =>
-                unit.StructureUnitId.ToString().Contains(query) ||                           // Поиск по StructureUnitId
+                unit.StructureUnitId.ToString().Contains(query) ||                          
                 (!string.IsNullOrEmpty(unit.DepartmentName) && unit.DepartmentName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по DepartmentName
                 (!string.IsNullOrEmpty(unit.StructureUnitName) && unit.StructureUnitName.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по StructureUnitName
-                (!string.IsNullOrEmpty(unit.Type) && unit.Type.Contains(query, StringComparison.OrdinalIgnoreCase)) // Поиск по Type
+                (!string.IsNullOrEmpty(unit.Type) && unit.Type.Contains(query, StringComparison.OrdinalIgnoreCase)) 
             ).ToList();
         }
 

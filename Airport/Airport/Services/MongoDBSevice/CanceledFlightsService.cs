@@ -86,5 +86,58 @@ namespace Airport.Services.MongoDBSevice
                 return new List<CanceledFlightInfo>();
             }
         }
+
+        public List<CanceledFlightInfo> GetCanceledFlightsByRouteAndSeats(string routeNumber, int unoccupiedSeatNumber, string flightDirection)
+        {
+            try
+            {
+                var pipeline = new[]
+                {
+
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "status", "скасований" },
+                        { "routeNumber", routeNumber },
+                        { "unoccupiedSeatNumber", unoccupiedSeatNumber }
+                    }),
+
+                    
+                    new BsonDocument("$lookup", new BsonDocument
+                    {
+                        { "from", "route" },
+                        { "localField", "routeNumber" },
+                        { "foreignField", "number" },
+                        { "as", "routeDetails" }
+                    }),
+
+            
+                    new BsonDocument("$unwind", "$routeDetails"),
+
+                    new BsonDocument("$match", new BsonDocument
+                    {
+                        { "routeDetails.flightDirection", flightDirection }
+                    }),
+
+                    new BsonDocument("$project", new BsonDocument
+                    {
+                        { "routeDetails", 0 }
+                    })
+                };
+
+                return _canceledFlightCollection.Aggregate<CanceledFlightInfo>(pipeline).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка при выполнении агрегации: {ex.Message}");
+                return new List<CanceledFlightInfo>();
+            }
+        }
+
+
+
+
+
+
+
     }
 }

@@ -159,7 +159,7 @@ public class BrigadesViewModel:INotifyPropertyChanged
     private void OnMainWindowOpen(object parameter)
     {
 
-        _windowService.OpenWindow("MainMenuView");
+        _windowService.OpenWindow("MainMenuView", _user);
         _windowService.CloseWindow();
 
     }

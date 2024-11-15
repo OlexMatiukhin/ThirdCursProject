@@ -61,7 +61,7 @@ FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru
           FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged"
      ItemsSource="{Binding Workers}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding WorkerId}" Width="0.5*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding WorkerId}" Width="0.5*"/>
                 <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="0.5*"/>
                 <DataGridTextColumn Header="Вік" Binding="{Binding Age}" Width="*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
@@ -98,7 +98,9 @@ CommandParameter="{Binding}" Width="Auto "/>
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити"   Width="Auto"/>
+                            <Button Content="Зміни" Command="{Binding DataContext.DeleteWindowCommand, 
+                 RelativeSource={RelativeSource AncestorType=DataGrid}}"
+               CommandParameter="{Binding}"    Width="Auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

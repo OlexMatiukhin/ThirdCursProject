@@ -111,8 +111,7 @@ namespace Airport.ViewModels.WindowViewModels
         }
         private void OnMainWindowOpen(object parameter)
         {
-
-            _windowService.OpenWindow("MainMenuView");
+            _windowService.OpenWindow("MainMenuView", _user);
             _windowService.CloseWindow();
 
         }

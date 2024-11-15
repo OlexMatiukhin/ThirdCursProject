@@ -76,6 +76,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,1,0,-1" />
-        <TextBox Margin="10,25,430,0" Grid.Row="1" TextWrapping="Wrap"   VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Margin="10,25,10,0" Grid.Row="1" TextWrapping="Wrap"   VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

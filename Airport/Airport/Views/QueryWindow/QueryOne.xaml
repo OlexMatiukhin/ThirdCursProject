@@ -40,7 +40,8 @@
             <Image Source="/Images/Main.png" RenderTransformOrigin="3,2.348" Height="18" Width="16"/>
             <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" RenderTransformOrigin="0.955,0.627" Height="19" Width="70" Margin="0,0,2,0"/>
             <StackPanel.InputBindings>
-                <MouseBinding Gesture="LeftClick" Command="{Binding OpenMainWindowCommand}" />
+
+                <MouseBinding Gesture="LeftClick" Command="{Binding OpenMainWindowCommand>}"/>
             </StackPanel.InputBindings>
 
         </StackPanel>
@@ -58,16 +59,9 @@
 
         <DataGrid x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter"
                  HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                 FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged"
-                 ItemsSource="{Binding Flights}" SelectedItem="{Binding SelectedFlight, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,0,0,-5" Width="868">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.353"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-3.167"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
+                 FontWeight="Bold" IsReadOnly="True" FontSize="10" 
+                 ItemsSource="{Binding Flights}"  HorizontalAlignment="Center" Margin="0,0,0,-5" Width="868">
+ 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FlightId }" Width="0.5*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="2*"/>
@@ -80,89 +74,16 @@
                 <DataGridTextColumn Header="Навігаційн бригада" Binding="{Binding NavigationBrigadeId }"  Width="2*" />
                 <DataGridTextColumn Header="Льотн бригад" Binding="{Binding FlightBrigadeId }"  Width="2*" />
                 <DataGridTextColumn Header="Бригада Інспектор" Binding="{Binding InspectionBrigadeId }" Width="2*" />
-                <DataGridTextColumn Header="Машрут" Binding="{Binding RouteId}" Width="2*" />
+                <DataGridTextColumn Header="Машрут" Binding="{Binding RouteNumber}" Width="2*" />
                 <DataGridTextColumn Header="Контроль" Binding="{Binding CustomsControl}" Width="2*" />
                 <DataGridTextColumn Header="Реєстрація" Binding="{Binding PassengerRegistration}" Width="2*" />
                 <DataGridTextColumn Header="Квитки" Binding="{Binding NumberTickets}" Width="2*" />
                 <DataGridTextColumn Header="Куплені кв-и" Binding="{Binding NumberBoughtTickets}" Width="2*" />
 
 
-                <DataGridTemplateColumn Header="Редагування" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Змінити"  Width="Auto"  Command="{Binding DataContext.OpenEditWindowCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
 
-
-                <DataGridTemplateColumn Header="Активація рейсу" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Активувати рейс" Command="{Binding DataContext.ActivateFlightCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}"    Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-
-                <DataGridTemplateColumn Header="Завершення рейсу" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Завершити рейс" Command="{Binding DataContext.FinishFlightCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}" Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-
-                <DataGridTemplateColumn Header="Затримання" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Затримати" Command="{Binding DataContext.DelayFlightCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="Auto" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Скасування" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Скасувати" Command="{Binding DataContext.CancelFlightCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}"  Width="Auto" />
-
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-
-
-                <DataGridTemplateColumn Header="Митний контрол"  Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Завершити" Command="{Binding DataContext.EndCustomsControlCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}" Width="Auto" />
-
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Реєстрація пасажирів" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Завершити"  Command="{Binding DataContext.EndRegistrationPassengersCommand, 
-               RelativeSource={RelativeSource AncestorType=DataGrid}}"
-             CommandParameter="{Binding}" Width="Auto" />
-
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
+                
 
             </DataGrid.Columns>
 
@@ -170,22 +91,27 @@
 
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="10">
-    
-            <ComboBox x:Name="queryTypeComboBox" Width="120" Height="30" Margin="5" 
-                      SelectedIndex="0">
-                <ComboBoxItem Content="Список" />
-                <ComboBoxItem Content="Количество" />
+
+            <ComboBox 
+            x:Name="queryTypeComboBox" 
+            Width="120" 
+            Height="30" 
+            Margin="5" 
+            SelectedValuePath="Content" 
+            SelectedValue="{Binding SelectedQueryType, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Content="Перелік" />
+                <ComboBoxItem Content="Кількість" />
             </ComboBox>
 
-          
             <TextBox x:Name="categoryTextBox" Width="150" Height="30" Margin="5" 
-                      />
-            <TextBox x:Name="planeTypeTextBox" Width="150" Height="30" Margin="5" 
-                     />
-            <TextBox x:Name="flightDirectionTextBox" Width="150" Height="30" Margin="5" 
-                     />
+         Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Button Content="Скинути" Width="95" Height="32" Margin="5" />
+            <TextBox x:Name="planeTypeTextBox" Width="150" Height="30" Margin="5" 
+         Text="{Binding PlaneType, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBox x:Name="flightDirectionTextBox" Width="150" Height="30" Margin="5" 
+         Text="{Binding FlightDirection, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Виконати" Width="95" Height="32" Margin="5"  Command="{Binding DoQuery}" />
         </StackPanel>
     </Grid>
 </Window>

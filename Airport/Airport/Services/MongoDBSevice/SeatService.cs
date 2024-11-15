@@ -24,7 +24,7 @@ namespace Airport.Services.MongoDBSevice
         }
 
 
-        public List<Seat> GetFilteredSeats(ObjectId flightId, DateTime departureDate, ObjectId routeId, decimal price, int departureHour, int departureMinute)
+        public List<Seat> GetFilteredSeats(ObjectId flightId, DateTime departureDate, string routeNumber, decimal price, int departureHour, int departureMinute)
         {
             var pipeline = new[]
             {
@@ -63,7 +63,7 @@ namespace Airport.Services.MongoDBSevice
                                     { "$lt", departureDate.AddDays(1).ToUniversalTime() }
                                 }
                             },
-                            { "route._id", routeId },
+                            { "route.number", routeNumber },
                             { "flight.price", price },
                             { "$expr", new BsonDocument
                                 {
@@ -92,7 +92,7 @@ namespace Airport.Services.MongoDBSevice
             return _seatCollection.Aggregate<Seat>(pipeline).ToList();
         }
 
-        public int GetFilteredSeatsCount(ObjectId flightId, DateTime departureDate, ObjectId routeId, decimal price, int departureHour, int departureMinute)
+        public int GetFilteredSeatsCount(ObjectId flightId, DateTime departureDate, string routeNumber, decimal price, int departureHour, int departureMinute)
         {
             var pipeline = new[]
             {
@@ -131,7 +131,7 @@ namespace Airport.Services.MongoDBSevice
                                     { "$lt", departureDate.AddDays(1).ToUniversalTime() }
                                 }
                             },
-                            { "route._id", routeId },
+                            { "route.number",   routeNumber },
                             { "flight.price", price },
                             { "$expr", new BsonDocument
                                 {

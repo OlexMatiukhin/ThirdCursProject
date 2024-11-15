@@ -1,0 +1,87 @@
+﻿<Window x:Class="Airport.Views.QueryWindow.Query13"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport.Views.QueryWindow"
+        mc:Ignorable="d"
+        Title="Query12" Height="450" Width="868" Background="#FF1EB7EE">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="Auto" MinHeight="171" />
+            <RowDefinition />
+
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="174,1,0,2" Orientation="Horizontal" Width="181" HorizontalAlignment="Left">
+            <Image RenderTransformOrigin="3,2.348" Height="15" Width="16" Source="/Images/Key.png"/>
+
+            <TextBlock TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter"
+           FontSize="16" FontWeight="Bold" Height="20" Width="156" Margin="0,0,2,0"
+           Text="{Binding Login}" />
+
+
+        </StackPanel>
+        <StackPanel Margin="358,1,0,3" Orientation="Horizontal"   HorizontalAlignment="Left" Width="310">
+            <Image Height="15"  Width="16" RenderTransformOrigin="3,2.348" Source="/Images/Position.png"/>
+            <TextBlock TextWrapping="Wrap" Height="20" FontFamily="pack://application:,,,/Fonts/#Inter"
+           FontSize="16" FontWeight="Bold" Width="284" VerticalAlignment="Center"
+           HorizontalAlignment="Right" Margin="0,0,2,0"
+           Text="{Binding AccessRight}" />
+
+
+        </StackPanel>
+
+        <StackPanel Margin="676,4,0,5" Orientation="Horizontal" HorizontalAlignment="Left" Width="92">
+            <Image Source="/Images/Main.png" RenderTransformOrigin="3,2.348" Height="18" Width="16"/>
+            <TextBlock Text="Головна" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="pack://application:,,,/Fonts/#Inter" RenderTransformOrigin="0.955,0.627" Height="19" Width="70" Margin="0,0,2,0"/>
+            <StackPanel.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding OpenMainWindowCommand}" />
+            </StackPanel.InputBindings>
+
+        </StackPanel>
+
+        <StackPanel Margin="788,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="80">
+            <Image RenderTransformOrigin="3,2.348" Source="/Images/Logout.png"  Width="13" Height="15"/>
+            <TextBlock TextWrapping="Wrap" Height="20" 
+       FontFamily="pack://application:,,,/Fonts/#Inter"
+       FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru" Text="Вийти"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+        </StackPanel>
+        <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
+
+
+
+        <DataGrid ItemsSource="{Binding DelayedFlights}" x:Name="dataGrid" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter" 
+                  HeadersVisibility="Column" Grid.Row="2" CanUserResizeColumns="False" CanUserReorderColumns="False"
+                  FontWeight="Bold" IsReadOnly="True" FontSize="10" >
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Id" Binding="{Binding DelayedFlightInfoId }" Width="0.5*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="*"/>
+                <DataGridTextColumn Header="Категорія" Binding="{Binding Category}" Width="*"/>
+                <DataGridTextColumn Header="Диспетчерська бриг" Binding="{Binding DispatchBrigadeId}" Width="*" />
+                <DataGridTextColumn Header="Навігаційна бриг" Binding="{Binding NavigationBrigadeId }" Width="*"/>
+                <DataGridTextColumn Header="Льотна бриг" Binding="{Binding FlightBrigadeId }" Width="*" />
+                <DataGridTextColumn Header="Дата початку" Binding="{Binding StartDelayDate }" Width="*"/>
+                <DataGridTextColumn Header="Закінчення" Binding="{Binding EndDelayDate }" Width="*"/>
+                <DataGridTextColumn Header="Інспекторська бриг" Binding="{Binding InspectionBrigadeId }" Width="*" />
+                <DataGridTextColumn Header="Рейс" Binding="{Binding FlightId }" Width="*" />
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding  RouteNumber }" Width="*"/>
+                <DataGridTextColumn Header="Працівник" Binding="{Binding WorkerId }" Width="*" />
+                <DataGridTextColumn Header="Причина" Binding="{Binding Reason }" Width="*"/>
+              
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Причина затримки:" FontSize="16" FontWeight="Bold" Width="150" VerticalAlignment="Top" Margin="90,10,628,0" Grid.Row="1" />
+        <TextBox x:Name="ReasonInput" Width="200" Height="30" Text="{Binding Reason, UpdateSourceTrigger=PropertyChanged}" Margin="65,44,603,97" FontSize="14" Grid.Row="1" />
+
+        <TextBlock Text="Номер маршруту:" FontSize="16" FontWeight="Bold" Width="150" VerticalAlignment="Top" Margin="295,10,423,0" Grid.Row="1" />
+        <TextBox x:Name="RouteNumberInput" Width="200" Height="30" Text="{Binding RouteNumber, UpdateSourceTrigger=PropertyChanged}" Margin="280,44,388,97" FontSize="14" Grid.Row="1" />
+        <Button Content="Виконати" Width="95" Height="32" Margin="751,41,22,98"  Command="{Binding DoQuery}" Grid.Row="1" />
+
+    </Grid>
+</Window>
+

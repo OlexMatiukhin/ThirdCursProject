@@ -81,7 +81,8 @@
                 <DataGridTemplateColumn Header="Видалити" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Видалити"  Width="Auto" />
+                            <Button Content="Видалити" Command="{Binding DataContext.DeleteWindowCommand, 
+        RelativeSource={RelativeSource AncestorType=DataGrid}}"  CommandParameter="{Binding}" Width="Auto" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

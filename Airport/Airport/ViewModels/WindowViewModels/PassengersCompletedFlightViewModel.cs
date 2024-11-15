@@ -165,7 +165,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrud(_user))
             {
 
-                _windowService.OpenWindow("MainMenuView");
+                _windowService.OpenWindow("MainMenuView", _user);
                 _windowService.CloseWindow();
             }
 

@@ -90,6 +90,10 @@
 
 
         <Button Content="Виконати" Width="95" Height="32" Margin="676,61,97,123"  Command="{Binding DoQuery}" Grid.Row="1" />
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="174,35,604,0" Grid.Row="1" ><Run Language="uk-ua" Text="Тип"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="344,39,434,0" Grid.Row="1" ><Run Language="uk-ua" Text="Дата почат"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="344,39,434,0" Grid.Row="1" ><Run Language="uk-ua" Text="Дата почат"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="535,39,243,0" Grid.Row="1" ><Run Text="Дата "/><Run Language="uk-ua" Text="кінц"/></TextBlock>
 
     </Grid>
 </Window>

@@ -16,6 +16,34 @@ public class BrigadesViewModel:INotifyPropertyChanged
     private ObservableCollection<Brigade> _brigades;
     private readonly UserService _userService;
     private User _user;
+
+
+
+    private string _login;
+    private string _accessRight;
+
+
+    public string Login
+    {
+        get => _login;
+        set
+        {
+            _login = value;
+            OnPropertyChanged(nameof(Login));
+        }
+    }
+
+
+    public string AccessRight
+    {
+        get => _accessRight;
+        set
+        {
+            _accessRight = value;
+            OnPropertyChanged(nameof(AccessRight));
+        }
+    }
+
     public ObservableCollection<Brigade> Brigades
     {
         get => _brigades;
@@ -85,10 +113,9 @@ public class BrigadesViewModel:INotifyPropertyChanged
     }
     public ICommand OpenEditWindowCommand { get; }
 
-    public ICommand DeleteWindowCommand { get; }
     public ICommand OpenAddWindowCommand { get; }
 
-    public ICommand DeleteCommand  { get; }
+    public ICommand DeleteWindowCommand { get; }
     public BrigadesViewModel(IWindowService windowService, User user)
     {
         _brigadeService = new BrigadeService();
@@ -99,6 +126,8 @@ public class BrigadesViewModel:INotifyPropertyChanged
         _userService = new UserService();
         this._user = user;
         _windowService = windowService;
+        Login = _user.Login;
+        AccessRight = _user.AccessRight;
         LoadBrigades();
     }
     private void OnEdit(object parameter)
@@ -145,11 +174,13 @@ public class BrigadesViewModel:INotifyPropertyChanged
                             "Видалення бригади",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+                    LoadBrigades();
                 }
 
 
             }
         }
+
 
 
 
@@ -183,6 +214,8 @@ public class BrigadesViewModel:INotifyPropertyChanged
 
             _windowService.OpenModalWindow("AddBrigade");
         }
+        LoadBrigades();
+
 
 
 
@@ -193,7 +226,7 @@ public class BrigadesViewModel:INotifyPropertyChanged
     }
 
 
-  
+
 
 
     private void LoadBrigades()

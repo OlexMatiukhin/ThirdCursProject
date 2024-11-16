@@ -88,19 +88,24 @@
         <TextBox x:Name="routeNumberTextBox" Width="150" Height="30" Margin="190,24,528,117" 
                      Text="{Binding RouteNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" RenderTransformOrigin="0.407,0.568" 
                    />
-        <TextBox x:Name="minTicketPriceTextBox" Width="150" Height="30" Margin="10,72,708,69" 
-                     Text="{Binding MinTicketPriceText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
+        <TextBox x:Name="minTicketPriceTextBox" Width="150" Height="30" Margin="10,98,708,43" 
+                     Text="{Binding MinTicketPriceText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" TextChanged="minTicketPriceTextBox_TextChanged" 
                      />
-        <TextBox x:Name="maxTicketPriceTextBox" Width="150" Height="30" Margin="190,70,528,71" 
+        <TextBox x:Name="maxTicketPriceTextBox" Width="150" Height="30" Margin="190,96,528,45" 
                      Text="{Binding MaxTicketPriceText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
                     />
-        <TextBox x:Name="minDurationTextBox" Width="150" Height="30" Margin="363,70,355,71" 
+        <TextBox x:Name="minDurationTextBox" Width="150" Height="30" Margin="363,96,355,45" 
                      Text="{Binding MinDurationHoursText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
                      />
-        <TextBox x:Name="maxDurationTextBox" Width="150" Height="30" Margin="535,71,183,70" 
+        <TextBox x:Name="maxDurationTextBox" Width="150" Height="30" Margin="535,97,183,44" 
                      Text="{Binding MaxDurationHoursText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
                      />
-        <Button Content="Виконати" Width="95" Height="32" Margin="710,70,63,69"  Command="{Binding DoQuery}" Grid.Row="1" />
+        <Button Content="Виконати" Width="95" Height="32" Margin="710,94,63,45"  Command="{Binding DoQuery}" Grid.Row="1" />
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="27,72,724,0" Grid.Row="1" ><Run Language="uk-ua" Text="Мін цін квитка"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="220,26,558,0" Grid.RowSpan="2" ><Run Language="uk-ua" Text="Номер"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="190,72,540,0" Grid.Row="1" ><Run Language="uk-ua" Text="Макс цін квитка"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="346,68,346,0" Grid.Row="1" ><Run Text="Макс "/><Run Language="uk-ua" Text="тривал польоту"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="535,68,157,0" Grid.Row="1" ><Run Language="uk-ua" Text="Мін тривал польоту"/></TextBlock>
 
     </Grid>
 </Window>

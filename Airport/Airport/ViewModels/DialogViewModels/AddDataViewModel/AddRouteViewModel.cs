@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -98,17 +99,49 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             AddRouteCommand = new RelayCommand(ExecuteAddRoute, canExecute => true);
         }
 
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(Number))
+            {
+                MessageBox.Show("Номер маршруту не може бути порожнім.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(DeparturePoint))
+            {
+                MessageBox.Show("Точка відправлення не може бути порожньою.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(ArrivalPoint))
+            {
+                MessageBox.Show("Точка прибуття не може бути порожньою.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(FlightDirection))
+            {
+                MessageBox.Show("Напрямок польоту не може бути порожнім.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
         private void ExecuteAddRoute(object parameter)
         {
-            var newRoute = new Route
-            {
-             
-                Number = Number,
-                DeparturePoint = DeparturePoint,
-                ArrivalPoint = ArrivalPoint,
-                TransitAirport = TransitAirport,
-                FlightDirection = FlightDirection
-            };
+            if (ValidateInputs()) { 
+                var newRoute = new Route
+                {
+
+                    Number = Number,
+                    DeparturePoint = DeparturePoint,
+                    ArrivalPoint = ArrivalPoint,
+                    TransitAirport = TransitAirport,
+                    FlightDirection = FlightDirection
+                };
+                MessageBox.Show("Об'єкт упішно додано!");
+                _windowService.CloseModalWindow();
+            }
         } 
     
 

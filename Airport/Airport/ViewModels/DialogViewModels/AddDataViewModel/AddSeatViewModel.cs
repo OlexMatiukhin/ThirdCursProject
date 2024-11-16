@@ -1,5 +1,6 @@
 ﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
+using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -10,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -25,6 +27,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
             private readonly WorkerService _workerService;
+            private IWindowService windowService;
             public ICommand AddSeatCommand { get; }
 
             public AddSeatViewModel()
@@ -45,11 +48,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                     Status = this.SelectedStatus,
                     Number= _seatSevice.GetLastSeatNumber() + 1,
                     FlightId = this.SelectedFlightId,
+                   
                     
 
                 };
+      
+          
 
-                _seatSevice.AddSeat(seat);
+            _seatSevice.AddSeat(seat);
             }
 
             public ObservableCollection<Flight> Flights { get; set; }
@@ -109,7 +115,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private void LoadData()
         {             
                 var FlightsList = _flightService.GetFlightsData();
-                Flights = new ObservableCollection<Flight>(FlightsList);         
+                Flights = new ObservableCollection<Flight>(FlightsList);    
+            
 
         }
 

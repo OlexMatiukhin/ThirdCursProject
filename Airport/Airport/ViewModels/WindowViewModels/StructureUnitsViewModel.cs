@@ -137,7 +137,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnMainWindowOpen(object parameter)
         {
 
-            _windowService.OpenWindow("MainMenuView");
+            _windowService.OpenWindow("MainMenuView", _user);
             _windowService.CloseWindow();
 
         }
@@ -149,7 +149,7 @@ namespace Airport.ViewModels.WindowViewModels
             {
 
                 var structureUnit = parameter as StructureUnit;
-                List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentName(structureUnit.DepartmentName);
+                List<StructureUnit> positionsList = _structureUnitService.GetStructureUnitsDataByDepartmentName(structureUnit.StructureUnitName);
                 if (positionsList.Count == 0)
                 {
                     MessageBoxResult result = MessageBox.Show(

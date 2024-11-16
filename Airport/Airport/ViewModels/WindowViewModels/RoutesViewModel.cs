@@ -202,11 +202,13 @@ namespace Airport.ViewModels.WindowViewModels
                     {
 
                         _routeService.DeleteRoute(route.RouteId);
+                        Routes.Remove(route);
                         MessageBox.Show(
                                 "Маршрут успішно видалено!",
                                 "Видалення інформації про маршрут",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
+
                     }
 
 

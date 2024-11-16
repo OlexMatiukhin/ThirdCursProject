@@ -77,9 +77,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecuteAddUser(object parameter)
         {
-            if(!string.IsNullOrEmpty(Login) &&
-                   !string.IsNullOrEmpty(Password) &&
-                   !string.IsNullOrEmpty(AccessRight))
+            if(ValidateInputs())
             {
                 var newUser = new User
                 {
@@ -97,6 +95,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 Login = string.Empty;
                 Password = string.Empty;
                 AccessRight = string.Empty;
+                MessageBox.Show("Користувача успішно додано!");
+                _windowService.CloseModalWindow();
 
             }
 
@@ -104,7 +104,36 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
       
         }
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(Login))
+            {
+                MessageBox.Show("Логін не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
 
+            if (string.IsNullOrEmpty(Password))
+            {
+                MessageBox.Show("Пароль не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(AccessRight))
+            {
+                MessageBox.Show("Оберіть рівень доступу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+       
+            var existingUser = _userService.GetUsers().FirstOrDefault(u => u.Login == Login);
+            if (existingUser != null)
+            {
+                MessageBox.Show("Користувач з таким логіном вже існує.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
         private void LoadData()
         {
             Users = new ObservableCollection<User>(_userService.GetUsers());

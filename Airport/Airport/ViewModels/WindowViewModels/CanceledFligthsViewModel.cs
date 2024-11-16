@@ -134,6 +134,8 @@ namespace Airport.ViewModels.WindowViewModels
                                   "Видалення інформації",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
+                        LoadCanceledFlights();
+
                     }
 
 

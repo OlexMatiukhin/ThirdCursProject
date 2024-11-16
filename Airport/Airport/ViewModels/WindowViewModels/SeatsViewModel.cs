@@ -130,6 +130,7 @@ namespace Airport.ViewModels.WindowViewModels
         private void OnAdd(object parameter)
         {
             _windowService.OpenModalWindow("AddSeat");
+            LoadSeats();
 
 
 

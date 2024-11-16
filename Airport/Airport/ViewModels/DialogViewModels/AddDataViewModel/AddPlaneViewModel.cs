@@ -11,6 +11,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -31,24 +32,47 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
         }
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(PlaneNumber))
+            {
+                MessageBox.Show("Номер літака не може бути порожнім.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedPlaneType))
+            {
+                MessageBox.Show("Будь ласка, оберіть тип літака.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
         private void ExecuteAddPlane(object parameter)
         {
-            var newPlane = new AirPlane
+            if (ValidateInputs())
             {
-                PlaneNumber=this.PlaneNumber,
-                Type = SelectedPlaneType,
-                TechCondition = "задовільний",
-                InteriorReadiness = "готовий",
-              
-                NumberFlightsBeforeRepair = 0,
-                TechInspectionDate = DateTime.Now,
-                Assigned = Assigned,
-                NumberRepairs = 0,
-                ExploitationDate = DateTime.Now,
-                PlaneFuelStatus= "не заправлений"
-            };
+                var newPlane = new AirPlane
+                {
+                    PlaneNumber = this.PlaneNumber,
+                    Type = SelectedPlaneType,
+                    TechCondition = "задовільний",
+                    InteriorReadiness = "готовий",
 
-            _planeService.AddPlane(newPlane);
+                    NumberFlightsBeforeRepair = 0,
+                    TechInspectionDate = DateTime.Now,
+                    Assigned = Assigned,
+                    NumberRepairs = 0,
+                    ExploitationDate = DateTime.Now,
+                    PlaneFuelStatus = "не заправлений"
+                };
+
+                _planeService.AddPlane(newPlane);
+                MessageBox.Show("Об'єкт упішно додано!");
+                _windowService.CloseModalWindow();
+            }
+          
         }
 
         
@@ -80,10 +104,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         public string PlaneNumber
         {
-            get => _planeType;
+            get => _planeNumber;
             set
             {
-                _planeType = value;
+                _planeNumber = value;
                 OnPropertyChanged(nameof(PlaneNumber));
             }
         }

@@ -4,13 +4,16 @@ using Airport.ViewModels.DialogViewModels.AdditionalViewModel;
 using Airport.ViewModels.DialogViewModels.Change;
 using Airport.ViewModels.DialogViewModels.ChangeDataViewModel;
 using Airport.ViewModels.MenuViewModels;
+using Airport.ViewModels.QueriesViewModel;
 using Airport.ViewModels.WindowViewModels;
 using Airport.Views;
 using Airport.Views.Dialog;
 using Airport.Views.Dialog.AddWindow;
 using Airport.Views.Dialog.ChangeWindow;
 using Airport.Views.MenuWindows;
+using Airport.Views.QueryWindow;
 using Airport.Views.Windows;
+using Airport.Views.MenuWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +23,8 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using QueryMenuViewModel = Airport.ViewModels.MenuViewModels.QueryMenuViewModel;
+using Airport.Command.AddDataCommands;
 
 namespace Airport.Services
 {
@@ -32,6 +37,7 @@ namespace Airport.Services
         {
              window = null;
 
+          
             switch (windowName)
             {
                 case "BaggageView":
@@ -206,6 +212,116 @@ namespace Airport.Services
                         window.DataContext = new UserViewModel(this, user21);
                     }
                     break;
+
+
+
+                case "QueryOne":
+                    if (parameter is User user22)
+                    {
+                        window = new QueryOne();
+                        window.DataContext = new Query1ViewModel(this, user22);
+                    }
+                    break;
+
+
+                case "Query2":
+                    if (parameter is User user23)
+                    {
+                        window = new Query2();
+                        window.DataContext = new Query2ViewModel(this, user23);
+                    }
+                    break;
+
+                case "Queyry3":
+                    if (parameter is User user24)
+                    {
+                        window = new Query3();
+                        window.DataContext = new Query3ViewModel(this, user24);
+                    }
+                    break;
+
+                case "Query4":
+                    if (parameter is User user25)
+                    {
+                        window = new Query4();
+                        window.DataContext = new Query4ViewModel(this, user25);
+                    }
+                    break;
+
+                case "Query5":
+                    if (parameter is User user26)
+                    {
+                        window = new Query5();
+                        window.DataContext = new Query5ViewModel(this, user26);
+                    }
+                    break;
+
+                case "Query6":
+                    if (parameter is User user27)
+                    {
+                        window = new Query6();
+                        window.DataContext = new Query6ViewModel(this, user27);
+                    }
+                    break;
+
+                case "Query7":
+                    if (parameter is User user28)
+                    {
+                        window = new Query7();
+                        window.DataContext = new Query7ViewModel(this, user28);
+                    }
+                    break;
+                case "Query8":
+                    if (parameter is User user29)
+                    {
+                        window = new Query8();
+                        window.DataContext = new Query8ViewModel(this, user29);
+                    }
+                    break;
+                case "Query9":
+                    if (parameter is User user30)
+                    {
+                        window = new Query9();
+                        window.DataContext = new Query9ViewModel(this, user30);
+                    }
+                    break;
+                case "Query10":
+                    if (parameter is User user31)
+                    {
+                        window = new Query10();
+                        window.DataContext = new Query10ViewModel(this, user31);
+                    }
+                    break;
+                case "Query11":
+                    if (parameter is User user32)
+                    {
+                        window = new Query11();
+                        window.DataContext = new Query11ViewModel(this, user32);
+                    }
+                    break;
+                case "Query12":
+                    if (parameter is User user33)
+                    {
+                        window = new Query12();
+                        window.DataContext = new Query12ViewModel(this, user33);
+                    }
+                    break;
+                case "Query13":
+                    if (parameter is User user34)
+                    {
+                        window = new Query13();
+                        window.DataContext = new Query13ViewModel(this, user34);
+                    }
+                    break;
+
+                case "QueryMenuView":
+                    if (parameter is User user35)
+                    {
+                        window = new QueryMenuView();
+                        window.DataContext = new QueryMenuViewModel(this, user35);
+                    }
+                    break;
+
             }
 
             if (window != null)
@@ -333,19 +449,19 @@ namespace Airport.Services
 
                     break;
                 case "AddBrigade":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddBrigadeView();
+                    modalWindow.DataContext = new AddBrigadeViewModel(this);
                     break;
 
-                case "AddDepartmetn":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                case "AddDepartment":
+                    modalWindow = new AddDepartmentView();
+                    modalWindow.DataContext = new AddDepartmentViewModel(this);
                     break;
 
                 case "AddFlight":
 
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddFlightView();
+                    modalWindow.DataContext = new AddFlightViewModel(this);
                     break;
 
                 case "AddPassanger":
@@ -363,42 +479,42 @@ namespace Airport.Services
 
 
                 case "AddPlane":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddPlaneView();
+                    modalWindow.DataContext = new AddPlaneViewModel(this);
                     break;
 
 
 
                 case "AddPosition":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddPositionView();
+                    modalWindow.DataContext = new AddPositionViewModel(this);
                     break;
 
 
 
                 case "AddRoute":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddRouteView();
+                    modalWindow.DataContext = new AddRouteViewModel(this);
                     break;
 
 
-                case "AddSeat":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
-                    break;
+                /*case "AddSeat":
+                    modalWindow = new AddSeatView();
+                    modalWindow.DataContext = new AddSeatViewModel(this);
+                    break;*/
 
                 case "AddStructureUnit":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddStructureUnitView();
+                    modalWindow.DataContext = new AddStructureUnitViewModel(this);
                     break;
-                case "AddTicketView":
+                /*case "AddTicketView":
                     modalWindow = new AddBaggageView();
                     modalWindow.DataContext = new AddBaggeViewModle(this);
 
-                    break;
+                    break;*/
                 case "AddWorker":
-                    modalWindow = new AddBaggageView();
-                    modalWindow.DataContext = new AddBaggeViewModle(this);
+                    modalWindow = new AddWorkerView();
+                    modalWindow.DataContext = new AddWorkerViewModel(this);
                     break;
                 case "AddCanceledFlightInfo":
                     if (parameter is Flight flightToCacnel&& paramet2 is ObservableCollection<Flight> flights)

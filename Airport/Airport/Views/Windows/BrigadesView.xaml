@@ -62,8 +62,8 @@
                 <DataGridTextColumn Header="Cтуктурна одиниця" Binding="{Binding StructureUnitName }" Width="*"/>
                 <DataGridTextColumn Header="Кільксть працівників" Binding="{Binding NumberWorkers }" Width="*"/>
                 <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate   >
                             <Button Content="Зміни" Command="{Binding DataContext.OpenEditWindowCommand , RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"  CommandParameter="{Binding}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -71,16 +71,13 @@
                 <DataGridTemplateColumn Header="Видалення"   Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button   Command="{Binding DataContext.DeleteUserCommand , RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Content="Видалення" />
+                            <Button   Command="{Binding DataContext.DeleteWindowCommand , RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Content="Видалення" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenEditWindowCommand }" Margin="0,1,0,-1" />
-        <TextBox Margin="10,25,430,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
-        <ComboBox Grid.Row="1" VerticalAlignment="Top" MinWidth="120" MaxWidth="267" MinHeight="28" HorizontalAlignment="Right" Margin="0,25,270,0" Height="30"/>
-        <Button Content="Шукати" Margin="0,25,25,0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" MinHeight="28" MinWidth="95" MaxWidth="212" RenderTransformOrigin="0.5,0.5" Height="32"/>
-        <Button Content="Скинути" Margin="0,24,145,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="28" MinWidth="95" Width="95" MaxWidth="212" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Height="32" />
+        <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand }" Margin="0,1,0,-1" />
+        <TextBox Margin="10,25,10,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

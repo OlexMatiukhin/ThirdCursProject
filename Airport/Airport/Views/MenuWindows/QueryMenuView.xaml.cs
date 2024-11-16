@@ -17,9 +17,9 @@ namespace Airport.Views.MenuWindows
     /// <summary>
     /// Логика взаимодействия для QueryMenu.xaml
     /// </summary>
-    public partial class QueryMenu : Window
+    public partial class QueryMenuView : Window
     {
-        public QueryMenu()
+        public QueryMenuView()
         {
             InitializeComponent();
         }

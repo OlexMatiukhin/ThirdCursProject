@@ -48,7 +48,7 @@ namespace Airport.ViewModels.QueriesViewModel
 
             _userService = new UserService();
             _user = user;
-            /* Login = _user.Login;
+            /*Login = _user.Login;
               AccessRight = _user.AccessRight;*/
             DoQuery = new RelayCommand(OnDoQuery);
 

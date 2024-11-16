@@ -20,7 +20,7 @@ namespace Airport.Services
 
             public CanceledFlightsService(string collectionName)
             {
-                // Подключение к MongoDB
+                
                 var client = new MongoClient("mongodb+srv://aleks:administrator@cursproject.bsthnb0.mongodb.net/?retryWrites=true&w=majority&appName=CursProject");
                 var database = client.GetDatabase("airport");
                 _canceledFlightsCollection = database.GetCollection<BsonDocument>(collectionName);

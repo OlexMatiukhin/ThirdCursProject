@@ -7,6 +7,7 @@ using Airport.Views.Dialog;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -19,8 +20,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private readonly WorkerService _workerService;
 
-        // Command for adding a worker
         public ICommand AddWorkerCommand { get; }
+  
 
         public AddWorkerViewModel(IWindowService windowService)
         {
@@ -36,24 +37,31 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecuteAddWorker(object parameter)
         {
-            /*Worker worker = new Worker
+            if (ValidateInputs())
             {
-                WorkerId = _workerService.GetLastWorkerId() + 1,
-                FullName = FullName,
-                Age = int.Parse(Age),
-                Status = SelectedStatus,
-                Gender = SelectedGender,
-                NumberChildren = int.Parse(NumberChildren),
-                HireDate = DateTime.Now,
-                Shift = SelectedShift,
-                Email = Email,
-                PhoneNumber = PhoneNumber,
-                BrigadeId = SelectedBrigadeId,
-                PositionId = SelectedPostionId
-            };
-            _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
+                Worker worker = new Worker
+                {
 
-            _workerService.AddWorker(worker);*/
+                    FullName = FullName,
+                    Age = int.Parse(Age),
+                    Status = SelectedStatus,
+                    Gender = SelectedGender,
+                    NumberChildren = int.Parse(NumberChildren),
+                    HireDate = DateTime.Now,
+                    Shift = SelectedShift,
+                    Email = Email,
+                    PhoneNumber = PhoneNumber,
+                    BrigadeId = SelectedBrigadeId,
+                    PositionName = SelectedPostionName
+                };
+
+                _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
+
+                _workerService.AddWorker(worker);
+
+                MessageBox.Show("Користувача успішно додано!");
+                _windowService.CloseModalWindow();
+            }
         }
 
 
@@ -61,14 +69,14 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         public ObservableCollection<Brigade> Brigades { get; set; }
 
 
-        public Dictionary<ObjectId, string> PositionsDictionary { get; set; }
+        public Dictionary<string, string> PositionsDictionary { get; set; }
         public Dictionary<ObjectId, string> BrigadesDictionary { get; set; }
 
 
         public List<string> Gender { get; set; } = new List<string>
         {
             "чоловік",
-            "жнка"
+            "жінка"
 
         };
         public List<string> Status { get; set; } = new List<string>
@@ -94,7 +102,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private string _phoneNumber;
         private ObjectId _selectedBrigadeId;
 
-        private ObjectId _selectedPostionId;
+        private string _selectedPostionName;
         public string FullName
         {
             get => _fullName;
@@ -179,13 +187,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             }
         }
 
-        public ObjectId SelectedPostionId
+        public string SelectedPostionName
         {
-            get => _selectedPostionId;
+            get => _selectedPostionName;
             set
             {
-                _selectedPostionId = value;
-                OnPropertyChanged(nameof(SelectedPostionId));
+                _selectedPostionName = value;
+                OnPropertyChanged(nameof(SelectedPostionName));
             }
         }
 
@@ -216,10 +224,79 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         }
 
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(FullName))
+            {
+                MessageBox.Show("Повне ім'я не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+         
+            if (string.IsNullOrEmpty(Age) || !int.TryParse(Age, out _))
+            {
+                MessageBox.Show("Вік має бути числом і не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+    
+            if (string.IsNullOrEmpty(SelectedStatus))
+            {
+                MessageBox.Show("Оберіть статус працівника.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(SelectedGender))
+            {
+                MessageBox.Show("Оберіть стать.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+
+            if (string.IsNullOrEmpty(NumberChildren) || !int.TryParse(NumberChildren, out _))
+            {
+                MessageBox.Show("Кількість дітей має бути числом.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+
+            if (string.IsNullOrEmpty(SelectedShift))
+            {
+                MessageBox.Show("Оберіть зміну.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+
+            if (string.IsNullOrEmpty(Email) || !Email.Contains("@"))
+            {
+                MessageBox.Show("Введіть правильну електронну пошту.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            
+            if (string.IsNullOrEmpty(PhoneNumber) || PhoneNumber.Length < 10)
+            {
+                MessageBox.Show("Номер телефону має бути правильним і містити не менше 10 цифр.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+      
+          
+
+           
+            if (string.IsNullOrEmpty(SelectedPostionName))
+            {
+                MessageBox.Show("Оберіть посаду.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void CreateDictionaries()
         {
             BrigadesDictionary = Brigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
-            PositionsDictionary = Positions.ToDictionary(b => b.PositionId, b => b.ToString());
+            PositionsDictionary = Positions.ToDictionary(b => b.PositionName, b => b.ToString());
 
         }
 

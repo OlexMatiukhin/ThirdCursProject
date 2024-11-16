@@ -85,11 +85,12 @@
 
         </DataGrid>
 
-        <TextBox x:Name="planetype" Width="150" Height="30" Margin="14,24,704,117" 
+        <TextBox x:Name="planetype" Width="150" Height="30" Margin="485,70,233,71" 
                 Text="{Binding PlaneType, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" RenderTransformOrigin="-0.2,0.568" />
 
 
         <Button Content="Виконати" Width="95" Height="32" Margin="710,70,63,69"  Command="{Binding DoQuery}" Grid.Row="1" />
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="515,44,263,0" Grid.Row="1" ><Run Language="uk-ua" Text="Тип літака"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
 
     </Grid>
 </Window>

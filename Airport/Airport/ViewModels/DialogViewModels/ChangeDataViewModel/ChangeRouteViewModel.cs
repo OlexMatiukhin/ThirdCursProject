@@ -79,10 +79,42 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             }
 
+        private bool ValidateInputs()
+        {
+       
+            if (string.IsNullOrWhiteSpace(Number))
+            {
+                return false;
+            }
+
+      
+            if (string.IsNullOrWhiteSpace(DeparturePoint))
+            {
+                return false;
+            }
+
+           
+            if (string.IsNullOrWhiteSpace(ArrivalPoint))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(TransitAirport) && string.IsNullOrWhiteSpace(TransitAirport))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(FlightDirection))
+            {
+                return false;
+            }
+
+            return true;
+        }
 
 
 
-            public ChangeRouteViewModel(Route route, IWindowService windowService)
+        public ChangeRouteViewModel(Route route, IWindowService windowService)
             {
                 this._windowService = windowService;
                 this._route = route;
@@ -97,13 +129,17 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private void ExecuteChangeRoute(object parameter)
             {
-
-                _route.Number = Number;
-                _route.DeparturePoint = DeparturePoint;
-                _route.ArrivalPoint = ArrivalPoint;
-                _route.TransitAirport = TransitAirport;
-                _route.FlightDirection = FlightDirection;                
-                _routeService.UpdateRoute(_route);
+                if (ValidateInputs())
+                {
+                    _route.Number = Number;
+                    _route.DeparturePoint = DeparturePoint;
+                    _route.ArrivalPoint = ArrivalPoint;
+                    _route.TransitAirport = TransitAirport;
+                    _route.FlightDirection = FlightDirection;
+                    _routeService.UpdateRoute(_route);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+            }
             }
 
 

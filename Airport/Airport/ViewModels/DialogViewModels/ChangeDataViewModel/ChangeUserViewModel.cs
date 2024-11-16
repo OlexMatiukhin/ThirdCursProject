@@ -75,21 +75,46 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             "гість"
         };
 
+        private bool ValidateInputs()
+        {
+            bool isValid = true;
+
+          
+            if (string.IsNullOrWhiteSpace(Login))
+            {
+                MessageBox.Show("Поле 'Логін' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Поле 'Пароль' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(AccessRight))
+            {
+                MessageBox.Show("Поле 'Рівень доступу' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
         private void ChangeUser(object parameter)
         {
-          
-            if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(AccessRight))
+            if (ValidateInputs())
             {
-               
-                MessageBox.Show("Будь ласка, заповніть всі поля.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+
+                _user.Login = this.Login;
+                _user.Password = this.Password;
+                _user.AccessRight = this.AccessRight;
+                _userService.UpdateUser(_user);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
             }
 
           
-            _user.Login = this.Login;
-            _user.Password = this.Password;
-            _user.AccessRight = this.AccessRight;
-            _userService.UpdateUser(_user);
         }
 
         

@@ -231,7 +231,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrud(_user))
             {
                 var plane = parameter as AirPlane;
-                if (plane != null && _planeService.IsPlaneInFlight(plane.PlaneNumber))
+                if (plane != null && !_planeService.IsPlaneInFlight(plane.PlaneNumber))
                 {
 
                     MessageBoxResult resultOther = MessageBox.Show(

@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -43,11 +44,19 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
         private void AddDepartment(object parameter)
         {
+
+            if (string.IsNullOrWhiteSpace(DepartmentName))
+            {
+                MessageBox.Show("Назва департаменту не може бути пустою!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             Department newDepartment = new Department
             {
                 DepartmentName = DepartmentName,
             };
             _departmentService.AddDepartment(newDepartment);
+            MessageBox.Show("Об'єкт упіщно додано!");
+            _windowService.CloseModalWindow();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

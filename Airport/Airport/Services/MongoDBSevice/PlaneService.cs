@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Numerics;
+using System.Windows;
 
 namespace Airport.Services.MongoDBSevice
 {
@@ -23,17 +24,29 @@ namespace Airport.Services.MongoDBSevice
             _flightCollection = database.GetCollection<Flight>("flight");
 
         }
-
-        public bool IsPlaneInFlight(string PlaneNumber)
+        public bool IsPlaneInFlight(string planeNumber)
         {
             try
             {
-            
-                var filter = Builders<Flight>.Filter.Eq(f => f.PlaneNumber, PlaneNumber);
-                return _flightCollection.Find(filter).Any();
+
+              
+
+                var filter = Builders<Flight>.Filter.Eq(f => f.PlaneNumber, planeNumber);
+                var flights = _flightCollection.Find(filter).ToList();
+                foreach (var flight in flights)
+                {
+                    MessageBox.Show($"Found flight: {flight.PlaneNumber}","ddd",MessageBoxButton.OK);
+                }
+
+                if (flights.Count > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
+                // Логирование ошибки
                 Console.WriteLine($"Error checking if plane is in flight: {ex.Message}");
                 return false;
             }

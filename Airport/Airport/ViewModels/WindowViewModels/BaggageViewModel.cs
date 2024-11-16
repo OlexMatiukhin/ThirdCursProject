@@ -128,10 +128,12 @@ public class BaggageViewModel:INotifyPropertyChanged
                 _windowService.OpenModalWindow("ChangeBaggage", baggage);
 
             }
+            LoadBagge();
+
         }
 
 
-       
+
 
 
 
@@ -172,9 +174,10 @@ public class BaggageViewModel:INotifyPropertyChanged
         {
             _windowService.OpenModalWindow("AddBaggage");
         }
-        
+        LoadBagge();
 
-        
+
+
 
 
 

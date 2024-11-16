@@ -167,9 +167,11 @@ namespace Airport.ViewModels.WindowViewModels
                 if (flight != null)
                 {
                     _windowService.OpenModalWindow("ChangeFlight", flight);
+                    LoadFlights();
 
 
                 }
+
             }
             
 
@@ -215,6 +217,7 @@ namespace Airport.ViewModels.WindowViewModels
                         flight.CustomsControl = "завершений";
                         _flightService.UpdateFlight(flight);
                     }
+                    LoadFlights();
 
                 }
             }
@@ -239,6 +242,7 @@ namespace Airport.ViewModels.WindowViewModels
                     {
                         flight.PassengerRegistration = "завершена";
                         _flightService.UpdateFlight(flight);
+                            LoadFlights();
                     }
                 }
             }

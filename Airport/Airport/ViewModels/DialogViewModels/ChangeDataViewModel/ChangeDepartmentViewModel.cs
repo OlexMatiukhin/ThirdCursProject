@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Airport.Services.MongoDBSevice;
 using Airport.Services;
+using System.Windows;
+using Xceed.Wpf.Toolkit;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -54,13 +56,25 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ChangeDepartment(object parameter)
         {
-            
-            _departement.DepartmentName= DepartmentName;
-            _departmentService.UpdateDepartment(_departement);
+            if (ValidateInputs()) {
+
+                _departement.DepartmentName = DepartmentName;
+                _departmentService.UpdateDepartment(_departement);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+            }
+           
         }
 
-
-
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(DepartmentName))
+            {
+                System.Windows.MessageBox.Show("Будь ласка, введіть назву департаменту.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
 
 
 

@@ -4,6 +4,7 @@ using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System.ComponentModel;
 using System.Numerics;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -22,7 +23,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             this._windowService = windowService;
             this._plane = plane;
             Assigned = plane.Assigned;
-            NumberRepairs = plane.NumberRepairs;          
+               
             PlaneNumber = plane.PlaneNumber;
             _planeService = new PlaneService();
             ChnagePassangerCommand = new RelayCommand(ExecuteChangePlane, canExecute => true);    
@@ -42,9 +43,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
        
        
         private string _type;
-        private string _techCondition;
-        private bool _assigned;
-        private int _numberRepairs;
+          private bool _assigned;
+     
         private string _planeNumber;
         private DateTime _exploitationDate;
         
@@ -60,15 +60,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
 
         
-        public int NumberRepairs
-        {
-            get => _numberRepairs;
-            set
-            {
-                _numberRepairs = value;
-                OnPropertyChanged(nameof(NumberRepairs));
-            }
-        }
+      
       
       
         public string PlaneNumber
@@ -81,17 +73,39 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
 
         }
+        private bool ValidateInputs()
+        {
+            
+            if (string.IsNullOrEmpty(PlaneNumber))
+            {
+                MessageBox.Show("Будь ласка, введіть номер літака.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+      
+           
+
+            return true; 
+        }
+
+
         private void ExecuteChangePlane(object parameter)
         {
-            _plane.TechCondition = _techCondition;
-            _plane.Assigned = Assigned;
-            _plane.NumberRepairs = NumberRepairs;
-         
-            _plane.PlaneNumber= PlaneNumber;
+         if(ValidateInputs())
+         {
+                _plane.Assigned = Assigned;
+                _plane.PlaneNumber = PlaneNumber;
+
+                _planeService.UpdatePlane(_plane);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+
+            }
+            
 
             
 
-            _planeService.UpdatePlane(_plane);
+           
         }
 
 

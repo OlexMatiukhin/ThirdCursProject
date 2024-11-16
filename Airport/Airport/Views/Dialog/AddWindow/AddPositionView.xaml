@@ -22,13 +22,13 @@
          Width="120"/>
 
 
-        <TextBlock HorizontalAlignment="Left" Margin="231,33,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Номер"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="231,33,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Назва"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="382,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Зарплата"/></TextBlock>
-        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="500,51,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  ItemsSource="{Binding StructureUnitDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding StructureUnitName, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="500,51,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="498,30,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Структурна одиниця"/><LineBreak/><Run Language="ru-ru"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="535,40,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height
         ="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
-        <Button Command="{Binding AddBrigadeCommand}" Content="Button" Margin="265,124,265,285"/>
+        <Button Command="{Binding AddPositionComand}" Content="Button" Margin="265,124,265,275"/>
 
 
     </Grid>

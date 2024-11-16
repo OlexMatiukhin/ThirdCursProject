@@ -146,15 +146,36 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(FullName) ||
+                string.IsNullOrWhiteSpace(PassportNumber) ||
+                string.IsNullOrWhiteSpace(SelectedGender) ||
+                Age <= 0)
+            {
+                MessageBox.Show("Будь ласка, заповніть усі обов'язкові поля правильно.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
+
         public  AddPassengerViewModel(IWindowService windowService,Ticket ticket) 
         {
-            _passengerService = new PassengerService();
-            
-            AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
-            this._windowService = windowService;
-            this._ticketService = new TicketService();
+            if (ValidateInputs())
+            {
+                _passengerService = new PassengerService();
 
-            this._ticket = ticket;
+
+                AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
+                this._windowService = windowService;
+                this._ticketService = new TicketService();
+
+                this._ticket = ticket;
+
+            }
+            
         }
 
         private void ExecutePassangerAdd(object parameter)
@@ -186,6 +207,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 this._ticket.PassengerId = newPassenger.PassengerId;
                 this._ticket.Status = "куплений";
 
+                MessageBox.Show("Об'єкт упішно додано!");
+                _windowService.CloseModalWindow();
 
                 _ticketService.UpdateTicket(this._ticket);
 

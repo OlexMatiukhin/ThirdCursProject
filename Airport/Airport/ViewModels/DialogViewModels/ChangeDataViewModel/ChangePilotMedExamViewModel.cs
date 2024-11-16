@@ -19,7 +19,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
      
             private readonly WorkerService _workerSevice;
             private PilotMedExamService _pilotMedExamService;
-        private PilotMedExam _pilotMedExam;
+            private PilotMedExam _pilotMedExam;
             private IWindowService _windowService;
 
             public ICommand ChangeMedExamCommand { get; }
@@ -40,7 +40,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
           
             private string _selectectedResult;
-         public DateTime? _dateExamination;
+            public DateTime? _dateExamination;
             private ObjectId _selectedPilotId;
             private ObjectId? _selectedDoctorId;
 
@@ -101,7 +101,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                _pilotMedExam.DateExamination = DateExamination;
                _pilotMedExam.DoctorId = this.SelectedDoctorId;
                _pilotMedExamService.UpdatePilotMedExam(_pilotMedExam);
-            }
+            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
+        }
 
             private void LoadData()
             {

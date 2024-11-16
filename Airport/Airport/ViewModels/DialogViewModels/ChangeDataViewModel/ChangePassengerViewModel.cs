@@ -3,6 +3,7 @@ using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBSevice;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
@@ -21,6 +22,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         {   "чоловік",
             "жінка"
         };
+
+
+       
    
         private string _passportNumber;
         private string _internPassportNumber;
@@ -103,25 +107,74 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             }
         }
 
-   
-        
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(FullName))
+            {
+                MessageBox.Show("Будь ласка, введіть повне ім'я пасажира.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (Age <= 0)
+            {
+                MessageBox.Show("Будь ласка, введіть правильний вік пасажира.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(SelectedGender))
+            {
+                MessageBox.Show("Будь ласка, виберіть стать пасажира.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(PassportNumber))
+            {
+                MessageBox.Show("Будь ласка, введіть номер паспорта.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(InternPassportNumber))
+            {
+                MessageBox.Show("Будь ласка, введіть номер міжнародного паспорта.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(PhoneNumber))
+            {
+                MessageBox.Show("Будь ласка, введіть номер телефону.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Email) || !Email.Contains("@"))
+            {
+                MessageBox.Show("Будь ласка, введіть коректну електронну адресу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;  // Return true if all fields are valid
+        }
 
 
         public ChangePassengerViewModel(Passenger passenger, IWindowService windowService)
         {
-            this._passenger = passenger;
-            _passengerService = new PassengerService();
-            this._windowService = windowService;
-            ChangePassengerCommand = new RelayCommand(ExecutePassangerChange, canExecute => true);
+
+            if (ValidateInputs())
+            {
+                this._passenger = passenger;
+                _passengerService = new PassengerService();
+                this._windowService = windowService;
+                ChangePassengerCommand = new RelayCommand(ExecutePassangerChange, canExecute => true);
+
+                FullName = passenger.FullName;
+                Age = passenger.Age;
+                SelectedGender = passenger.Gender;
+
+                PassportNumber = passenger.PassportNumber;
+                InternPassportNumber = passenger.InternPassportNumber;
+                PhoneNumber = passenger.PhoneNumber;
+                Email = passenger.Email;
+            }
           
-            FullName = passenger.FullName;
-            Age= passenger.Age;
-            SelectedGender = passenger.Gender;
-            
-            PassportNumber= passenger.PassportNumber;
-            InternPassportNumber= passenger.InternPassportNumber;
-            PhoneNumber= passenger.PhoneNumber;
-            Email = passenger.Email;
           
          
         }
@@ -136,6 +189,8 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             _passenger.PhoneNumber = PhoneNumber;
             _passenger.Email = Email;
             _passengerService.UpdatePassenger(_passenger);
+            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
         }
 
 

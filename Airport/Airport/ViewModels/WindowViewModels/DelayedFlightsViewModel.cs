@@ -154,7 +154,7 @@ namespace Airport.ViewModels.WindowViewModels
                         Flight flight = _flightService.GetFlightById(delayedFlightInfo.FlightId);
 
                         flight.Status = "запланований";
-
+               
 
                     }
                 }
@@ -184,6 +184,7 @@ namespace Airport.ViewModels.WindowViewModels
                                   "Видалення інформації",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
+                        LoadDelayedFlights();
                     }
 
 

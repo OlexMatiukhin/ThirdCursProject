@@ -152,14 +152,37 @@ namespace Airport.Services.MongoDBSevice
             var result = _seatCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefault();
             return result != null ? result["seatCount"].AsInt32 : 0;
         }
-    
 
 
 
 
 
 
-    public int GetLastSeatNumber()
+        public ObjectId GetLastSeatId()
+        {
+            try
+            {
+                var lastSeat = _seatCollection
+                    .Find(s => true)
+                    .SortByDescending(s => s.SeatId) // Предполагается, что SeatId — это ObjectId
+                    .FirstOrDefault();
+
+                if (lastSeat == null)
+                {
+                    Console.WriteLine("В коллекции нет мест.");
+                    return ObjectId.Empty;
+                }
+
+                return lastSeat.SeatId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при получении последнего ID места: {ex.Message}");
+                return ObjectId.Empty;
+            }
+        }
+
+        public int GetLastSeatNumber()
         {
             var lastSeat = _seatCollection
                 .Find(Builders<Seat>.Filter.Empty)

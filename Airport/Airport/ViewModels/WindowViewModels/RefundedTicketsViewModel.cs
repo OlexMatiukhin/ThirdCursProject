@@ -104,6 +104,7 @@ namespace Airport.ViewModels.WindowViewModels
             LoadTickets();
             DeleteWindowCommand = new RelayCommand(OnDelete);
             _userService = new UserService();
+            _user = user;
 
             Login = _user.Login;
             AccessRight = _user.AccessRight;
@@ -163,6 +164,7 @@ namespace Airport.ViewModels.WindowViewModels
                                  MessageBoxImage.Warning);
                     if (resultOther == MessageBoxResult.Yes)
                     {
+                        LoadTickets();
 
                         _ticketService.DeleteRefundedTicket(refundedTicket.RefundedTicketId);
                         MessageBox.Show(

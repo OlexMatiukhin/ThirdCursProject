@@ -13,7 +13,7 @@
         <CheckBox IsChecked="{Binding Assigned}" HorizontalAlignment="Left"  Margin="503,56,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" RenderTransformOrigin="1,0.731"/>
         <ComboBox  ItemsSource="{Binding PlaneTypeList }"  SelectedValue="{Binding  SelectedPlaneType, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="311,54,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
         <TextBox HorizontalAlignment="Left" Margin="110,49,0,0" TextWrapping="Wrap" Text="{Binding PlaneNumber}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="159,27,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Тип"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="134,26,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Номер літака"/></TextBlock>
 
     </Grid>
 </Window>

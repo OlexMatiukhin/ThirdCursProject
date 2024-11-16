@@ -139,7 +139,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
                 var planeRepair = parameter as PlaneRepair;
-                if (planeRepair != null && planeRepair.Result == "пройдено")
+                if (planeRepair != null && planeRepair.Result == "завершений")
                 {
 
                     MessageBoxResult resultOther = MessageBox.Show(
@@ -156,6 +156,8 @@ namespace Airport.ViewModels.WindowViewModels
                                   "Видалення інформації",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
+
+                        LoadPlaneRepairs();
                     }
 
 
@@ -169,6 +171,7 @@ namespace Airport.ViewModels.WindowViewModels
                                 MessageBoxImage.Warning);
 
                 }
+
             }
 
 
@@ -235,6 +238,8 @@ namespace Airport.ViewModels.WindowViewModels
                             planeRepair.Status = "завершений";
                             planeRepair.Result = "ремонту не підлягає";
                         }
+                        LoadPlaneRepairs();
+
 
                     }
 

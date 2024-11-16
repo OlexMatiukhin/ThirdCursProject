@@ -158,6 +158,7 @@ namespace Airport.ViewModels.WindowViewModels
                     {
                         passenger.CustomsControlStatus = "перевірений";
                         _passengerService.UpdatePassenger(passenger);
+                        LoadPassengers();
                     }
 
                 }
@@ -181,6 +182,7 @@ namespace Airport.ViewModels.WindowViewModels
                     {
                         passenger.RegistrationStatus = "зареєстрований";
                         _passengerService.UpdatePassenger(passenger);
+                        LoadPassengers();
                     }
 
                 }

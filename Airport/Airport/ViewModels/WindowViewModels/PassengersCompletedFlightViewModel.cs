@@ -113,6 +113,7 @@ namespace Airport.ViewModels.WindowViewModels
                               "Видалення інформації",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+                    LoadPassengers();
                 }
 
 
@@ -137,7 +138,7 @@ namespace Airport.ViewModels.WindowViewModels
             DeleteWindowCommand = new RelayCommand(OnDelete);
             LoadPassengers();
             _userService = new UserService();
-
+            _user = user;
 
             Login = _user.Login;
             AccessRight = _user.AccessRight;

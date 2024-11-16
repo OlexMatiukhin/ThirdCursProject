@@ -114,12 +114,14 @@ namespace Airport.ViewModels.WindowViewModels
 
                             _userService.DeleteUser(selectedUser);
                             Users.Remove(selectedUser);
+                            LoadUsers();
 
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Помилка при видаленні користувача: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
+
                     }
                 }
                 else

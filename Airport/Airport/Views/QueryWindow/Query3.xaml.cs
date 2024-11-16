@@ -17,11 +17,16 @@ namespace Airport.Views.QueryWindow
     /// <summary>
     /// Логика взаимодействия для Query.xaml
     /// </summary>
-    public partial class Query : Window
+    public partial class Query3 : Window
     {
-        public Query()
+        public Query3()
         {
             InitializeComponent();
+        }
+
+        private void assignedTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

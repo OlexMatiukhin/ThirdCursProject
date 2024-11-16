@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
+using System.Windows;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -84,12 +85,32 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
 
         }
+
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(BrigadeType))
+            {
+                MessageBox.Show("Будь ласка, виберіть тип бригади.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(StructureUnitName))
+            {
+                MessageBox.Show("Будь ласка, виберіть одиницю структури.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
         private void ChangeBrigade(object parameter)
         {
             _brigade.BrigadeType = this.BrigadeType;
             _brigade.StructureUnitName = this.StructureUnitName;
 
             _brigadeService.UpdateBrigade(_brigade);
+            MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

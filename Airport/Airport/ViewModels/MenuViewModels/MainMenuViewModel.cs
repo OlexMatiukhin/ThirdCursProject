@@ -72,7 +72,8 @@ namespace Airport.ViewModels.MenuViewModels
             { "Повернення квитків", "RefundedTicketsView" },
             { "Ремонт літаків", "PlaneRepairView" },
             { "Медогляд пілотів", "PilotsMedExamView" },
-              { "Користувачі", "UserView" }
+              { "Користувачі", "UserView" },
+                 { "Запити", "QueryMenuView" }
 
         };
 

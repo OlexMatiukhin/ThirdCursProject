@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -25,6 +26,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private IWindowService _windowService;
         public AddBrigadeViewModel(IWindowService windowService)
         {
+            _windowService = windowService;
             _structureUnitService = new StructureUnitService();
             LoadData();
             CreateDictionaries();
@@ -81,11 +83,24 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void CreateDictionaries()
         {
-            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
+            StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName.ToString(), b => b.ToString());
 
         }
         private void AddBrigade(object parameter)
         {
+
+
+            if (string.IsNullOrEmpty(BrigadeType))
+            {
+                MessageBox.Show("Тип бригады не може бути пустим.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(StructureUnitName))
+            {
+                MessageBox.Show("Оберіть назву структурного підрозділу.");
+                return;
+            }
             Brigade newBrigade = new Brigade
             {
            
@@ -93,7 +108,11 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 NumberWorkers = 0,
             };
             _brigadeService.AddBrigade(newBrigade);
+
+            MessageBox.Show("Об'єкт уcпіiно додано!");
+            _windowService.CloseModalWindow();
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

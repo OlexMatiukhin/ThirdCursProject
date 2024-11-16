@@ -144,7 +144,7 @@ namespace Airport.ViewModels.WindowViewModels
                                  MessageBoxImage.Warning);
                     if (resultOther == MessageBoxResult.Yes)
                     {
-
+                        LoadPilotMedExams();
                         _pilotMedExamService.DeletePilotMedExam(pilotMedExam.ExamId);
                         MessageBox.Show(
                                 " Інформацію упішно видалено!",
@@ -196,6 +196,7 @@ namespace Airport.ViewModels.WindowViewModels
                         _pilotMedExamService.UpdatePilotMedExam(pilotMedExam);
                         _worker.ResultMedExam = "задовільний";
                         _worker.LastMedExamDate = DateTime.Now;
+                        LoadPilotMedExams();
                     }
                     else
                     {
@@ -205,6 +206,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
                 }
+                LoadPilotMedExams(); 
             }
             
 

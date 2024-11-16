@@ -15,13 +15,13 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.MenuViewModels
 {
-    public class QeryMenuViewModel : INotifyPropertyChanged
+    public class QueryMenuViewModel : INotifyPropertyChanged
     {
         private string _selectedItem;
         private IWindowService _windowService;
         private User _user;
         public ICommand OpenPageCommand { get; }
-        public QeryMenuViewModel(IWindowService windowService, User user)
+        public QueryMenuViewModel(IWindowService windowService, User user)
         {
             _windowService = windowService;
             OpenPageCommand = new RelayCommand(OnOpenPage, canExecute => true);
@@ -66,8 +66,8 @@ namespace Airport.ViewModels.MenuViewModels
             { "Запит 10", "Query10" },
             { "Запит 11", "Query11" },
             { "Запит 12", "Query12" },
-            { "Запит 13 рейси", "Query13" },
-            { "Запит 14 рейси", "Query14" }
+            { "Запит 13 ", "Query13" }
+            
 
 
         };

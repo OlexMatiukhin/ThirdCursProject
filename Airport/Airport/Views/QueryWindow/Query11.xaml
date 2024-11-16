@@ -90,6 +90,7 @@
 
 
         <Button Content="Виконати" Width="95" Height="32" Margin="710,70,63,69"  Command="{Binding OnDoQuery}" Grid.Row="1" />
+        <TextBlock Text="Причина затримки:" FontSize="16" FontWeight="Bold" Width="150" VerticalAlignment="Top" Margin="321,44,397,0" Grid.Row="1" />
 
     </Grid>
 </Window>

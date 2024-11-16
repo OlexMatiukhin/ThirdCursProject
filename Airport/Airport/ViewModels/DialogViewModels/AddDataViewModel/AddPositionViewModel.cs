@@ -7,6 +7,7 @@ using Airport.Views.Dialog;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -31,7 +32,30 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-       
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(PositionName))
+            {
+                MessageBox.Show("Назва посади не може бути порожньою.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Salary) || !int.TryParse(Salary, out _))
+            {
+                MessageBox.Show("Будь ласка, введіть коректну зарплату.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(StructureUnitName))
+            {
+                MessageBox.Show("Будь ласка, оберіть підрозділ.", "Помилка валідації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
 
 
 
@@ -94,20 +118,26 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
         private void ExecuteAddPosition(object parameter)
         {
-            var newPosition = new Position
+            if (ValidateInputs())
             {
-                PositionName = PositionName,
-                Salary = int.Parse(Salary),
-                StructureUnitName = _structureUnitName
+                var newPosition = new Position
+                {
+                    PositionName = PositionName,
+                    Salary = int.Parse(Salary),
+                    StructureUnitName = _structureUnitName
 
-            };
+                };
 
-            _positionService.AddPostion(newPosition);
+                _positionService.AddPostion(newPosition);
+                MessageBox.Show("Об'єкт упішно додано!");
+                _windowService.CloseModalWindow();
+            }
+         
         }
 
         private void CreateDictionaries()
         {
-           // StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitId, b => b.ToString());
+           StructureUnitDictionary = StructureUnits.ToDictionary(b => b.StructureUnitName, b => b.ToString());
 
         }
 

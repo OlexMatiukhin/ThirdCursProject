@@ -185,10 +185,10 @@ namespace Airport.ViewModels.WindowViewModels
                          MessageBoxImage.Warning);
                         if (result == MessageBoxResult.Yes)
                         {
-
+                         
                             Positions.Remove(position);
                             _positionService.DeletePostion(position.PositionId);
-
+                            LoadPositions();
                             MessageBox.Show("Стуркутрну одиницю успішно видалено", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }

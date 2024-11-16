@@ -106,10 +106,13 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
                 }
 
+
+                MessageBox.Show("Рейс скасовано!");
+                _windowService.CloseModalWindow();
             }
             else
             {
-                MessageBox.Show("Рейс не було відмінено! При відміні сталася помилка!", "Помилка скасування рейсу!",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Рейс не було скасовано! При відміні сталася помилка!", "Помилка скасування рейсу!",MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

@@ -233,7 +233,7 @@ namespace Airport.ViewModels.WindowViewModels
                 else
                 {
                     MessageBox.Show(
-                                "Видалення літака неможливо, з ним заплановано рейси!",
+                                "Видалення працівника неможливо, він є у бригаді!",
                                   "Видалення інформації",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Warning);

@@ -102,6 +102,9 @@
                       />
             <Button Content="Виконати" Width="95" Height="32" Margin="5"  Command="{Binding DoQuery}" />
         </StackPanel>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="174,45,604,0" Grid.Row="1" ><Run Language="uk-ua" Text="Номер"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="302,45,434,0" Grid.Row="1" ><Run Language="uk-ua" Text="Мін тривалсть"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="473,45,263,0" Grid.Row="1" ><Run Language="uk-ua" Text="Мак тривалість"/></TextBlock>
     </Grid>
 </Window>
 

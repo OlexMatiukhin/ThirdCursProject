@@ -29,6 +29,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             this.PositionName = position.PositionName;
             this.Salary = position.Salary.ToString();
             this.StructureUnitName = position.StructureUnitName;
+            this._position = position;
 
 
             LoadData();
@@ -76,6 +77,27 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
                 OnPropertyChanged(nameof(_structureUnitName));
             }
         }
+        private bool ValidateInputs()
+        {
+           
+            if (string.IsNullOrWhiteSpace(PositionName))
+            {
+                return false;
+            }
+
+          
+            if (!int.TryParse(Salary, out int salary) || salary <= 0)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(StructureUnitName) || !StructureUnitDictionary.ContainsKey(StructureUnitName))
+            {
+                return false;
+            }
+
+            return true;
+        }
 
 
 
@@ -91,12 +113,18 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ExecutePostionChange(object parameter)
         {
+            if (ValidateInputs())
+            {
+                _position.PositionName = PositionName;
+                _position.Salary = int.Parse(Salary);
 
-            _position.PositionName = PositionName;
-            _position.Salary = int.Parse(Salary);
-                   
 
-            _positionService.UpdatePostition(_position);
+                _positionService.UpdatePostition(_position);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+
+            }
+          
         }
 
         private void CreateDictionaries()

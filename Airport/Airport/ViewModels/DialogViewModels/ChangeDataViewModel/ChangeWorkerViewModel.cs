@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
@@ -51,8 +52,9 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
         private void ExecuteChangeWorker(object parameter)
         {
-
-            _worker.FullName = FullName;
+            if (ValidateInputs())
+            {
+              _worker.FullName = FullName;
             _worker.Age = int.Parse(Age);
             _worker.Status = SelectedStatus;
             _worker.Gender = SelectedGender;
@@ -63,10 +65,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
             _worker.PhoneNumber = PhoneNumber;
             _worker.BrigadeId = SelectedBrigadeId;
             _worker.PositionName = SelectedPostionName;
-           
-
-            _workerService.UpdateWorker(_worker);
-        }
+             _workerService.UpdateWorker(_worker);
+                   System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
+            }
+            }
+          
 
 
         public ObservableCollection<Position> Positions { get; set; }
@@ -93,6 +97,83 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         {   "ніч",
             "ранок"
         };
+
+        private bool ValidateInputs()
+        {
+            bool isValid = true;
+
+            // Перевірка поля 'Повне ім'я'
+            if (string.IsNullOrWhiteSpace(FullName))
+            {
+                MessageBox.Show("Поле 'Повне ім'я' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Вік'
+            if (string.IsNullOrWhiteSpace(Age) || !int.TryParse(Age, out _))
+            {
+                MessageBox.Show("Поле 'Вік' повинно бути числовим значенням.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Статус'
+            if (string.IsNullOrWhiteSpace(SelectedStatus))
+            {
+                MessageBox.Show("Поле 'Статус' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Стать'
+            if (string.IsNullOrWhiteSpace(SelectedGender))
+            {
+                MessageBox.Show("Поле 'Стать' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Кількість дітей'
+            if (string.IsNullOrWhiteSpace(NumberChildren) || !int.TryParse(NumberChildren, out _))
+            {
+                MessageBox.Show("Поле 'Кількість дітей' повинно бути числовим значенням.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Зміна'
+            if (string.IsNullOrWhiteSpace(SelectedShift))
+            {
+                MessageBox.Show("Поле 'Зміна' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Email'
+            if (string.IsNullOrWhiteSpace(Email) || !Email.Contains("@"))
+            {
+                MessageBox.Show("Поле 'Email' повинно містити коректну електронну пошту.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Телефон'
+            if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length < 10)
+            {
+                MessageBox.Show("Поле 'Телефон' повинно містити принаймні 10 цифр.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Бригада'
+            if (!SelectedBrigadeId.HasValue)
+            {
+                MessageBox.Show("Поле 'Бригада' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            // Перевірка поля 'Посада'
+            if (string.IsNullOrWhiteSpace(SelectedPostionName))
+            {
+                MessageBox.Show("Поле 'Посада' не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            return isValid;
+        }
 
         public int _id;
         public string _fullName;

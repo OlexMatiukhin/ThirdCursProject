@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media.Media3D;
-using Airport.Command.AddDataCommands.Airport.Commands;
+﻿using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Models;
 using Airport.Services;
 using Airport.Services.MongoDBService;
 using Airport.Services.MongoDBSevice;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -109,6 +106,7 @@ namespace Airport.ViewModels.WindowViewModels
         public TicketsViewModel(IWindowService windowService, User user)
         {
             this._windowService = windowService;
+            _flightService = new FlightService();
             BuyTicketCommand = new RelayCommand(OnBuyingTicket);
             BookTicketCommand = new RelayCommand(OnBookingTicket);
             _ticketService = new TicketService();
@@ -143,14 +141,14 @@ namespace Airport.ViewModels.WindowViewModels
         public List<Ticket> SearchTickets(string query)
         {
             return Tickets.Where(ticket =>
-                ticket.TicketId.ToString().Contains(query) ||                           // Поиск по TicketId
-                (!string.IsNullOrEmpty(ticket.Status) && ticket.Status.Contains(query, StringComparison.OrdinalIgnoreCase)) || // Поиск по Status
-                ticket.Availability.ToString().Contains(query) ||                      // Поиск по Availability
-                ticket.DateChanges.ToString("d").Contains(query) ||                    // Поиск по DateChanges
-                ticket.Price.ToString().Contains(query) ||                              // Поиск по Price
-                ticket.FlightId.ToString().Contains(query) ||                          // Поиск по FlightId
-                ticket.SeatId.ToString().Contains(query) ||                            // Поиск по SeatId
-                (ticket.PassengerId.HasValue && ticket.PassengerId.Value.ToString().Contains(query)) // Поиск по PassengerId
+                ticket.TicketId.ToString().Contains(query) ||                           
+                (!string.IsNullOrEmpty(ticket.Status) && ticket.Status.Contains(query, StringComparison.OrdinalIgnoreCase)) || 
+                ticket.Availability.ToString().Contains(query) ||                      
+                ticket.DateChanges.ToString("d").Contains(query) ||                   
+                ticket.Price.ToString().Contains(query) ||                             
+                ticket.FlightId.ToString().Contains(query) ||                         
+                ticket.SeatId.ToString().Contains(query) ||                           
+                (ticket.PassengerId.HasValue && ticket.PassengerId.Value.ToString().Contains(query)) 
             ).ToList();
         }
 
@@ -160,7 +158,9 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoAdditionalActions(_user))
             {
                 var ticket = parameter as Ticket;
-                Flight flight = _flightService.GetFlightById(ticket.FlightId);
+
+                Flight flight = new Flight();
+                 flight = _flightService.GetFlightById(ticket.FlightId);
 
                 if (ticket != null && ticket.Status != "проданий")
                 {
@@ -230,6 +230,7 @@ namespace Airport.ViewModels.WindowViewModels
                         _passengerService.DeletePassenger(ticket.PassengerId);
                         ticket.PassengerId = null;
                         flight.NumberBoughtTickets--;
+                        LoadTickets();
 
 
                     }

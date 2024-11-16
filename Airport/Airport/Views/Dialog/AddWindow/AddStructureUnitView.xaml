@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="218,57,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Назва"/></TextBlock>
         <TextBox x:Name="FlightNumber_Копировать3" 
-            Text="{Binding Type, Mode=TwoWay}" 
+            Text="{Binding StructureUnitName, Mode=TwoWay}" 
             HorizontalAlignment="Left" 
             Margin="183,78,0,0" 
             VerticalAlignment="Top" 
@@ -17,8 +17,8 @@
         <Button  Command="{Binding AddStructureUnitCommand}" Content="Додати" HorizontalAlignment="Left" Margin="284,139,0,0" VerticalAlignment="Top" Height="35" Width="212"/>
         <TextBlock HorizontalAlignment="Left" Margin="370,55,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Зміна"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="515,56,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Бригад"/><Run Language="ru-ru" Text="а"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-        <ComboBox ItemsSource="{Binding StructureTypeList}" SelectedValue="{Binding SelectedStructureType, Mode=TwoWay}" x:Name="Category_Копировать" HorizontalAlignment="Left" Margin="333,71,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
-        <ComboBox  ItemsSource="{Binding DepatmentsList}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDepartmentId, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="485,74,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding StructureTypeList}" SelectedValue="{Binding SelectedStructureUnitType, Mode=TwoWay}" x:Name="Category_Копировать" HorizontalAlignment="Left" Margin="333,71,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
+        <ComboBox  ItemsSource="{Binding DepartmentsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDepartmentName, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="485,74,0,0" VerticalAlignment="Top" Width="120"/>
 
 
     </Grid>

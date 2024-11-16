@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddSeatView" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="152,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="C"/><Run Language="ru-ru" Text="татус"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="159,43,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="C"/><Run Language="ru-ru" Text="татус"/><LineBreak/><Run/></TextBlock>
 
 
         <ComboBox ItemsSource="{Binding Status}"  SelectedValue="{Binding SelectedStatus, Mode=TwoWay}"  x:Name="Plane" HorizontalAlignment="Left" Margin="120,69,0,0" VerticalAlignment="Top" Width="120"/>

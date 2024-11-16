@@ -115,7 +115,7 @@ namespace Airport.Models
             }
 
             [BsonElement("planeNumber")]
-            [BsonRepresentation(BsonType.ObjectId)]
+        
             public string PlaneNumber
             {
                 get => _planeNumber;
@@ -246,8 +246,8 @@ namespace Airport.Models
             }
 
             [BsonElement("routeNumber")]
-            [BsonRepresentation(BsonType.ObjectId)]
-            public String RouteNumber
+            
+            public string RouteNumber
             {
                 get => _routeNumber;
                 set

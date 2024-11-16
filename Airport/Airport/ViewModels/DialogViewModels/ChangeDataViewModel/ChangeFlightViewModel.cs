@@ -11,6 +11,8 @@ using Airport.Models;
 using Airport.Command.AddDataCommands.Airport.Commands;
 using Airport.Services.MongoDBSevice;
 using Airport.Services;
+using System.Windows;
+using Xceed.Wpf.Toolkit;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -58,8 +60,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private ObjectId _selectedNavigationBrigadeId;
         private ObjectId _selectedTechInspectionBrigadeId;
         private string _routeNumber;
-        private int _numberTickets;
-        private int _numberBoughtTickets;
+
 
 
 
@@ -85,6 +86,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 OnPropertyChanged(nameof(DateArrivial));
             }
         }
+
+
         public string FlightNumber
         {
             get { return _flightNumber; }
@@ -151,6 +154,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             {
                 _selectedTechInspectionBrigadeId = value;
                 OnPropertyChanged(nameof(SelectedTechInspectionBrigadeId));
+              
             }
         }
 
@@ -166,31 +170,60 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
 
-       
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(FlightNumber))
+            {
+                System.Windows.MessageBox.Show("Будь ласка, введіть номер рейсу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(RouteNumber))
+            {
+                System.Windows.MessageBox.Show("Будь ласка, виберіть маршрут.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (DateDeparture >= DateArrivial)
+            {
+                System.Windows.MessageBox.Show("Дата відправлення повинна бути раніше дати прибуття.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (SelectedPlaneNumber == null || SelectedFlightBrigadeId == ObjectId.Empty || SelectedDispatchBrigadeId == ObjectId.Empty)
+            {
+                System.Windows.MessageBox.Show("Будь ласка, заповніть всі поля для бригад та літака.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
 
 
-      
+
 
 
         public ChangeFlightViewModel( Flight flight, IWindowService windowService)
         {
-             this._windowService=windowService;
-            _brigadeService = new BrigadeService();
-             this._flight= flight;
-          
-            _planeService = new PlaneService();
-            _routeService = new RouteService();
-            _flightService = new FlightService();
+            if (ValidateInputs()) {
 
-            FlightNumber=flight.FlightNumber;
-            SelectedCategory = flight.Category;
-            SelectedPlaneNumber = flight.PlaneNumber;
-            SelectedFlightBrigadeId = flight.FlightBrigadeId;
-            SelectedDispatchBrigadeId = flight.DispatchBrigadeId;
-            SelectedNavigationBrigadeId = flight.NavigationBrigadeId;
-            SelectedTechInspectionBrigadeId = flight.InspectionBrigadeId;
-            RouteNumber = flight.RouteNumber;
-            _numberTickets = flight.NumberTickets;
+
+                this._windowService = windowService;
+                _brigadeService = new BrigadeService();
+                this._flight = flight;
+
+                _planeService = new PlaneService();
+                _routeService = new RouteService();
+                _flightService = new FlightService();
+                DateArrivial = flight.DateArrival;
+                DateDeparture = flight.DateDeparture;
+                FlightNumber = flight.FlightNumber;
+                SelectedCategory = flight.Category;
+                SelectedPlaneNumber = flight.PlaneNumber;
+                SelectedFlightBrigadeId = flight.FlightBrigadeId;
+                SelectedDispatchBrigadeId = flight.DispatchBrigadeId;
+                SelectedNavigationBrigadeId = flight.NavigationBrigadeId;
+                SelectedTechInspectionBrigadeId = flight.InspectionBrigadeId;
+                RouteNumber = flight.RouteNumber;
+            }
+            
+       
 
            
             
@@ -252,6 +285,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
             TechInspectionBrigadesDictionary = TechInspectionBrigades.ToDictionary(b => b.BrigadeId, b => b.ToString());
             PlanesDictionary = Planes.ToDictionary(b => b.PlaneNumber, b => b.ToString());
             RoutesDictionary = Routes.ToDictionary(b => b.Number, b => b.ToString());
+            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

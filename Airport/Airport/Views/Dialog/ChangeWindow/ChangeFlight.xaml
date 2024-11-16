@@ -26,7 +26,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="293,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Категорія"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="424,36,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="549,34,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Відправлення"/><LineBreak/><Run/></TextBlock>
-        <ComboBox ItemsSource="{Binding PlanesDictionary}" DisplayMemberPath="Value" SelectedValue="{Binding SelectedPlaneId, Mode=TwoWay}" SelectedValuePath="Key" x:Name="Plane" HorizontalAlignment="Left" Margin="122,107,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding PlanesDictionary}" DisplayMemberPath="Value" SelectedValue="{Binding SelectedPlaneNumber, Mode=TwoWay}" SelectedValuePath="Key" x:Name="Plane" HorizontalAlignment="Left" Margin="122,107,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox ItemsSource="{Binding FlightBrigadesDictionary}" DisplayMemberPath="Value"  SelectedValue="{Binding SelectedFlightBrigadeId, Mode=TwoWay}" SelectedValuePath="Key" x:Name="DispatcherBrigade" HorizontalAlignment="Left" Margin="540,106,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox  ItemsSource="{Binding DispatchBrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedDispatchBrigadeId, Mode=TwoWay}" x:Name="NavigationBrigade" HorizontalAlignment="Left" Margin="400,106,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="432,35,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Прибуття"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
@@ -36,7 +36,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="256,85,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Навігаційна бриг"/><Run Language="uk-ua" Text="ада"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <ComboBox  ItemsSource="{Binding NavigationBrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedNavigationBrigadeId, Mode=TwoWay}" HorizontalAlignment="Left" Margin="259,107,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox  ItemsSource="{Binding TechInspectionBrigadesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding SelectedTechInspectionBrigadeId, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="112,163,0,0" VerticalAlignment="Top" Width="128"/>
-        <ComboBox ItemsSource="{Binding RoutesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding RouteId, Mode=TwoWay}" x:Name="RouteId" HorizontalAlignment="Left" Margin="263,163,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding RoutesDictionary}"  DisplayMemberPath="Value"  SelectedValuePath="Key"  SelectedValue="{Binding RouteNumber, Mode=TwoWay}" x:Name="RouteId" HorizontalAlignment="Left" Margin="263,163,0,0" VerticalAlignment="Top" Width="120"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="553,87,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Льотна бригада"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="122,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14" Text="Бригада техогляду"/>
@@ -44,21 +44,13 @@
         <TextBlock HorizontalAlignment="Left" Margin="428,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua"/><LineBreak/><Run/></TextBlock>
 
         <TextBox x:Name="FlightNumber_Копировать1" 
-            Text="{Binding NumberTickets, Mode=TwoWay}"
+            Text="{Binding NumberTicket, Mode=TwoWay}"
             HorizontalAlignment="Left" 
             Margin="405,164,0,0" 
             VerticalAlignment="Top" 
             Width="120" />
 
-        <TextBox x:Name="FlightNumber_Копировать" 
-            Text="{Binding TicketPrice, Mode=TwoWay}" 
-            HorizontalAlignment="Left" 
-            Margin="548,164,0,0" 
-            VerticalAlignment="Top" 
-            Width="120" />
-
         <TextBlock HorizontalAlignment="Left" Margin="411,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість квитків"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="565,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="ru-ru" Text="Ц"/><Run Language="uk-ua" Text="іна квиткка"/></TextBlock>
         <Button Content="Button" Command="{Binding ChangeFlightCommand}"  HorizontalAlignment="Left" Margin="275,234,0,0" VerticalAlignment="Top" Height="45" Width="184" Click="Button_Click"/>
 
         <xctk:DateTimePicker 

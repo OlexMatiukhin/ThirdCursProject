@@ -137,6 +137,30 @@ namespace Airport.Services.MongoDBSevice
             return _flightCollection.Aggregate<Flight>(pipeline).ToList();
         }
 
+
+        public ObjectId GetLastFlightId()
+        {
+            try
+            {
+                var lastFlight = _flightCollection
+                    .Find(f => true)
+                    .SortByDescending(f => f.FlightId)
+                    .FirstOrDefault();
+
+                if (lastFlight == null)
+                {
+                    Console.WriteLine("В коллекции нет рейсов.");
+                    return ObjectId.Empty;
+                }
+
+                return lastFlight.FlightId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при получении последнего ID рейса: {ex.Message}");
+                return ObjectId.Empty;
+            }
+        }
         public int GetTotalCharterPassengerFlightsCount(string category, string planeType, string flightDirection)
         {
             var pipeline = new[]

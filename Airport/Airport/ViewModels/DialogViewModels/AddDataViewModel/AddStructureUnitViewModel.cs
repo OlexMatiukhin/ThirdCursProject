@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Airport.Command.AddDataCommands
@@ -23,7 +24,7 @@ namespace Airport.Command.AddDataCommands
         public ICommand AddStructureUnitCommand { get; }
 
 
-
+        
 
         public List<string> StructureTypeList { get; set; } = new List<string>
         {   "відділ",
@@ -73,16 +74,47 @@ namespace Airport.Command.AddDataCommands
             }
         }
 
+        private bool ValidateInputs()
+        {
+         
+            if (string.IsNullOrWhiteSpace(StructureUnitName))
+            {
+                MessageBox.Show("Назва структурного підрозділу не може бути порожньою.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedStructureUnitType))
+            {
+                MessageBox.Show("Оберіть тип структурного підрозділу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedDepartmentName))
+            {
+                MessageBox.Show("Оберіть відділ для структурного підрозділу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+          
+            return true;
+        }
+
         private void ExecuteAddStructureUnit(object parameter)
         {
-            var newStructureUnit = new StructureUnit
+            if (ValidateInputs())
             {
-                StructureUnitName = StructureUnitName,
-                Type = SelectedStructureUnitType,
-                DepartmentName = SelectedDepartmentName
-            };
+                var newStructureUnit = new StructureUnit
+                {
+                    StructureUnitName = StructureUnitName,
+                    Type = SelectedStructureUnitType,
+                    DepartmentName = SelectedDepartmentName
+                };
 
-            _structureUnitService.AddStructureUnit(newStructureUnit);
+                _structureUnitService.AddStructureUnit(newStructureUnit);
+                MessageBox.Show("Об'єкт упішно додано!");
+                _windowService.CloseModalWindow();
+            }
+         
         }
 
 

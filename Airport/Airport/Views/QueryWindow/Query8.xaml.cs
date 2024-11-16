@@ -23,5 +23,10 @@ namespace Airport.Views.QueryWindow
         {
             InitializeComponent();
         }
+
+        private void minTicketPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
@@ -19,9 +20,32 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
     public class СhangeBaggageViewModel : INotifyPropertyChanged
     {
 
+        private bool ValidateInputs()
+        {
+            bool isValid = true;
 
+            if (string.IsNullOrWhiteSpace(BaggeType))
+            {
+                MessageBox.Show("Виберіть тип багажу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
 
-            private readonly BaggageService _baggageService;
+            if (string.IsNullOrWhiteSpace(Weight) || !double.TryParse(Weight, out _))
+            {
+                MessageBox.Show("Вага повинна бути числом.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Payment) || !decimal.TryParse(Payment, out _))
+            {
+                MessageBox.Show("Оплата повинна бути числом.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private readonly BaggageService _baggageService;
             private readonly PassengerService _passengerService;
              private Baggage _baggage;
 
@@ -89,10 +113,12 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
                 _baggageService = new BaggageService();
                 ChangeBaggageCommand = new RelayCommand(OnCahngeBaggageExecuted, canExecute => true);
+            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
 
 
 
-            }
+        }
 
 
 
@@ -112,13 +138,18 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
             private void OnCahngeBaggageExecuted(object parameter)
             {
-                _baggage.BaggageType = BaggeType;
-                _baggage.Weight = double.Parse(Weight);
-                _baggage.Payment = decimal.Parse(Payment);
-         
-                
+                    if (ValidateInputs())
+                    {
+                        _baggage.BaggageType = BaggeType;
+                        _baggage.Weight = double.Parse(Weight);
+                        _baggage.Payment = decimal.Parse(Payment);
 
-                _baggageService.UpdateBaggage(_baggage);
+
+
+                        _baggageService.UpdateBaggage(_baggage);
+
+                    }
+                
        
             }
 

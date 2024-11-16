@@ -1,4 +1,4 @@
-﻿<Window x:Class="Airport.Views.QueryWindow.Query"
+﻿<Window x:Class="Airport.Views.QueryWindow.Query3"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -53,14 +53,14 @@
         </StackPanel>
         <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
-
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="25,40,753,0" Grid.Row="1" ><Run Language="uk-ua" Text="Тип"/></TextBlock>
 
 
         <DataGrid x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter"
              HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
              FontWeight="Bold" IsReadOnly="True" FontSize="10" 
              ItemsSource="{Binding Flights}" SelectedItem="{Binding SelectedFlight, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,0,0,-5" Width="868">
-           
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PlaneId}" Width="3*"/>
                 <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="*"/>
@@ -86,7 +86,7 @@
              Height="30" 
              Margin="5" 
              SelectedValuePath="Content" 
-             SelectedValue="{Binding SelectedQueryType, UpdateSourceTrigger=PropertyChanged}">      
+             SelectedValue="{Binding SelectedQueryType, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem Content="Перелік" />
                 <ComboBoxItem Content="Кількість" />
             </ComboBox>
@@ -95,14 +95,19 @@
              Text="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox x:Name="endDateTextBox" Width="150" Height="30" Margin="5" 
              Text="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"  />
-            
+
 
             <TextBox x:Name="assignedTextBox" Width="150" Height="30" Margin="5" 
-             Text="{Binding Assigned, UpdateSourceTrigger=PropertyChanged}"  />
+             Text="{Binding Assigned, UpdateSourceTrigger=PropertyChanged}" TextChanged="assignedTextBox_TextChanged"  />
             <TextBox x:Name="statusTextBox" Width="150" Height="30" Margin="5" 
              Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button Content="Виконати" Width="95" Height="32" Margin="5"  Command="{Binding DoQuery}" />
         </StackPanel>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="160,40,618,0" Grid.Row="1" ><Run Language="uk-ua" Text="Дата почат"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="325,44,453,0" Grid.Row="1" ><Run Text="Дата"/><Run Language="uk-ua" Text=" кінця"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="325,44,453,0" Grid.Row="1" ><Run Text="Дата"/><Run Language="uk-ua" Text=" кінця"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="468,44,310,0" Grid.Row="1" ><Run Language="uk-ua" Text="Приписка"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="632,44,146,0" Grid.Row="1" ><Run Language="uk-ua" Text="Статус"/></TextBlock>
     </Grid>
 </Window>

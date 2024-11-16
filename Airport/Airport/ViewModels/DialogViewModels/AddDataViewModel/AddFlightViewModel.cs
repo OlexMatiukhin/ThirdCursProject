@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Xceed.Wpf.Toolkit.Core.Input;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -182,19 +183,82 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
 
 
-      private bool CanExecuteAddCommanrd()
+        private bool CanExecuteAddCommand()
         {
-            AirPlane plane = Planes.First(p => p.PlaneNumber == SelectedPlaneNumber);
-            if (plane ==null &&  plane.TechCondition!= "в ремонті")
+            if (string.IsNullOrWhiteSpace(FlightNumber))
             {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("Помилка, літак знаходиться у ремонті!", "Літак", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Номер рейсу не може бути порожнім.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
-
             }
+
+            if (string.IsNullOrWhiteSpace(SelectedCategory))
+            {
+                MessageBox.Show("Категорію рейсу не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedPlaneNumber))
+            {
+                MessageBox.Show("Літак не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!Planes.Any(p => p.PlaneNumber == SelectedPlaneNumber))
+            {
+                MessageBox.Show("Обраного літака не існує.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            var selectedPlane = Planes.First(p => p.PlaneNumber == SelectedPlaneNumber);
+            if (selectedPlane.TechCondition == "в ремонті")
+            {
+                MessageBox.Show("Обраний літак знаходиться в ремонті.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (SelectedFlightBrigadeId == ObjectId.Empty)
+            {
+                MessageBox.Show("Льотну бригаду не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (SelectedDispatchBrigadeId == ObjectId.Empty)
+            {
+                MessageBox.Show("Диспетчерську бригаду не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (SelectedNavigationBrigadeId == ObjectId.Empty)
+            {
+                MessageBox.Show("Навігаційну бригаду не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (SelectedTechInspectionBrigadeId == ObjectId.Empty)
+            {
+                MessageBox.Show("Бригаду технічного обслуговування не обрано.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (DateDeparture >= DateArrivial)
+            {
+                MessageBox.Show("Дата прибуття повинна бути пізнішою за дату відправлення.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!int.TryParse(NumberTickets, out int ticketCount) || ticketCount <= 0)
+            {
+                MessageBox.Show("Кількість квитків повинна бути додатним числом.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!int.TryParse(TicketPrice, out int price) || price <= 0)
+            {
+                MessageBox.Show("Ціна квитка повинна бути додатним числом.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
 
@@ -219,41 +283,43 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private void ExecuteAddFlight(object parameter)
         {
 
-            if (CanExecuteAddCommanrd())
+            if (CanExecuteAddCommand())
             {
                
                
 
                 Flight newFlight = new Flight
                 {
-                    FlightNumber = FlightNumber,
+                    FlightNumber = this.FlightNumber,
                
                     Status = "запланований",
-                    Category = SelectedCategory,
-                    DateDeparture = DateDeparture,
-                    DateArrival = DateArrivial,
-                    DispatchBrigadeId = SelectedDispatchBrigadeId,
-                    NavigationBrigadeId = SelectedNavigationBrigadeId,
-                    FlightBrigadeId = SelectedFlightBrigadeId,
-                    InspectionBrigadeId = SelectedTechInspectionBrigadeId,
-                    RouteNumber = RouteNumber,
+                    Category = this.SelectedCategory,
+                    DateDeparture = this.DateDeparture,
+                    DateArrival = this.DateArrivial,
+                    DispatchBrigadeId = this.SelectedDispatchBrigadeId,
+                    NavigationBrigadeId = this.SelectedNavigationBrigadeId,
+                    FlightBrigadeId = this.SelectedFlightBrigadeId,
+                    InspectionBrigadeId = this.SelectedTechInspectionBrigadeId,
+                    RouteNumber = this.RouteNumber,
+                    PlaneNumber = this.SelectedPlaneNumber,
                     CustomsControl = "не завершений",
                     PassengerRegistration = "не завершена",
                     NumberTickets = int.Parse(_numberTickets),
                     NumberBoughtTickets = 0
                 };
+                _flightService.AddFlight(newFlight);
 
 
-               for (int i = 0; i < int.Parse(NumberTickets); i++)
+                for (int i = 0; i < int.Parse(NumberTickets); i++)
                 {
                     Seat seat = new Seat
                     {
                        
                         Number = i + 1,
                         Status = "вільне",
-                        FlightId = newFlight.FlightId,
+                        FlightId = _flightService.GetLastFlightId(),
                     };
-
+                    _seatService.AddSeat(seat);
                     Ticket ticket = new Ticket
                     {
 
@@ -261,16 +327,18 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                         Availability = true,
                         Status = "доступний",
                         Price = int.Parse(TicketPrice),
-                        FlightId = newFlight.FlightId,
-                        SeatId = seat.SeatId,
+                        FlightId = _flightService.GetLastFlightId(),
+                        SeatId = _seatService.GetLastSeatId(),
                         PassengerId = null
                     };
 
-                    _seatService.AddSeat(seat);
+                   
                     _ticketService.AddTicket(ticket);
                 }
 
-                _flightService.AddFlight(newFlight);
+
+                MessageBox.Show("Об'єкти упіщно додано!");
+                _windowService.CloseModalWindow();
             }
         }
 

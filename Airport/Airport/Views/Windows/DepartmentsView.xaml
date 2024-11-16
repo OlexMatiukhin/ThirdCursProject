@@ -84,10 +84,7 @@
         </DataGrid>
 
         <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,1,0,-1" HorizontalAlignment="Right" />
-        <TextBox Margin="10,25,430,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
-        <ComboBox Grid.Row="1" VerticalAlignment="Top" MinWidth="120" MaxWidth="267" MinHeight="28" HorizontalAlignment="Left" Margin="455,26,0,0" Height="4"/>
-        <Button Content="Шукати" Margin="0,24,176,0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" MinHeight="28" MinWidth="95" MaxWidth="212" RenderTransformOrigin="0.5,0.5" Height="31"/>
-        <Button Content="Скинути" Margin="700,27,65,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="28" MinWidth="95" Width="95" MaxWidth="212" RenderTransformOrigin="0.5,0.5" />
+        <TextBox Margin="10,25,10,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 
 

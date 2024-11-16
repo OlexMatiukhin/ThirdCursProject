@@ -165,6 +165,8 @@ namespace Airport.ViewModels.DialogViewModels.Change
             _planeRepair.Result = SelectedResult;
             _planeRepair.BrigadeId = SelectedBrigadeId;
             _planeRepairService.UpdatePlaneRepair(_planeRepair);
+            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+            _windowService.CloseModalWindow();
         }
 
         private void LoadData()

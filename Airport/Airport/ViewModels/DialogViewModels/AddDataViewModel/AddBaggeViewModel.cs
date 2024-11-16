@@ -6,6 +6,7 @@ using Airport.Services.MongoDBSevice;
 using MongoDB.Bson;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -27,9 +28,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         public List<string> TypeBaggeList { get; set; } = new List<string>
         {
-            "Cтандартний",
-            "Великогабаритний",
-            "Тваринний"
+            "cтандартний",
+            "великогабаритний",
+            "тваринний"
         };
 
         
@@ -122,7 +123,40 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void OnAddBaggageExecuted(object parameter)
         {
- 
+
+            if (string.IsNullOrWhiteSpace(BaggeType) || !TypeBaggeList.Contains(BaggeType))
+            {
+                MessageBox.Show("Виберіть коректний тип багажу.","Помилка");
+                return;
+            }
+
+           if (!int.TryParse(Weight, out int weight) || weight <= 0)
+            {
+                MessageBox.Show("Введіть коректну вагу багажу (ціле число більше 0).", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+           
+            if (!int.TryParse(Payment, out int payment) || payment < 0)
+            {
+                MessageBox.Show("Введіть коректну суму оплати.", "Помилка",MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+           
+            if (SelectedPassengerId == ObjectId.Empty)
+            {
+                MessageBox.Show("Оберіть пасажира.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+       
+            Passenger passenger = _passengerService.GetPassengerById(SelectedPassengerId);
+            if (passenger == null)
+            {
+                MessageBox.Show("Вказаний пасажир не знайдений.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             var newBaggage = new Baggage
             {
@@ -133,7 +167,10 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
             };
 
-            Passenger passenger = _passengerService.GetPassengerById(SelectedPassengerId);
+            MessageBox.Show("Об'єкт упіщно додано!");
+            _windowService.CloseModalWindow();
+        
+         
             passenger.BaggageStatus = "наявний";
             _baggageService.AddBaggage(newBaggage);
         }

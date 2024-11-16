@@ -14,6 +14,7 @@ using System.Windows.Media.Media3D;
 using Airport.Services.Airport.Services;
 using SharpCompress.Compressors.Deflate;
 using Airport.ViewModels.WindowViewModels;
+using System.Windows;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -81,13 +82,17 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                 
                     _delayedFlightsService.AddDelayedFlightInfoFromFlight(_flight, SelectedDelayReason, DelayDescription);
                      _flight.Status = "затриманий";
-                
+                MessageBox.Show("Рейс затримано!");
+                _windowService.CloseModalWindow();
 
-                
-                
+
+
 
             }
-
+            else
+            {
+                MessageBox.Show("Рейс не було затирмано!", "Помилка затримки рейсу!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
 
         }

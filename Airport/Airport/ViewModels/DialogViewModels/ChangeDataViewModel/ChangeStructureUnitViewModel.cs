@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Airport.Services;
+using System.Windows;
 
 namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 {
@@ -94,19 +95,50 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         {
             DepartmentsDictionary = Departments.ToDictionary(b => b.DepartmentName, b => b.ToString());
         }
+        private bool ValidateInputs()
+        {
+            
+            if (string.IsNullOrWhiteSpace(StructureUnitName))
+            {
+                MessageBox.Show("Назва структурного підрозділу не може бути порожньою.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+           
+            if (string.IsNullOrWhiteSpace(SelectedStructureUnitType) || !StructureTypeList.Contains(SelectedStructureUnitType))
+            {
+                MessageBox.Show("Тип структурного підрозділу не вибрано або неправильний вибір.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+          
+            if (string.IsNullOrWhiteSpace(SelectedDepartmentName))
+            {
+                MessageBox.Show("Виберіть департамент для структурного підрозділу.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
 
         public ChangeStructureUnitViewModel(StructureUnit structureUnit, IWindowService windowService)
         {
-            this._windowService = windowService;
-            this._structureUnit = structureUnit;
-            _departmentService = new DepartmentService();
-            _structureUnitService = new StructureUnitService();
-            ChangeStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute => true);
-            StructureUnitName = structureUnit.StructureUnitName;
-            SelectedStructureUnitType = structureUnit.Type;
-            SelectedDepartmentName = structureUnit.DepartmentName;
-            LoadData();
-            CreateDictionaries();
+            if (ValidateInputs())
+            {
+                this._windowService = windowService;
+                this._structureUnit = structureUnit;
+                _departmentService = new DepartmentService();
+                _structureUnitService = new StructureUnitService();
+                ChangeStructureUnitCommand = new RelayCommand(ExecuteAddStructureUnit, canExecute => true);
+                StructureUnitName = structureUnit.StructureUnitName;
+                SelectedStructureUnitType = structureUnit.Type;
+                SelectedDepartmentName = structureUnit.DepartmentName;
+                LoadData();
+                CreateDictionaries();
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+            }
+           
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

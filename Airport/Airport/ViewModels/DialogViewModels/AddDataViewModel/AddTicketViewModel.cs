@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
@@ -42,6 +43,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 
         private void ExecuteAddTicket(object parameter)
         {
+           
             Ticket ticket  = new Ticket 
             {
                 Status=this.SelectedStatus,
@@ -55,6 +57,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
     };
 
            _tickietSevice.AddTicket(ticket);
+            MessageBox.Show("Об'єкт упішно додано!");
+            _windowService.CloseModalWindow();
         }
 
         public ObservableCollection<Flight> Flights { get; set; }

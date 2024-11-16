@@ -55,13 +55,13 @@
         <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
 
-
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="90,41,688,0" Grid.Row="1" ><Run Language="uk-ua" Text="Тип запиту"/></TextBlock>
 
         <DataGrid x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter"
                  HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
                  FontWeight="Bold" IsReadOnly="True" FontSize="10" 
                  ItemsSource="{Binding Flights}"  HorizontalAlignment="Center" Margin="0,0,0,-5" Width="868">
- 
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FlightId }" Width="0.5*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding FlightNumber }" Width="2*"/>
@@ -82,8 +82,8 @@
 
 
 
-                
-                
+
+
 
             </DataGrid.Columns>
 
@@ -113,5 +113,9 @@
          Text="{Binding FlightDirection, UpdateSourceTrigger=PropertyChanged}" />
             <Button Content="Виконати" Width="95" Height="32" Margin="5"  Command="{Binding DoQuery}" />
         </StackPanel>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="235,45,543,0" Grid.Row="1" ><Run Language="uk-ua"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="402,42,376,0" Grid.Row="1" ><Run Text="Тип "/><Run Language="uk-ua" Text="літака"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="565,41,213,0" Grid.Row="1" ><Run Language="uk-ua" Text="Напрям"/></TextBlock>
+        <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="-0.593,1.442" Margin="245,42,533,0" Grid.Row="1" ><Run Language="uk-ua" Text="Категорія"/></TextBlock>
     </Grid>
 </Window>

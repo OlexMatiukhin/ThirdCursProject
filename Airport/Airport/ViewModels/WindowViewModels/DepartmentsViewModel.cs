@@ -178,6 +178,7 @@ namespace Airport.ViewModels.WindowViewModels
                         Departments.Remove(department);
                         _departmentService.DeleteDepartment(department.DepartmentId);
                         MessageBox.Show("Департамент успішно видалено!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Error);
+                        LoadDepartments();
                     }
                 }
                 else

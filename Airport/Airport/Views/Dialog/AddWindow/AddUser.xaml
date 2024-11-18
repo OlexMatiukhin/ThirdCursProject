@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Airport.Views.Dialog"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800  "
       Title="Add User">
 
-    <Grid>
+    <Grid Height="434" VerticalAlignment="Top">
         <TextBox Name="Login" 
                  Text="{Binding Login, Mode=TwoWay}" 
                  HorizontalAlignment="Left" 
@@ -26,12 +26,12 @@
         <ComboBox ItemsSource="{Binding Roles}"  
               SelectedValue="{Binding AccessRight, Mode=TwoWay}" 
                   HorizontalAlignment="Left" 
-                  Margin="383,54,0,0" 
+                  Margin="389,54,0,0" 
                   VerticalAlignment="Top" 
                   Width="120"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="122,35,0,0" 
+                   Margin="166,30,0,0" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
                    FontWeight="Bold" 
@@ -40,7 +40,7 @@
         </TextBlock>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="257,35,0,0" 
+                   Margin="295,33,0,0" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
                    FontWeight="Bold" 
@@ -49,7 +49,7 @@
         </TextBlock>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="383,35,0,0" 
+                   Margin="406,33,0,0" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
                    FontWeight="Bold" 

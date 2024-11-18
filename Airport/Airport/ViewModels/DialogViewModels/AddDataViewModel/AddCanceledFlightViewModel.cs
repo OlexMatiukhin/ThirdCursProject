@@ -47,6 +47,8 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
          
 
         }
+
+
         public ObservableCollection<StructureUnit> StructureUnits { get; set; }
         public Dictionary<int, string> StructureUnitDictionary { get; set; }
 

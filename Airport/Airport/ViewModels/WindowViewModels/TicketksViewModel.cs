@@ -16,8 +16,11 @@ namespace Airport.ViewModels.WindowViewModels
 
         private User _user;
         private readonly UserService _userService;
+        private RefundedTicketService _refundedTicketService;
 
 
+        public ICommand LogoutCommand { get; }
+      
         public ObservableCollection<Ticket> Tickets
         {
             get => _tickets;
@@ -103,13 +106,17 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand BuyTicketCommand { get; }
         public ICommand BookTicketCommand { get; }
 
+        public ICommand ReturnTicketCommmand { get; }
+
         public TicketsViewModel(IWindowService windowService, User user)
         {
             this._windowService = windowService;
             _flightService = new FlightService();
             BuyTicketCommand = new RelayCommand(OnBuyingTicket);
             BookTicketCommand = new RelayCommand(OnBookingTicket);
+            ReturnTicketCommmand = new RelayCommand(OnTicketReturn);
             _ticketService = new TicketService();
+            _refundedTicketService = new RefundedTicketService();   
             OpenAddWindowCommand = new RelayCommand(OnAdd);
             _passengerService =new PassengerService();
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
@@ -118,7 +125,13 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
+        }
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
 
         private void OnAdd(object parameter)
@@ -162,7 +175,7 @@ namespace Airport.ViewModels.WindowViewModels
                 Flight flight = new Flight();
                  flight = _flightService.GetFlightById(ticket.FlightId);
 
-                if (ticket != null && ticket.Status != "проданий")
+                if (ticket != null && ticket.Status != "куплений")
                 {
                     if (ticket.Status == "заброньований")
                     {
@@ -175,15 +188,17 @@ namespace Airport.ViewModels.WindowViewModels
                         if (result == MessageBoxResult.Yes)
                         {
                             ticket.Status = "куплений";
+                      
                             _ticketService.UpdateTicket(ticket);
-                            flight.NumberBoughtTickets--;
+                            flight.NumberBoughtTickets++;
                             _flightService.UpdateFlight(flight);
                         }
+                        
                     }
                     else
                     {
                         //ticket.Status = "куплений";
-                        _windowService.OpenModalWindow("AddPassangerViewModel", ticket);
+                        _windowService.OpenModalWindow("AddPassengerBuyTicket", ticket, flight);
 
 
                     }
@@ -197,10 +212,19 @@ namespace Airport.ViewModels.WindowViewModels
 
             var ticket = parameter as Ticket;
 
-            if (ticket != null && ticket.Status != "проданий" && ticket.Status != "заброньований")
+
+
+            Flight flight = new Flight();
+            
+
+            if (ticket != null && ticket.Status != "куплений" && ticket.Status != "заброньований")
             {
                 //ticket.Status = "заброньований";
-                _windowService.OpenModalWindow("AddPassangerViewModel", ticket);
+
+
+
+                flight = _flightService.GetFlightById(ticket.FlightId);
+                _windowService.OpenModalWindow("AddPassengerBookTicket", ticket);
 ;
             }
           
@@ -217,7 +241,13 @@ namespace Airport.ViewModels.WindowViewModels
                 var ticket = parameter as Ticket;
                 Flight flight = _flightService.GetFlightById(ticket.FlightId);
 
-                if (ticket != null && ticket.Status == "проданий" && ticket.Status == "заброньований")
+                if (flight.Status == "активний")
+                {
+                    MessageBox.Show("Повернути квиток, на активований рейс неможливо!");
+                }
+
+
+                if (ticket != null && ticket.Status == "куплений" || ticket.Status == "заброньований")
                 {
                     MessageBoxResult result = MessageBox.Show(
                         $"Ви точно хочете повернути білет",
@@ -226,11 +256,21 @@ namespace Airport.ViewModels.WindowViewModels
                         MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
                     {
+
+                        if (ticket.Status == "куплений")
+                        {
+                           
+                            flight.NumberBoughtTickets--;
+                        }
+
                         ticket.Status = "доступний";
                         _passengerService.DeletePassenger(ticket.PassengerId);
                         ticket.PassengerId = null;
-                        flight.NumberBoughtTickets--;
+                        _ticketService.UpdateTicket(ticket);
+                        _flightService.UpdateFlight(flight);
+                        
                         LoadTickets();
+
 
 
                     }

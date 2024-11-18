@@ -92,8 +92,24 @@ namespace Airport.ViewModels.QueriesViewModel
                 OnPropertyChanged(nameof(AccessRight));
             }
         }
-      
 
+
+        public ICommand OpenMainWindowCommand { get; }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+            _windowService.OpenWindow("MainMenuView", _user);
+            _windowService.CloseWindow();
+
+        }
+
+        public ICommand LogoutCommand { get; }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
 
 
 
@@ -112,9 +128,11 @@ namespace Airport.ViewModels.QueriesViewModel
 
             _userService = new UserService();
             _user = user;
-            /* Login = _user.Login;
-                  AccessRight = _user.AccessRight;*/
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
             DoQuery = new RelayCommand(OnDoQuery);
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
 
 
         }

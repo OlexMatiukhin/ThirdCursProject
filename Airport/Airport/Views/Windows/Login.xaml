@@ -16,7 +16,8 @@
         <Image HorizontalAlignment="Center" Width="184"   IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Top" Grid.Row="0" Height="70" Margin="0,14,0,0"/>
 
         <TextBox    HorizontalAlignment="Center" Margin="0,148,0,0" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="296" Height="30" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="22"/>
-        <TextBox    HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="296" Height="30" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="22"/>
+        
+<TextBox    HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="296" Height="30" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="22"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,119,0,0" TextWrapping="Wrap" Text="Логін" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
         <Button Content="Увійти" HorizontalAlignment="Center" Command="{Binding LoginCommand}" Margin="0,320,0,0" VerticalAlignment="Top" Height="30" Width="295" Background="#FFFAF100" FontWeight="Bold" FontSize="16"/>

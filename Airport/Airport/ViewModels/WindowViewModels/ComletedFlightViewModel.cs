@@ -17,6 +17,7 @@ using System.Windows.Input;
 
 namespace Airport.ViewModels.WindowViewModels
 {
+
     public class CompletedFlightsViewModel:INotifyPropertyChanged
     {
         private ObservableCollection<CompletedFlight> _completedFlights;
@@ -25,6 +26,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         private string _login;
         private string _accessRight;
+        public ICommand LogoutCommand { get; }
 
 
         public string Login
@@ -77,6 +79,8 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
         }
+
+    
         public CompletedFlightsViewModel(IWindowService _windowService, User user)
         {
             _completedFlightService = new CompletedFlightService();
@@ -88,6 +92,14 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+        }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
         public void SearchOperation(string searchLine)
         {

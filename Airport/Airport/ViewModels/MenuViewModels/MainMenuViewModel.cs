@@ -54,7 +54,7 @@ namespace Airport.ViewModels.MenuViewModels
         public Dictionary<string, string> MenuItemsDictionary { get; set; } = new Dictionary<string, string>
         {
             { "Департаменти", "DepartmentsView" },
-            { "Структурні одиниця", "StructureUnitsView" },
+            { "Структурні одиниці", "StructureUnitsView" },
             { "Бригади", "BrigadesView" },
             { "Посади", "PositionsView" },
             { "Працівники", "WorkersView" },

@@ -43,6 +43,44 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+
+        public void AddRefundedTicketInfo(Ticket ticket, Passenger passenger)
+        {
+            try
+            {
+                if (ticket == null)
+                {
+                    Console.WriteLine("Переданный билет равен null.");
+                    return;
+                }
+
+
+                var refundedTicket = new RefundedTicketInfo
+                {
+                    RefundedTicketId = ObjectId.GenerateNewId(),
+                    Date = DateTime.UtcNow,
+                    RouteId = ticket.FlightId,
+                    Age = passenger.Age,
+                    Price = ticket.Price,
+                    Gender = passenger.Gender,
+                    Fullname = passenger.FullName,
+                    TicketId = ticket.TicketId,
+                    FlightId = ticket.FlightId
+                };
+
+
+                _refundedTicketCollection.InsertOne(refundedTicket);
+
+                Console.WriteLine($"Возврат билета для TicketId {ticket.TicketId} успешно добавлен.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при добавлении возврата билета: {ex.Message}");
+            }
+        }
+
+
+
         public List<RefundedTicketInfo> GetRefundedTicketsData()
         {
             try

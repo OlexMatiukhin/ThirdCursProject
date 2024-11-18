@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 
 namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
 {
@@ -23,7 +24,9 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private IWindowService _windowService;
 
         private readonly TicketService _ticketService;
-      
+        private readonly FlightService _flightService;
+        
+
 
 
 
@@ -51,6 +54,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         private int _completedFlightId;
         private int _age;
         private Ticket _ticket;
+        private Flight _flight;
 
 
         
@@ -161,58 +165,69 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
         }
 
 
-        public  AddPassengerViewModel(IWindowService windowService,Ticket ticket) 
+        public  AddPassengerViewModel(IWindowService windowService,Ticket ticket, Flight flight) 
         {
-            if (ValidateInputs())
-            {
+           
                 _passengerService = new PassengerService();
 
 
                 AddPassengerCommand = new RelayCommand(ExecutePassangerAdd, canExecute => true);
                 this._windowService = windowService;
                 this._ticketService = new TicketService();
-
+                _flight = flight;
+            _flightService = new FlightService();
                 this._ticket = ticket;
 
-            }
+            
             
         }
 
         private void ExecutePassangerAdd(object parameter)
         {
-            MessageBoxResult result = MessageBox.Show(
-                    "Завершити затримку?",
-                    "Завершення затримки",
+            if (ValidateInputs())
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Купити  квиток?",
+                    "Купівля квитка",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-
-                Passenger newPassenger = new Passenger
+                if (result == MessageBoxResult.Yes)
                 {
 
-                    FullName = FullName,
-                    Age = Age,
-                    Gender = SelectedGender,
-                    PassportNumber = PassportNumber,
-                    InternPassportNumber = InternPassportNumber,
-                    BaggageStatus = BaggageStatus,
-                    PhoneNumber = PhoneNumber,
-                    Email = Email,
-                    CustomsControlStatus = "не перевірений",
-                    RegistrationStatus = "не зареєстрований",
-                    FlightId = _ticket.FlightId,
+                    Passenger newPassenger = new Passenger
+                    {
 
-                };
-                this._ticket.PassengerId = newPassenger.PassengerId;
-                this._ticket.Status = "куплений";
+                        FullName = FullName,
+                        Age = Age,
+                        Gender = SelectedGender,
+                        PassportNumber = PassportNumber,
+                        InternPassportNumber = InternPassportNumber,
+                        BaggageStatus = BaggageStatus,
+                        PhoneNumber = PhoneNumber,
+                        Email = Email,
+                        CustomsControlStatus = "не перевірений",
+                        RegistrationStatus = "не зареєстрований",
+                        FlightId = _ticket.FlightId,
 
-                MessageBox.Show("Об'єкт упішно додано!");
-                _windowService.CloseModalWindow();
+                    };
 
-                _ticketService.UpdateTicket(this._ticket);
+                    _passengerService.AddPassenger(newPassenger);
+                    this._ticket.PassengerId = newPassenger.PassengerId;
+                    this._ticket.Status = "куплений";
+                   
 
-                _passengerService.AddPassenger(newPassenger);
+                    _ticketService.UpdateTicket(_ticket);
+                    _flight.NumberBoughtTickets++;
+                    _flightService.UpdateFlight(_flight);
+
+                    MessageBox.Show("Об'єкт упішно додано!");
+                    _windowService.CloseModalWindow();
+
+                    _ticketService.UpdateTicket(this._ticket);
+                    
+
+                 
+                }
             }
             
         }

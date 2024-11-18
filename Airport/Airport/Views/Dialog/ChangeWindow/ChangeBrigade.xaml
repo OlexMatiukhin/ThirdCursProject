@@ -27,7 +27,7 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Text="Структурна одиниця"/><LineBreak/><Run/></TextBlock>
 
-        <Button Content="Додати" Command="{Binding ChangeBrigadeCommand}" HorizontalAlignment="Left" Margin="283,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
+        <Button Content="Змінити" Command="{Binding ChangeBrigadeCommand}" HorizontalAlignment="Left" Margin="283,169,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.664,6.966" Height="35"/>
 
     </Grid>
 </Window>

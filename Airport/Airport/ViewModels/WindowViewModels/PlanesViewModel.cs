@@ -31,7 +31,8 @@ namespace Airport.ViewModels.WindowViewModels
 
         private readonly IWindowService _windowService;
         private User _user;
-
+        public ICommand LogoutCommand { get; }
+       
 
 
 
@@ -75,11 +76,18 @@ namespace Airport.ViewModels.WindowViewModels
                 OnPropertyChanged(nameof(AccessRight));
             }
         }
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
 
 
         public PlanesViewModel(IWindowService windowService, User user)
         {
             _planeService = new PlaneService();
+            _planeRepairService = new PlaneRepairService();
             this._windowService = windowService;
             LoadPlanes();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
@@ -92,6 +100,8 @@ namespace Airport.ViewModels.WindowViewModels
             _userService = new UserService();
             this._user = user;
             Login = _user.Login;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+
             AccessRight = _user.AccessRight;
            
 
@@ -124,8 +134,8 @@ namespace Airport.ViewModels.WindowViewModels
 
         private void OnMainWindowOpen(object parameter)
         {
-            _windowService.CloseWindow();
             _windowService.OpenWindow("MainMenuView", _user);
+            _windowService.CloseWindow();
 
 
         }
@@ -158,6 +168,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrud(_user))
             {
                 _windowService.OpenModalWindow("AddPlane");
+                LoadPlanes();
             }
 
 
@@ -242,7 +253,7 @@ namespace Airport.ViewModels.WindowViewModels
                     if (resultOther == MessageBoxResult.Yes)
                     {
 
-                        _planeRepairService.DeletePlaneRepair(plane.PlaneId);
+                        _planeService.DeletePlane(plane.PlaneId);
                         MessageBox.Show(
                                 "Літак успішно видалено!",
                                   "Видалення інформації",
@@ -314,53 +325,65 @@ namespace Airport.ViewModels.WindowViewModels
         {
             if(_userService.IfUserCanDoAdditionalActions(_user))
             {
+
                 var plane = parameter as AirPlane;
-                if (plane != null && plane.TechCondition != "в ремонті")
+                if (plane != null)
                 {
-                    MessageBoxResult result = MessageBox.Show(
-                              "Cтан задовільний?",
-                              "",
-                              MessageBoxButton.YesNo,
-                              MessageBoxImage.Question);
-                    if (result == MessageBoxResult.Yes)
+                    if (!_planeService.IsPlaneInActiveFlight(plane.PlaneNumber))
                     {
-
-
-
-                        Planes.First(p => p.PlaneId == plane.PlaneId).TechCondition = "задовільний";
-                        _planeService.UpdatePlane(plane);
-
-                        MessageBox.Show("Cтан встановлено на задовілний", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBoxResult resultRepairQuestion = MessageBox.Show(
-                             "Відправити?",
-                             "",
-                             MessageBoxButton.YesNo,
-                             MessageBoxImage.Question);
-                        if (resultRepairQuestion == MessageBoxResult.Yes)
+                        if (plane != null && plane.TechCondition != "в ремонті")
                         {
-                            PlaneRepair planeRepair = new PlaneRepair();
+                            MessageBoxResult result = MessageBox.Show(
+                                      "Cтан задовільний?",
+                                      "",
+                                      MessageBoxButton.YesNo,
+                                      MessageBoxImage.Question);
+                            if (result == MessageBoxResult.Yes)
+                            {
 
-                            planeRepair.StartDate = DateTime.Now;
-                            planeRepair.Status = "активний";
-                            planeRepair.NumberFlights = plane.NumberFlightsBeforeRepair;
-                            _planeRepairService.Add(planeRepair);
-                            plane.NumberFlightsBeforeRepair = 0;
-                            plane.TechCondition = "в ремонті";
-                            MessageBox.Show("Літак відправлено у ремонт!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
 
+
+                                Planes.First(p => p.PlaneId == plane.PlaneId).TechCondition = "задовільний";
+                                _planeService.UpdatePlane(plane);
+
+                                MessageBox.Show("Cтан встановлено на задовілний", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else
+                            {
+                                MessageBoxResult resultRepairQuestion = MessageBox.Show(
+                                     "Відправити?",
+                                     "",
+                                     MessageBoxButton.YesNo,
+                                     MessageBoxImage.Question);
+                                if (resultRepairQuestion == MessageBoxResult.Yes)
+                                {
+                                    PlaneRepair planeRepair = new PlaneRepair();
+
+                                    planeRepair.PlaneId = plane.PlaneId;
+                                    planeRepair.StartDate = DateTime.Now;
+                                    planeRepair.Status = "активний";
+                                    planeRepair.NumberFlights = plane.NumberFlightsBeforeRepair;
+                                    _planeRepairService.Add(planeRepair);
+                                    plane.NumberFlightsBeforeRepair = 0;
+                                    plane.TechCondition = "в ремонті";
+                                    _planeService.UpdatePlane(plane);
+                                    MessageBox.Show("Літак відправлено у ремонт!", "Успішний результат", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                }
+
+                            }
                         }
-
                     }
+
                 }
+              
+               
 
             }
             else
             {
                 
-                    MessageBox.Show(" Літак знаходиться в ремонті!", "Помилка перевірки", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(" Користувач немає доступу до данної операції!", "Помилка перевірки", MessageBoxButton.OK, MessageBoxImage.Error);
 
              }
 

@@ -139,6 +139,7 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                     TransitAirport = TransitAirport,
                     FlightDirection = FlightDirection
                 };
+                _routeService.AddRoute(newRoute);
                 MessageBox.Show("Об'єкт упішно додано!");
                 _windowService.CloseModalWindow();
             }

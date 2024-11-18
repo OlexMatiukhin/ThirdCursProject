@@ -21,6 +21,11 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
 
+        public ICommand LogoutCommand { get; }
+   
+
+
+
         private User _user;
         public ObservableCollection<RefundedTicketInfo> RefundedTickets
         {
@@ -33,6 +38,8 @@ namespace Airport.ViewModels.WindowViewModels
                     OnPropertyChanged(nameof(RefundedTickets));
                 }
             }
+
+
         }
         private string _login;
         private string _accessRight;
@@ -59,6 +66,12 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
 
 
         private string _searchLine;
@@ -105,6 +118,7 @@ namespace Airport.ViewModels.WindowViewModels
             DeleteWindowCommand = new RelayCommand(OnDelete);
             _userService = new UserService();
             _user = user;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
             Login = _user.Login;
             AccessRight = _user.AccessRight;

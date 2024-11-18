@@ -36,7 +36,10 @@ public class BaggageViewModel:INotifyPropertyChanged
     private BaggageService _baggageService;
     public ICommand OpenEditWindowCommand { get; }
     public ICommand OpenMainWindowCommand { get; }
+    public ICommand OpenLogutWindowCommand { get; }
     public ICommand OpenAddWindowCommand { get; }
+
+    public ICommand LogoutCommand { get; }
     private readonly IWindowService _windowService;
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -95,10 +98,21 @@ public class BaggageViewModel:INotifyPropertyChanged
         OpenEditWindowCommand = new RelayCommand(OnEdit);
         OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
         OpenAddWindowCommand = new RelayCommand(OnAdd);
+        LogoutCommand = new RelayCommand(OnLogoutCommand);
+
+
         this._user = user;
         Login = _user.Login;
         AccessRight = _user.AccessRight;    
     }
+    private void OnLogoutCommand(object parameter)
+    {
+        _windowService.OpenWindow("LoginView", _user);
+        _windowService.CloseWindow();
+    }
+
+
+
 
     public void SearchOperation(string searchLine)
     {
@@ -126,6 +140,7 @@ public class BaggageViewModel:INotifyPropertyChanged
             if (baggage != null)
             {
                 _windowService.OpenModalWindow("ChangeBaggage", baggage);
+
 
             }
             LoadBagge();
@@ -167,6 +182,11 @@ public class BaggageViewModel:INotifyPropertyChanged
         _windowService.CloseWindow();
 
     }
+
+
+
+
+   
     private void OnAdd(object parameter)
     {
 

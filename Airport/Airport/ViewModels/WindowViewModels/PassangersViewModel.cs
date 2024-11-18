@@ -21,6 +21,7 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly UserService _userService;
         private ObservableCollection<Passenger> _passengers;
 
+        private FlightService _flightService;
         public ObservableCollection<Passenger> Passengers
         {
             get => _passengers;
@@ -96,27 +97,44 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenEditWindowCommand { get; }
 
         public ICommand OpenMainWindowCommand { get; }
-        
-        private readonly IWindowService _windowService;
 
+
+        public ICommand CheckCustomsContolCommand { get; }
+
+        public ICommand RegistratreCommand { get; }
+
+        private readonly IWindowService _windowService;
+        public ICommand LogoutCommand { get; }
         public PassengersViewModel(IWindowService _windowService, User user)
         {
             _passengerService = new PassengerService();
             OpenEditWindowCommand = new RelayCommand(OnEdit);
             OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+            CheckCustomsContolCommand = new RelayCommand(СheckCustomsControl);
+            RegistratreCommand = new RelayCommand(RegistrPassanger);
+            _flightService = new FlightService();   
             _windowService = new WindowService();
             this._windowService=_windowService;
             _userService = new UserService();
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+
 
             LoadPassengers();
         }
 
-        
 
-             private void OnMainWindowOpen(object parameter)
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
+
+
+        private void OnMainWindowOpen(object parameter)
             {
 
             _windowService.OpenWindow("MainMenuView", _user);
@@ -149,6 +167,13 @@ namespace Airport.ViewModels.WindowViewModels
                 var passenger = parameter as Passenger;
                 if (passenger != null)
                 {
+                    Flight flight = _flightService.GetFlightById(passenger.FlightId);
+                    string flightStatus = flight.Status;
+                    if (flightStatus != "запланований")
+                    {
+                        MessageBox.Show("Рейс має бути на стадії \"запланований\" ");
+                        return;
+                    }
                     MessageBoxResult result = MessageBox.Show(
                       "Пасажир пройшов перевікрку?",
                       "Проходження митної перервірки",
@@ -165,12 +190,19 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
-        private void PasangerRegistration(object parameter)
+        private void RegistrPassanger(object parameter)
         {
 
             if (_userService.IfUserCanDoAdditionalActions(_user))
             {
                 var passenger = parameter as Passenger;
+
+                string flightStatus = _flightService.GetFlightById(passenger.FlightId).Status;
+                if (flightStatus != "запланований")
+                {
+                    MessageBox.Show("Рейс має бути на стадії \"запланований\" ");
+                    return;
+                }
                 if (passenger != null && passenger.CustomsControlStatus == "перевірений")
                 {
                     MessageBoxResult result = MessageBox.Show(

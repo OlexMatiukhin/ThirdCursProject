@@ -113,8 +113,7 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
                 _baggageService = new BaggageService();
                 ChangeBaggageCommand = new RelayCommand(OnCahngeBaggageExecuted, canExecute => true);
-            System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
-            _windowService.CloseModalWindow();
+           
 
 
 
@@ -147,8 +146,10 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
 
 
                         _baggageService.UpdateBaggage(_baggage);
+                System.Windows.MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
 
-                    }
+            }
                 
        
             }

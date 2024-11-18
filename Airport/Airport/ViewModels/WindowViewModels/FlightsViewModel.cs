@@ -116,6 +116,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenAddWindowCommand { get; }
 
         private readonly IWindowService _windowService;
+        public ICommand LogoutCommand { get; }
         public FlightsViewModel(IWindowService windowService, User user)
         {
              this._windowService = windowService;
@@ -141,8 +142,18 @@ namespace Airport.ViewModels.WindowViewModels
             Login = _user.Login;
             AccessRight = _user.AccessRight;
             LoadFlights();
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
         }
+        
+
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
 
 
         private Flight _selectedFlight;
@@ -193,6 +204,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrud(_user))
             {
                 _windowService.OpenModalWindow("AddFlight");
+                LoadFlights();
             }
             
 
@@ -205,7 +217,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoAdditionalActions(_user))
             {
                 var flight = parameter as Flight;
-                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішний"))
+                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішній"))
                 {
                     MessageBoxResult result = MessageBox.Show(
                       "Митний контроль завершено?",
@@ -229,7 +241,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoAdditionalActions(_user))
             {
                 var flight = parameter as Flight;
-                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішний"))
+                if (flight != null && flight.Status == "запланований" && (flight.Category == "чартений" || flight.Category == "міжнародний" || flight.Category == "внутрішній"))
                 {
 
 
@@ -256,7 +268,7 @@ namespace Airport.ViewModels.WindowViewModels
         private bool CheckPlaneForActivation(Flight flight)
         {
             AirPlane plane = _planeService.GetPlaneByPlaneNumber(flight.PlaneNumber);
-            if (plane == null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
+            if (plane != null && plane.InteriorReadiness == "готовий" && plane.PlaneFuelStatus == "заправлений" && plane.TechCondition == "задовільний")
             {
                 return true;
             }
@@ -273,7 +285,8 @@ namespace Airport.ViewModels.WindowViewModels
 
 
             var flight = parameter as Flight;
-            
+
+            if (!_planeService.IsPlaneInActiveFlight(flight.PlaneNumber)) {
 
                 switch (flight.Category)
                 {
@@ -284,7 +297,7 @@ namespace Airport.ViewModels.WindowViewModels
                         ? (float)flight.NumberBoughtTickets / flight.NumberTickets * 100
                         : 0;
 
-                        if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена" && boughtTicketPercent >= 50&& CheckPlaneForActivation(flight))
+                        if (flight != null && flight.CustomsControl == "завершений" && flight.PassengerRegistration == "завершена" && boughtTicketPercent >= 50 && CheckPlaneForActivation(flight))
                         {
                             MessageBoxResult result = MessageBox.Show(
                               "Активувати рейс?",
@@ -319,23 +332,25 @@ namespace Airport.ViewModels.WindowViewModels
 
                         break;
                     default:
-                    if (CheckPlaneForActivation(flight))
-                    {
-                        MessageBoxResult resultOther = MessageBox.Show(
-                          "Активувати рейс?",
-                          "Активація рейсу",
-                          MessageBoxButton.YesNo,
-                          MessageBoxImage.Warning);
-                        if (resultOther == MessageBoxResult.Yes)
+                        if (CheckPlaneForActivation(flight))
                         {
-                            flight.Status = "активний";
-                            _flightService.UpdateFlight(flight);
+                            MessageBoxResult resultOther = MessageBox.Show(
+                              "Активувати рейс?",
+                              "Активація рейсу",
+                              MessageBoxButton.YesNo,
+                              MessageBoxImage.Warning);
+                            if (resultOther == MessageBoxResult.Yes)
+                            {
+                                flight.Status = "активний";
+                                _flightService.UpdateFlight(flight);
+                            }
+
                         }
-                       
-                    }
-                    break;
+                        break;
 
                 }
+            }
+               
 
 
           
@@ -393,7 +408,7 @@ namespace Airport.ViewModels.WindowViewModels
                 MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes) {
                 var flight = parameter as Flight;
-                _windowService.OpenModalWindow("AddCanceledFlightInfoView", parameter, Flights);
+                _windowService.OpenModalWindow("AddCanceledFlightInfo", parameter, Flights);
             }
      
             
@@ -427,7 +442,7 @@ namespace Airport.ViewModels.WindowViewModels
             var flight = parameter as Flight;
             if (flight !=null && flight.Status=="запланований"&& flight.Category!="спеціальний")
             {
-                _windowService.OpenModalWindow("AddDelayedFlightInfoView", flight);
+                _windowService.OpenModalWindow("AddDelayedFlightInfo", flight);
             }
 
         }

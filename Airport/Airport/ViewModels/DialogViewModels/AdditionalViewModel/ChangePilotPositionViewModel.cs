@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
 using MongoDB.Bson;
+using System.Windows;
 
 namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
 {
@@ -18,10 +19,12 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
     {
         private readonly PilotMedExamService _pilotMedExamService;
         private readonly PilotMedExam _pilotMedExam;
+        private BrigadeService _brigadeService;
 
         private readonly PositionService _postitionService;
         private IWindowService _windowService;
         private Worker _worker;
+
         private readonly WorkerService _workerService;
         public ICommand ChangePilotPositionCommand { get; }
 
@@ -30,6 +33,8 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
             _pilotMedExamService = new PilotMedExamService();
             _postitionService = new PositionService();
             _workerService = new WorkerService();
+            _pilotMedExam = pilotMedExam;
+            _worker = worker;
             this._windowService = windowService;
 
             LoadData();
@@ -41,18 +46,33 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
         private void ExecuteChangePilotPossition(object parameter)
         {
 
-            if (_worker != null&& SelectedPostionId!=null) {
-                //_worker.PositionId = SelectedPostionId;
-                _pilotMedExam.Result = "не пройдений";
+            if (_worker != null&& SelectedPostionName!=null) {
+                _worker.PositionName = SelectedPostionName;
+                _pilotMedExam.Result = "пройдений";
                 _pilotMedExam.DateExamination = DateTime.Now;
                 _pilotMedExam.DoctorId = null;
+
+
+                if (_worker.BrigadeId.HasValue&& _worker.BrigadeId.Value!=null && _worker.BrigadeId.Value != ObjectId.Empty)
+                {
+                    ObjectId brigadeId = _worker.BrigadeId.Value; 
+                    var brigade = _brigadeService.GetBrigadeById(brigadeId);
+                    _brigadeService.DeleteWorkerFromBrigade(brigadeId);
+                    _worker.BrigadeId = null;
+
+                }
+           
+
                 _pilotMedExamService.UpdatePilotMedExam(_pilotMedExam);
-                _worker.ResultMedExam = "пройдений";
-                _worker.LastMedExamDate = DateTime.Now;
+                _workerService.UpdateWorker(_worker);
+                MessageBox.Show("Посаду змінено!");
+                _windowService.CloseModalWindow();
+                //_worker.ResultMedExam = "пройдений";
+                //_worker.LastMedExamDate = DateTime.Now;
             }
             else
             {
-               
+                MessageBox.Show("Оберіть нову посаду");               
             }
            
            
@@ -65,22 +85,22 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
   
 
 
-        public Dictionary<ObjectId, string> PositionsDictionary { get; set; }
+        public Dictionary<string, string> PositionsDictionary { get; set; }
        
 
 
        
 
-        private ObjectId _selectedPostionId;  
+        private string _selectedPostionName;  
        
 
-        public ObjectId SelectedPostionId
+        public string SelectedPostionName
         {
-            get => _selectedPostionId;
+            get => _selectedPostionName;
             set
             {
-                _selectedPostionId = value;
-                OnPropertyChanged(nameof(SelectedPostionId));
+                _selectedPostionName = value;
+                OnPropertyChanged(nameof(SelectedPostionName));
             }
         }
        
@@ -97,7 +117,7 @@ namespace Airport.ViewModels.DialogViewModels.AdditionalViewModel
         private void CreateDictionaries()
         {
            
-            PositionsDictionary = Positions.ToDictionary(b => b.PositionId, b => b.ToString());
+            PositionsDictionary = Positions.ToDictionary(b => b.PositionName, b => b.ToString());
 
         }
 

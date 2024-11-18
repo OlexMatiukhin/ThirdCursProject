@@ -18,6 +18,8 @@ namespace Airport.ViewModels.WindowViewModels
     class CanceledFlightsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<CanceledFlightInfo> _canceledFlights;
+
+        public ICommand LogoutCommand { get; }
         public ICommand DeleteWindowCommand { get; }
         private readonly UserService _userService;
         private User _user;
@@ -92,6 +94,7 @@ namespace Airport.ViewModels.WindowViewModels
             _userService = new UserService();
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
         }
 
         public void SearchOperation(string searchLine)
@@ -148,7 +151,12 @@ namespace Airport.ViewModels.WindowViewModels
 
         }
 
-       
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
         private void OnMainWindowOpen(object parameter)
         {
             _windowService.OpenWindow("MainMenuView", _user);

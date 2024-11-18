@@ -25,6 +25,7 @@ namespace Airport.ViewModels.WindowViewModels
 
         public ICommand OpenMainWindowCommand { get; }
         public ICommand DeleteWindowCommand { get; }
+        public ICommand LogoutCommand { get; }
 
         private readonly UserService _userService;
 
@@ -104,6 +105,11 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly IWindowService _windowService;
         private readonly PlaneRepairService _planeService;
         public ICommand OpenAddWindowCommand { get; }
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
         public RoutesViewModel(IWindowService windowService, User user)
         {
 
@@ -120,8 +126,11 @@ namespace Airport.ViewModels.WindowViewModels
             Login = _user.Login;
             AccessRight = _user.AccessRight;
 
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
             LoadRoutes();
         }
+
+      
         private void OnMainWindowOpen(object parameter)
         {
 

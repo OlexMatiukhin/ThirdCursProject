@@ -8,10 +8,10 @@
         Title="AddCanceledFlight" Height="450" Width="800">
     <Grid>
         <ComboBox HorizontalAlignment="Left" Margin="240,109,0,0" VerticalAlignment="Top" Width="350" Height="35" ItemsSource="{Binding DelayReason}" 
-        SelectedValue="{Binding AddDelayedFlightView, Mode=TwoWay}"/>
+        SelectedValue="{Binding SelectedDelayReason, Mode=TwoWay}"/>
         <TextBox HorizontalAlignment="Left"  Text="{Binding DelayDescription, Mode=TwoWay}"  Margin="240,179,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="350" Height="38"/>
 
-        <Button Content="Button"  Command="{Binding AddDelayedFlightCommand}" HorizontalAlignment="Left" Margin="242,284,0,0" VerticalAlignment="Top" Width="346" Height="35" RenderTransformOrigin="0.5,0.5">
+        <Button Content="Додати"  Command="{Binding AddDelayedFlightCommand}" HorizontalAlignment="Left" Margin="242,284,0,0" VerticalAlignment="Top" Width="346" Height="35" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -21,7 +21,9 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-      
+        <TextBlock HorizontalAlignment="Left" Margin="386,80,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Причина"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="365,153,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Опис проблеми"/><LineBreak/><Run Language="uk-ua"/></TextBlock>
+
 
     </Grid>
 </Window>

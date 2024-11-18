@@ -17,6 +17,8 @@ public class BrigadesViewModel:INotifyPropertyChanged
     private readonly UserService _userService;
     private User _user;
 
+    public ICommand LogoutCommand { get; }
+
 
 
     private string _login;
@@ -128,7 +130,11 @@ public class BrigadesViewModel:INotifyPropertyChanged
         _windowService = windowService;
         Login = _user.Login;
         AccessRight = _user.AccessRight;
-        LoadBrigades();
+
+        LogoutCommand = new RelayCommand(OnLogoutCommand);
+
+
+    LoadBrigades();
     }
     private void OnEdit(object parameter)
     {
@@ -148,6 +154,13 @@ public class BrigadesViewModel:INotifyPropertyChanged
 
 
 
+    }
+
+
+    private void OnLogoutCommand(object parameter)
+    {
+        _windowService.OpenWindow("LoginView", _user);
+        _windowService.CloseWindow();
     }
 
 

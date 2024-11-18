@@ -12,6 +12,7 @@ using System.Reflection.Metadata;
 using System.Windows;
 using System.ComponentModel;
 using Airport.Services.MongoDBService;
+using MongoDB.Bson;
 
 namespace Airport.ViewModels.WindowViewModels
 {
@@ -87,6 +88,8 @@ namespace Airport.ViewModels.WindowViewModels
             }
 
         }
+        public ICommand LogoutCommand { get; }
+      
         private WorkerService _workerService;
         private BrigadeService _briagadeService;
         private PilotMedExamService _pilotMedExamService;
@@ -115,7 +118,14 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
+        }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
         private void OnMainWindowOpen(object parameter)
         {
@@ -180,7 +190,9 @@ namespace Airport.ViewModels.WindowViewModels
                                MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
+                        worker.ResultMedExam = "активний";
                         _pilotMedExamService.AddPilotMedExamForWorker(worker);
+                        _workerService.UpdateWorker(worker);
                     }
 
                 }
@@ -209,7 +221,7 @@ namespace Airport.ViewModels.WindowViewModels
             if (_userService.IfUserCanDoCrud(_user))
             {
                 var worker = parameter as Worker;
-                if (worker != null && worker.BrigadeId == null)
+                if (worker != null && (worker.BrigadeId == null|| worker.BrigadeId==ObjectId.Empty))
                 {
 
                     MessageBoxResult resultOther = MessageBox.Show(
@@ -232,11 +244,18 @@ namespace Airport.ViewModels.WindowViewModels
                 }
                 else
                 {
+                    
+                        ObjectId brigadeId = worker.BrigadeId.Value;
+                    _briagadeService.DeleteWorkerFromBrigade(brigadeId);
+                    _workerService.DeleteWorker(worker.WorkerId);
                     MessageBox.Show(
                                 "Видалення працівника неможливо, він є у бригаді!",
                                   "Видалення інформації",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Warning);
+
+
+
 
                 }
             }

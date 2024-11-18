@@ -23,8 +23,10 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 using QueryMenuViewModel = Airport.ViewModels.MenuViewModels.QueryMenuViewModel;
 using Airport.Command.AddDataCommands;
+using Airport.Views.Dialog.AdditionalWindow;
 
 namespace Airport.Services
 {
@@ -232,7 +234,7 @@ namespace Airport.Services
                     }
                     break;
 
-                case "Queyry3":
+                case "Query3":
                     if (parameter is User user24)
                     {
                         window = new Query3();
@@ -429,7 +431,7 @@ namespace Airport.Services
                 case "ChangePilotPosition":
                     if (parameter is PilotMedExam pilotMedExam1 && paramet2 is Worker worker1)
                     {
-                        modalWindow = new AddDelayedFlightView();
+                        modalWindow = new ChangePilotPositionView();
                         modalWindow.DataContext = new ChangePilotPositionViewModel(this, pilotMedExam1, worker1);
 
 
@@ -464,17 +466,33 @@ namespace Airport.Services
                     modalWindow.DataContext = new AddFlightViewModel(this);
                     break;
 
-                case "AddPassanger":
+                case "AddPassengerBuyTicket":
 
-                    if (parameter is Models.Ticket ticket)
+                    if (parameter is Models.Ticket ticket&& paramet2 is Flight flight1)
                     {
                         modalWindow = new AddPassengerView();
-                        modalWindow.DataContext = new AddPassengerViewModel(this, ticket);
+                        modalWindow.DataContext = new AddPassengerViewModel(this, ticket,flight1);
 
 
                     }
                    
                     break;
+
+                case "AddPassengerBookTicket":
+
+                    if (parameter is Models.Ticket ticket2)
+                    {
+                        modalWindow = new AddPassengerView();
+                        modalWindow.DataContext = new AddPassangerBookingTicket(this, ticket2);
+
+
+                    }
+
+                    break;
+
+
+
+
 
 
 

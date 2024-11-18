@@ -105,12 +105,16 @@ namespace Airport.ViewModels.DialogViewModels.ChangeDataViewModel
         }
         private void ChangeBrigade(object parameter)
         {
-            _brigade.BrigadeType = this.BrigadeType;
-            _brigade.StructureUnitName = this.StructureUnitName;
+            if (ValidateInputs()) {
 
-            _brigadeService.UpdateBrigade(_brigade);
-            MessageBox.Show("Об'єкт успішно змінено!");
-            _windowService.CloseModalWindow();
+                _brigade.BrigadeType = this.BrigadeType;
+                _brigade.StructureUnitName = this.StructureUnitName;
+
+                _brigadeService.UpdateBrigade(_brigade);
+                MessageBox.Show("Об'єкт успішно змінено!");
+                _windowService.CloseModalWindow();
+            }
+           
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

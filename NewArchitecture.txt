@@ -1,0 +1,5280 @@
+use airport;
+
+db.structureUnit.find();
+use airport
+db.department.deleteMany({})
+db.department.find();
+db.department.insertMany([
+ { "_id": ObjectId("672a29caf7c9ad03faf76771"),
+    "departmentId": 1,
+    "departmentName": "Економічний департамент"},
+
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76772"},
+    "departmentId": 2,
+    "departmentName": "Експлуатаційний департамент"
+  },
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76773"},
+    "departmentId": 3,
+    "departmentName": "Департамент повітряного руху"
+  },
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76774"},
+    "departmentId": 4,
+    "departmentName": "Департамент технічного обслуговуваня"
+  },
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76775"},
+    "departmentId": 5,
+    "departmentName": "Департамент спеціалізованих служб"
+  },
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76776"},
+    "departmentId": 6,
+    "departmentName": "Департамент технічного обслуговуваня"
+  },
+  {
+    "_id": {"$oid": "672a29caf7c9ad03faf76777"},
+    "departmentId": 7,
+    "departmentName": "Департамент адміністративних та додаткових служб"
+  }
+]);
+
+
+db.structureUnit.deleteMany({});
+
+db.structureUnit.find({});
+
+
+db.structureUnit.insertMany([
+{
+    "_id": {"$oid": "672a8fee9f697d7bdf8cdc97"},
+    "departmentName": "Економічний департамент",
+    "structureUnitId": 1,
+    "structureUnitName": "Планово-економічний відділ",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a8fee9f697d7bdf8cdc98"},
+    "departmentName": "Економічний департамент",
+    "structureUnitId": 2,
+    "structureUnitName": "Фінансовий відділ",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a8fee9f697d7bdf8cdc99"},
+    "departmentName": "Економічний департамент",
+    "structureUnitId": 3,
+    "structureUnitName": "Відділ праці",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a8fee9f697d7bdf8cdc9a"},
+    "departmentName": "Економічний департамент",
+    "structureUnitId": 4,
+    "structureUnitName": "Служба продажу квитків",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a8ff19f697d7bdf8cdc9c"},
+    "departmentName": "Експлуатаційний департамент",
+    "structureUnitId": 5,
+    "structureUnitName": "Служба паливно-мастильних матеріалів",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ff19f697d7bdf8cdc9d"},
+    "departmentName": "Експлуатаційний департамент",
+    "structureUnitId": 6,
+    "structureUnitName": "Служба спецтранспорта",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ff19f697d7bdf8cdc9e"},
+    "departmentName": "Експлуатаційний департамент",
+    "structureUnitId": 7,
+    "structureUnitName": "Клінінгова служба",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ff19f697d7bdf8cdc9f"},
+    "departmentName": "Експлуатаційний департамент",
+    "structureUnitId": 8,
+    "structureUnitName": "Рятувальна служба",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ffe9f697d7bdf8cdca1"},
+    "departmentName": "Департамент повітряного руху",
+    "structureUnitId": 9,
+    "structureUnitName": "Диспетчерска служба",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ffe9f697d7bdf8cdca2"},
+    "departmentName": "Департамент повітряного руху",
+    "structureUnitId": 10,
+    "structureUnitName": "Аеронавігаційна служба",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ffe9f697d7bdf8cdca3"},
+    "departmentName": "Департамент повітряного руху",
+    "structureUnitId": 11,
+    "structureUnitName": "Служба радіозв'язку",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a8ffe9f697d7bdf8cdca4"},
+    "departmentName": "Департамент повітряного руху",
+    "structureUnitId": 12,
+    "structureUnitName": "Льотна служба",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90009f697d7bdf8cdca6"},
+    "departmentName": "Департамент технічного обслуговуваня",
+    "structureUnitId": 13,
+    "structureUnitName": "Служба авіотехнічного обслуговування",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90009f697d7bdf8cdca7"},
+    "departmentName": "Департамент технічного обслуговуваня",
+    "structureUnitId": 14,
+    "structureUnitName": "Служба обслуговування аеродрому ",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90009f697d7bdf8cdca8"},
+    "departmentName": "Департамент технічного обслуговуваня",
+    "structureUnitId": 15,
+    "structureUnitName": "Служба обслуговування автотранспорту ",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90009f697d7bdf8cdca9"},
+    "departmentName": "Департамент технічного обслуговуваня",
+    "structureUnitId": 16,
+    "structureUnitName": "Служба ремонту спец-приладдя",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90039f697d7bdf8cdcaa"},
+    "departmentName": "Департамент спеціалізованих служб",
+    "structureUnitId": 17,
+    "structureUnitName": "Служба безпеки",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90039f697d7bdf8cdcab"},
+    "departmentName": "Департамент спеціалізованих служб",
+    "structureUnitId": 18,
+    "structureUnitName": "Митна служба ",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90039f697d7bdf8cdcac"},
+    "departmentName": "Департамент спеціалізованих служб",
+    "structureUnitId": 19,
+    "structureUnitName": "Cлужба реєстрації",
+    "type": "служба"
+  },
+  {
+    "_id": {"$oid": "672a90039f697d7bdf8cdcad"},
+    "departmentName": "Департамент спеціалізованих служб",
+    "structureUnitId": 20,
+    "structureUnitName": "Медико – санітарна служба",
+    "type": "служба"
+  },
+   {
+    "_id": {"$oid": "672a90079f697d7bdf8cdcaf"},
+    "departmentName": "Департамент адміністративних та додаткових служб",
+    "structureUnitId": 21,
+    "structureUnitName": "Адміністрація",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a90079f697d7bdf8cdcb0"},
+    "departmentName": "Департамент адміністративних та додаткових служб",
+    "structureUnitId": 22,
+    "structureUnitName": "Відділ кадрів",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a90079f697d7bdf8cdcb1"},
+    "departmentName": "Департамент адміністративних та додаткових служб",
+    "structureUnitId": 23,
+    "structureUnitName": "Юридичний відділ",
+    "type": "відділ"
+  },
+  {
+    "_id": {"$oid": "672a90079f697d7bdf8cdcb2"},
+    "departmentName": "Департамент адміністративних та додаткових служб",
+    "structureUnitId": 24,
+    "structureUnitName": "Канцелярія",
+    "type": "відділ"
+  }
+
+])
+
+
+db.structureUnit.find({},
+{structureUnitId:1, structureUnitName:1, _id:0}
+)
+db.createCollection("positon");
+db.position.deleteMany({});
+db.position.find();
+db.position.insertMany([
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db401"},
+    "positionId": 1,
+    "positionName": "Начальник економічного департаменту",
+    "salary": 45000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db402"},
+    "positionId": 2,
+    "positionName": "Начальник департаменту експлуатаційних служб",
+    "salary": 43000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db403"},
+    "positionId": 3,
+    "positionName": "Начальник департаменту повітряного руху",
+    "salary": 47000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db404"},
+    "positionId": 4,
+    "positionName": "Начальник департаменту технічного обслуговування",
+    "salary": 45000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db405"},
+    "positionId": 5,
+    "positionName": "Начальник департаменту спеціалізованих служб",
+    "salary": 43000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db406"},
+    "positionId": 6,
+    "positionName": "Начальник департаменту адміністрації та додаткових служб",
+    "salary": 40000,
+    "structureUnitName": "Адміністрація"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db407"},
+    "positionId": 7,
+    "positionName": "Начальник планово-економічного відділу",
+    "salary": 37000,
+    "structureUnitName": "Планово-економічний відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db408"},
+    "positionId": 8,
+    "positionName": "Начальник фінансового відділу",
+    "salary": 40000,
+    "structureUnitName": "Фінансовий відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db409"},
+    "positionId": 9,
+    "positionName": "Начальник відділу праці",
+    "salary": 35000,
+    "structureUnitName": "Відділ праці"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40a"},
+    "positionId": 10,
+    "positionName": "Начальник служби продажу квитків",
+    "salary": 33000,
+    "structureUnitName": "Служба продажу квитків"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40b"},
+    "positionId": 11,
+    "positionName": "Начальник служби паливно-мастильних матеріалів",
+    "salary": 37000,
+    "structureUnitName": "Служба паливно-мастильних матеріалів"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40c"},
+    "positionId": 12,
+    "positionName": "Начальник служби спецтранспорту",
+    "salary": 35000,
+    "structureUnitName": "Служба спецтранспорта"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40d"},
+    "positionId": 13,
+    "positionName": "Начальник рятувальної служби",
+    "salary": 40000,
+    "structureUnitName": "Рятувальна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40e"},
+    "positionId": 14,
+    "positionName": "Начальник клінінгової служби",
+    "salary": 25000,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db40f"},
+    "positionId": 15,
+    "positionName": "Начальник диспетчерської служби",
+    "salary": 39000,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db410"},
+    "positionId": 16,
+    "positionName": "Начальник аеронавігаційної служби",
+    "salary": 45000,
+    "structureUnitName": "Аеронавігаційна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db411"},
+    "positionId": 17,
+    "positionName": "Начальник служби радіозв'язку",
+    "salary": 40000,
+    "structureUnitName": "Служба радіозв'язку"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db412"},
+    "positionId": 18,
+    "positionName": "Начальник льотної служби",
+    "salary": 50000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db413"},
+    "positionId": 19,
+    "positionName": "Начальник служби авіотехнічного обслуговування",
+    "salary": 43000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db414"},
+    "positionId": 20,
+    "positionName": "Начальник служби обслуговування аеродрому",
+    "salary": 37000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db415"},
+    "positionId": 21,
+    "positionName": "Начальник служби обслуговування автотранспорту",
+    "salary": 37000,
+    "structureUnitName": "Служба обслуговування автотранспорту"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db416"},
+    "positionId": 22,
+    "positionName": "Начальник служби ремонту спец-приладдя",
+    "salary": 35000,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db417"},
+    "positionId": 23,
+    "positionName": "Начальник служби безпеки",
+    "salary": 43000,
+    "structureUnitName": "Служба безпеки"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db418"},
+    "positionId": 24,
+    "positionName": "Начальник митної служби",
+    "salary": 41000,
+    "structureUnitName": "Митна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db419"},
+    "positionId": 25,
+    "positionName": "Начальник служби реєстрації",
+    "salary": 41000,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41a"},
+    "positionId": 26,
+    "positionName": "Начальник медико-санітарної служби",
+    "salary": 40000,
+    "structureUnitName": "Медико – санітарна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41b"},
+    "positionId": 27,
+    "positionName": "Начальник відділу кадрів",
+    "salary": 35000,
+    "structureUnitName": "Відділ кадрів"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41c"},
+    "positionId": 28,
+    "positionName": "Начальник юридичного відділу",
+    "salary": 40000,
+    "structureUnitName": "Юридичний відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41d"},
+    "positionId": 29,
+    "positionName": "Начальник відділу канцелярії",
+    "salary": 30000,
+    "structureUnitName": "Канцелярія"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41e"},
+    "positionId": 30,
+    "positionName": "Керівник бригади заправників",
+    "salary": 40000,
+    "structureUnitName": "Служба паливно-мастильних матеріалів"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db41f"},
+    "positionId": 31,
+    "positionName": "Керівник бригади прибирання салону",
+    "salary": 40000,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db420"},
+    "positionId": 32,
+    "positionName": "Керівник бригади рятувальників",
+    "salary": 40000,
+    "structureUnitName": 8
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db421"},
+    "positionId": 33,
+    "positionName": "Керівник бригади прибирання аеропорту",
+    "salary": 40000,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db422"},
+    "positionId": 34,
+    "positionName": "Керівник диспетчерскої бригади",
+    "salary": 40000,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db423"},
+    "positionId": 35,
+    "positionName": "Керівник навігаційної бригади",
+    "salary": 40000,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db424"},
+    "positionId": 36,
+    "positionName": "Керівник льотної бригади",
+    "salary": 40000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db425"},
+    "positionId": 37,
+    "positionName": "Керівник бригади технічного обслуговування літаків",
+    "salary": 40000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db426"},
+    "positionId": 38,
+    "positionName": "Керівник бригади техогляду літаків",
+    "salary": 40000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db427"},
+    "positionId": 39,
+    "positionName": "Керівник бригади з обслуговування інфраструктури",
+    "salary": 40000,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db428"},
+    "positionId": 40,
+    "positionName": "Керівник бригади обслуговування злітної смуги",
+    "salary": 40000,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db429"},
+    "positionId": 41,
+    "positionName": "Керівник бригади автомеханіків",
+    "salary": 40000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42a"},
+    "positionId": 42,
+    "positionName": "Керівник бригади обслуговування спецтехніки",
+    "salary": 40000,
+    "structureUnitName": "Служба обслуговування автотранспорту"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42b"},
+    "positionId": 43,
+    "positionName": "Керівник бригади охоронців",
+    "salary": 40000,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42c"},
+    "positionId": 44,
+    "positionName": "Керівник бригади інспекторів митної служб",
+    "salary": 40000,
+    "structureUnitName": "Служба безпеки"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42d"},
+    "positionId": 45,
+    "positionName": "Керівник бригади з реєстрації",
+    "salary": 40000,
+    "structureUnitName": "Митна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42e"},
+    "positionId": 46,
+    "positionName": "Керівник бригади медиків",
+    "salary": 40000,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db42f"},
+    "positionId": 47,
+    "positionName": "Економіст",
+    "salary": 40000,
+    "structureUnitName": "Планово-економічний відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db430"},
+    "positionId": 48,
+    "positionName": "Бухгалтер - фінансист",
+    "salary": 37000,
+    "structureUnitName": "Фінансовий відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db431"},
+    "positionId": 49,
+    "positionName": "Нормувальник",
+    "salary": 37000,
+    "structureUnitName": "Відділ праці"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db432"},
+    "positionId": 50,
+    "positionName": "Касир",
+    "salary": 38000,
+    "structureUnitName": "Служба продажу квитків"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db433"},
+    "positionId": 51,
+    "positionName": "Заправник",
+    "salary": 39000,
+    "structureUnitName": "Служба паливно-мастильних матеріалів"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db434"},
+    "positionId": 52,
+    "positionName": "Водій грузового транспорту",
+    "salary": 40000,
+    "structureUnitName": "Служба спецтранспорта"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db435"},
+    "positionId": 53,
+    "positionName": "Водій аварійного транспорту",
+    "salary": 35000,
+    "structureUnitName": "Служба спецтранспорта"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db436"},
+    "positionId": 54,
+    "positionName": "Оператор машин технічного обслуговування",
+    "salary": 37000,
+    "structureUnitName": "Служба спецтранспорта"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db437"},
+    "positionId": 55,
+    "positionName": "Прибиральник",
+    "salary": 42000,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db438"},
+    "positionId": 56,
+    "positionName": "Пожежник-рятувальник",
+    "salary": 46000,
+    "structureUnitName": 8
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db439"},
+    "positionId": 57,
+    "positionName": "Диспетсчер взлітно-посадкової смуги",
+    "salary": 45000,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db43a"},
+    "positionId": 58,
+    "positionName": "Диспетчери навігаційного обслуговування",
+    "salary": 48000,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db43b"},
+    "positionId": 59,
+    "positionName": "Спеціаліст з планування польотів",
+    "salary": 44000,
+    "structureUnitName": "Аеронавігаційна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db43c"},
+    "positionId": 60,
+    "positionName": "Метеоролог",
+    "salary": 43000,
+    "structureUnitName": "Аеронавігаційна служба"
+  },
+   {
+    "_id": {"$oid": "672aa247889d7c75da7db43d"},
+    "positionId": 61,
+    "positionName": "Інженер радіозв'язку",
+    "salary": 35000,
+    "structureUnitName": "Служба радіозв'язку"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db43e"},
+    "positionId": 62,
+    "positionName": "Пілот",
+    "salary": 41000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db43f"},
+    "positionId": 63,
+    "positionName": "Бортпровідник",
+    "salary": 43000,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db440"},
+    "positionId": 64,
+    "positionName": "Механік з обслуговування двигунів",
+    "salary": 42000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db441"},
+    "positionId": 65,
+    "positionName": "Спеціаліст по структурному ремонту",
+    "salary": 42000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db442"},
+    "positionId": 66,
+    "positionName": "Інженер-авіонік",
+    "salary": 40000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db443"},
+    "positionId": 67,
+    "positionName": "Інспектор з технічного стану",
+    "salary": 43000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db444"},
+    "positionId": 68,
+    "positionName": "Інспектор з авіаційної безпеки",
+    "salary": 37000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db445"},
+    "positionId": 69,
+    "positionName": "Механік з обслуговування",
+    "salary": 40000,
+    "structureUnitName": 13
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db446"},
+    "positionId": 70,
+    "positionName": "Будівельник",
+    "salary": 30000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db447"},
+    "positionId": 71,
+    "positionName": "Електрик",
+    "salary": 40000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db448"},
+    "positionId": 72,
+    "positionName": "Сантехнік",
+    "salary": 35000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db449"},
+    "positionId": 73,
+    "positionName": "Асфальтобетонник",
+    "salary": 37000,
+    "structureUnitName": "Служба обслуговування аеродрому"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44a"},
+    "positionId": 74,
+    "positionName": "Автомеханік",
+    "salary": 46000,
+    "structureUnitName": "Служба обслуговування автотранспорту"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44b"},
+    "positionId": 75,
+    "positionName": "Технік з обслуговування системи безпеки",
+    "salary": 45000,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44c"},
+    "positionId": 76,
+    "positionName": "Інженер з обслуговування обладнання аеропорту",
+    "salary": 48000,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44d"},
+    "positionId": 77,
+    "positionName": "Охоронець",
+    "salary": 44000,
+    "structureUnitName": "Служба безпеки"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44e"},
+    "positionId": 78,
+    "positionName": "Інспектор",
+    "salary": 35000,
+    "structureUnitName": "Митна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db44f"},
+    "positionId": 79,
+    "positionName": "Агент реєстрації білетів",
+    "salary": 41000,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db450"},
+    "positionId": 80,
+    "positionName": "Агент реєстрації багажу",
+    "salary": 43000,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+   {
+    "_id": {"$oid": "672aa247889d7c75da7db451"},
+    "positionId": 81,
+    "positionName": "Лікар",
+    "salary": 42000,
+    "structureUnitName": "Медико – санітарна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db452"},
+    "positionId": 82,
+    "positionName": "Медсестра",
+    "salary": 42000,
+    "structureUnitName": "Медико – санітарна служба"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db453"},
+    "positionId": 83,
+    "positionName": "Спеціалісти з підбору персоналу",
+    "salary": 40000,
+    "structureUnitName": "Відділ кадрів"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db454"},
+    "positionId": 84,
+    "positionName": "Адвокат",
+    "salary": 43000,
+    "structureUnitName": "Юридичний відділ"
+  },
+  {
+    "_id": {"$oid": "672aa247889d7c75da7db455"},
+    "positionId": 85,
+    "positionName": "Секретар",
+    "salary": 33000,
+    "structureUnitName": "Канцелярія"
+  }
+
+ ])
+db.worker.deleteMany({});
+db.worker.find();
+db.worker.insertMany([
+{
+    "_id": {"$oid": "672b4a66049f2f42847b4b01"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "mykola49@gmail.com",
+    "fullName": "Федорова Діана Миколаївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-11-24T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (046) 938-29-40",
+    "positionId": "Начальник економічного департаменту",
+    "shift": "ніч",
+    "status": "начальник департаменту",
+    "workerId": 1
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b02"},
+    "age": 53,
+    "brigadeId": null,
+    "email": "hanna86@ukr.net",
+    "fullName": "Зубенко Михайло Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-06-08T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "095 279-00-98",
+    "positionId": "Начальник департаменту експлуатаційних служб",
+    "shift": "ранок",
+    "status": "начальник департаменту",
+    "workerId": 2
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b03"},
+    "age": 22,
+    "brigadeId": null,
+    "email": "horodko43@kavun.com",
+    "fullName": "Андрій Володимирович Вивченко",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-07-25T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "039-697-99-48",
+    "positionId": "Начальник департаменту повітряного руху",
+    "shift": "ніч",
+    "status": "начальник департаменту",
+    "workerId": 3
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b04"},
+    "age": 38,
+    "brigadeId": null,
+    "email": "mykola54@dodonin.com",
+    "fullName": "Прокопенко Микола Іванович",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-02-14T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "094 091 61 12",
+    "positionId": "Начальник департаменту технічного обслуговування",
+    "shift": "ранок",
+    "status": "начальник департаменту",
+    "workerId": 4
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b05"},
+    "age": 24,
+    "brigadeId": null,
+    "email": "iyarmolovych@epost.ua",
+    "fullName": "Кравець Андрій Сергійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-02-19T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (024) 278-96-00",
+    "positionId": "Начальник департаменту спеціалізованих служб",
+    "shift": "ніч",
+    "status": "начальник департаменту",
+    "workerId": 5
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b06"},
+    "age": 56,
+    "brigadeId": null,
+    "email": "sofiia10@gmail.com",
+    "fullName": "Савчук Антоніна Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-04-28T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "034-523-52-89",
+    "positionId": "Начальник департаменту адміністрації та додаткових служб",
+    "shift": "ніч",
+    "status": "начальник департаменту",
+    "workerId": 6
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b07"},
+    "age": 27,
+    "brigadeId": null,
+    "email": "borys61@gmail.com",
+    "fullName": " Ніколаєнко Григорій Янович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-11-05T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "+38 044 879-41-16",
+    "positionId": "Начальник планово-економічного відділу",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 7
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b08"},
+    "age": 21,
+    "brigadeId": null,
+    "email": "dina95@vermenych.info",
+    "fullName": "Паламарчук Василь Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-07-05T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (021) 227-52-27",
+    "positionId": "Начальник фінансового відділу",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 8
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b09"},
+    "age": 43,
+    "brigadeId": null,
+    "email": "mykhailynaoliinyk@gov.ua",
+    "fullName": " Карпенко Віолетта Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-06-26T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "041 480 40 55",
+    "positionId": "Начальник фінансового відділу",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 9
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0a"},
+    "age": 60,
+    "brigadeId": null,
+    "email": "ckomar@gmail.com",
+    "fullName": " Батіг Одарка Іванівна",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-03-16T00:00:00.000Z"},
+    "numberChildrens": 5,
+    "phoneNumber": "+38 017 662-31-27",
+    "positionId": "Начальник служби продажу квитків",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 10
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0b"},
+    "age": 30,
+    "brigadeId": null,
+    "email": "prokhirchaban@androshchuk.com",
+    "fullName": "Марина Лукаш",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-04-07T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "037 303-62-93",
+    "positionId": "Начальник служби паливно-мастильних матеріалів",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 11
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0c"},
+    "age": 25,
+    "brigadeId": null,
+    "email": "ievhen59@gov.ua",
+    "fullName": "Нестайко Галина Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2023-12-09T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "072 732-30-12",
+    "positionId": "Начальник служби спецтранспорту",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 12
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0d"},
+    "age": 51,
+    "brigadeId": null,
+    "email": "sofiia27@gov.ua",
+    "fullName": "Миколаєнко Іван Арсенич",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-07-31T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "036 072 80 99",
+    "positionId": "Начальник рятувальної служби",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 13
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0e"},
+    "age": 43,
+    "brigadeId": null,
+    "email": "lidiya55@kuzmenko.net",
+    "fullName": "Кравченко Віктор Петрович",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-07-21T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "063-394-16-77",
+    "positionId": "Начальник клінінгової служби",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 14
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b0f"},
+    "age": 40,
+    "brigadeId": null,
+    "email": "mariiaivanenko@meta.ua",
+    "fullName": "Ткачук Світлана Григорівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-04-19T00:00:00.000Z"},
+    "numberChildrens": 5,
+    "phoneNumber": "017 647-95-90",
+    "positionId": "Начальник диспетчерської служби",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 15
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b10"},
+    "age": 55,
+    "brigadeId": null,
+    "email": "anatoliiivanov@ukr.net",
+    "fullName": "Олійник Іван Дмитрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2023-01-23T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "034-256-37-56",
+    "positionId": "Начальник аеронавігаційної служби",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 16
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b11"},
+    "age": 22,
+    "brigadeId": null,
+    "email": "ntkachenko@khomenko.ua",
+    "fullName": "Лисенко Валерія Тарасівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-12-25T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "065-706-68-35",
+    "positionId": "Начальник служби радіозв'язку",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 17
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b12"},
+    "age": 30,
+    "brigadeId": null,
+    "email": "sofiyakulish@kolesnyk.com",
+    "fullName": "Тимошенко Олександр Федорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-08-20T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "063 058 36 61",
+    "positionId": "Начальник льотної служби",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 18
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b13"},
+    "age": 59,
+    "brigadeId": null,
+    "email": "katerynabratchenko@gmail.com",
+    "fullName": "Дяченко Василь Кирилович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2023-11-05T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "024 189 98 57",
+    "positionId": "Начальник служби авіотехнічного обслуговування",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 19
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b14"},
+    "age": 27,
+    "brigadeId": null,
+    "email": "ostap22@ivanova.com",
+    "fullName": "Антоненко Богдан Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2016-02-20T00:00:00.000Z"},
+    "numberChildrens": 4,
+    "phoneNumber": "+38 (033) 530-12-57",
+    "positionId": "Начальник служби обслуговування аеродрому",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 20
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b15"},
+    "age": 57,
+    "brigadeId": null,
+    "email": "andrii41@ukr.net",
+    "fullName": "Палій Олександра",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-04-28T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "017-779-71-20",
+    "positionId": "Начальник служби обслуговування автотранспорту",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 21
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b16"},
+    "age": 26,
+    "brigadeId": null,
+    "email": "hanna39@buncher.ua",
+    "fullName": "Рибак Мирон Олександрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2022-10-27T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "024-818-84-87",
+    "positionId": "Начальник служби ремонту спец-приладдя",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 22
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b17"},
+    "age": 41,
+    "brigadeId": null,
+    "email": "sydorenko85@gmail.com",
+    "fullName": "Кравчук Андрій Володимирович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-08-23T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 092 414-41-34",
+    "positionId": "Начальник служби безпеки",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 23
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b18"},
+    "age": 25,
+    "brigadeId": null,
+    "email": "olena50@ozymok.com",
+    "fullName": "Кириленко Надія Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-09-02T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 039 666 52 91",
+    "positionId": "Начальник митної служби",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 24
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b19"},
+    "age": 48,
+    "brigadeId": null,
+    "email": "ocheredko@kovtun.ua",
+    "fullName": "Ткач Олександра Петрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-10-11T00:00:00.000Z"},
+    "numberChildrens": 5,
+    "phoneNumber": "+38 091 576-51-28",
+    "positionId": "Начальник служби реєстрації",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 25
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1a"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "anzelika71@ukr.net",
+    "fullName": "Каплан Олександра Володимирівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-02-28T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "048-217-75-94",
+    "positionId": "Начальник медико-санітарної служби",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 26
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1b"},
+    "age": 27,
+    "brigadeId": null,
+    "email": "roksolana57@epost.ua",
+    "fullName": "Киxончук Олексій Іванович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2014-08-23T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "050 304 15 15",
+    "positionId": "Начальник відділу кадрів",
+    "shift": "ніч",
+    "status": "начальник структурної одиниці",
+    "workerId": 27
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1c"},
+    "age": 37,
+    "brigadeId": null,
+    "email": "lshyshkan@tsymbaliuk.ua",
+    "fullName": "Лисенко Валентина Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-02-11T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (034) 739 29 77",
+    "positionId": "Начальник юридичного відділу",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 28
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1d"},
+    "age": 45,
+    "brigadeId": null,
+    "email": "petrenko45@gmail.com",
+    "fullName": "Петренко Олександр Васильович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-05-21T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (045) 123-45-67",
+    "positionId": "Начальник відділу канцелярії",
+    "shift": "ранок",
+    "status": "начальник структурної одиниці",
+    "workerId": 29
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1e"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "email": "ivanova32@ukr.net",
+    "fullName": "Іванова Марія Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-03-15T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "093 987-65-43",
+    "positionId": "Керівник бригади заправників",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 30
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b1f"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76922"},
+    "email": "sydorenko28@gmail.com",
+    "fullName": "Сидоренко Олена Володимирівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-11-11T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (032) 456-78-90",
+    "positionId": "Керівник бригади заправників",
+    "shift": "ранок",
+    "status": " as: \"ticket\" бригади",
+    "workerId": 31
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b20"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76923"},
+    "email": "popov35@mail.com",
+    "fullName": "Попов Дмитро Олександрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-07-08T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (056) 321-43-54",
+    "positionId": "Керівник бригади прибирання салону",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 32
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b21"},
+    "age": 27,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76924"},
+    "email": "stepanynko27@yahoo.com",
+    "fullName": "Степаненко Ірина Вікторівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-02-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (067) 123-45-67",
+    "positionId": "Керівник бригади прибирання салону",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 33
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b22"},
+    "age": 42,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76925"},
+    "email": "kushnyrenko42@outlook.com",
+    "fullName": "Кушніренко Андрій Володимирович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-09-23T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (098) 765-43-21",
+    "positionId": "Керівник бригади рятувальників",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 34
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b23"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76927"},
+    "email": "petrenko31@i.ua",
+    "fullName": "Петренко Ольга Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2023-04-05T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (073) 876-54-32",
+    "positionId": "Керівник бригади рятувальників",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 35
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b24"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76928"},
+    "email": "ivanov40@inbox.ru",
+    "fullName": "Іванов Віктор Васильович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-08-01T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (095) 543-21-76",
+    "positionId": "Керівник бригади прибирання аеропорту",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 36
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b25"},
+    "age": 26,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "email": "sidorova26@gmail.com",
+    "fullName": "Сидорова Катерина Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-12-25T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (063) 987-65-43",
+    "positionId": "Керівник диспетчерскої бригади",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 37
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b26"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "email": "popov33@rambler.ru",
+    "fullName": "Попов Сергій Олександрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-03-10T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+380502236567",
+    "positionId": "Керівник диспетчерскої бригади",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 38
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b27"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "email": "stepanynenko29@gmail.com",
+    "fullName": "Степаненко Ганна Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-06-19T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (097) 321-43-54",
+    "positionId": "Керівник навігаційної бригади",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 39
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b28"},
+    "age": 37,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "email": "romaniuk37@mail.ua",
+    "fullName": "Романюк Микола Володимирович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-01-15T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (067) 456-78-90",
+    "positionId": "Керівник навігаційної бригади",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 40
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b29"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "email": "koval30@gmail.com",
+    "fullName": "Коваль Людмила Іванівна ",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-03-12T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 234-56-78",
+    "positionId": "Керівник льотної бригади",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 41
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2a"},
+    "age": 45,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "email": "melnik45@yahoo.com",
+    "fullName": "Мельник Іван Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2016-05-27T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (050) 987-65-43",
+    "positionId": "Керівник льотної бригади",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 42
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2b"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "email": "goncharenko34@ukr.net",
+    "fullName": "Гончаренко Наталія Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-10-04T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (068) 321-54-76",
+    "positionId": "Керівник льотної бригади",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 43
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2c"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "email": "kravchenko29@meta.ua",
+    "fullName": "Кравченко Юрій Костянтинович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-07-13T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (096) 123-45-67",
+    "positionId": "Керівник льотної бригади",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 44
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2d"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "email": "shevchenko28@gmail.com",
+    "fullName": "Шевченко Оксана Миколаївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-09-23T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Керівник бригади технічного обслуговування літаків",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 45
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2e"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "email": "tkachenko41@i.ua",
+    "fullName": "Ткаченко Анатолій Володимирович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-11-15T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (095) 876-54-32",
+    "positionId": "Керівник бригади технічного обслуговування літаків",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 46
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b2f"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "email": "kovalenko33@outlook.com",
+    "fullName": "Коваленко Олена Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-06-28T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 432-10-98",
+    "positionId": "Керівник бригади техогляду літаків",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 47
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b30"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "email": "doroshenko35@inbox.ru",
+    "fullName": "Дорошенко Михайло Євгенович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-12-11T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Керівник бригади техогляду літаків",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 48
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b31"},
+    "age": 27,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76935"},
+    "email": "polishchuk27@rambler.ru",
+    "fullName": "Поліщук Марія Федірівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-01-25T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Керівник бригади з обслуговування інфраструктури",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 49
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b32"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76936"},
+    "email": "vovk36@mail.com",
+    "fullName": "Вовк Олег Васильович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-03-18T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (098) 123-45-67",
+    "positionId": "Керівник бригади з обслуговування інфраструктури",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 50
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b33"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76937"},
+    "email": "klymova32@gmail.com",
+    "fullName": "Климова Тетяна Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-08-22T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (073) 876-54-32",
+    "positionId": "Керівник бригади обслуговування злітної смуги",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 51
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b34"},
+    "age": 39,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76938"},
+    "email": "zubenko39@yahoo.com",
+    "fullName": "Зубенко Вадим Олегович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-02-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 567-89-01",
+    "positionId": "Керівник бригади автомеханіків",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 52
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b35"},
+    "age": 25,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76939"},
+    "email": "sokolova25@ukr.net",
+    "fullName": "Соколова Світлана Єгорівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-07-19T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (063) 345-67-89",
+    "positionId": "Керівник бригади автомеханіків",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 53
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b36"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693a"},
+    "email": "gritsenko38@meta.ua",
+    "fullName": "Гриценко Роман Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-05-30T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (095) 234-56-78",
+    "positionId": "Керівник бригади обслуговування спецтехніки",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 54
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b37"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693b"},
+    "email": "kushnir31@mail.com",
+    "fullName": "Кушнір Ірина Романівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-09-10T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (068) 987-65-43",
+    "positionId": "Керівник бригади обслуговування спецтехніки",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 55
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b38"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693c"},
+    "email": "lysenko29@gmail.com",
+    "fullName": "Лисенко Богдан Олексійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2022-01-21T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 123-45-67",
+    "positionId": "Керівник бригади охоронців",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 56
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b39"},
+    "age": 26,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693d"},
+    "email": "petriv26@outlook.com",
+    "fullName": "Петрів Олеся Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-10-16T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 234-56-78",
+    "positionId": "Керівник бригади охоронців",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 57
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3a"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693e"},
+    "email": "savchenko40@yahoo.com",
+    "fullName": "Савченко Микола Миколович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-02-27T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Керівник бригади охоронців",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 58
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3b"},
+    "age": 24,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "email": "zinchenko24@inbox.ru",
+    "fullName": "Зінченко Аліна Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-11-07T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (067) 876-54-32",
+    "positionId": "Керівник бригади охоронців",
+    "shift": "ніч",
+    "status": "керівник бригади",
+    "workerId": 59
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3c"},
+    "age": 37,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "email": "tymoshenko37@ukr.net",
+    "fullName": "Тимошенко Євген Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2015-04-05T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (068) 345-67-89",
+    "positionId": "Керівник бригади з реєстрації",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 60
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3d"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76941"},
+    "email": "romanenko35@gmail.com",
+    "fullName": "Романенко Валентина Валентинівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-05-14T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (093) 543-21-09",
+    "positionId": "Керівник бригади з реєстрації",
+    "shift": "вечір",
+    "status": "керівник бригади",
+    "workerId": 61
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3e"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76942"},
+    "email": "ivanov41@mail.ua",
+    "fullName": "Іванов Петро Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-08-11T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Керівник бригади медиків",
+    "shift": "день",
+    "status": "керівник бригади",
+    "workerId": 62
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b3f"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76943"},
+    "email": "bondarenko29@ukr.net",
+    "fullName": "Бондаренко Оксана Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-03-17T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (068) 765-43-21",
+    "positionId": "Керівник бригади медиків",
+    "shift": "ранок",
+    "status": "керівник бригади",
+    "workerId": 63
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b40"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "levchenko34@gmail.com",
+    "fullName": "Левченко Андрій Федорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-12-03T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (093) 876-54-32",
+    "positionId": "Економіст",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 64
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b41"},
+    "age": 28,
+    "brigadeId": null,
+    "email": "zhukova28@mail.ru",
+    "fullName": "Жукова Марина Володимирівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-09-19T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Економіст",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 65
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b42"},
+    "age": 38,
+    "brigadeId": null,
+    "email": "gavriluk38@yahoo.com",
+    "fullName": "Гаврилюк Віктор Євгенович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2015-07-15T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 944-88-67",
+    "positionId": "Бухгалтер - фінансист",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 66
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b43"},
+    "age": 32,
+    "brigadeId": null,
+    "email": "kravtsova32@outlook.com",
+    "fullName": "Кравцова Ірина Тарасівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-04-24T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (097) 876-54-32",
+    "positionId": "Бухгалтер - фінансист",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 67
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b44"},
+    "age": 30,
+    "brigadeId": null,
+    "email": "kolesnyk30@gmail.com",
+    "fullName": "Колесник Максим Янович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-01-13T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 543-21-09",
+    "positionId": "Нормувальник",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 68
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b45"},
+    "age": 27,
+    "brigadeId": null,
+    "email": "dudnyk27@i.ua",
+    "fullName": "Дудник Анна Костянтинівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-11-21T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (095) 432-10-98",
+    "positionId": "Касир",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 69
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b46"},
+    "age": 41,
+    "brigadeId": null,
+    "email": "fedorov41@ukr.net",
+    "fullName": "Федоров Андрій Романович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-05-22T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (096) 567-89-01",
+    "positionId": "Касир",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 70
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b47"},
+    "age": 26,
+    "brigadeId": null,
+    "email": "boyko26@gmail.com",
+    "fullName": "Бойко Ірина Василівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-11-08T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Касир",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 71
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b48"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "volkov34@outlook.com",
+    "fullName": "Волков Сергій Костянтинович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-08-15T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Касир",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 72
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b49"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "email": "kucher29@meta.ua",
+    "fullName": "Кучер Марина Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-01-17T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (097) 432-10-98",
+    "positionId": "Заправник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 73
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4a"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "email": "kravchuk36@mail.com",
+    "fullName": "Кравчук Максим Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-06-10T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Заправник",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 74
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4b"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76922"},
+    "email": "melnik32@rambler.ru",
+    "fullName": "Мельник Ольга Кирилівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-01-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Заправник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 75
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4c"},
+    "age": 43,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76922"},
+    "email": "dyachenko43@gmail.com",
+    "fullName": "Дяченко Володимир Володимирович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-03-19T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (096) 123-45-67",
+    "positionId": "Заправник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 76
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4d"},
+    "age": 28,
+    "brigadeId": null,
+    "email": "bondar28@outlook.com",
+    "fullName": "Бондар Тетяна Михайлівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-12-04T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (097) 876-54-32",
+    "positionId": "Водій грузового транспорту",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 77
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4e"},
+    "age": 31,
+    "brigadeId": null,
+    "email": "lytvinenko31@ukr.net",
+    "fullName": "Литвиненко Олександр Сергійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-04-28T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Водій грузового транспорту",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 78
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b4f"},
+    "age": 30,
+    "brigadeId": null,
+    "email": "kovalenko30@gmail.com",
+    "fullName": "Коваленко Світлана Святославівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-07-01T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (068) 543-21-76",
+    "positionId": "Водій аварійного транспорту",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 79
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b50"},
+    "age": 28,
+    "brigadeId": null,
+    "email": "kravchenko28@gmail.com",
+    "fullName": "Кравченко Аліна Юріївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-12-03T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (067) 789-01-23",
+    "positionId": "Водій аварійного транспорту",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 80
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b51"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "ivanchenko34@mail.com",
+    "fullName": "Іванченко Анна Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-06-20T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 123-45-67",
+    "positionId": "Водій аварійного транспорту",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 81
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b52"},
+    "age": 31,
+    "brigadeId": null,
+    "email": "sokolov31@gmail.com",
+    "fullName": "Соколов Богдан Федорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-01-13T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (098) 876-54-32",
+    "positionId": "Водій аварійного транспорту",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 82
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b53"},
+    "age": 28,
+    "brigadeId": null,
+    "email": "levchenko28@meta.ua",
+    "fullName": "Левченко Наталя Микитівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-12-11T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (063) 345-67-89",
+    "positionId": "Оператор машин технічного обслуговування",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 83
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b54"},
+    "age": 37,
+    "brigadeId": null,
+    "email": "romaniuk37@ukr.net",
+    "fullName": "Романюк Віталій Віталійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2022-04-27T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 234-56-78",
+    "positionId": "Оператор машин технічного обслуговування",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 84
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b55"},
+    "age": 33,
+    "brigadeId": null,
+    "email": "ivanova33@outlook.com",
+    "fullName": "Іванова Ольга Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-10-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Оператор машин технічного обслуговування",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 85
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b56"},
+    "age": 29,
+    "brigadeId": null,
+    "email": "gonchar29@yahoo.com",
+    "fullName": "Гончар Олексій Віталійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-08-18T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Оператор машин технічного обслуговування",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 86
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b57"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76923"},
+    "email": "bondarenko32@meta.ua",
+    "fullName": "Бондаренко Катерина Вадимівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-03-23T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (096) 123-45-67",
+    "positionId": "Прибиральник",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 87
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b58"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76923"},
+    "email": "kovalchuk41@ukr.net",
+    "fullName": "Ковальчук Микола Володимірівна",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-06-12T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (068) 345-67-89",
+    "positionId": "Прибиральник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 88
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b59"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76924"},
+    "email": "vasilenko30@gmail.com",
+    "fullName": "Василенко Олена Петрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-05-28T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Прибиральник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 89
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5a"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76924"},
+    "email": "tarasov36@outlook.com",
+    "fullName": "Тарасов Ігор Тарасович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-09-19T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 876-54-32",
+    "positionId": "Прибиральник",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 90
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5b"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76925"},
+    "email": "danylenko28@ukr.net",
+    "fullName": "Даниленко Вікторія Данилівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-11-25T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (097) 432-10-98",
+    "positionId": "Прибиральник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 91
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5c"},
+    "age": 42,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76925"},
+    "email": "petrenko42@mail.com",
+    "fullName": "Петренко Анатолій Анатолійович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-01-07T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Прибиральник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 92
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5d"},
+    "age": 27,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76926"},
+    "email": "semenyuk27@gmail.com",
+    "fullName": "Семенюк Ірина Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-12-22T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Прибиральник",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 93
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5e"},
+    "age": 39,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76926"},
+    "email": "polishchuk39@meta.ua",
+    "fullName": "Поліщук Дмитро Васильович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-07-14T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (068) 123-45-67",
+    "positionId": "Прибиральник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 94
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b5f"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76927"},
+    "email": "myronova31@rambler.ru",
+    "fullName": "Миронова Світлана Миколаївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-02-21T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Пожежник-рятувальник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 95
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b60"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76927"},
+    "email": "lytvinenko38@ukr.net",
+    "fullName": " Литвиненко Богдан Данилович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-05-11T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (093) 234-56-78",
+    "positionId": "Пожежник-рятувальник",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 96
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b61"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76928"},
+    "email": "romanova28@outlook.com",
+    "fullName": "Романова Валентина Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-07-06T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (067) 567-89-01",
+    "positionId": "Пожежник-рятувальник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 97
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b62"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "email": "sydorenko40@mail.com",
+    "fullName": "Сидоренко Василь Герасимович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-03-18T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 345-67-89",
+    "positionId": "Диспетсчер взлітно-посадкової смуги",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 98
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b63"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "email": "koval33@meta.ua",
+    "fullName": "Коваль Марія Олександрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-09-09T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (096) 123-45-67",
+    "positionId": "Диспетсчер взлітно-посадкової смуги",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 99
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b64"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "email": "moroz35@gmail.com",
+    "fullName": "Мороз Ігор Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-02-02T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 876-54-32",
+    "positionId": "Диспетсчер взлітно-посадкової смуги",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 100
+  },
+   {
+    "_id": {"$oid": "672b4a66049f2f42847b4b65"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "email": "chernenkо29@mail.com",
+    "fullName": "Черненко Олена Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-06-18T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Диспетсчер взлітно-посадкової смуги",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 101
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b66"},
+    "age": 37,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "email": "zaitsev37@gmail.com",
+    "fullName": "Зайцев Андрій Максимович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-11-22T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (093) 345-67-89",
+    "positionId": "Диспетчери навігаційного обслуговування",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 102
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b67"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "email": "goncharenko32@meta.ua",
+    "fullName": "Гончаренко Вікторія Вадимівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-10-14T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (068) 876-54-32",
+    "positionId": "Диспетчери навігаційного обслуговування",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 103
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b68"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "email": "olijnyk41@yahoo.com",
+    "fullName": "Олійник Олексій Федорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2022-03-17T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (097) 567-89-01",
+    "positionId": "Диспетчери навігаційного обслуговування",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 104
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b69"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "email": "volkova30@outlook.com",
+    "fullName": "Волкова Єлизавета Прокопівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-07-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (096) 234-56-78",
+    "positionId": "Диспетчери навігаційного обслуговування",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 105
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6a"},
+    "age": 36,
+    "brigadeId": null,
+    "email": "melnik36@meta.ua",
+    "fullName": "Мельник Максим Максимович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2020-02-23T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Спеціаліст з планування польотів",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 106
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6b"},
+    "age": 28,
+    "brigadeId": null,
+    "email": "antonova28@ukr.net",
+    "fullName": "Антонова Ольга Антонівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-04-14T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Спеціаліст з планування польотів",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 107
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6c"},
+    "age": 42,
+    "brigadeId": null,
+    "email": "bogdanov42@mail.com",
+    "fullName": "Богданов Дмитро Дмитрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-09-17T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (095) 123-45-67",
+    "positionId": "Метеоролог",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 108
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6d"},
+    "age": 31,
+    "brigadeId": null,
+    "email": "shevchenko31@meta.ua",
+    "fullName": "Шевченко Марія Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-05-12T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Метеоролог",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 109
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6e"},
+    "age": 35,
+    "brigadeId": null,
+    "email": "vasilenko35@ukr.net",
+    "fullName": "Василенко Олександр Костянтинович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-07-15T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (097) 234-56-78",
+    "positionId": "Інженер радіозв'язку",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 110
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b6f"},
+    "age": 30,
+    "brigadeId": null,
+    "email": "kovalchuk30@gmail.com",
+    "fullName": "Ковальчук Олена Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-06-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (096) 345-67-89",
+    "positionId": "Інженер радіозв'язку",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 111
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b70"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "email": "polishchuk33@outlook.com",
+    "fullName": "Поліщук Максим Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-05-19T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 876-54-32",
+    "positionId": "Пілот",
+    "shift": "ранок",
+    "status": "працівник",
+    "workerId": 112
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b71"},
+    "age": 26,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "email": "bondar26@gmail.com",
+    "fullName": "Бондар Юлія Юріївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-11-27T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Пілот",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 113
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b72"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "email": "zinchenko38@mail.com",
+    "fullName": "Зінченко Петр Федорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-01-24T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (095) 876-54-32",
+    "positionId": "Пілот",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 114
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b73"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "email": "mykhailova32@ukr.net",
+    "fullName": "Михайлова Катерина Стасівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-09-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (098) 345-67-89",
+    "positionId": "Пілот",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 115
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b74"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "email": "kyrylenko41@gmail.com",
+    "fullName": "Кириленко Андрій Святославович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-06-13T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 567-89-01",
+    "positionId": "Пілот",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 116
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b75"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "email": "shevchenko30@meta.ua",
+    "fullName": "Шевченко Ольга Олексіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-11-28T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (096) 123-45-67",
+    "positionId": "Пілот",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 117
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b76"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "email": "kovalenko35@outlook.com",
+    "fullName": "Коваленко Володимир Володимирович",
+    "gender": "працівник",
+    "hireDate": {"$date": "2022-08-17T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Пілот",
+    "shift": "вечір",
+    "status": "бригадир",
+    "workerId": 118
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b77"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "email": "savchenko29@gmail.com",
+    "fullName": "Савченко Марина Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-04-14T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 234-56-78",
+    "positionId": "Пілот",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 119
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b78"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "email": "pavlenko40@meta.ua",
+    "fullName": "Павленко Юрій Олександрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-02-16T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 345-67-89",
+    "positionId": "Бортпровідник",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 120
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b79"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "email": "melnik34@ukr.net",
+    "fullName": "Мельник Ірина Костянтинівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-07-11T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (098) 567-89-01",
+    "positionId": "Бортпровідник",
+    "shift": "вечір",
+    "status": "бригадир",
+    "workerId": 121
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7a"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "email": "antonov38@mail.com",
+    "fullName": "Антонов Олександр Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-06-20T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Бортпровідник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 122
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7b"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "email": "lytvyn29@outlook.com",
+    "fullName": "Литвин Вікторія Сергіївна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-05-18T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 876-54-32",
+    "positionId": "Бортпровідник",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 123
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7c"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "email": "gonchar35@gmail.com",
+    "fullName": "Гончар Дмитро Дмитрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2021-03-27T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (096) 345-67-89",
+    "positionId": "Бортпровідник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 124
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7d"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "email": "romanenko32@meta.ua",
+    "fullName": "Романенко Ольга Олексаднріва",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-10-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 567-89-01",
+    "positionId": "Бортпровідник",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 125
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7e"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "email": "lytvinenko40@meta.ua",
+    "fullName": "Литвиненко Іван Миколайович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-08-16T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 234-56-78",
+    "positionId": "Бортпровідник",
+    "shift": "день",
+    "status": "працівник",
+    "workerId": 126
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b7f"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "email": "ivanchenko31@mail.com",
+    "fullName": "Іванченко Марія Петрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-09-10T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (050) 876-54-32",
+    "positionId": "Бортпровідник",
+    "shift": "вечір",
+    "status": "працівник",
+    "workerId": 127
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b80"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "email": "sydorenko34@ukr.net",
+    "fullName": "Сидоренко Олексій Іванович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-12-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (095) 123-45-67",
+    "positionId": "Механік з обслуговування двигунів",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 128
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b81"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "email": "polip@ukr.net",
+    "fullName": "Поліпчук Олег Іванович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-12-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (095) 123-45-67",
+    "positionId": "Механік з обслуговування двигунів",
+    "shift": "ніч",
+    "status": "працівник",
+    "workerId": 129
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b82"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "email": "petrenko29@ukr.net",
+    "fullName": "Петренко Ірина Василівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-03-25T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (067) 234-56-78",
+    "positionId": "Спеціаліст по структурному ремонту",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 130
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b83"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "email": "vasylenko40@ukr.net",
+    "fullName": "Василенко Михайло Петрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-08-10T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (093) 345-67-89",
+    "positionId": "Спеціаліст по структурному ремонту",
+    "shift": "південний",
+    "status": "працівник",
+    "workerId": 131
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b84"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "email": "marchenko35@ukr.net",
+    "fullName": "Марченко Олена Володимирівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-05-15T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (050) 456-78-90",
+    "positionId": "Інженер-авіонік",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 132
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b85"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "email": "kovalenko28@ukr.net",
+    "fullName": "Коваленко Сергій Ігорович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2019-11-20T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (068) 567-89-01",
+    "positionId": "Інженер-авіонік",
+    "shift": "вечірній",
+    "status": "працівник",
+    "workerId": 133
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b86"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "email": "lysenko32@ukr.net",
+    "fullName": "Лисенко Оксана Іванівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-04-05T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 678-90-12",
+    "positionId": "Інженер-авіонік",
+    "shift": "ранковий",
+    "status": "працівник",
+    "workerId": 134
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b87"},
+    "age": 37,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "email": "ivanenko37@ukr.net",
+    "fullName": "Іваненко Віталій Олександрович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-10-12T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (099) 789-01-23",
+    "positionId": "Інженер-авіонік",
+    "shift": "північний",
+    "status": "працівник",
+    "workerId": 135
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b88"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "email": "pavlenko31@ukr.net",
+    "fullName": "Павленко Наталія Петрівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-06-30T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (063) 890-12-34",
+    "positionId": "Інспектор з технічного стану",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 136
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b89"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "email": "kuzmenko33@ukr.net",
+    "fullName": "Кузьменко Олександр Вікторович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2018-02-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (066) 123-45-67",
+    "positionId": "Інспектор з технічного стану",
+    "shift": "вечірній",
+    "status": "працівник",
+    "workerId": 137
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8a"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "email": "oliinyk30@ukr.net",
+    "fullName": "Олійник Тетяна Ігорівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-01-02T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 234-56-78",
+    "positionId": "Інспектор з авіаційної безпеки",
+    "shift": "ранковий",
+    "status": "працівник",
+    "workerId": 138
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8b"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "email": "hryshchenko36@ukr.net",
+    "fullName": "Грищенко Віктор Васильович",
+    "gender": "чоловік",
+    "hireDate": {"$date": "2017-07-20T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 345-67-89",
+    "positionId": "Інспектор з авіаційної безпеки",
+    "shift": "південний",
+    "status": "працівник",
+    "workerId": 139
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8c"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "email": "shevchenko29@ukr.net",
+    "fullName": "Шевченко Ірина Михайлівна",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-08-18T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (098) 456-78-90",
+    "positionId": "Механік з обслуговування",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 140
+  },
+    {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8d"},
+    "age": 49,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "email": "larisa.boyko@example.com",
+    "fullName": "Лариса Бойко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-09-11T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 123-45-67",
+    "positionId": "Механік з обслуговування",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 141
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8e"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76935"},
+    "email": "maria.ivanova@example.com",
+    "fullName": "Марія Іванова",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-07-24T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Будівельник",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 142
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b8f"},
+    "age": 45,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76936"},
+    "email": "olga.kovalenko@example.com",
+    "fullName": "Ольга Коваленко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-05-17T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Будівельник",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 143
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b90"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76935"},
+    "email": "natalia.petrenko@example.com",
+    "fullName": "Наталія Петренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-10-21T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (068) 456-78-90",
+    "positionId": "Електрик",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 144
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b91"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76936"},
+    "email": "svitlana.shevchenko@example.com",
+    "fullName": "Світлана Шевченко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-11-30T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (073) 567-89-01",
+    "positionId": "Електрик",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 145
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b92"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76935"},
+    "email": "olena.goncharova@example.com",
+    "fullName": "Олена Гончарова",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-04-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (066) 678-90-12",
+    "positionId": "Сантехнік",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 146
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b93"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76936"},
+    "email": "irina.sydorenko@example.com",
+    "fullName": "Ірина Сидоренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-03-09T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 789-01-23",
+    "positionId": "Сантехнік",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 147
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b94"},
+    "age": 43,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76937"},
+    "email": "anna.myronova@example.com",
+    "fullName": "Анна Миронова",
+    "gender": "жінка",
+    "hireDate": {"$date": "2012-08-05T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 890-12-34",
+    "positionId": "Асфальтобетонник",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 148
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b95"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76937"},
+    "email": "valentina.doroshenko@example.com",
+    "fullName": "Валентина Дорошенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-06-01T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 901-23-45",
+    "positionId": "Асфальтобетонник",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 149
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b96"},
+    "age": 32,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76938"},
+    "email": "viktoria.kravchenko@example.com",
+    "fullName": "Вікторія Кравченко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-02-12T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (068) 012-34-56",
+    "positionId": "Автомеханік",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 150
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b97"},
+    "age": 38,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76938"},
+    "email": "tetyana.pavlenko@example.com",
+    "fullName": "Тетяна Павленко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-05-18T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 8495891",
+    "positionId": "Автомеханік",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 151
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b98"},
+    "age": 47,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76939"},
+    "email": "oksana.chernenko@example.com",
+    "fullName": "Оксана Черненко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-11-07T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Автомеханік",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 152
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b99"},
+    "age": 44,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76939"},
+    "email": "inna.gnatenko@example.com",
+    "fullName": "Інна Гнатенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2013-01-25T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Автомеханік",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 153
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9a"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693a"},
+    "email": "lyudmila.ovcharenko@example.com",
+    "fullName": "Людмила Овчаренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-04-19T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (068) 456-78-90",
+    "positionId": "Технік з обслуговування системи безпеки",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 154
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9b"},
+    "age": 55,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693b"},
+    "email": "ganna.ponomarenko@example.com",
+    "fullName": "Ганна Пономаренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-09-13T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (073) 567-89-01",
+    "positionId": "Технік з обслуговування системи безпеки",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 155
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9c"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693a"},
+    "email": "olesya.chebotarenko@example.com",
+    "fullName": "Олеся Чеботаренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-06-11T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 678-90-12",
+    "positionId": "Інженер з обслуговування обладнання аеропорту",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 156
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9d"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693a"},
+    "email": "irina.kravchuk@example.com",
+    "fullName": "Ірина Кравчук",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-12-14T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 789-01-23",
+    "positionId": "Інженер з обслуговування обладнання аеропорту",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 157
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9e"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693b"},
+    "email": "tamara.kuzmenko@example.com",
+    "fullName": "Тамара Кузьменко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2020-07-27T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 890-12-34",
+    "positionId": "Інженер з обслуговування обладнання аеропорту",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 158
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4b9f"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693b"},
+    "email": "valeria.bondarenko@example.com",
+    "fullName": "Валерія Бондаренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-05-01T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (093) 901-23-45",
+    "positionId": "Інженер з обслуговування обладнання аеропорту",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 159
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba0"},
+    "age": 52,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693c"},
+    "email": "tetyana.shevchuk@example.com",
+    "fullName": "Тетяна Шевчук",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-02-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (068) 012-34-56",
+    "positionId": "Охоронець",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 160
+  },
+   {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba1"},
+    "age": 42,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693c"},
+    "email": "oksana.vasylenko@example.com",
+    "fullName": "Оксана Василенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2013-11-26T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (050) 122-45-67",
+    "positionId": "Охоронець",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 162
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba2"},
+    "age": 37,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693d"},
+    "email": "svitlana.dyachenko@example.com",
+    "fullName": "Світлана Дяченко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-01-23T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Охоронець",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 163
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba3"},
+    "age": 29,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693d"},
+    "email": "maria.lysenko@example.com",
+    "fullName": "Марія Лисенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2022-09-14T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Охоронець",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 164
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba4"},
+    "age": 49,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693e"},
+    "email": "olena.pavlova@example.com",
+    "fullName": "Олена Павлова",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-03-22T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (068) 456-78-90",
+    "positionId": "Інспектор",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 165
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba5"},
+    "age": 33,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693e"},
+    "email": "natalia.goncharenko@example.com",
+    "fullName": "Наталія Гончаренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-12-09T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (073) 567-89-01",
+    "positionId": "Інспектор",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 166
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba6"},
+    "age": 40,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "email": "olga.romanenko@example.com",
+    "fullName": "Ольга Романенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2011-08-01T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (066) 678-90-12",
+    "positionId": "Інспектор",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 167
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba7"},
+    "age": 36,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "email": "galina.antonенко@example.com",
+    "fullName": "Галина Антоненко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-11-05T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 789-01-23",
+    "positionId": "Інспектор",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 168
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba8"},
+    "age": 41,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "email": "irina.bondar@example.com",
+    "fullName": "Ірина Бондар",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-04-15T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 890-12-34",
+    "positionId": "Агент реєстрації білетів",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 169
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4ba9"},
+    "age": 30,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "email": "anna.matvienko@example.com",
+    "fullName": "Анна Матвієнко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-12-31T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 901-23-45",
+    "positionId": "Агент реєстрації білетів",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 170
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4baa"},
+    "age": 39,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76941"},
+    "email": "valentina.bilan@example.com",
+    "fullName": "Валентина Білан",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-07-02T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (068) 012-34-56",
+    "positionId": "Агент реєстрації білетів",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 171
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bab"},
+    "age": 34,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76941"},
+    "email": "tetyana.yakovenko@example.com",
+    "fullName": "Тетяна Яковенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-03-15T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (050) 16788O0",
+    "positionId": "Агент реєстрації білетів",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 172
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bac"},
+    "age": 50,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "email": "inna.nesterenko@example.com",
+    "fullName": "Інна Нестеренко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-01-06T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (063) 234-56-78",
+    "positionId": "Агент реєстрації багажу",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 173
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bad"},
+    "age": 43,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "email": "olga.didenko@example.com",
+    "fullName": "Ольга Діденко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-10-03T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Агент реєстрації багажу",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 174
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bae"},
+    "age": 28,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "email": "lyudmila.samoylenko@example.com",
+    "fullName": "Людмила Самойленко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-06-08T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (068) 456-78-90",
+    "positionId": "Агент реєстрації багажу",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 175
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4baf"},
+    "age": 54,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "email": "olena.yatsenko@example.com",
+    "fullName": "Олена Яценко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-03-27T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (073) 567-89-01",
+    "positionId": "Агент реєстрації багажу",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 176
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb0"},
+    "age": 31,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76942"},
+    "email": "irina.malishenko@example.com",
+    "fullName": "Ірина Малишенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-11-30T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (095) 678-90-12",
+    "positionId": "Лікар",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 177
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb1"},
+    "age": 46,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76943"},
+    "email": "maria.kozak@example.com",
+    "fullName": "Марія Козак",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-01-18T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (097) 789-01-23",
+    "positionId": "Лікар",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 178
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb2"},
+    "age": 35,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76942"},
+    "email": "valentina.vasilyeva@example.com",
+    "fullName": "Валентина Васильєва",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-04-23T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (093) 890-12-34",
+    "positionId": "Медсестра",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 179
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb3"},
+    "age": 44,
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76943"},
+    "email": "anna.mishchenko@example.com",
+    "fullName": "Анна Міщенко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2011-07-01T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (093) 901-23-45",
+    "positionId": "Медсестра",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 180
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb4"},
+    "age": 34,
+    "brigadeId": null,
+    "email": "tetyana.gordienko@example.com",
+    "fullName": "Тетяна Гордієнко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2018-03-12T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (068) 012-34-56",
+    "positionId": "Спеціалісти з підбору персоналу",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 181
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb5"},
+    "age": 47,
+    "brigadeId": null,
+    "email": "inna.petrychenko@example.com",
+    "fullName": "Інна Петриченко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-01-09T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (050) 123-45-67",
+    "positionId": "Спеціалісти з підбору персоналу",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 182
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb6"},
+    "age": 53,
+    "brigadeId": null,
+    "email": "oksana.lytvynenko@example.com",
+    "fullName": "Оксана Литвиненко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2017-02-21T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (050) 234-56-78",
+    "positionId": "Адвокат",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 183
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb7"},
+    "age": 38,
+    "brigadeId": null,
+    "email": "valeria.goncharova@example.com",
+    "fullName": "Валерія Гончарова",
+    "gender": "жінка",
+    "hireDate": {"$date": "2016-06-17T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (067) 345-67-89",
+    "positionId": "Адвокат",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 184
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb8"},
+    "age": 36,
+    "brigadeId": null,
+    "email": "tetyana.marchenko@example.com",
+    "fullName": "Тетяна Марченко",
+    "gender": "жінка",
+    "hireDate": {"$date": "2019-10-05T00:00:00.000Z"},
+    "numberChildrens": 1,
+    "phoneNumber": "+38 (068) 456-78-90",
+    "positionId": "Секретар",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 185
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bb9"},
+    "age": 41,
+    "brigadeId": null,
+    "email": "olena.solovey@example.com",
+    "fullName": "Олена Соловей",
+    "gender": "жінка",
+    "hireDate": {"$date": "2014-11-30T00:00:00.000Z"},
+    "numberChildrens": 2,
+    "phoneNumber": "+38 (073) 567-89-01",
+    "positionId": "Секретар",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 186
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bba"},
+    "age": 29,
+    "brigadeId": null,
+    "email": "irina.zayceva@example.com",
+    "fullName": "Ірина Зайцева",
+    "gender": "жінка",
+    "hireDate": {"$date": "2021-09-10T00:00:00.000Z"},
+    "numberChildrens": 0,
+    "phoneNumber": "+38 (095) 678-90-12",
+    "positionId": "Секретар",
+    "shift": "денний",
+    "status": "працівник",
+    "workerId": 187
+  },
+  {
+    "_id": {"$oid": "672b4a66049f2f42847b4bbb"},
+    "age": 50,
+    "brigadeId": null,
+    "email": "maria.bondar@example.com",
+    "fullName": "Марія Бондар",
+    "gender": "жінка",
+    "hireDate": {"$date": "2015-04-18T00:00:00.000Z"},
+    "numberChildrens": 3,
+    "phoneNumber": "+38 (097) 789-01-23",
+    "positionId": "Секретар",
+    "shift": "нічний",
+    "status": "працівник",
+    "workerId": 188
+  }
+
+  ]);
+
+ db.brigade.deleteMany({});
+ db.brigade.find({});
+
+
+db.brigade.insertMany([
+    {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "brigadeId": 1,
+    "brigadeType": "Бригада заправників",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба паливно-мастильних матеріалів"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76922"},
+    "brigadeId": 2,
+    "brigadeType": "Бригада заправників",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба паливно-мастильних матеріалів"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76923"},
+    "brigadeId": 3,
+    "brigadeType": "Бригада прибирання салону",
+    "numberWorkers": 3,
+    "structureUnitName": "Рятувальна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76924"},
+    "brigadeId": 4,
+    "brigadeType": "Бригада прибирання салону",
+    "numberWorkers": 3,
+    "structureUnitName": "Рятувальна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76925"},
+    "brigadeId": 5,
+    "brigadeType": "Бригада прибирання аеропорту",
+    "numberWorkers": 3,
+    "structureUnitName": "Рятувальна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76926"},
+    "brigadeId": 6,
+    "brigadeType": "Бригада прибирання аеропорту",
+    "numberWorkers": 2,
+    "structureUnitName": "Рятувальна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76927"},
+    "brigadeId": 7,
+    "brigadeType": "Бригада рятувальників",
+    "numberWorkers": 3,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76928"},
+    "brigadeId": 8,
+    "brigadeType": "Бригада рятувальників",
+    "numberWorkers": 2,
+    "structureUnitName": "Клінінгова служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "brigadeId": 9,
+    "brigadeType": "Диспетчерська бригада",
+    "numberWorkers": 3,
+    "structureUnitName": "Планово-економічний відділ"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "brigadeId": 10,
+    "brigadeType": "Диспетчерська бригада",
+    "numberWorkers": 3,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "brigadeId": 11,
+    "brigadeType": "Навігаційна бригада",
+    "numberWorkers": 3,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "brigadeId": 12,
+    "brigadeType": "Навігаційна бригада",
+    "numberWorkers": 3,
+    "structureUnitName": "Диспетчерска служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "brigadeId": 13,
+    "brigadeType": "Льотна бригада",
+    "numberWorkers": 5,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "brigadeId": 14,
+    "brigadeType": "Льотна бригада",
+    "numberWorkers": 5,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "brigadeId": 15,
+    "brigadeType": "Льотна бригада",
+    "numberWorkers": 5,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76930"},
+    "brigadeId": 16,
+    "brigadeType": "Льотна бригада",
+    "numberWorkers": 5,
+    "structureUnitName": "Льотна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76931"},
+    "brigadeId": 17,
+    "brigadeType": "Бригада технічного обслуговування літаків",
+    "numberWorkers": 5,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76932"},
+    "brigadeId": 18,
+    "brigadeType": "Бригада технічного обслуговування літаків",
+    "numberWorkers": 5,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "brigadeId": 19,
+    "brigadeType": "Бригада технічного огляду літаків",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "brigadeId": 20,
+    "brigadeType": "Бригада технічного огляду літаків",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба авіотехнічного обслуговування"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76935"},
+    "brigadeId": 21,
+    "brigadeType": "Бригади обслуговування інфраструктури",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба обслуговування аеродрому "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76936"},
+    "brigadeId": 22,
+    "brigadeType": "Бригади обслуговування інфраструктури",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба обслуговування аеродрому "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76937"},
+    "brigadeId": 23,
+    "brigadeType": "Бригада обслуговування злітної смуги",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба обслуговування аеродрому "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76938"},
+    "brigadeId": 24,
+    "brigadeType": "Бригада автомеханіків",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба обслуговування автотранспорту "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76939"},
+    "brigadeId": 25,
+    "brigadeType": "Бригада автомеханіків",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба обслуговування автотранспорту "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693a"},
+    "brigadeId": 26,
+    "brigadeType": "Бригада обслуговування спецтехніки",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693b"},
+    "brigadeId": 27,
+    "brigadeType": "Бригада обслуговування спецтехніки",
+    "numberWorkers": 4,
+    "structureUnitName": "Служба ремонту спец-приладдя"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693c"},
+    "brigadeId": 28,
+    "brigadeType": "Бригада охорони",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба безпеки"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693d"},
+    "brigadeId": 29,
+    "brigadeType": "Бригада охорони",
+    "numberWorkers": 3,
+    "structureUnitName": "Служба безпеки"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693e"},
+    "brigadeId": 30,
+    "brigadeType": "Бригада інспекторів митної служби",
+    "numberWorkers": 3,
+    "structureUnitName": "Митна служба "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf7693f"},
+    "brigadeId": 31,
+    "brigadeType": "Бригада інспекторів митної служби",
+    "numberWorkers": 5,
+    "structureUnitName": "Митна служба "
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76940"},
+    "brigadeId": 32,
+    "brigadeType": "Бригада реєстрації",
+    "numberWorkers": 5,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76941"},
+    "brigadeId": 33,
+    "brigadeType": "Бригада реєстрації",
+    "numberWorkers": 3,
+    "structureUnitName": "Cлужба реєстрації"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76942"},
+    "brigadeId": 34,
+    "brigadeType": "Бригада медиків",
+    "numberWorkers": 3,
+    "structureUnitName": "Медико – санітарна служба"
+  },
+  {
+    "_id": {"$oid": "672a2ab9f7c9ad03faf76943"},
+    "brigadeId": 35,
+    "brigadeType": "Бригада медиків",
+    "numberWorkers": 3,
+    "structureUnitName": "Медико – санітарна служба"
+  }
+
+])
+db.structureUnit.find();
+
+db.plane.deleteMany({});
+db.plane.find();
+db.plane.insertMany([
+    {
+    "_id": {"$oid": "672b7e4fb5bdf532c9d2188c"},
+    "assigned": "true",
+    "explotationDate": {"$date": "2020-05-12T00:00:00.000Z"},
+    "interiorReadiness": "готовий",
+    "numberFlightsBeforeRepair": 3,
+    "numberRepairs": 2,
+    "planeFuelStatus": "заправлений",
+    "planeId": 1,
+    "planeNumber": "PD3456",
+    "techCondition": "задовільний",
+    "techInspectionDate": {"$date": "2024-05-12T00:00:00.000Z"},
+    "type": "пасажирський"
+  },
+  {
+    "_id": {"$oid": "672b7e4fb5bdf532c9d2188d"},
+    "assigned": "false",
+    "explotationDate": {"$date": "2018-11-25T00:00:00.000Z"},
+    "interiorReadiness": "готовий",
+    "numberFlightsBeforeRepair": 3,
+    "numberRepairs": 1,
+    "planeFuelStatus": "не заправлений",
+    "planeId": 2,
+    "planeNumber": "PC3457",
+    "techCondition": "задовільний",
+    "techInspectionDate": {"$date": "2024-05-12T00:00:00.000Z"},
+    "type": "пасажирський"
+  },
+  {
+    "_id": {"$oid": "672b7e4fb5bdf532c9d2188e"},
+    "assigned": "true",
+    "explotationDate": {"$date": "2015-03-19T00:00:00.000Z"},
+    "interiorReadiness": "не готовий",
+    "numberFlightsBeforeRepair": 3,
+    "numberRepairs": 4,
+    "planeFuelStatus": "не заправлений",
+    "planeId": 3,
+    "planeNumber": "PC3458",
+    "techCondition": "в ремонті",
+    "techInspectionDate": {"$date": "2024-05-12T00:00:00.000Z"},
+    "type": "пасажирський"
+  },
+  {
+    "_id": {"$oid": "672b7e4fb5bdf532c9d2188f"},
+    "assigned": "true",
+    "explotationDate": {"$date": "2019-07-14T00:00:00.000Z"},
+    "interiorReadiness": "готовий",
+    "numberFlightsBeforeRepair": 3,
+    "numberRepairs": 3,
+    "planeFuelStatus": "заправлений",
+    "planeId": 4,
+    "planeNumber": "PC3459",
+    "techCondition": "задовільний",
+    "techInspectionDate": {"$date": "2024-05-12T00:00:00.000Z"},
+    "type": "пасажирський"
+  },
+  {
+    "_id": {"$oid": "672b7e4fb5bdf532c9d21890"},
+    "assigned": "false",
+    "explotationDate": {"$date": "2021-09-30T00:00:00.000Z"},
+    "interiorReadiness": "не готовий",
+    "numberFlightsBeforeRepair": 3,
+    "numberRepairs": 0,
+    "planeFuelStatus": "заправлений",
+    "planeId": 5,
+    "planeNumber": "PC3505",
+    "techCondition": "задовільний",
+    "techInspectionDate": {"$date": "2024-05-12T00:00:00.000Z"},
+    "type": "грузовий"
+  }
+]
+)
+db.route.deleteMany({});
+db.route.find({});
+db.route.insertMany([
+     {
+    "_id": {"$oid": "672a40b4f7c9ad03faf76956"},
+    "arrivalPoint": "Париж",
+    "departurePoint": "Київ",
+    "flightDirection": "Західний",
+    "number": "PS101",
+    "routeId": 1,
+    "transitAirport": "-"
+  },
+  {
+    "_id": {"$oid": "672a40b4f7c9ad03faf76957"},
+    "arrivalPoint": "Харків",
+    "departurePoint": "Львів",
+    "flightDirection": "Західний",
+    "number": "LH202",
+    "routeId": 2,
+    "transitAirport": "-"
+  },
+  {
+    "_id": {"$oid": "672a40b4f7c9ad03faf76958"},
+    "arrivalPoint": "Стамбул",
+    "departurePoint": "Одеса",
+    "flightDirection": "Східний",
+    "number": "WZ303",
+    "routeId": 3,
+    "transitAirport": "-"
+  },
+  {
+    "_id": {"$oid": "672a40b4f7c9ad03faf76959"},
+    "arrivalPoint": "Лондон",
+    "departurePoint": "Харків",
+    "flightDirection": "Західний",
+    "number": "BA404",
+    "routeId": 4,
+    "transitAirport": "-"
+  },
+  {
+    "_id": {"$oid": "672a40b4f7c9ad03faf7695a"},
+    "arrivalPoint": "Амстердам",
+    "departurePoint": "Дніпро",
+    "flightDirection": "Західний",
+    "number": "AF505",
+    "routeId": 5,
+    "transitAirport": "-"
+  }
+])
+db.seat.deleteMany({});
+db.seat.find({});
+db.seat.insertMany(
+[
+ {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7695b"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 1,
+    "seatId": 1,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7695c"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 2,
+    "seatId": 2,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7695d"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 3,
+    "seatId": 3,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7695e"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 4,
+    "seatId": 4,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7695f"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 5,
+    "seatId": 5,
+    "status": "заброньоване"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76960"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 6,
+    "seatId": 6,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76961"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 7,
+    "seatId": 7,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76962"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 8,
+    "seatId": 8,
+    "status": "заброньоване"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76963"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 9,
+    "seatId": 9,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76964"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "number": 10,
+    "seatId": 10,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76965"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": 1,
+    "seatId": 11,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76966"},
+    "flightId": "4",
+    "number": "2",
+    "seatId": 12,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76967"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "3",
+    "seatId": 13,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76968"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "4",
+    "seatId": 14,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf76969"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "5",
+    "seatId": 15,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7696a"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "6",
+    "seatId": 16,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7696b"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "7",
+    "seatId": 17,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7696c"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "8",
+    "seatId": 18,
+    "status": "доступне"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7696d"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "9",
+    "seatId": 19,
+    "status": "зайняте"
+  },
+  {
+    "_id": {"$oid": "672a40bcf7c9ad03faf7696e"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "number": "10",
+    "seatId": 20,
+    "status": "доступне"
+  }
+]
+)
+
+db.passenger.deleteMany({})
+db.passenger.find({})
+db.passenger.find();
+db.passenger.insertMany(
+[{
+    "_id": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "age": 25,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger1@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Іванов Іван Іванович",
+    "gender": "чоловік",
+    "internPassportNumber": "В9876543",
+    "passengerId": 1,
+    "passportNumber": "А1234567",
+    "phoneNumber": "+1234567890",
+    "registrationStatus": "не зареєстрований",
+    "ticketId": 1
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76986"},
+    "age": 30,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не задовілний",
+    "email": "passenger2@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Петренко Марія Петрівна",
+    "gender": "жінка",
+    "internPassportNumber": "В2468013",
+    "passengerId": 2,
+    "passportNumber": "Б7654321",
+    "phoneNumber": "+1987654321",
+    "registrationStatus": "не зареєстрований",
+    "ticketId": 2
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76987"},
+    "age": 22,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger3@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Сидоренко Олексій Васильович",
+    "gender": "чоловік",
+    "internPassportNumber": "Г1357924",
+    "passengerId": 3,
+    "passportNumber": "В9876543",
+    "phoneNumber": "+1654321897",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76988"},
+    "age": 28,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger4@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Коваленко Ірина Олегівна",
+    "gender": "жінка",
+    "internPassportNumber": "Д8765432",
+    "passengerId": 4,
+    "passportNumber": "Г5432198",
+    "phoneNumber": "+1765432987",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76989"},
+    "age": 33,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger5@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Мельник Віктор Вікторович",
+    "gender": "чоловік",
+    "internPassportNumber": "Е9876543",
+    "passengerId": 5,
+    "passportNumber": "Д2468013",
+    "phoneNumber": "+1345678901",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698a"},
+    "age": 26,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger6@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Козлова Олена Ігорівна",
+    "gender": "жінка",
+    "internPassportNumber": "Є1357924",
+    "passengerId": 6,
+    "passportNumber": "Е8765432",
+    "phoneNumber": "+1123456789",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698b"},
+    "age": 29,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger7@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Павленко Василь Миколайович",
+    "gender": "чоловік",
+    "internPassportNumber": "Ж8765432",
+    "passengerId": 7,
+    "passportNumber": "Є5432198",
+    "phoneNumber": "+1987654321",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698c"},
+    "age": 31,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger8@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Григоренко Ольга Іванівна",
+    "gender": "жінка",
+    "internPassportNumber": "З9876543",
+    "passengerId": 8,
+    "passportNumber": "Ж1357924",
+    "phoneNumber": "+1654321987",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698d"},
+    "age": 27,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger9@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "fullname": "Іванов Олександр Вікторович",
+    "gender": "чоловік",
+    "internPassportNumber": "И1357924",
+    "passengerId": 9,
+    "passportNumber": "З8765432",
+    "phoneNumber": "+1432987654",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "age": 34,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger10@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "fullname": "Семенова Тетяна Миколаївна",
+    "gender": "жінка",
+    "internPassportNumber": "І8765432",
+    "passengerId": 10,
+    "passportNumber": "И5432198",
+    "phoneNumber": "+1987654321",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf7698f"},
+    "age": 23,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger11@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "fullname": "Петров Олексій Олександрович",
+    "gender": "чоловік",
+    "internPassportNumber": "К9876543",
+    "passengerId": 11,
+    "passportNumber": "І2468013",
+    "phoneNumber": "+1765432987",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76990"},
+    "age": 32,
+    "bagageStatus": "перевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger12@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "fullname": "Василенко Ірина Сергіївна",
+    "gender": "жінка",
+    "internPassportNumber": "Л8765432",
+    "passengerId": 12,
+    "passportNumber": "К1357924",
+    "phoneNumber": "+1987654321",
+    "registrationStatus": "не зареєстрований"
+  },
+  {
+    "_id": {"$oid": "672a44b2f7c9ad03faf76991"},
+    "age": 24,
+    "bagageStatus": "неперевірений",
+    "customsControlStatus": "не перевірений",
+    "email": "passenger13@example.com",
+    "flightId": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "fullname": "Кривенко Віталій Юрійович",
+    "gender": "чоловік",
+    "internPassportNumber": "М9876543",
+    "passengerId": 13,
+    "passportNumber": "Л5432198",
+    "phoneNumber": "+1654321987",
+    "registrationStatus": "не зареєстрований"
+  }
+  ]
+
+)
+
+db.flight.deleteMany({});
+db.flight.find();
+db.flight.insertMany(
+    [
+
+  {
+    "_id": {"$oid": "672b885c936f0d1a7becc00a"},
+    "category": "міжнародний",
+    "customsControl": "не завершений",
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "flightBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "flightId": 1,
+    "flightNumber": "UA123",
+    "inspectionBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "navigationBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "numberBoughtTickets": 1,
+    "numberTickets": 9,
+    "passengerRegistration": "не завершений",
+    "planeId": "PD3456",
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76956"},
+    "status": "активний"
+  },
+  {
+    "_id": {"$oid": "672b885c936f0d1a7becc00b"},
+    "category": "вантажоперевезення",
+    "customsControl": "не завершений",
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76929"},
+    "flightBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "flightId": 2,
+    "flightNumber": "AA456",
+    "inspectionBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76933"},
+    "navigationBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692b"},
+    "numberBoughtTickets": 0,
+    "numberTickets": 0,
+    "passengerRegistration": "не завершений",
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76957"},
+    "status": "активний"
+  },
+  {
+    "_id": {"$oid": "672b885c936f0d1a7becc00c"},
+    "category": "чартерний",
+    "customsControl": "не завершений",
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "flightBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692d"},
+    "flightId": 3,
+    "flightNumber": "DL789",
+    "inspectionBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "navigationBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "numberBoughtTickets": 0,
+    "numberTickets": 0,
+    "passengerRegistration": "не завершений",
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76958"},
+    "status": "затриманий"
+  },
+  {
+    "_id": {"$oid": "672b885c936f0d1a7becc00d"},
+    "category": "внутрішній",
+    "customsControl": "не завершений",
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "flightBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692e"},
+    "flightId": 4,
+    "flightNumber": "BA321",
+    "inspectionBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "navigationBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "numberBoughtTickets": 0,
+    "numberTickets": 11,
+    "passengerRegistration": "не завершений",
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76959"},
+    "status": "активний"
+  },
+  {
+    "_id": {"$oid": "672b885c936f0d1a7becc00e"},
+    "category": "cпеціальний",
+    "customsControl": "не завершений",
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692a"},
+    "flightBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692f"},
+    "flightId": 5,
+    "flightNumber": "SW654",
+    "inspectionBrigadeId": {"$oid": "672a2ab9f7c9ad03faf76934"},
+    "navigationBrigadeId": {"$oid": "672a2ab9f7c9ad03faf7692c"},
+    "numberBoughtTickets": 0,
+    "numberTickets": 0,
+    "passengerRegistration": "не завершений",
+    "routeId": {"$oid": "672a40b4f7c9ad03faf7695a"},
+    "status": "активний"
+  }
+]
+)
+db.createCollection("passenger")
+db.ticket.find({});
+db.ticket.deleteMany({});
+db.ticket.find();
+db.ticket.insertMany([
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d4"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-01-12T09:15:30.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76985"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7695b"
+    },
+    "status": "доступний",
+    "ticketId": 1
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d5"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-02-25T14:42:50.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76986"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7695c"
+    },
+    "status": "куплений",
+    "ticketId": 2
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d6"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-03-17T22:05:12.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": null,
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7695d"
+    },
+    "status": "заброньований",
+    "ticketId": 3
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d7"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-04-06T11:23:45.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76987"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7695e"
+    },
+    "status": "проданий",
+    "ticketId": 4
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d8"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-05-19T20:30:55.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76988"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7695f"
+    },
+    "status": "заброньований",
+    "ticketId": 5
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6d9"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-06-04T05:19:16.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": null,
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76960"
+    },
+    "status": "доступний",
+    "ticketId": 6
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6da"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-07-13T11:02:09.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76989"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76961"
+    },
+    "status": "заброньований",
+    "ticketId": 7
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6db"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-08-21T20:31:54.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": null,
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76962"
+    },
+    "status": "доступний",
+    "ticketId": 8
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6dc"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-09-09T12:24:18.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00a"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698a"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76963"
+    },
+    "status": "проданий",
+    "ticketId": 9
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6dd"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-10-17T08:47:32.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698b"
+    },
+    "price": 150,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76964"
+    },
+    "status": "проданий",
+    "ticketId": 10
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6de"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-11-25T15:36:20.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698f"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76965"
+    },
+    "status": "проданий",
+    "ticketId": 11
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6df"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-12-12T04:11:45.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698c"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76966"
+    },
+    "status": "проданий",
+    "ticketId": 12
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e0"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-01-23T18:39:10.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": null,
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76967"
+    },
+    "status": "дооступний",
+    "ticketId": 13
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e1"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-02-29T07:58:55.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698d"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76968"
+    },
+    "status": "проданий",
+    "ticketId": 14
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e2"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-03-17T13:17:48.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698e"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf76969"
+    },
+    "status": "зайнятий",
+    "ticketId": 15
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e3"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-04-22T23:02:03.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf7698f"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7696a"
+    },
+    "status": "зайнятий",
+    "ticketId": 16
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e4"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-05-15T06:45:37.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": null,
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7696b"
+    },
+    "status": "доступний",
+    "ticketId": 17
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e5"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-06-30T19:30:29.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": {
+      "$oid": "672a44b2f7c9ad03faf76990"
+    },
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7696c"
+    },
+    "status": "зайнятий",
+    "ticketId": 18
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e6"},
+    "availability": true,
+    "dateChanges": {
+      "$date": "2024-06-30T19:30:29.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": null,
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7696d"
+    },
+    "status": "доступний",
+    "ticketId": 19
+  },
+  {
+    "_id": {"$oid": "672bd2f031ed07699bf6e6e7"},
+    "availability": false,
+    "dateChanges": {
+      "$date": "2024-06-30T19:30:29.000Z"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00d"
+    },
+    "passengerId": null,
+    "price": 200,
+    "seatId": {
+      "$oid": "672a40bcf7c9ad03faf7696e"
+    },
+    "status": "заброньований",
+    "ticketId": 20
+  }
+])
+db.baggage.deleteMany({});
+
+db.baggage.find();
+db.baggage.insertMany([
+   {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76994"},
+    "flightId": 1,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76985"},
+    "payment": 50,
+    "type": "великогабаритний багаж",
+    "weight": 30.5
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76995"},
+    "flightId": 2,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76986"},
+    "payment": 35,
+    "type": "тварини",
+    "weight": 10
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76996"},
+    "flightId": 3,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76987"},
+    "payment": 40,
+    "type": "спортивний інвентар",
+    "weight": 15.2
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76997"},
+    "flightId": 4,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76988"},
+    "payment": 30,
+    "type": "музичні інструменти",
+    "weight": 5.5
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76998"},
+    "flightId": 5,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76989"},
+    "payment": 25,
+    "type": "стандартний багаж",
+    "weight": 20
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf76999"},
+    "flightId": 6,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698a"},
+    "payment": 45,
+    "type": "великогабаритний багаж",
+    "weight": 28
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699a"},
+    "flightId": 7,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698b"},
+    "payment": 30,
+    "type": "тварини",
+    "weight": 8.5
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699b"},
+    "flightId": 8,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698c"},
+    "payment": 38,
+    "type": "спортивний інвентар",
+    "weight": 12.7
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699c"},
+    "flightId": 9,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698d"},
+    "payment": 28,
+    "type": "музичні інструменти",
+    "weight": 7
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699d"},
+    "flightId": 10,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698e"},
+    "payment": 22,
+    "type": "стандартний багаж",
+    "weight": 18.3
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699e"},
+    "flightId": 11,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf7698f"},
+    "payment": 55,
+    "type": "великогабаритний багаж",
+    "weight": 32.1
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf7699f"},
+    "flightId": 12,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76990"},
+    "payment": 33,
+    "type": "тварини",
+    "weight": 11.8
+  },
+  {
+    "_id": {"$oid": "672a44ddf7c9ad03faf769a0"},
+    "flightId": 13,
+    "passengerId": {"$oid": "672a44b2f7c9ad03faf76991"},
+    "payment": 42,
+    "type": "спортивний інвентар",
+    "weight": 14.5
+  }
+     ]
+
+   )
+
+
+
+db.refundedTicket.deleteMany({})
+db.refundedTicket.find()
+db.refundedTicket.insertMany([
+   {
+    "_id": {"$oid": "672a44e5f7c9ad03faf769a1"},
+    "age": 25,
+    "date": {"$date": "2024-07-25T00:00:00.000Z"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00d"},
+    "fullname": "Іванов Іван Іванович",
+    "gender": "чоловіча",
+    "price": 200,
+    "refundedTicketId": 1,
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76956"},
+    "ticketId": {"$oid": "672bd2f031ed07699bf6e6e4"}
+  },
+  {
+    "_id": {"$oid": "672a44e5f7c9ad03faf769a2"},
+    "age": 25,
+    "date": {"$date": "2024-07-24T00:00:00.000Z"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00c"},
+    "fullname": "Іванов Іван Іванович",
+    "gender": "чоловіча",
+    "price": 150,
+    "refundedTicketId": 2,
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76957"},
+    "ticketId": {"$oid": "672bd2f031ed07699bf6e6e0"}
+  },
+  {
+    "_id": {"$oid": "672a44e5f7c9ad03faf769a3"},
+    "age": 25,
+    "date": {"$date": "2024-07-23T00:00:00.000Z"},
+    "flightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "fullname": "Іванов Іван Іванович",
+    "gender": "чоловіча",
+    "price": 200,
+    "refundedTicketId": 3,
+    "routeId": {"$oid": "672a40b4f7c9ad03faf76958"},
+    "ticketId": {"$oid": "672bd2f031ed07699bf6e6d6"}
+  }
+])
+db.pilotMedExam.deleteMany({});
+db.pilotMedExam.find();
+db.pilotMedExam.insertMany([
+{
+    "_id": 1,
+    "dateExamination": {"$date": "2024-07-25T00:00:00.000Z"},
+    "doctorId": {"$oid": "672b4a66049f2f42847b4bae"},
+    "pilotId": {"$oid": "672b4a66049f2f42847b4b73"},
+    "result": "пройдено"
+  },
+  {
+    "_id": 2,
+    "dateExamination": {"$date": "2024-07-25T00:00:00.000Z"},
+    "doctorId": {"$oid": "672b4a66049f2f42847b4baf"},
+    "pilotId": {"$oid": "672b4a66049f2f42847b4b74"},
+    "result": "не пройдено"
+  }
+])
+
+
+db.canceledFlightInfo.deleteMany({})
+db.canceledFlightInfo.find();
+db.canceledFlightInfo.insertMany([
+{
+    "_id": {"$oid": "672bdd8231ed07699bf6e6e9"},
+    "canceledFlightId": 1,
+    "category": "регулярний",
+    "description": "Прогнозується сильна буря.",
+    "dispatchBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692a"
+    },
+    "flightBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692f"
+    },
+    "flightNumber": "UA456",
+    "inspectionBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf76934"
+    },
+    "navigationBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692c"
+    },
+    "reason": "Технічний стан",
+    "routeId": {
+      "$oid": "672a40b4f7c9ad03faf76957"
+    },
+    "seatNumber": 20,
+    "status": "скасований",
+    "unoccupiedSeatNumber": 10,
+    "workerId": {
+      "$oid": "672b4a66049f2f42847b4b8d"
+    }
+  }])
+
+db.completedFlight.deleteMany({});
+db.completedFlight.find();
+db.completedFlight.insertMany([
+{
+    "_id": {"$oid": "672bdf7831ed07699bf6e6eb"},
+    "category": "міжнародний",
+    "completedFlightId": 1,
+    "dateArrival": {"$date": "2024-12-20T13:00:00.000Z"},
+    "dateDeparture": {"$date": "2024-12-20T10:00:00.000Z"},
+    "dispatchBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692c"
+    },
+    "flightBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692f"
+    },
+    "flightNumber": "BA123",
+    "inspectionBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf76936"
+    },
+    "navigationBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692e"
+    },
+    "routeId": {
+      "$oid": "672a40b4f7c9ad03faf76958"
+    },
+    "status": "завершений"
+  }
+])
+db.passengerCompletedFlight.deleteMany({});
+db.passengerCompletedFlight.find();
+db.passengerCompletedFlight.insertMany([
+{
+    "_id": {"$oid": "672a4505f7c9ad03faf769a8"},
+    "age": 25,
+    "baggageStatus": "наявний",
+    "completedFlightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "email": "passenger1@example.com",
+    "fullname": "Іванов Іван Іванович",
+    "gender": "чоловік",
+    "internPassportNumber": "Є5432176",
+    "passengerCompletedFlightId": 1,
+    "passportNumber": "А1234567",
+    "phoneNumber": "+1234567890"
+  },
+  {
+    "_id": {"$oid": "672a4505f7c9ad03faf769a9"},
+    "age": 30,
+    "baggageStatus": "відсутній",
+    "completedFlightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "email": "passenger2@example.com",
+    "fullname": "Петренко Марія Василівна",
+    "gender": "жінка",
+    "internPassportNumber": "Є5432176",
+    "passengerCompletedFlightId": 2,
+    "passportNumber": "Б2345678",
+    "phoneNumber": "+2345678901"
+  },
+  {
+    "_id": {"$oid": "672a4505f7c9ad03faf769aa"},
+    "age": 40,
+    "baggageStatus": "наявний",
+    "completedFlightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "email": "passenger3@example.com",
+    "fullname": "Сидоренко Петро Олексійович",
+    "gender": "чоловік",
+    "internPassportNumber": "Є5432176",
+    "passengerCompletedFlightId": 3,
+    "passportNumber": "В3456789",
+    "phoneNumber": "+3456789012"
+  },
+  {
+    "_id": {"$oid": "672a4505f7c9ad03faf769ab"},
+    "age": 28,
+    "baggageStatus": "неперевірений",
+    "completedFlightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "email": "passenger4@example.com",
+    "fullname": "Коваленко Ольга Миколаївна",
+    "gender": "жінка",
+    "internPassportNumber": "Є5432176",
+    "passengerCompletedFlightId": 4,
+    "passportNumber": "Г4567890",
+    "phoneNumber": "+4567890123"
+  },
+  {
+    "_id": {"$oid": "672a4505f7c9ad03faf769ac"},
+    "age": 35,
+    "baggageStatus": "перевірений",
+    "completedFlightId": {"$oid": "672b885c936f0d1a7becc00a"},
+    "email": "passenger5@example.com",
+    "fullname": "Григоренко Віталій Володимирович",
+    "gender": "чоловік",
+    "internPassportNumber": "Є5432176",
+    "passengerCompletedFlightId": 5,
+    "passportNumber": "Д5678901",
+    "phoneNumber": "+5678901234"
+  }
+
+])
+
+db.planeRepair.deleteMany({})
+db.planeRepair.find();
+db.planeRepair.insertMany([
+{
+    "_id": {"$oid": "672a450bf7c9ad03faf769ae"},
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "endDate": {"$date": "2024-07-30T08:00:00.000Z"},
+    "numberFlights": 1,
+    "planeId": {"$oid": "672b7e4fb5bdf532c9d2188e"},
+    "planeRepairId": 1,
+    "reason": "Engine malfunction",
+    "result": "відремонтовано",
+    "startDate": {"$date": "2024-07-30T08:00:00.000Z"},
+    "status": "завершиний"
+  },
+  {
+    "_id": {"$oid": "672a450bf7c9ad03faf769af"},
+    "brigadeId": {"$oid": "672a2ab9f7c9ad03faf76921"},
+    "endDate": null,
+    "numberFlights": 2,
+    "planeId": {"$oid": "672b7e4fb5bdf532c9d2188e"},
+    "planeRepairId": 2,
+    "reason": "Engine malfunction",
+    "result": null,
+    "startDate": {"$date": "2024-07-30T08:00:00.000Z"},
+    "status": "активний"
+  }
+
+]);
+
+db.delayedFlightInfo.drop();
+db.worker.find({workerId:20})
+db.delayedFlightInfo.deleteMany({});
+db.delayedFlightInfo.find();
+db.delayedFlightInfo.insertMany([
+{
+    "_id": {"$oid": "672be27231ed07699bf6e6ed"},
+    "category": "чартерний",
+    "delayedFlightInfoId": 1,
+    "description": "Текст для прикладу.",
+    "dispatchBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692a"
+    },
+    "endDelayDate": {"$date": "2024-07-23T13:00:00.000Z"},
+    "flightBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692d"
+    },
+    "flightId": {
+      "$oid": "672b885c936f0d1a7becc00c"
+    },
+    "flightNumber": "DL789",
+    "inspectionBrigadeId": 20,
+    "navigationBrigadeId": {
+      "$oid": "672a2ab9f7c9ad03faf7692c"
+    },
+    "reason": "Погодні умови",
+    "routeId": {
+      "$oid": "672a40b4f7c9ad03faf76958"
+    },
+    "startDelayDate": {"$date": "2024-12-21T10:00:00.000Z"},
+    "workerId": {
+      "$oid": "672b4a66049f2f42847b4b14"
+    }
+  }
+])
+db.worker.aggregate([
+  { $match: { brigadeId: { $gte: 3, $lte: 35 } } }, // Фильтрация по диапазону brigadeId
+  { $group: { _id: "$brigadeId", count: { $sum: 1 } } }, // Группировка по brigadeId и подсчет
+  { $sort: { _id: 1 } } // Сортировка по возрастанию brigadeId
+])
+db.worker.find()
+db.ticket.find(
+    {},
+    { _id: 1, passengerId: 1 }
+)
+
+db.ticket.aggregate([
+ { $match: { status: "куплений" } },
+
+    { $group: { _id: "$flightId", count: { $sum: 1 } } }
+])
+
+
+db.baggage.aggregate([
+
+
+    { $group: { _id: "passengerId" } }
+
+])
+db.ticket.find();
+db.worker.find({ "structureUnitId": { $exists: true } });
+db.position.createIndex({ positionName: 1 }, { unique: true })
+
+db.worker.createIndex({ email: 1 }, { unique: true });
+db.worker.createIndex({ phoneNumber: 1 }, { unique: true });
+
+db.worker.updateMany({}, { $unset: { departmentId: "" } });
+db.worker.updateMany({}, { $unset: { structureUnitId: "" } });
+db.brigade.find();
+db.worker.find({phoneNumber:"+38 (050) 123-45-67"})
+db.canceledFlightInfo.find();
+
+
+
+
+db.flight.find({});
+
+db.position.find({});
+
+db.structureUnit.find()
+
+db.brigade.find({});
+db.flight.updateMany(
+{ flightId: ObjectId("672b885c936f0d1a7becc00d")},
+  { $set: { flightId:  4,} }
+);
+
+db.worker.updateMany(
+{ brigadeId: 0},
+  { $set: { brigadeId:null,} }
+);
+db.plane.find();
+
+db.structureUnit.find({},{structureUnitId:1, structureUnitName:1});
+db.baggage.updateMany(
+  {},
+  { $rename: { "passangerId": "passengerId" } }
+)
+
+db.seat.find();
+db.brigade.find();
+db.flight.find();
+db.refundedTicket.find();
+db.refundedTicket.find();
+db.passenger.find();
+db.seat.find();
+db.pilotMedExam.find();

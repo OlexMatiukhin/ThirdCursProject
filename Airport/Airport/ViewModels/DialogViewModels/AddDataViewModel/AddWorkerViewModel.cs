@@ -51,11 +51,18 @@ namespace Airport.ViewModels.DialogViewModels.AddDataViewModel
                     Shift = SelectedShift,
                     Email = Email,
                     PhoneNumber = PhoneNumber,
+                    LastMedExamDate = DateTime.Now,
+                    ResultMedExam="задвоільний",
                     BrigadeId = SelectedBrigadeId,
                     PositionName = SelectedPostionName
                 };
 
-                _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
+                if (SelectedBrigadeId != ObjectId.Empty)
+                {
+                    _brigadeService.AddWorkerToBrigade(SelectedBrigadeId);
+
+                }
+           
 
                 _workerService.AddWorker(worker);
 

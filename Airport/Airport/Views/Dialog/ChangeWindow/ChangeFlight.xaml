@@ -51,7 +51,7 @@
             Width="120" />
 
         <TextBlock HorizontalAlignment="Left" Margin="411,144,0,0" TextWrapping="Wrap" FontFamily="pack://application:,,,/Fonts/#Inter" VerticalAlignment="Top" FontWeight="Bold" Height="14"><Run Language="uk-ua" Text="Кількість квитків"/></TextBlock>
-        <Button Content="Button" Command="{Binding ChangeFlightCommand}"  HorizontalAlignment="Left" Margin="275,234,0,0" VerticalAlignment="Top" Height="45" Width="184" Click="Button_Click"/>
+        <Button Content="Змінити" Command="{Binding ChangeFlightCommand}"  HorizontalAlignment="Left" Margin="275,234,0,0" VerticalAlignment="Top" Height="45" Width="184" Click="Button_Click"/>
 
         <xctk:DateTimePicker 
             Background="Aqua" 

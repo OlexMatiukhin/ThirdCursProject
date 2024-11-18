@@ -46,8 +46,33 @@ namespace Airport.Services.MongoDBSevice
             }
             catch (Exception ex)
             {
-                // Логирование ошибки
+               
                 Console.WriteLine($"Error checking if plane is in flight: {ex.Message}");
+                return false;
+            }
+        }
+
+
+        public bool IsPlaneInActiveFlight(string planeNumber)
+        {
+            try
+            {
+            
+                var filter = Builders<Flight>.Filter.And(
+                    Builders<Flight>.Filter.Eq(f => f.PlaneNumber, planeNumber),
+                    Builders<Flight>.Filter.Eq(f => f.Status, "активний")
+                );
+
+        
+                var activeFlight = _flightCollection.Find(filter).FirstOrDefault();
+
+          
+                return activeFlight != null;
+            }
+            catch (Exception ex)
+            {
+               
+                Console.WriteLine($"Error checking if plane is in an active flight: {ex.Message}");
                 return false;
             }
         }

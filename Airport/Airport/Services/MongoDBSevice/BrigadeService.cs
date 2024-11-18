@@ -36,7 +36,10 @@ public class BrigadeService
         }
     public void AddWorkerToBrigade(ObjectId briadeId)
     {
-        _brigadeCollection.Find((b)=> b.BrigadeId==briadeId).FirstOrDefault().NumberWorkers++;
+        if (briadeId != null) {
+            _brigadeCollection.Find((b) => b.BrigadeId == briadeId).FirstOrDefault().NumberWorkers++;
+        }
+       
 
 
     }

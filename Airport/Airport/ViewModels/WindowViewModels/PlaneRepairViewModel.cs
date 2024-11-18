@@ -23,6 +23,8 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
         private User _user;
+        public ICommand LogoutCommand { get; }
+     
 
         public ObservableCollection<PlaneRepair> PlaneRepairs
         {
@@ -100,6 +102,10 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenEditWindowCommand { get; }
         private readonly IWindowService _windowService;
         public ICommand FinishRepairCommand { get; }
+
+      
+       
+
         public PlaneRepairsViewModel(IWindowService windowService, User user)
         {
             _planeRepairService = new PlaneRepairService();
@@ -115,7 +121,16 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
         }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
+
 
         public List<PlaneRepair> SearchRepairs(string query)
         {
@@ -228,6 +243,9 @@ namespace Airport.ViewModels.WindowViewModels
                             _planeService.UpdatePlane(plane);
                             planeRepair.Status = "завершений";
                             planeRepair.Result = "успіх";
+                            _planeService.UpdatePlane(plane);
+                            _planeRepairService.UpdatePlaneRepair(planeRepair);
+                            
                         }
                         else
                         {
@@ -237,6 +255,8 @@ namespace Airport.ViewModels.WindowViewModels
                             planeRepair.EndDate = DateTime.Now;
                             planeRepair.Status = "завершений";
                             planeRepair.Result = "ремонту не підлягає";
+                            _planeService.UpdatePlane(plane);
+                            _planeRepairService.UpdatePlaneRepair(planeRepair);
                         }
                         LoadPlaneRepairs();
 

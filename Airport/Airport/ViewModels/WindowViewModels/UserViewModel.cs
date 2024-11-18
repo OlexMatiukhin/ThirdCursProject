@@ -18,6 +18,7 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly UserService _userService;
         private readonly IWindowService _windowService;
         private User _user;
+        public ICommand LogoutCommand { get; }
 
         public ICommand DeleteUserCommand { get; }
 
@@ -88,8 +89,15 @@ namespace Airport.ViewModels.WindowViewModels
             DeleteUserCommand = new RelayCommand(OnDeleteUser);
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
             LoadUsers();
         }
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
 
 
         private void OnDeleteUser(object parameter)

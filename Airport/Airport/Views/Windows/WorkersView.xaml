@@ -50,19 +50,21 @@
             <TextBlock TextWrapping="Wrap" Height="20" 
 FontFamily="pack://application:,,,/Fonts/#Inter"
 FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru" Text="Вийти"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+            <StackPanel.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding LogoutCommand}" />
+            </StackPanel.InputBindings>
         </StackPanel>
         <Image HorizontalAlignment="Left" Width="67"  Margin="7,0,0,5" IsEnabled="True" Source="/Images/Logo.png" VerticalAlignment="Bottom" Grid.Row="0" Height="22"/>
 
 
 
-
         <DataGrid x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False" FontFamily="pack://application:,,,/Fonts/#Inter"
           HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False"
-          FontWeight="Bold" IsReadOnly="True" FontSize="10" SelectionChanged="dataGrid_SelectionChanged"
-     ItemsSource="{Binding Workers}">
+          FontWeight="Bold" IsReadOnly="True" FontSize="10" 
+     ItemsSource="{Binding Workers}" Margin="0,0,0,4">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding WorkerId}" Width="0.5*"/>
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="0.5*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding WorkerId}" Width="*"/>
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="*"/>
                 <DataGridTextColumn Header="Вік" Binding="{Binding Age}" Width="*"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="Стать" Binding="{Binding Gender}" Width="*"/>
@@ -70,6 +72,8 @@ FontSize="16" FontWeight="Bold" Width="58" Margin="0,0,2,0"><Run Language="ru-ru
                 <DataGridTextColumn Header="Дата старт" Binding="{Binding HireDate}" Width="*"/>
                 <DataGridTextColumn Header="Зміна" Binding="{Binding Shift}" Width="*"/>
                 <DataGridTextColumn Header="Еmail" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Дата медогляд" Binding="{Binding LastMedExamDate}" Width="*"/>
+                <DataGridTextColumn Header="Результат медогляд" Binding="{Binding ResultMedExam}" Width="*"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding PhoneNumber}" Width="*"/>
                 <DataGridTextColumn Header="Посада" Binding="{Binding PositionName}" Width="*"/>
                 <DataGridTextColumn Header="Бригада" Binding="{Binding BrigadeId}" Width="*"/>
@@ -98,19 +102,18 @@ CommandParameter="{Binding}" Width="Auto "/>
                 <DataGridTemplateColumn Header="Видалення" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Зміни" Command="{Binding DataContext.DeleteWindowCommand, 
+                            <Button Content="Видалення" Command="{Binding DataContext.DeleteWindowCommand, 
                  RelativeSource={RelativeSource AncestorType=DataGrid}}"
                CommandParameter="{Binding}"    Width="Auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-               
+
 
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button Content="Button" Grid.Row="3" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,1,0,-1" />
-        <TextBox Margin="10,25,10,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="924" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Додавання" Grid.Row="2" MinWidth="860" Command="{Binding OpenAddWindowCommand}" Margin="0,306,0,-1" Background="#FFFAE200" FontWeight="Bold" Grid.RowSpan="2" />
+        <TextBox Margin="10,25,10,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="418" MaxWidth="1920" MinHeight="30"  Text="{Binding SearchLine, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

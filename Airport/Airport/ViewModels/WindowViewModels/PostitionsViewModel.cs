@@ -19,7 +19,7 @@ namespace Airport.ViewModels.WindowViewModels
         private ObservableCollection<Position> _positions;
         private readonly UserService _userService;
 
-
+        
         public ObservableCollection<Position> Positions
         {
             get => _positions;

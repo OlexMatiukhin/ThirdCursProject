@@ -21,6 +21,7 @@ namespace Airport.ViewModels.WindowViewModels
         private ObservableCollection<PassengerCompletedFlight> _passengers;
         private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
+        public ICommand LogoutCommand { get; }
         public ObservableCollection<PassengerCompletedFlight> Passengers
         {
             get => _passengers;
@@ -75,9 +76,13 @@ namespace Airport.ViewModels.WindowViewModels
             }
         }
 
-       
 
 
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
         public void SearchOperation(string searchLine)
         {
             LoadPassengers();
@@ -143,7 +148,10 @@ namespace Airport.ViewModels.WindowViewModels
             Login = _user.Login;
             AccessRight = _user.AccessRight;
             this._user = user;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
         }
+
+   
         public List<PassengerCompletedFlight> SearchPassengers(string query)
         {
             return Passengers.Where(passenger =>
@@ -156,7 +164,7 @@ namespace Airport.ViewModels.WindowViewModels
                 passenger.PhoneNumber.Contains(query, StringComparison.OrdinalIgnoreCase) ||   
                 passenger.Email.Contains(query, StringComparison.OrdinalIgnoreCase) ||        
                 passenger.FullName.Contains(query, StringComparison.OrdinalIgnoreCase) ||     
-                passenger.CompletedFlightId.ToString().Contains(query) // Поиск по CompletedFlightId
+                passenger.CompletedFlightId.ToString().Contains(query) 
             ).ToList();
         }
 

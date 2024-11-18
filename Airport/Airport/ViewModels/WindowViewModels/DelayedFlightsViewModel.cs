@@ -24,7 +24,7 @@ namespace Airport.ViewModels.WindowViewModels
     {
         private readonly IWindowService _windowService;
 
-     
+        public ICommand LogoutCommand { get; }
         public ICommand OpenMainWindowCommand { get; }
         private readonly UserService _userService;
         public ICommand DeleteWindowCommand { get; }
@@ -111,6 +111,13 @@ namespace Airport.ViewModels.WindowViewModels
 
         public ICommand FinishDelayCommand { get; }
 
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
+
         public DelayedFlightsViewModel(IWindowService _windowService, User user)
         {
             _delayedFlightsService = new DelayedFlightsService();
@@ -122,6 +129,7 @@ namespace Airport.ViewModels.WindowViewModels
             _userService = new UserService();
             this._user = user;
             LoadDelayedFlights();
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
             Login = _user.Login;
             AccessRight = _user.AccessRight;
@@ -140,7 +148,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
                 var delayedFlightInfo = parameter as DelayedFlightInfo;
-                if (delayedFlightInfo != null && delayedFlightInfo.EndDelayDate != null)
+                if (delayedFlightInfo != null && delayedFlightInfo.EndDelayDate== null)
                 {
                     MessageBoxResult result = MessageBox.Show(
                         "Завершити затримку?",
@@ -154,6 +162,7 @@ namespace Airport.ViewModels.WindowViewModels
                         Flight flight = _flightService.GetFlightById(delayedFlightInfo.FlightId);
 
                         flight.Status = "запланований";
+                        _flightService.UpdateFlight(flight);
                
 
                     }

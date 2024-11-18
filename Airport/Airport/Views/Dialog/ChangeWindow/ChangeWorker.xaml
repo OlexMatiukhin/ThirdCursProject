@@ -58,6 +58,6 @@
             Width="120"/>
         <ComboBox   ItemsSource="{Binding PositionsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedPostionName, Mode=TwoWay}" x:Name="Postions" HorizontalAlignment="Left" Margin="118,159,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox  ItemsSource="{Binding BrigadesDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedBrigadeId, Mode=TwoWay}"  x:Name="Brigades" HorizontalAlignment="Left" Margin="257,159,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Додати" Command="{Binding ChangeWorkerCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
+        <Button Content="Змінити" Command="{Binding ChangeWorkerCommand}" HorizontalAlignment="Left" Margin="277,224,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.664,6.966" Height="30"/>
     </Grid>
 </Window>

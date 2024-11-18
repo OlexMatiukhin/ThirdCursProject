@@ -75,6 +75,7 @@ namespace Airport.ViewModels.WindowViewModels
 
             }
         }
+        public ICommand LogoutCommand { get; }
 
         public void SearchOperation(string searchLine)
         {
@@ -95,6 +96,12 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand OpenAddWindowCommand { get; }
 
         private User _user;
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
         public SeatsViewModel(IWindowService _windowService, User user)
         {
             _seatService = new SeatService();
@@ -104,6 +111,7 @@ namespace Airport.ViewModels.WindowViewModels
             LoadSeats();
             _userService = new UserService();
             this._user = user;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
             Login = _user.Login;
             AccessRight = _user.AccessRight;

@@ -94,7 +94,7 @@ namespace Airport.ViewModels.WindowViewModels
 
 
         private StructureUnitService _structureUnitService;
-
+        public ICommand LogoutCommand { get; }
         public ICommand OpenMainWindowCommand { get; }
         private readonly IWindowService _windowService;
         public ICommand OpenEditWindowCommand { get; }
@@ -113,7 +113,15 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
+
+        }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
 
 

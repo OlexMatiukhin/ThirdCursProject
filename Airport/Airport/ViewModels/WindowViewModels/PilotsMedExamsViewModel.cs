@@ -23,8 +23,9 @@ namespace Airport.ViewModels.WindowViewModels
         private ObservableCollection<PilotMedExam> _pilotMedExams;
         private readonly UserService _userService;
         private string _login;
-        private string _accessRight;
 
+        private string _accessRight;
+        public ICommand LogoutCommand { get; }
 
         public string Login
         {
@@ -101,7 +102,7 @@ namespace Airport.ViewModels.WindowViewModels
         public ICommand DeleteWindowCommand { get; }
 
         private readonly IWindowService _windowService;
-        private ICommand EndExamCommand;
+        public ICommand EndExamCommand { get; }
         private Worker _worker;
         private WorkerService _workerService;
         public PilotsMedExamsViewModel(IWindowService windowService, User user)
@@ -118,8 +119,14 @@ namespace Airport.ViewModels.WindowViewModels
             this._user = user;
             Login = _user.Login;
             AccessRight = _user.AccessRight;
-           
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
 
+
+        }
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
         private void OnMainWindowOpen(object parameter)
         {
@@ -200,7 +207,7 @@ namespace Airport.ViewModels.WindowViewModels
                     }
                     else
                     {
-                        _windowService.OpenModalWindow("ChangePilotPositionViewModel", pilotMedExam, _worker);
+                        _windowService.OpenModalWindow("ChangePilotPosition", pilotMedExam, _worker);
                     }
 
 

@@ -18,6 +18,8 @@ namespace Airport.ViewModels.WindowViewModels
         private readonly UserService _userService;
 
         private User _user;
+
+        public ICommand LogoutCommand { get; }
         public ObservableCollection<Department> Departments
         {
             get => _departments;
@@ -116,6 +118,18 @@ namespace Airport.ViewModels.WindowViewModels
             LoadDepartments();
 
 
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+
+
+
+
+        }
+
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
         }
 
 

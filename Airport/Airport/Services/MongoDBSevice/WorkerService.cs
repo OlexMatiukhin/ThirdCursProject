@@ -346,6 +346,7 @@ namespace Airport.Services.MongoDBSevice
             }
         }
 
+
         public void DeleteWorker(ObjectId workerId)
         {
             try

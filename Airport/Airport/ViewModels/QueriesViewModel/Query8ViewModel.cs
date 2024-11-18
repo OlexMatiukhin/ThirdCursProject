@@ -241,6 +241,26 @@ namespace Airport.ViewModels.QueriesViewModel
 
 
         private readonly IWindowService _windowService;
+
+
+        public ICommand OpenMainWindowCommand { get; }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+            _windowService.OpenWindow("MainMenuView", _user);
+            _windowService.CloseWindow();
+
+        }
+
+        public ICommand LogoutCommand { get; }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
+
         public Query8ViewModel(IWindowService windowService, User user)
         {
             _windowService = windowService;
@@ -248,8 +268,11 @@ namespace Airport.ViewModels.QueriesViewModel
 
             _userService = new UserService();
             _user = user;
-            /* Login = _user.Login;
-               AccessRight = _user.AccessRight;*/
+             Login = _user.Login;
+               AccessRight = _user.AccessRight;
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+
             DoQuery = new RelayCommand(OnDoQuery);
 
 

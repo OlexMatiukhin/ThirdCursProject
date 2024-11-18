@@ -21,8 +21,8 @@ namespace Airport.ViewModels.QueriesViewModel
         private ObservableCollection<Worker> _workers;
 
         private WorkerService _workerService;
+  
 
-        
         private User _user;
         public ICommand DoQuery { get; }
 
@@ -41,6 +41,28 @@ namespace Airport.ViewModels.QueriesViewModel
         private readonly UserService _userService;
         private readonly IWindowService _windowService;
 
+        public ICommand OpenMainWindowCommand { get; }
+
+        private void OnMainWindowOpen(object parameter)
+        {
+            _windowService.OpenWindow("MainMenuView", _user);
+            _windowService.CloseWindow();
+
+        }
+
+        public ICommand LogoutCommand { get; }
+
+        private void OnLogoutCommand(object parameter)
+        {
+            _windowService.OpenWindow("LoginView", _user);
+            _windowService.CloseWindow();
+        }
+
+
+
+
+
+
         public Query10ViewModel(IWindowService windowService, User user)
         {
             _windowService = windowService;
@@ -48,18 +70,34 @@ namespace Airport.ViewModels.QueriesViewModel
 
             _userService = new UserService();
             _user = user;
-            /*Login = _user.Login;
-              AccessRight = _user.AccessRight;*/
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+            Login = _user.Login;
+            AccessRight = _user.AccessRight;
             DoQuery = new RelayCommand(OnDoQuery);
+            LogoutCommand = new RelayCommand(OnLogoutCommand);
+            OpenMainWindowCommand = new RelayCommand(OnMainWindowOpen);
+
 
 
         }
+
+
 
         private string _login;
         private string _accessRight;
 
 
         public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
+
+        public string AccessRight
         {
             get => _login;
             set
